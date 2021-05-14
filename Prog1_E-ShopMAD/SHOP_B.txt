@@ -1,0 +1,12 @@
+Bananen
+1
+t
+Äpfel
+2
+t
+Erdbeeren
+3
+f
+Kirschen
+4
+t
