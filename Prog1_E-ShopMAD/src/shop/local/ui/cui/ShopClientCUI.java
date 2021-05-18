@@ -34,6 +34,8 @@ public class ShopClientCUI {
 	
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
+		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
+		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
 		System.out.print("         \n  Artikel suchen  'B'");
 		System.out.print("         \n  Artikel zum WK hinzufügen: 'C'");
 		System.out.print("         \n  Warenkorb anzeigen:  'D'");
@@ -71,6 +73,10 @@ public class ShopClientCUI {
 			titel = liesEingabe();
 			liste = shop.sucheNachTitel(titel);
 			gibArtikellisteAus(liste);
+			break;
+		case "a1" :
+			shop.artikelsortiertAusgeben();
+			
 			break;
 		case "c":
 //			menueWk(br);

@@ -10,3 +10,9 @@ f
 Kirschen
 4
 t
+Honig
+5
+t
+Bier
+6
+t
