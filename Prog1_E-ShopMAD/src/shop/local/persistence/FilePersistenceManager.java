@@ -49,8 +49,13 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		// Codierung des Ausleihstatus in boolean umwandeln
 		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;
 		
+		// Bestand einlesen ...
+				String bestandString = liesZeile();
+				// ... und von String in int konvertieren
+				int bestand = Integer.parseInt(bestandString);
+		
 		// neues Buch-Objekt anlegen und zurückgeben
-		return new Artikel(titel, nummer, verfuegbar);
+		return new Artikel(titel, nummer, verfuegbar, bestand);
 		}
 	
 	private String liesZeile() throws IOException {

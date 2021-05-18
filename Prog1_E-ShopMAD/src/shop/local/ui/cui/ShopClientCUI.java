@@ -93,6 +93,7 @@ public class ShopClientCUI {
 		if (liste.isEmpty()) {
 			System.out.println("Liste ist leer.");
 		} else {
+			Collections.sort(liste);
 			for (Artikel artikel : liste) {
 				System.out.println(artikel);
 		
