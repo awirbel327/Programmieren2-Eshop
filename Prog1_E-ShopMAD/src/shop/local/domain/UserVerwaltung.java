@@ -5,16 +5,23 @@ import shop.local.valueobjects.Mitarbeiter;
 import shop.local.valueobjects.Kunde;
 
 public class UserVerwaltung {
+	//public User angemeldeterUser;
 	
+	/********KUNDEN und MITARBEITER********/
+	/*public User getAngemeldeterUser() {
+		return angemeldeterUser;
+	}
 	
-	/********Methoden für KUNDEN und MITARBEITER********/
-
+	public void setAngemeldeterUser() {
+		angemeldeterUser = user;
+	}*/
 	
 	public void logIn (String Benutzererkennung, String Passwort) {
 	}
 	
 	public void register (String name, double number) {
 	}
+	
 	
 	/******** Methoden für MITARBEITER ********/
 	
