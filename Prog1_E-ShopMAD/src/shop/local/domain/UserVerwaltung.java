@@ -5,6 +5,7 @@ import shop.local.valueobjects.Mitarbeiter;
 import shop.local.valueobjects.Kunde;
 
 public class UserVerwaltung {
+	//public static Vector <User> userListe = new Vector<User>();
 	//public User angemeldeterUser;
 	
 	/********KUNDEN und MITARBEITER********/
