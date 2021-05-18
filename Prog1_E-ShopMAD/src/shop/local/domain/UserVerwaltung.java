@@ -7,10 +7,7 @@ import shop.local.valueobjects.Kunde;
 public class UserVerwaltung {
 	
 	
-	/**
-	 * Methoden für KUNDEN und MITARBEITER
-	 * @param maust
-	 */
+	/********Methoden für KUNDEN und MITARBEITER********/
 
 	
 	public void logIn (String Benutzererkennung, String Passwort) {
@@ -19,9 +16,7 @@ public class UserVerwaltung {
 	public void register (String name, double number) {
 	}
 	
-	/**
-	 * Methoden für MITARBEITER
-	 */
+	/******** Methoden für MITARBEITER ********/
 	
 	public void newArticle (String articleName, int stock) {
 	}
@@ -30,9 +25,7 @@ public class UserVerwaltung {
 		
 	}
 	
-	/** 
-	 *  Methoden für KUNDEN
-	 */
+	/********Methoden für KUNDEN********/
 	
 	
 	public void emptyCart () {
