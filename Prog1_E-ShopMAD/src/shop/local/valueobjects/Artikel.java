@@ -13,18 +13,15 @@ public class Artikel {
 	private String bezeichnung;
 	private int artikelnummer;
 	private boolean verfuegbar; 
-//	private int bestand;
+	private int bestand;		//String damit Warnung weg geht ?
 	
-//	
-//	public Artikel(String titel, int nr) {
-//		this(titel, nr, true);
-//	}
+
 
 	public Artikel(String titel, int nr, boolean verfuegbar) {
 		artikelnummer = nr;
 		this.bezeichnung = titel;
 		this.verfuegbar = verfuegbar;
-//		this.bestand = bestand;
+		this.bestand = bestand;
 	}
 	
 	// wird benötigt um die Artikel aus der Liste auszugeben
@@ -40,6 +37,10 @@ public class Artikel {
 
 	public String getTitel() {
 		return bezeichnung;
+	}
+	
+	public int getBestand() {
+		return bestand;
 	}
 
 	public boolean isVerfuegbar() {
