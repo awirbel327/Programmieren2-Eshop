@@ -21,7 +21,7 @@ import shop.local.domain.*;
 public class ShopClientCUI {
 	
 	//nocheintest
-
+// ja ich kanns sehen?
 	private Eshop shop;
 	private BufferedReader in;
 	
