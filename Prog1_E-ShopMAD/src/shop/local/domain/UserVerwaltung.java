@@ -52,10 +52,11 @@ public class UserVerwaltung {
 	}
 	
 	public Kunde kundenlogIn (String username, String passwort) {
-		for (Kunde kunde:kundenListe) {
+		for (Kunde kunde:kundenListe) {		//Hochzählen ? (int j = 0; j<= kundenListe.size(); j++)
 			if(username == kunde.getUsername()) {
 				if(passwort == kunde.getPasswort()) {
 					return kunde;
+					//j--; ???????
 				}
 			}
 		}

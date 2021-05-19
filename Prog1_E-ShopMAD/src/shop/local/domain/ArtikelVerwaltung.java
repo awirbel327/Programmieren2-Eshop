@@ -28,7 +28,7 @@ public class ArtikelVerwaltung {
 	public void artikelSortNummer(Vector <Artikel> artikel) {
 		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige größe
 		artikel.toArray(vecZuArr); //Vector Array
-		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {
+		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {		
 			@Override 
 			public int compare(Artikel artikel1, Artikel artikel2) {
 				String nr1 = Integer.toString(artikel1.getNummer());	// Int zu String
