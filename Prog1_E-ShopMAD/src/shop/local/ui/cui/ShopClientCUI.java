@@ -31,6 +31,7 @@ public class ShopClientCUI {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
 		
+	// HIHI 
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
