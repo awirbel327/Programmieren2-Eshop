@@ -1,23 +1,42 @@
 package shop.local.domain;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+
 import shop.local.persistence.FilePersistenceManager;
 import shop.local.persistence.PersistenceManager;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.valueobjects.Artikel;
 
+ 
+
 
 public class ArtikelVerwaltung {
-	private List<Artikel> artikelBestand = new Vector<Artikel>();
+	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
 	
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
+	
+	
+	//Methode zum Sortieren von Artikel nach ArtikelNr.
+			//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
+			public void artikelSortBezeichnung(Vector <Artikel> artikel) {
+				Artikel[] vecZuArr = (Artikel[])artikel.toArray(); //Vector Array
+				Arrays.sort(vecZuArr, new Comparator<Artikel>() {
+					@Override 
+					public int compare(Artikel artikel1, Artikel artikel2) {
+						return artikel1.getTitel().compareTo(artikel2.getTitel());
+					}
+				});
+				System.out.println(Arrays.asList(vecZuArr));
+			}		
 	
 	
 	public void liesDaten(String datei) throws IOException {
@@ -55,7 +74,7 @@ public class ArtikelVerwaltung {
 	}
 
 	
-	public List<Artikel> getArtikelBestand() {
+	public Vector<Artikel> getArtikelBestand() {
 		return new Vector<Artikel>(artikelBestand);
 	}	
 		
@@ -75,4 +94,5 @@ public class ArtikelVerwaltung {
 	
 return suchErg;
 }
+
 }

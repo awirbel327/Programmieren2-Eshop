@@ -1,5 +1,9 @@
 package shop.local.valueobjects;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Vector;
+
 import shop.local.valueobjects.Artikel;
 
 /**
@@ -7,7 +11,9 @@ import shop.local.valueobjects.Artikel;
  * 
  * @author teschke
  */
+
 public class Artikel implements Comparable<Artikel> {
+
 
 	// Attribute zur Beschreibung eines Buchs:
 	private String bezeichnung;
@@ -35,9 +41,11 @@ public class Artikel implements Comparable<Artikel> {
 	 * Nach Name muss ich nochmal gucken!!
 	 * 
 	 */
-	public int compareTo (Artikel andererArtikel) {
+	/*public int compareTo (Artikel andererArtikel) {
 		return this.getNummer() - andererArtikel.getNummer(); 
 	}
+	*/
+	
 
 	
 	public int getNummer() {
@@ -56,5 +64,10 @@ public class Artikel implements Comparable<Artikel> {
 		return verfuegbar;
 	}
 	
-	
+
+	@Override	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
+	public int compareTo(Artikel o) {
+		return toString().compareTo(o.toString());		// zu String und vergelciht mit Artikel "o"
+	}
+
 }

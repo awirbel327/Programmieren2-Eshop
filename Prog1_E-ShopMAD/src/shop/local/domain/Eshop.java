@@ -30,13 +30,17 @@ public class Eshop {
 	public Eshop(String datei) throws IOException {
 		this.datei = datei;
 		
-		// Buchbestand aus Datei einlesen
+		// Artikelbestand aus Datei einlesen
 		meineArtikel = new ArtikelVerwaltung();
 		meineArtikel.liesDaten(datei + "_B.txt");
-
-	
 		
 	}
+	
+
+	public void artikelsortiertAusgeben() {
+		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
+	}
+
 	public String wkAusgeben() {
 				//warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
 		Warenkorb wk = new Warenkorb();
