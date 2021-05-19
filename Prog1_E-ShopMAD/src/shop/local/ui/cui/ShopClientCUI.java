@@ -32,6 +32,7 @@ public class ShopClientCUI {
 	}
 		// PUSH TEST VON DILALA
 	// push test 2
+	//Test 3
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
