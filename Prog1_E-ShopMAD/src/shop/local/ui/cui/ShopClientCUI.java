@@ -15,6 +15,7 @@ import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.Warenkorb;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Kunde;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.domain.*;
 
@@ -58,6 +59,7 @@ public class ShopClientCUI {
 	private void verarbeiteEingabe(String line) throws IOException {
 //		String nummer;
 //		int nr;
+		String auswahl;
 		String titel;
 		List<Artikel>liste;
 		InputStreamReader is = new InputStreamReader(System.in);
@@ -65,10 +67,13 @@ public class ShopClientCUI {
 		
 		switch(line) {
 		case "0":
-			//loginmenue();
 			System.out.print("Als Kunde anmelden(j/n) :   > ");
-			String auswahl= liesEingabe();
-			//if ()
+			// auswahl= liesEingabe();
+			//if(auswahl == "j") {
+				kundenlogin();
+		//	} else {
+				//mitarbeiter();
+			//}
 			break;
 		case "1":
 			//registermenue();
@@ -104,6 +109,27 @@ public class ShopClientCUI {
 		
 	}
 	
+	private void kundenlogin() {
+		String username = "";
+		String passwort ="";
+		System.out.print("Username eingeben :   > ");
+		try {
+			username = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print("Passwort eingeben :   > ");
+		try {
+			passwort = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Kunde kunde =shop.kundenlogIn(username, passwort);
+		System.out.println("erfolgreich eingeloggt als"+ kunde.getName()+ "!!");
+		
+	}
 	
 	
 	private void gibArtikellisteAus(List<Artikel> liste) {

@@ -51,11 +51,16 @@ public class UserVerwaltung {
 		kundenListe.add(einKunde);
 	}
 	
-	/*public Kunde logIn (String username, String passwort) {
+	public Kunde kundenlogIn (String username, String passwort) {
 		for (Kunde kunde:kundenListe) {
-			if() {}
+			if(username == kunde.getUsername()) {
+				if(passwort == kunde.getPasswort()) {
+					return kunde;
+				}
+			}
 		}
-	}*/
+		return null;
+	}
 	
 	public void register (String name, double number) {
 	}

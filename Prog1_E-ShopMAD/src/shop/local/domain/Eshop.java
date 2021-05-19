@@ -35,11 +35,13 @@ public class Eshop {
 		meineArtikel.liesDaten(datei + "_B.txt");
 		
 		meineNutzer = new UserVerwaltung();
-		meineNutzer.liesKunden("_Kunde.txt");
+		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
 	}
 	
-	
+	public Kunde kundenlogIn(String username, String passwort) {
+		return meineNutzer.kundenlogIn(username, passwort);
+	}
 	
 
 	public void artikelsortiertAusgebenBezeichnung() {
