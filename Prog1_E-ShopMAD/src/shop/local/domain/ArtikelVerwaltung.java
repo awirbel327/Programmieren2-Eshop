@@ -23,7 +23,7 @@ public class ArtikelVerwaltung {
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
-	
+	///HUHUHUHUHUHU
 	
 	//Methode zum Sortieren von Artikel nach ArtikelNr.
 			//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
