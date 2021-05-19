@@ -24,6 +24,7 @@ public class Eshop {
 	
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
+	private UserVerwaltung meineNutzer;
 	
 	
 	public Eshop(String datei) throws IOException {
@@ -33,11 +34,20 @@ public class Eshop {
 		meineArtikel = new ArtikelVerwaltung();
 		meineArtikel.liesDaten(datei + "_B.txt");
 		
+		meineNutzer = new UserVerwaltung();
+		meineNutzer.liesKunden("_Kunde.txt");
+		
 	}
 	
+	
+	
 
-	public void artikelsortiertAusgeben() {
+	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
+	}
+	
+	public void artikelsortiertAusgebenNummer() {
+		meineArtikel.artikelSortNummer(meineArtikel.getArtikelBestand());
 	}
 
 	public String wkAusgeben() {

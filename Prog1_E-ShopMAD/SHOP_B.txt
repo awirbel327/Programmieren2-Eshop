@@ -1,7 +1,7 @@
 Bananen
 1
 t
-Äpfel
+Aepfel
 2
 t
 Erdbeeren

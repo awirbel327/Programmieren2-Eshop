@@ -33,7 +33,9 @@ public class ShopClientCUI {
 	
 	
 	private void gibMenueAus() {
-		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
+		System.out.print("Befehle: \n  Einloggen:  '0'");
+		System.out.print("	       \n  Registrieren:  '1'");
+		System.out.print("		   \n  Artikel ausgeben:  'A'");
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
 		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
 		System.out.print("         \n  Artikel suchen  'B'");
@@ -48,8 +50,6 @@ public class ShopClientCUI {
 	}
 	
 
-	
-	
 	private String liesEingabe() throws IOException{
 		return in.readLine();
 	}
@@ -64,6 +64,15 @@ public class ShopClientCUI {
 		BufferedReader br = new BufferedReader(is);	
 		
 		switch(line) {
+		case "0":
+			//loginmenue();
+			System.out.print("Als Kunde anmelden(j/n) :   > ");
+			String auswahl= liesEingabe();
+			//if ()
+			break;
+		case "1":
+			//registermenue();
+			break;
 		case "a":
 			liste = shop.gibAlleArtikel();
 			gibArtikellisteAus(liste);
@@ -75,8 +84,10 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 		case "a1" :
-			shop.artikelsortiertAusgeben();
-			
+			shop.artikelsortiertAusgebenBezeichnung();
+			break;
+		case "a2" :
+			shop.artikelsortiertAusgebenNummer();
 			break;
 		case "c":
 //			menueWk(br);

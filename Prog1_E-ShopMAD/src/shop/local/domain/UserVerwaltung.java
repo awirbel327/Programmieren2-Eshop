@@ -1,11 +1,20 @@
 package shop.local.domain;
 
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Mitarbeiter;
-import shop.local.valueobjects.Kunde;
+import java.io.IOException;
+import java.util.Vector;
+
+import shop.local.domain.exceptions.*;
+import shop.local.persistence.*;
+import shop.local.valueobjects.*;
+
 
 public class UserVerwaltung {
-	//public static Vector <User> userListe = new Vector<User>();
+	
+	private PersistenceManager pm = new FilePersistenceManager();
+	
+	public static Vector <Kunde> kundenListe = new Vector<Kunde>();
+	
+	public static Vector <Kunde> mitarbeiterListe = new Vector<Kunde>();
 	//public User angemeldeterUser;
 	
 	/********KUNDEN und MITARBEITER********/
@@ -16,9 +25,37 @@ public class UserVerwaltung {
 	public void setAngemeldeterUser() {
 		angemeldeterUser = user;
 	}*/
+
 	
-	public void logIn (String Benutzererkennung, String Passwort) {
+	public void liesKunden(String datei) throws IOException {
+		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
+
+		Kunde einKunde;
+		do {
+			einKunde = pm.ladeKunde();
+			if (einKunde != null) {
+				try {
+					kundeEinfuegen(einKunde);
+				} catch (KundeExistiertBereitsException e1) {
+				}
+			}
+		} while (einKunde != null);
+		pm.close();
 	}
+	
+	public void kundeEinfuegen(Kunde einKunde) throws KundeExistiertBereitsException {
+		if (kundenListe.contains(einKunde)) {
+			throw new KundeExistiertBereitsException(einKunde, " - in 'einfuegen()'");
+		}
+
+		kundenListe.add(einKunde);
+	}
+	
+	/*public Kunde logIn (String username, String passwort) {
+		for (Kunde kunde:kundenListe) {
+			if() {}
+		}
+	}*/
 	
 	public void register (String name, double number) {
 	}
