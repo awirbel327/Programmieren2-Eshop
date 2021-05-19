@@ -20,7 +20,7 @@ import shop.local.domain.*;
 
 public class ShopClientCUI {
 	
-	//TEST
+	//TESTTESTEST
 
 	private Eshop shop;
 	private BufferedReader in;
