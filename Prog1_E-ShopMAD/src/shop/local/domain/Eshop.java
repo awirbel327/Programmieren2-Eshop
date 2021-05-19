@@ -13,17 +13,21 @@ import shop.local.valueobjects.Warenkorb;
 
 
 /**
- * Klasse zur Verwaltung einer (sehr einfachen) Bibliothek.
+ * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
  * zur Suche nach Büchern, zum Einfügen neuer Bücher
  * und zum Speichern des Bestands.
  */
 
 public class Eshop {
+	
+	// TESTTTTTT
+	
 	private String datei = "";
 	
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
+// 	private UserVerwaltung meineNutzer;
 	
 	
 	public Eshop(String datei) throws IOException {

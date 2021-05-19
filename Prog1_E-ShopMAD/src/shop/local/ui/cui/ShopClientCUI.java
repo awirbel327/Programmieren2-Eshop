@@ -19,6 +19,8 @@ import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.domain.*;
 
 public class ShopClientCUI {
+	
+	//nocheintest
 
 	private Eshop shop;
 	private BufferedReader in;
@@ -100,6 +102,7 @@ public class ShopClientCUI {
 		if (liste.isEmpty()) {
 			System.out.println("Liste ist leer.");
 		} else {
+			Collections.sort(liste);
 			for (Artikel artikel : liste) {
 				System.out.println(artikel);
 		
