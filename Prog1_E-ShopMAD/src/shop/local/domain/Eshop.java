@@ -20,6 +20,9 @@ import shop.local.valueobjects.Warenkorb;
  */
 
 public class Eshop {
+	
+	// TESTTTTTT
+	
 	private String datei = "";
 	
 	private ArtikelVerwaltung meineArtikel;
