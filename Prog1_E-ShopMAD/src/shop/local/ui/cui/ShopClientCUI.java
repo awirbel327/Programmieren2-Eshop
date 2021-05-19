@@ -30,7 +30,7 @@ public class ShopClientCUI {
 
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
-	
+	// Test
 	
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
