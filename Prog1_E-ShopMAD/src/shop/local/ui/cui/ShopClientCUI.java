@@ -19,6 +19,8 @@ import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.domain.*;
 
 public class ShopClientCUI {
+	
+	//TEST
 
 	private Eshop shop;
 	private BufferedReader in;
