@@ -52,16 +52,21 @@ public class UserVerwaltung {
 	}
 	
 	public Kunde kundenlogIn (String username, String passwort) {
-		for (Kunde kunde:kundenListe) {		//Hochzählen ? (int j = 0; j<= kundenListe.size(); j++)
-			if(username == kunde.getUsername()) {
-				if(passwort == kunde.getPasswort()) {
+		for (Kunde kunde:kundenListe) {	
+			if(username.equals(kunde.getUsername())) {
+				if(passwort.equals(kunde.getPasswort())) {
 					return kunde;
-					//j--; ???????
+					
 				}
 			}
 		}
 		return null;
 	}
+	//public Kunde registrieren (Kunde einKunde){
+	//.....
+	//kundenListe.add(einKunde);
+	//return Kunde 
+	//}
 	
 	public void register (String name, double number) {
 	}

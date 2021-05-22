@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
-import shop.local.domain.exceptions.SortierException;
-import shop.local.domain.ArtikelVerwaltung;
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Kunde;
+import shop.local.domain.exceptions.*;
+import shop.local.domain.*;
+import shop.local.valueobjects.*;
 
-import shop.local.valueobjects.Warenkorb;
 
 
 /**
@@ -43,6 +41,10 @@ public class Eshop {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
 	
+	//public Kunde kundenRegistrieren(Kunde einKunde) {
+		//return meineNutzer.registrieren(einKunde);
+	//}
+	
 
 	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
@@ -71,13 +73,11 @@ public class Eshop {
 		return null;
 	}
 	
-	public List<Artikel> gibAlleArtikel() {
-		// einfach delegieren an BuecherVerwaltung meineBuecher
+	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
 		return meineArtikel.getArtikelBestand();
 	}
 	
-	public List<Artikel> sucheNachTitel(String titel) {
-		// einfach delegieren an BuecherVerwaltung meineBuecher
+	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
 		return meineArtikel.sucheArtikel(titel); 
 	}
 }

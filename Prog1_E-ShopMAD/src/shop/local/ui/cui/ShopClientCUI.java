@@ -23,6 +23,8 @@ public class ShopClientCUI {
 
 	private Eshop shop;
 	private BufferedReader in;
+	private Kunde kundeEingeloggt;
+	
 	
 	public ShopClientCUI(String datei) throws IOException {
 		
@@ -61,22 +63,48 @@ public class ShopClientCUI {
 //		int nr;
 		String auswahl;
 		String titel;
+		String name;
+		String strasse;
+		int hausNr;
+		int plz;
+		String ort;
+		String username;
+		String passwort;
 		List<Artikel>liste;
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);	
 		
+		
 		switch(line) {
 		case "0":
 			System.out.print("Als Kunde anmelden(j/n) :   > ");
-			// auswahl= liesEingabe();
-			//if(auswahl == "j") {
+			auswahl = liesEingabe();
+			if(auswahl.equals("j")) {
 				kundenlogin();
-		//	} else {
-				//mitarbeiter();
+			} //else {
+			//	mitarbeiter();
 			//}
 			break;
 		case "1":
-			//registermenue();
+			System.out.println("Als Kunde registrieren :   >");
+			System.out.print("Vollständiger Name :   > ");
+			name = liesEingabe();
+			System.out.print("Straßenname :   > ");
+			strasse = liesEingabe();
+			System.out.print("Hausnummer :   > ");			
+			String hausNrString = liesEingabe();
+			hausNr = Integer.parseInt(hausNrString);
+			System.out.print("Postleitzahl :   > ");			
+			String plzString = liesEingabe();
+			plz = Integer.parseInt(plzString);
+			System.out.print("Ort :   > ");
+			ort = liesEingabe();
+			System.out.print("Username :   > ");
+			username = liesEingabe();
+			System.out.print("passwort :   > ");
+			passwort = liesEingabe();
+			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	//neuen Kunden erschaffen
+			//shop.kundenRegistrieren(einKunde);
 			break;
 		case "a":
 			liste = shop.gibAlleArtikel();
@@ -106,7 +134,6 @@ public class ShopClientCUI {
 			System.out.println("Ungueltige Eingabe!\n");
 //			gibMenueAus();
 		}
-		
 	}
 	
 	private void kundenlogin() {
@@ -127,10 +154,10 @@ public class ShopClientCUI {
 			e.printStackTrace();
 		}
 		Kunde kunde =shop.kundenlogIn(username, passwort);
-		System.out.println("erfolgreich eingeloggt als"+ kunde.getName()+ "!!");
-		
+		System.out.println("erfolgreich eingeloggt als "+ kunde.getName()+ "!!");
+		kundeEingeloggt = kunde;		
 	}
-	
+		
 	
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {
