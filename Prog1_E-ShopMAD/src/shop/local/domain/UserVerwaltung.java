@@ -2,7 +2,6 @@ package shop.local.domain;
 
 import java.io.IOException;
 import java.util.Vector;
-
 import shop.local.domain.exceptions.*;
 import shop.local.persistence.*;
 import shop.local.valueobjects.*;
@@ -12,9 +11,9 @@ public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
 	
-	public static Vector <Kunde> kundenListe = new Vector<Kunde>();
+	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
+	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
 	
-	public static Vector <Kunde> mitarbeiterListe = new Vector<Kunde>();
 	//public User angemeldeterUser;
 	
 	/********KUNDEN und MITARBEITER********/
@@ -62,15 +61,54 @@ public class UserVerwaltung {
 		}
 		return null;
 	}
-	//public Kunde registrieren (Kunde einKunde){
-	//.....
-	//kundenListe.add(einKunde);
-	//return Kunde 
-	//}
+	/*public Kunde registrieren(Kunde einKunde){
+	for(Kunde kunde:kundenListe) {
+		if() {
+			if() {
+				
+			}
+		}
+	}
+	kundenListe.add(einKunde);
+	return kunde; 
+	}*/
 	
-	public void register (String name, double number) {
+	/*public void liesMitarbeiter(String datei) throws IOException {
+		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
+
+		Mitarbeiter einMitarbeiter;
+		do {
+			einMitarbeiter = pm.ladeMitarbeiter();
+			if (einMitarbeiter != null) {
+				try {
+					mitarbeiterEinfuegen(einMitarbeiter);
+				} catch (KundeExistiertBereitsException e1) {
+				}
+			}
+		} while (einMitarbeiter != null);
+		pm.close();
+	}
+	//!!!!!!!!!!!!!!!!!!!!!!EXCEPTION noch KUNDE !!!!!!!!!!!!!!!!!!!
+	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws KundeExistiertBereitsException {
+		if (kundenListe.contains(einMitarbeiter)) {
+			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'einfuegen()'");
+		}
+
+		kundenListe.add(einMitarbeiter);
 	}
 	
+	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
+		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
+			if(username.equals(mitarbeiter.getUsername())) {
+				if(passwort.equals(mitarbeiter.getPasswort())) {
+					return mitarbeiter;
+					
+				}
+			}
+		}
+		return null;
+	}*/
+		
 	
 	/******** Methoden f�r MITARBEITER ********/
 	

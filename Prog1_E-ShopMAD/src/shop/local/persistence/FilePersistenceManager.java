@@ -5,7 +5,7 @@ import shop.local.persistence.PersistenceManager;
 import java.util.*;
 import java.io.BufferedReader;
 import shop.local.valueobjects.*;	// * = importiert alles aus valueobjects
-
+import shop.local.domain.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -31,6 +31,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	public boolean close() {
 		return true;
 	}
+	
 	public Kunde ladeKunde() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -47,6 +48,19 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
+	
+	/*public Mitarbeiter ladeMitarbeiter() throws IOException {
+		String name = liesZeile();
+		if (name == null) {
+			return null;
+		}
+		String mitarbeiterNrString = liesZeile();
+		int mitarbeiterNr = Integer.parseInt(mitarbeiterNrString);
+		String username = liesZeile();
+		String passwort = liesZeile();
+		
+		return new Mitarbeiter(name,nr, username, passwort);
+	}*/
 	
 	public Artikel ladeArtikel() throws IOException {
 		String titel = liesZeile();

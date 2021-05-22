@@ -6,17 +6,11 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Vector;
 import shop.local.valueobjects.Warenkorb;
-import shop.local.domain.exceptions.LagerbestandsException;
-import shop.local.domain.exceptions.MassenkaufException;
-import shop.local.domain.exceptions.SortierException;
-
+import shop.local.domain.exceptions.*;
 import java.util.Collections;
 import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
-import shop.local.valueobjects.Warenkorb;
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Kunde;
-import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
+import shop.local.valueobjects.*;
 import shop.local.domain.*;
 
 public class ShopClientCUI {
@@ -24,6 +18,7 @@ public class ShopClientCUI {
 	private Eshop shop;
 	private BufferedReader in;
 	private Kunde kundeEingeloggt;
+	private Mitarbeiter mitarbeiterEingeloggt;
 	
 	
 	public ShopClientCUI(String datei) throws IOException {
@@ -81,9 +76,9 @@ public class ShopClientCUI {
 			auswahl = liesEingabe();
 			if(auswahl.equals("j")) {
 				kundenlogin();
-			} //else {
-			//	mitarbeiter();
-			//}
+			} /*else {
+				mitarbeiterlogin();
+			}*/
 			break;
 		case "1":
 			System.out.println("Als Kunde registrieren :   >");
@@ -158,6 +153,28 @@ public class ShopClientCUI {
 		kundeEingeloggt = kunde;		
 	}
 		
+	
+	/*private void mitarbeiterlogin() {
+		String username = "";
+		String passwort ="";
+		System.out.print("Username eingeben :   > ");
+		try {
+			username = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print("Passwort eingeben :   > ");
+		try {
+			passwort = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Mitarbeiter mitarbeiter =shop.mitarbeiterlogIn(username, passwort);
+		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
+		mitarbeiterEingeloggt = mitarbeiter;		
+	}*/
 	
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {

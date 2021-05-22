@@ -3,7 +3,6 @@ package shop.local.domain;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
-
 import shop.local.domain.exceptions.*;
 import shop.local.domain.*;
 import shop.local.valueobjects.*;
@@ -23,6 +22,7 @@ public class Eshop {
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
 	private UserVerwaltung meineNutzer;
+	//private Userverwaltung meineMitarbeiter;
 	
 	
 	public Eshop(String datei) throws IOException {
@@ -35,15 +35,22 @@ public class Eshop {
 		meineNutzer = new UserVerwaltung();
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
+		//meineMitarbeiter = new UserVerwaltung();
+		//meineMitarbeiter.liesMitarbeiter("SHOP_Mitarbeiter.txt");
+		
 	}
 	
 	public Kunde kundenlogIn(String username, String passwort) {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
 	
-	//public Kunde kundenRegistrieren(Kunde einKunde) {
-		//return meineNutzer.registrieren(einKunde);
-	//}
+	/*public Kunde kundenRegistrieren(Kunde einKunde) {
+		return meineNutzer.registrieren(einKunde);
+	}*/
+	
+	/*public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
+		return meineMitarbeiter.mitarbeiterlogIn(username, passwort);
+	}*/
 	
 
 	public void artikelsortiertAusgebenBezeichnung() {
