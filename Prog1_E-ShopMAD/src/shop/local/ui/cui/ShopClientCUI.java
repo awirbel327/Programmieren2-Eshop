@@ -77,9 +77,9 @@ public class ShopClientCUI {
 			break;
 		case "1":
 			System.out.println("Als Kunde registrieren :   >");
-			System.out.print("Vollst�ndiger Name :   > ");
+			System.out.print("Vollst�ndiger Name :   > ");
 			name = liesEingabe();
-			System.out.print("Stra�enname :   > ");
+			System.out.print("Stra�enname :   > ");
 			strasse = liesEingabe();
 			System.out.print("Hausnummer :   > ");			
 			String hausNrString = liesEingabe();
@@ -113,10 +113,10 @@ public class ShopClientCUI {
 			shop.artikelsortiertAusgebenNummer();
 			break;
 		case "c":
-//			menueWk(br);
+			menueWk(br);
 			break;
 		case "d":
-			System.out.println(shop.wkAusgeben());
+			System.out.println(""+shop.wkAusgeben());
 //			gibMenueAus();
 			break;
 
@@ -183,23 +183,17 @@ public class ShopClientCUI {
 		}
 	}
 	
-	public void menueWk(BufferedReader br) throws Exception{
-		
-		int artNummer = 0;
-		int artAnzahl = 0;
+	public void menueWk(BufferedReader br) throws NumberFormatException, IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
-		try {
-		artNummer = Integer.parseInt(br.readLine());
-		System.out.println("Geben Sie die Stueckzahl an: \n");
-		artAnzahl = Integer.parseInt(br.readLine());
-		} catch (NumberFormatException exception) {
-			System.out.println("Geben sie eine Zahl ein!!!");
-			menueWk(br);
-		}
-//		System.out.println(shop.zumWKhinzufuegen);
-		
-		// Weitershoppen? Weiteren artikel . zurück zum hauptmenu
+		System.out.print("> ");
+		int artNummer = Integer.parseInt(br.readLine());
+		System.out.println("Geben Sie die Stückzahl an: \n");
+		System.out.print("> ");
+		int artAnzahl = Integer.parseInt(br.readLine());
+		System.out.println(shop.artikelZumWarenkorb(artNummer, artAnzahl));
+//		hauptmenueKunde();
 	}
+	
 	/**
 	 * Methode zur Ausführung der Hauptschleife:
 	 * - Menü ausgeben

@@ -86,4 +86,27 @@ public class Eshop {
 	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
 		return meineArtikel.sucheArtikel(titel); 
 	}
+	
+	//Methode um Artikel zum Warenkorb hinzuzufügen
+		public String artikelZumWarenkorb(int artNummer, int artAnzahl) {
+			Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
+//			Kunde dieserKunde = (Kunde) BenutzerVerwaltung.getAngemeldeterBenutzer();
+			String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
+			// Die Artikelliste wird nacch den gewuenschten Artikel durchsucht.
+			for(int i = 0 ; artListe.size() > i ; i++) {
+				if(artListe.elementAt(i).getNummer() == artNummer) {
+					Artikel gefundenArt = artListe.elementAt(i);
+					//Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
+					
+					if((gefundenArt.getBestand()>= artAnzahl) == true) {
+//						erhoehenOderhinzufuegen(gefundenArt, dieserKunde, artAnzahl);
+						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
+					} else {
+						bestaetigung = "Leider haben wir nicht genuegend Artikel auf Lager, der Bestand des Artikels "+ gefundenArt.getTitel() + " betraegt: " + gefundenArt.getBestand() + ". Bitte wiederholen Sie die Eingabe.";
+					}
+				}
+			}
+			return bestaetigung;
+		}	
+	
 }

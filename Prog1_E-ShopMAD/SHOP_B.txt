@@ -12,8 +12,8 @@ t
 10
 Erdbeeren
 3
-f
-10
+t
+5
 Kirschen
 4
 t

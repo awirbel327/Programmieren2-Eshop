@@ -22,9 +22,14 @@ public class ArtikelVerwaltung {
 	
 	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	
+	
+	public Vector <Artikel> getArtikelliste(){
+		return artikelListeVector;
+	}
+	
 	//Methode zum Sortieren von Artikel nach ArtikelNummer.
 	public void artikelSortNummer(Vector <Artikel> artikel) {
-		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige größe
+		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige grï¿½ï¿½e
 		artikel.toArray(vecZuArr); //Vector Array
 		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {		
 			@Override 
@@ -40,7 +45,7 @@ public class ArtikelVerwaltung {
 	//Methode zum Sortieren von Artikel nach ArtikelBezeichnung.
 			//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
 			public void artikelSortBezeichnung(Vector <Artikel> artikel) {
-				Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige größe
+				Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige grï¿½ï¿½e
 				artikel.toArray(vecZuArr); //Vector Array
 				Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {
 					@Override 
