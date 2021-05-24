@@ -49,6 +49,7 @@ public class UserVerwaltung {
 		kundenListe.add(einKunde);
 	}
 	
+	//Kern vom Kunde login 
 	public Kunde kundenlogIn (String username, String passwort) {
 		for (Kunde kunde:kundenListe) {	
 			if(username.equals(kunde.getUsername())) {
@@ -59,18 +60,17 @@ public class UserVerwaltung {
 		}
 		return null;
 	}
+	
 	//Kunde registrieren
-	/*public Kunde registrieren(Kunde einKunde){
+	public Kunde registrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 	for(Kunde kunde:kundenListe) {
-		if() {
-			if() {
-				
-			}
+		if(einKunde.getName().equals(kunde.getName())) {	//Gucken ob Kunde mit Namen bereits existiert
+			throw new KundeExistiertBereitsException(einKunde, "Kundenname existiert bereits");
 		}
 	}
 	kundenListe.add(einKunde);
-	return kunde; 
-	}*/
+	return einKunde; 
+	}
 	
 	/*
 	public void liesMitarbeiter(String datei) throws IOException {

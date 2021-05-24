@@ -94,7 +94,14 @@ public class ShopClientCUI {
 			System.out.print("passwort :   > ");
 			passwort = liesEingabe();
 			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	//neuen Kunden erschaffen
-			//shop.kundenRegistrieren(einKunde);
+			try {
+				shop.kundenRegistrieren(einKunde);	
+				kundeEingeloggt = einKunde ;
+				System.out.println("Sie haben sich erfolgreich Registriert!");
+			} catch (KundeExistiertBereitsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case "a":
 			liste = shop.gibAlleArtikel();

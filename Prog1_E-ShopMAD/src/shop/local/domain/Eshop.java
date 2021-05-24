@@ -9,6 +9,7 @@ import shop.local.valueobjects.*;
 
 
 /**
+ * Klasse Schnittstelle f�r das Programm
  * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
  * zur Suche nach Artiekln, zum Einfügen neuer Bücher
@@ -39,13 +40,14 @@ public class Eshop {
 		
 	}
 	
+	
 	public Kunde kundenlogIn(String username, String passwort) {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
 	
-	/*public Kunde kundenRegistrieren(Kunde einKunde) {
+	public Kunde kundenRegistrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 		return meineNutzer.registrieren(einKunde);
-	}*/
+	}
 	
 	/*public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
