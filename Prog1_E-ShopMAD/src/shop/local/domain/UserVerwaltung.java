@@ -9,7 +9,7 @@ import shop.local.valueobjects.*;
 public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
-	public  Kunde angemeldeterKunde;
+	public static User angemeldeterUser;
 	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
 	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
 	
@@ -24,12 +24,12 @@ public class UserVerwaltung {
 		angemeldeterUser = user;
 	}*/
 	//Getter & Setter für angemeldete User
-		public User getAngemeldeterKunde() {
-			return angemeldeterKunde;
+		public static User getAngemeldeterUser() {
+			return angemeldeterUser;
 		}
 		
 		public void setAngemeldeterUser(Kunde kunde) {
-			angemeldeterKunde = kunde;
+			angemeldeterUser = kunde;
 		}
 	
 	public void liesKunden(String datei) throws IOException {

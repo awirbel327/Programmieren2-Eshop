@@ -3,11 +3,12 @@ package shop.local.domain;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
-import shop.local.domain.WarenkorbVerwaltung;
+
 import shop.local.domain.exceptions.*;
 import shop.local.domain.exceptions.*;
 import shop.local.domain.*;
 import shop.local.valueobjects.*;
+import shop.local.domain.UserVerwaltung;
 
 //E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
 
@@ -66,8 +67,11 @@ public class Eshop {
 
 	public String wkAusgeben() {
 				//warenkorb des EINGELOGTEN KUNDEN ausgeben
-		Warenkorb wk = new Warenkorb();
-		 return wk.warenkorbAusgeben();
+//		Warenkorb wk = new Warenkorb();
+//		 return wk.warenkorbAusgeben();
+		Kunde unserKunde = (Kunde) UserVerwaltung.getAngemeldeterUser();
+		//warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
+		return unserKunde.getWk().warenkorbAusgeben();
 	}
 	
 	
