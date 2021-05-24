@@ -6,7 +6,6 @@ import shop.local.domain.exceptions.*;
 import shop.local.persistence.*;
 import shop.local.valueobjects.*;
 
-
 public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
@@ -55,12 +54,12 @@ public class UserVerwaltung {
 			if(username.equals(kunde.getUsername())) {
 				if(passwort.equals(kunde.getPasswort())) {
 					return kunde;
-					
 				}
 			}
 		}
 		return null;
 	}
+	//Kunde registrieren
 	/*public Kunde registrieren(Kunde einKunde){
 	for(Kunde kunde:kundenListe) {
 		if() {
@@ -72,6 +71,7 @@ public class UserVerwaltung {
 	kundenListe.add(einKunde);
 	return kunde; 
 	}*/
+	
 	
 	/*public void liesMitarbeiter(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
@@ -88,8 +88,8 @@ public class UserVerwaltung {
 		} while (einMitarbeiter != null);
 		pm.close();
 	}
-	//!!!!!!!!!!!!!!!!!!!!!!EXCEPTION noch KUNDE !!!!!!!!!!!!!!!!!!!
-	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws KundeExistiertBereitsException {
+	
+	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
 		if (kundenListe.contains(einMitarbeiter)) {
 			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'einfuegen()'");
 		}

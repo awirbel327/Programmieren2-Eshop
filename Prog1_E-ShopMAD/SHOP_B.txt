@@ -1,12 +1,10 @@
 Bananen
 1
 t
-<<<<<<< HEAD
 Aepfel
 =======
 3
 Äpfel
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 2
 t
 10
@@ -17,9 +15,7 @@ t
 Erdbeeren
 3
 f
-<<<<<<< HEAD
 12
-=======
 Kirschen
 4
 t
@@ -29,4 +25,3 @@ t
 Bier
 6
 t
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git

@@ -8,11 +8,10 @@ import shop.local.domain.*;
 import shop.local.valueobjects.*;
 
 
-
 /**
  * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
- * zur Suche nach Büchern, zum Einfügen neuer Bücher
+ * zur Suche nach Artiekln, zum Einfügen neuer Bücher
  * und zum Speichern des Bestands.
  */
 
@@ -63,7 +62,7 @@ public class Eshop {
 	}
 
 	public String wkAusgeben() {
-				//warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
+				//warenkorb des EINGELOGTEN KUNDEN ausgeben
 		Warenkorb wk = new Warenkorb();
 		 return wk.warenkorbAusgeben();
 	}

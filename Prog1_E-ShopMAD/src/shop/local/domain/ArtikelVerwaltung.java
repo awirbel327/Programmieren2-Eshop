@@ -14,8 +14,6 @@ import shop.local.persistence.PersistenceManager;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.valueobjects.Artikel;
 
- 
-
 
 public class ArtikelVerwaltung {
 	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
@@ -78,8 +76,6 @@ public class ArtikelVerwaltung {
 	}
 	
 	
-	
-		
 	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
 		if (artikelBestand.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
@@ -107,7 +103,7 @@ public class ArtikelVerwaltung {
 			suchErg.add(a);
 	}
 	
-return suchErg;
-}
+	return suchErg;
+	}
 
 }
