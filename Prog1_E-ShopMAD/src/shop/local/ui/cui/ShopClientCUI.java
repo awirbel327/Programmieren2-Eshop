@@ -14,7 +14,7 @@ import shop.local.valueobjects.*;
 import shop.local.domain.*;
 
 public class ShopClientCUI {
-
+	
 	private Eshop shop;
 	private BufferedReader in;
 	private Kunde kundeEingeloggt;
@@ -23,13 +23,10 @@ public class ShopClientCUI {
 	
 	public ShopClientCUI(String datei) throws IOException {
 		
-		
 		shop = new Eshop(datei);
-
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
-	
-	
+
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
 		System.out.print("	       \n  Registrieren:  '1'");
@@ -47,11 +44,9 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
-
 	private String liesEingabe() throws IOException{
 		return in.readLine();
 	}
-	
 	
 	private void verarbeiteEingabe(String line) throws IOException {
 //		String nummer;
@@ -180,6 +175,7 @@ public class ShopClientCUI {
 		if (liste.isEmpty()) {
 			System.out.println("Liste ist leer.");
 		} else {
+			Collections.sort(liste);
 			for (Artikel artikel : liste) {
 				System.out.println(artikel);
 		
