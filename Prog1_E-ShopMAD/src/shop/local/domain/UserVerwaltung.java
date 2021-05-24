@@ -64,12 +64,16 @@ public class UserVerwaltung {
 	//Kunde registrieren
 	public Kunde registrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 	for(Kunde kunde:kundenListe) {
-		if(einKunde.getName().equals(kunde.getName())) {	//Gucken ob Kunde mit Namen bereits existiert
+		if(einKunde.getUsername().equals(kunde.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
 			throw new KundeExistiertBereitsException(einKunde, "Kundenname existiert bereits");
 		}
 	}
 	kundenListe.add(einKunde);
 	return einKunde; 
+	}
+	
+	public void speicherKunden() {	//Methode zum speichern der Kundenliste (z.B. bei Registrierung)
+		
 	}
 	
 	/*

@@ -75,8 +75,7 @@ public class ShopClientCUI {
 				mitarbeiterlogin();
 			}*/
 			break;
-		case "1":
-			System.out.println("Als Kunde registrieren :   >");
+		case "1":	// Als Kunde regstrieren
 			System.out.print("Vollst�ndiger Name :   > ");
 			name = liesEingabe();
 			System.out.print("Stra�enname :   > ");
