@@ -14,8 +14,6 @@ import shop.local.persistence.PersistenceManager;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.valueobjects.Artikel;
 
- 
-
 
 public class ArtikelVerwaltung {
 	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
@@ -23,16 +21,36 @@ public class ArtikelVerwaltung {
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
-	///HUHUHUHUHUHU
 	
-	//Methode zum Sortieren von Artikel nach ArtikelNr.
+	
+	public Vector <Artikel> getArtikelliste(){
+		return artikelListeVector;
+	}
+	
+	//Methode zum Sortieren von Artikel nach ArtikelNummer.
+	public void artikelSortNummer(Vector <Artikel> artikel) {
+		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige gr��e
+		artikel.toArray(vecZuArr); //Vector Array
+		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {		
+			@Override 
+			public int compare(Artikel artikel1, Artikel artikel2) {
+				String nr1 = Integer.toString(artikel1.getNummer());	// Int zu String
+				String nr2 = Integer.toString(artikel2.getNummer());	// Int zu String
+				return nr1.compareTo(nr2);	// vergleich Nachbarn (nur Strings vergelichbar)
+			}
+		});
+		System.out.println(Arrays.asList(vecZuArr));
+	}
+	
+	//Methode zum Sortieren von Artikel nach ArtikelBezeichnung.
 			//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
 			public void artikelSortBezeichnung(Vector <Artikel> artikel) {
-				Artikel[] vecZuArr = (Artikel[])artikel.toArray(); //Vector Array
-				Arrays.sort(vecZuArr, new Comparator<Artikel>() {
+				Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige gr��e
+				artikel.toArray(vecZuArr); //Vector Array
+				Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {
 					@Override 
 					public int compare(Artikel artikel1, Artikel artikel2) {
-						return artikel1.getTitel().compareTo(artikel2.getTitel());
+						return artikel1.getTitel().compareTo(artikel2.getTitel());	// vergleichen Nachbarn anhand von Buchstaben
 					}
 				});
 				System.out.println(Arrays.asList(vecZuArr));
@@ -63,8 +81,6 @@ public class ArtikelVerwaltung {
 	}
 	
 	
-	
-		
 	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
 		if (artikelBestand.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
@@ -92,7 +108,7 @@ public class ArtikelVerwaltung {
 			suchErg.add(a);
 	}
 	
-return suchErg;
-}
+	return suchErg;
+	}
 
 }

@@ -1,11 +1,18 @@
 package shop.local.domain;
 
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Mitarbeiter;
-import shop.local.valueobjects.Kunde;
+import java.io.IOException;
+import java.util.Vector;
+import shop.local.domain.exceptions.*;
+import shop.local.persistence.*;
+import shop.local.valueobjects.*;
 
 public class UserVerwaltung {
-	//public static Vector <User> userListe = new Vector<User>();
+	
+	private PersistenceManager pm = new FilePersistenceManager();
+	
+	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
+	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
+	
 	//public User angemeldeterUser;
 	
 	/********KUNDEN und MITARBEITER********/
@@ -16,13 +23,92 @@ public class UserVerwaltung {
 	public void setAngemeldeterUser() {
 		angemeldeterUser = user;
 	}*/
+
 	
-	public void logIn (String Benutzererkennung, String Passwort) {
+	public void liesKunden(String datei) throws IOException {
+		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
+
+		Kunde einKunde;
+		do {
+			einKunde = pm.ladeKunde();
+			if (einKunde != null) {
+				try {
+					kundeEinfuegen(einKunde);
+				} catch (KundeExistiertBereitsException e1) {
+				}
+			}
+		} while (einKunde != null);
+		pm.close();
 	}
 	
-	public void register (String name, double number) {
+	public void kundeEinfuegen(Kunde einKunde) throws KundeExistiertBereitsException {
+		if (kundenListe.contains(einKunde)) {
+			throw new KundeExistiertBereitsException(einKunde, " - in 'einfuegen()'");
+		}
+
+		kundenListe.add(einKunde);
 	}
 	
+	public Kunde kundenlogIn (String username, String passwort) {
+		for (Kunde kunde:kundenListe) {	
+			if(username.equals(kunde.getUsername())) {
+				if(passwort.equals(kunde.getPasswort())) {
+					return kunde;
+				}
+			}
+		}
+		return null;
+	}
+	//Kunde registrieren
+	/*public Kunde registrieren(Kunde einKunde){
+	for(Kunde kunde:kundenListe) {
+		if() {
+			if() {
+				
+			}
+		}
+	}
+	kundenListe.add(einKunde);
+	return kunde; 
+	}*/
+	
+	/*
+	public void liesMitarbeiter(String datei) throws IOException {
+		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
+
+		Mitarbeiter einMitarbeiter;
+		do {
+			einMitarbeiter = pm.ladeMitarbeiter();
+			if (einMitarbeiter != null) {
+				try {
+					mitarbeiterEinfuegen(einMitarbeiter);
+				} catch (KundeExistiertBereitsException e1) {
+				}
+			}
+		} while (einMitarbeiter != null);
+		pm.close();
+	}
+	
+	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
+		if (kundenListe.contains(einMitarbeiter)) {
+			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'einfuegen()'");
+		}
+
+		kundenListe.add(einMitarbeiter);
+	}
+	
+	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
+		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
+			if(username.equals(mitarbeiter.getUsername())) {
+				if(passwort.equals(mitarbeiter.getPasswort())) {
+					return mitarbeiter;
+					
+				}
+			}
+		}
+		return null;
+	}*/
+		
 	
 	/******** Methoden f�r MITARBEITER ********/
 	

@@ -3,31 +3,25 @@ package shop.local.domain;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
-
-import shop.local.domain.exceptions.SortierException;
-import shop.local.domain.ArtikelVerwaltung;
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Kunde;
-
-import shop.local.valueobjects.Warenkorb;
+import shop.local.domain.exceptions.*;
+import shop.local.domain.*;
+import shop.local.valueobjects.*;
 
 
 /**
  * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
- * zur Suche nach Büchern, zum Einfügen neuer Bücher
+ * zur Suche nach Artiekln, zum Einfügen neuer Bücher
  * und zum Speichern des Bestands.
  */
 
 public class Eshop {
 	
-	// TESTTTTTT
-	
 	private String datei = "";
 	
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
-// 	private UserVerwaltung meineNutzer;
+	private UserVerwaltung meineNutzer;
 	
 	
 	public Eshop(String datei) throws IOException {
@@ -37,15 +31,37 @@ public class Eshop {
 		meineArtikel = new ArtikelVerwaltung();
 		meineArtikel.liesDaten(datei + "_B.txt");
 		
+		meineNutzer = new UserVerwaltung();
+		meineNutzer.liesKunden("SHOP_Kunde.txt");
+		
+		meineNutzer = new UserVerwaltung();
+		//meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
+		
 	}
 	
+	public Kunde kundenlogIn(String username, String passwort) {
+		return meineNutzer.kundenlogIn(username, passwort);
+	}
+	
+	/*public Kunde kundenRegistrieren(Kunde einKunde) {
+		return meineNutzer.registrieren(einKunde);
+	}*/
+	
+	/*public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
+		return meineNutzer.mitarbeiterlogIn(username, passwort);
+	}*/
+	
 
-	public void artikelsortiertAusgeben() {
+	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
+	}
+	
+	public void artikelsortiertAusgebenNummer() {
+		meineArtikel.artikelSortNummer(meineArtikel.getArtikelBestand());
 	}
 
 	public String wkAusgeben() {
-				//warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
+				//warenkorb des EINGELOGTEN KUNDEN ausgeben
 		Warenkorb wk = new Warenkorb();
 		 return wk.warenkorbAusgeben();
 	}
@@ -63,13 +79,34 @@ public class Eshop {
 		return null;
 	}
 	
-	public List<Artikel> gibAlleArtikel() {
-		// einfach delegieren an BuecherVerwaltung meineBuecher
+	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
 		return meineArtikel.getArtikelBestand();
 	}
 	
-	public List<Artikel> sucheNachTitel(String titel) {
-		// einfach delegieren an BuecherVerwaltung meineBuecher
+	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
 		return meineArtikel.sucheArtikel(titel); 
 	}
+	
+	//Methode um Artikel zum Warenkorb hinzuzufügen
+		public String artikelZumWarenkorb(int artNummer, int artAnzahl) {
+			Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
+//			Kunde dieserKunde = (Kunde) BenutzerVerwaltung.getAngemeldeterBenutzer();
+			String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
+			// Die Artikelliste wird nacch den gewuenschten Artikel durchsucht.
+			for(int i = 0 ; artListe.size() > i ; i++) {
+				if(artListe.elementAt(i).getNummer() == artNummer) {
+					Artikel gefundenArt = artListe.elementAt(i);
+					//Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
+					
+					if((gefundenArt.getBestand()>= artAnzahl) == true) {
+//						erhoehenOderhinzufuegen(gefundenArt, dieserKunde, artAnzahl);
+						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
+					} else {
+						bestaetigung = "Leider haben wir nicht genuegend Artikel auf Lager, der Bestand des Artikels "+ gefundenArt.getTitel() + " betraegt: " + gefundenArt.getBestand() + ". Bitte wiederholen Sie die Eingabe.";
+					}
+				}
+			}
+			return bestaetigung;
+		}	
+	
 }

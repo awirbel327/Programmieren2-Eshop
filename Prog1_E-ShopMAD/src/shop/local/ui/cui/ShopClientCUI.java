@@ -6,37 +6,31 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Vector;
 import shop.local.valueobjects.Warenkorb;
-import shop.local.domain.exceptions.LagerbestandsException;
-import shop.local.domain.exceptions.MassenkaufException;
-import shop.local.domain.exceptions.SortierException;
-
+import shop.local.domain.exceptions.*;
 import java.util.Collections;
 import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
-import shop.local.valueobjects.Warenkorb;
-import shop.local.valueobjects.Artikel;
-import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
+import shop.local.valueobjects.*;
 import shop.local.domain.*;
 
 public class ShopClientCUI {
 	
-	//nocheintest
-// ja ich kanns sehen?
 	private Eshop shop;
 	private BufferedReader in;
+	private Kunde kundeEingeloggt;
+	private Mitarbeiter mitarbeiterEingeloggt;
+	
 	
 	public ShopClientCUI(String datei) throws IOException {
 		
-		
 		shop = new Eshop(datei);
-
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
-		// PUSH TEST VON DILALA
-	// push test 2
-	//Test 3
+
 	private void gibMenueAus() {
-		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
+		System.out.print("Befehle: \n  Einloggen:  '0'");
+		System.out.print("	       \n  Registrieren:  '1'");
+		System.out.print("		   \n  Artikel ausgeben:  'A'");
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
 		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
 		System.out.print("         \n  Artikel suchen  'B'");
@@ -50,23 +44,58 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
-//test
-	
-	
 	private String liesEingabe() throws IOException{
 		return in.readLine();
 	}
 	
-	
 	private void verarbeiteEingabe(String line) throws IOException {
 //		String nummer;
 //		int nr;
+		String auswahl;
 		String titel;
+		String name;
+		String strasse;
+		int hausNr;
+		int plz;
+		String ort;
+		String username;
+		String passwort;
 		List<Artikel>liste;
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);	
 		
+		
 		switch(line) {
+		case "0":
+			System.out.print("Als Kunde anmelden(j/n) :   > ");
+			auswahl = liesEingabe();
+			if(auswahl.equals("j")) {
+				kundenlogin();
+			} /*else {
+				mitarbeiterlogin();
+			}*/
+			break;
+		case "1":
+			System.out.println("Als Kunde registrieren :   >");
+			System.out.print("Vollst�ndiger Name :   > ");
+			name = liesEingabe();
+			System.out.print("Stra�enname :   > ");
+			strasse = liesEingabe();
+			System.out.print("Hausnummer :   > ");			
+			String hausNrString = liesEingabe();
+			hausNr = Integer.parseInt(hausNrString);
+			System.out.print("Postleitzahl :   > ");			
+			String plzString = liesEingabe();
+			plz = Integer.parseInt(plzString);
+			System.out.print("Ort :   > ");
+			ort = liesEingabe();
+			System.out.print("Username :   > ");
+			username = liesEingabe();
+			System.out.print("passwort :   > ");
+			passwort = liesEingabe();
+			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	//neuen Kunden erschaffen
+			//shop.kundenRegistrieren(einKunde);
+			break;
 		case "a":
 			liste = shop.gibAlleArtikel();
 			gibArtikellisteAus(liste);
@@ -78,14 +107,16 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 		case "a1" :
-			shop.artikelsortiertAusgeben();
-			
+			shop.artikelsortiertAusgebenBezeichnung();
+			break;
+		case "a2" :
+			shop.artikelsortiertAusgebenNummer();
 			break;
 		case "c":
-//			menueWk(br);
+			menueWk(br);
 			break;
 		case "d":
-			System.out.println(shop.wkAusgeben());
+			System.out.println(""+shop.wkAusgeben());
 //			gibMenueAus();
 			break;
 
@@ -93,10 +124,52 @@ public class ShopClientCUI {
 			System.out.println("Ungueltige Eingabe!\n");
 //			gibMenueAus();
 		}
-		
 	}
 	
+	private void kundenlogin() {
+		String username = "";
+		String passwort ="";
+		System.out.print("Username eingeben :   > ");
+		try {
+			username = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print("Passwort eingeben :   > ");
+		try {
+			passwort = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Kunde kunde =shop.kundenlogIn(username, passwort);
+		System.out.println("erfolgreich eingeloggt als "+ kunde.getName()+ "!!");
+		kundeEingeloggt = kunde;		
+	}
+		
 	
+	/*private void mitarbeiterlogin() {
+		String username = "";
+		String passwort ="";
+		System.out.print("Username eingeben :   > ");
+		try {
+			username = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print("Passwort eingeben :   > ");
+		try {
+			passwort = liesEingabe();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Mitarbeiter mitarbeiter =shop.mitarbeiterlogIn(username, passwort);
+		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
+		mitarbeiterEingeloggt = mitarbeiter;		
+	}*/
 	
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {
@@ -110,23 +183,17 @@ public class ShopClientCUI {
 		}
 	}
 	
-	public void menueWk(BufferedReader br) throws Exception{
-		
-		int artNummer = 0;
-		int artAnzahl = 0;
+	public void menueWk(BufferedReader br) throws NumberFormatException, IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
-		try {
-		artNummer = Integer.parseInt(br.readLine());
-		System.out.println("Geben Sie die Stueckzahl an: \n");
-		artAnzahl = Integer.parseInt(br.readLine());
-		} catch (NumberFormatException exception) {
-			System.out.println("Geben sie eine Zahl ein!!!");
-			menueWk(br);
-		}
-//		System.out.println(shop.zumWKhinzufuegen);
-		
-		// Weitershoppen? Weiteren artikel . zurück zum hauptmenu
+		System.out.print("> ");
+		int artNummer = Integer.parseInt(br.readLine());
+		System.out.println("Geben Sie die Stückzahl an: \n");
+		System.out.print("> ");
+		int artAnzahl = Integer.parseInt(br.readLine());
+		System.out.println(shop.artikelZumWarenkorb(artNummer, artAnzahl));
+//		hauptmenueKunde();
 	}
+	
 	/**
 	 * Methode zur Ausführung der Hauptschleife:
 	 * - Menü ausgeben

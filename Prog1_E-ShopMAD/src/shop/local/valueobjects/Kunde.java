@@ -1,43 +1,39 @@
 package shop.local.valueobjects;
 
-public class Kunde {
+public class Kunde extends User {
 
 private int kundenNr;
 
-private String name;
+
 private String strasse = " ";
-private String hausNr = "";
-private String plz = " ";
+private int hausNr;
+private int plz ;
 private String ort = " ";
-private String kUsername;	//getter und setter ? getter einfach gemacht
-private String kPasswort;	//getter und setter ? getter einfach gemacht
+
 private Warenkorb warenkorb;
 
-public Kunde(int nr, String name) {
-	kundenNr = nr;
-	this.name = name;
+
+//konstruktor für anmeldung usw.
+public Kunde ( String name, String strasse, int hausNr, int plz, String ort, String username, String passwort) {
+	super(name, username, passwort);
+	this.strasse = strasse;
+	this.hausNr = hausNr;
+	this.plz = plz;
+	this.ort = ort;
 	warenkorb = new Warenkorb();
-	//mitarbeiter = false;
-	}
+}
 
 // getter und setter usw Kunden-Eigenschaften
 public int getKundenNr() {
 	return kundenNr;
 }
 
-public String getName() {
-	return name;
-	}
 
-public void setName(String name) {
-	this.name = name;
-	}
-
-public String getPlz() {
+public int getPlz() {
 	return plz;
 	}
 
-public void setPlz(String plz) {
+public void setPlz(int plz) {
 	this.plz = plz;
 	}
 
@@ -49,11 +45,11 @@ public void setStrasse(String strasse) {
 	this.strasse = strasse;
 	}
 
-public String getHausNr() {
+public int getHausNr() {
 	return hausNr;
 	}
 
-public void setHausNr(String hausNr) {
+public void setHausNr(int hausNr) {
 	this.hausNr = hausNr;
 	}
 
@@ -64,15 +60,6 @@ public String getOrt() {
 public void setOrt(String ort) {
 	this.ort = ort;
 	}
-
-public String getKUsername() {
-	return kUsername;
-	}
-
-public String getKPasswort() {
-	return kPasswort;
-	}
-
 
 public Warenkorb getWk() {
 	return warenkorb;

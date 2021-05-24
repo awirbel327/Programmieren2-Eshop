@@ -8,11 +8,9 @@ import shop.local.valueobjects.Artikel;
 
 /**
  * Klasse zur Repräsentation einzelner Bücher.
- * 
- * @author teschke
- */
+ * @author teschke */
 
-public class Artikel implements Comparable<Artikel> {
+public class Artikel implements Comparable<Artikel>{
 
 
 	// Attribute zur Beschreibung eines Buchs:
@@ -35,19 +33,7 @@ public class Artikel implements Comparable<Artikel> {
 		String verfuegbarkeit = verfuegbar ? "Noch " + bestand + " St�ck auf Lager" : "Ausverkauft";
 		return (" Artikelnummer: " + artikelnummer + " \n Artikel: " + bezeichnung + " \n Bestand: " + verfuegbarkeit +"\n"); 
 	}
-	
-	/**
-	 * Methode um Artikel nach Nummer zu sortieren
-	 * Nach Name muss ich nochmal gucken!!
-	 * 
-	 */
-	/*public int compareTo (Artikel andererArtikel) {
-		return this.getNummer() - andererArtikel.getNummer(); 
-	}
-	*/
-	
-
-	
+		
 	public int getNummer() {
 		return artikelnummer;
 	}
