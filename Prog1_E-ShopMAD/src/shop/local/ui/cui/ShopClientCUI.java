@@ -97,6 +97,7 @@ public class ShopClientCUI {
 				shop.kundenRegistrieren(einKunde);	
 				kundeEingeloggt = einKunde ;
 				System.out.println("Sie haben sich erfolgreich Registriert!");
+				shop.speicherKunden();
 			} catch (KundeExistiertBereitsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

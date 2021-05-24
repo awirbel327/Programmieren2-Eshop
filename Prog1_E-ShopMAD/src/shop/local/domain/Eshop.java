@@ -7,9 +7,9 @@ import shop.local.domain.exceptions.*;
 import shop.local.domain.*;
 import shop.local.valueobjects.*;
 
+//E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
 
 /**
- * Klasse Schnittstelle f�r das Programm
  * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
  * zur Suche nach Artiekln, zum Einfügen neuer Bücher
@@ -88,7 +88,7 @@ public class Eshop {
 	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
 		return meineArtikel.sucheArtikel(titel); 
 	}
-	
+	//WARENKORBVERWALTUNG ?????
 	//Methode um Artikel zum Warenkorb hinzuzufügen
 		public String artikelZumWarenkorb(int artNummer, int artAnzahl) {
 			Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
@@ -109,6 +109,12 @@ public class Eshop {
 				}
 			}
 			return bestaetigung;
+		}
+
+		//Schnittstelle
+		public void speicherKunden() throws IOException {
+			// TODO Auto-generated method stub
+			meineNutzer.speicherKunden();
 		}	
 	
 }

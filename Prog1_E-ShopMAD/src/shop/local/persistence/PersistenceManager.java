@@ -13,7 +13,11 @@ public void openForReading(String datenquelle) throws IOException;
 	
 	public Artikel ladeArtikel() throws IOException;
 	
+	
+	
 	public boolean close();
 	
 	public Kunde ladeKunde() throws IOException;
+
+	public boolean speicherKundeDaten(Kunde kunde) throws IOException;
 }

@@ -21,14 +21,28 @@ import java.io.IOException;
 
 public class FilePersistenceManager  implements PersistenceManager  {
 	private BufferedReader reader = null;
+	private PrintWriter writer = null;
 	
 	public void openForReading(String datei) throws FileNotFoundException {
 		reader = new BufferedReader(new FileReader(datei));
 	}
-
-	public void openForWriting(String datei) throws IOException {	}
+	
+	public void openForWriting(String datei) throws IOException {	
+		writer = new PrintWriter(new BufferedWriter(new FileWriter(datei)));
+	}
 	
 	public boolean close() {
+		if(writer != null) {
+			writer.close();
+		}
+		if(reader != null) {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
 	
@@ -48,6 +62,18 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
+	
+	// Kunde wird übergeben und gespeichert
+	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
+		schreibeZeile(kunde.getName());
+		schreibeZeile(kunde.getStrasse());
+		schreibeZeile(Integer.toString(kunde.getHausNr()));
+		schreibeZeile(Integer.toString(kunde.getPlz()));
+		schreibeZeile(kunde.getOrt());
+		schreibeZeile(kunde.getUsername());
+		schreibeZeile(kunde.getPasswort());
+		return true;
+		}
 	/*
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
@@ -93,4 +119,12 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		else
 			return "";
 	}
-	}
+	
+	// Methode zum Schreiben in Dateien
+	private void schreibeZeile(String daten) {
+        if (writer != null)
+            writer.println(daten);
+        else 
+        	System.out.println("Fehler?");
+    }
+}

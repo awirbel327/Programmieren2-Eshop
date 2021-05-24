@@ -72,8 +72,14 @@ public class UserVerwaltung {
 	return einKunde; 
 	}
 	
-	public void speicherKunden() {	//Methode zum speichern der Kundenliste (z.B. bei Registrierung)
-		
+	//Methode zum speichern der Kundenliste (z.B. bei Registrierung)
+	public void speicherKunden() throws IOException {	
+		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager fÃ¼r Schreibvorgang öffnen
+		for(Kunde kunde:kundenListe) {
+			System.out.println(kunde.getName() + " wurde gespeichert");
+			pm.speicherKundeDaten(kunde);	
+		}
+		pm.close();
 	}
 	
 	/*
@@ -99,7 +105,7 @@ public class UserVerwaltung {
 		}
 
 		kundenListe.add(einMitarbeiter);
-	}
+	}*/
 	
 	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
@@ -111,7 +117,7 @@ public class UserVerwaltung {
 			}
 		}
 		return null;
-	}*/
+	}
 		
 	
 	/******** Methoden für MITARBEITER ********/
