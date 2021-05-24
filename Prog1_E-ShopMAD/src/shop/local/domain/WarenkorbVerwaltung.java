@@ -1,11 +1,16 @@
 package shop.local.domain;
+
+import java.util.Vector;
+
+import shop.local.valueobjects.Artikel;
+
 /**
  * Klasse zur Verwaltung vom Warenkorb
  * TO DO
- * +Artikelbestand ändern (Zugriff auf Artikel)
- * +Rechnung erstellen (Rechnungsobjekt) Ausgabe über CUI
- * +Artikel hinzufügen (Artikelobjekt erstellen)
- * +Menge ändern
+ * +Artikelbestand ï¿½ndern (Zugriff auf Artikel)
+ * +Rechnung erstellen (Rechnungsobjekt) Ausgabe ï¿½ber CUI
+ * +Artikel hinzufï¿½gen (Artikelobjekt erstellen)
+ * +Menge ï¿½ndern
  * @author maust
  * @version 1
  * Verwaltung des Warenkorbs
@@ -14,7 +19,11 @@ public class WarenkorbVerwaltung {
 	
 	//private List<Artikel> warenkorb = new Vector<Artikel>();
 	
-	
+	private Vector <Artikel> warenkorbVector = new Vector<Artikel>();
+	private double wkGesamtpreis;
+	public Vector <Artikel> getListe() {
+		return warenkorbVector;
+	}
 	
 	public void emptyCart () {
 		

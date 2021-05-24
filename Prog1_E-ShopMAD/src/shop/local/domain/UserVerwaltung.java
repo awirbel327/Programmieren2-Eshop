@@ -9,7 +9,7 @@ import shop.local.valueobjects.*;
 public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
-	
+	public  Kunde angemeldeterKunde;
 	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
 	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
 	
@@ -23,7 +23,14 @@ public class UserVerwaltung {
 	public void setAngemeldeterUser() {
 		angemeldeterUser = user;
 	}*/
-
+	//Getter & Setter für angemeldete User
+		public User getAngemeldeterKunde() {
+			return angemeldeterKunde;
+		}
+		
+		public void setAngemeldeterUser(Kunde kunde) {
+			angemeldeterKunde = kunde;
+		}
 	
 	public void liesKunden(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
@@ -74,7 +81,7 @@ public class UserVerwaltung {
 	
 	//Methode zum speichern der Kundenliste (z.B. bei Registrierung)
 	public void speicherKunden() throws IOException {	
-		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager für Schreibvorgang �ffnen
+		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager für Schreibvorgang �ffnen
 		for(Kunde kunde:kundenListe) {
 			System.out.println(kunde.getName() + " wurde gespeichert");
 			pm.speicherKundeDaten(kunde);	
@@ -120,7 +127,7 @@ public class UserVerwaltung {
 	}
 		
 	
-	/******** Methoden f�r MITARBEITER ********/
+	/******** Methoden f�r MITARBEITER ********/
 	
 	public void newArticle (String articleName, int stock) {
 	}
@@ -129,7 +136,7 @@ public class UserVerwaltung {
 		
 	}
 	
-	/********Methoden f�r KUNDEN********/
+	/********Methoden f�r KUNDEN********/
 	
 	
 	public void emptyCart () {

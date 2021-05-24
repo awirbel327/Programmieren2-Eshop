@@ -3,6 +3,8 @@ package shop.local.domain;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+import shop.local.domain.WarenkorbVerwaltung;
+import shop.local.domain.exceptions.*;
 import shop.local.domain.exceptions.*;
 import shop.local.domain.*;
 import shop.local.valueobjects.*;
@@ -89,32 +91,34 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(titel); 
 	}
 	//WARENKORBVERWALTUNG ?????
+	//Methode zum Prüfen des Warenkorbbestandes 
 	
-	
-	
-	//Methode um Artikel zum Warenkorb hinzuzufügen
-		public String artikelZumWarenkorb(int artNummer, int artAnzahl) {
-			Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
-//			Kunde dieserKunde = (Kunde) BenutzerVerwaltung.getAngemeldeterBenutzer();
-			String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
-			// Die Artikelliste wird nacch den gewuenschten Artikel durchsucht.
-			for(int i = 0 ; artListe.size() > i ; i++) {
-				if(artListe.elementAt(i).getNummer() == artNummer) {
-					Artikel gefundenArt = artListe.elementAt(i);
-					//Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
-					
+		
+	public String wkBefuellen(int artNummer, int artAnzahl) {
+		Vector <Artikel> artListe = meineArtikel.getArtikelliste();
+// 		clone() Methode ????
+//		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterKunde();
+		String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
+// 		Die Artikelliste wird nach den gewuenschten Artikel durchsucht.
+		for(int i = 0 ; artListe.size() > i ; i++) {
+			if(artListe.elementAt(i).getNummer() == artNummer) {
+				Artikel gefundenArt = artListe.elementAt(i);
+//					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 					if((gefundenArt.getBestand()>= artAnzahl) == true) {
-//						erhoehenOderhinzufuegen(gefundenArt, artAnzahl); //bei dem parameter muss kunde mit rein
+//						Hier muss eine Methode hinzufügen stehhen
+//						erhoehenOderhinzufuegen(gefundenArt, artAnzahl);
+//						String "bestaetigung" neu überschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 					} else {
-						bestaetigung = "Leider haben wir nicht genuegend Artikel auf Lager, der Bestand des Artikels "+ gefundenArt.getTitel() + " betraegt: " + gefundenArt.getBestand() + ". Bitte wiederholen Sie die Eingabe.";
+//						throw new LagerbestandsException(gefundenArt.getBestand());
 					}
-				}
-			}
-			return bestaetigung;
+//			}
 		}
-
-		//Schnittstelle
+		}
+		return bestaetigung;
+	}	
+	
+//		Schnittstelle
 		public void speicherKunden() throws IOException {
 			// TODO Auto-generated method stub
 			meineNutzer.speicherKunden();

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Vector;
+
+import shop.local.domain.exceptions.*;
 import shop.local.valueobjects.Warenkorb;
 import shop.local.domain.exceptions.*;
 import java.util.Collections;
@@ -22,7 +24,6 @@ public class ShopClientCUI {
 	
 	
 	public ShopClientCUI(String datei) throws IOException {
-		
 		shop = new Eshop(datei);
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
@@ -49,8 +50,6 @@ public class ShopClientCUI {
 	}
 	
 	private void verarbeiteEingabe(String line) throws IOException {
-//		String nummer;
-//		int nr;
 		String auswahl;
 		String titel;
 		String name;
@@ -64,8 +63,8 @@ public class ShopClientCUI {
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);	
 		
-		
 		switch(line) {
+		//einloggen
 		case "0":
 			System.out.print("Als Kunde anmelden(j/n) :   > ");
 			auswahl = liesEingabe();
@@ -75,7 +74,9 @@ public class ShopClientCUI {
 				mitarbeiterlogin();
 			}*/
 			break;
-		case "1":	// Als Kunde regstrieren
+			
+		// Als Kunde regstrieren
+		case "1":	
 			System.out.print("Vollst�ndiger Name :   > ");
 			name = liesEingabe();
 			System.out.print("Stra�enname :   > ");
@@ -103,33 +104,51 @@ public class ShopClientCUI {
 				e.printStackTrace();
 			}
 			break;
+			
+		//Artikel ausgeben normal
 		case "a":
 			liste = shop.gibAlleArtikel();
 			gibArtikellisteAus(liste);
 			break;
+			
+		//Artikel suchen
 		case "b":
 			System.out.print("Welchen Artikel suchen Sie? :   > ");
 			titel = liesEingabe();
 			liste = shop.sucheNachTitel(titel);
 			gibArtikellisteAus(liste);
 			break;
+			
+		//Artikel nach Bezeichnung sortieren
 		case "a1" :
 			shop.artikelsortiertAusgebenBezeichnung();
 			break;
+			
+		//Artikel nach Nummer sortieren
 		case "a2" :
 			shop.artikelsortiertAusgebenNummer();
 			break;
+			
+		//Artikel zum WK hinzufügen
 		case "c":
 			menueWk(br);
 			break;
+			
+		//Warenkorb anzeigen
 		case "d":
 			System.out.println(""+shop.wkAusgeben());
-//			gibMenueAus();
+			//gibMenueAus();
 			break;
-
+			
+		//Warenkorb bearbeiten
+		case "e":
+			System.out.println(""+shop.wkAusgeben());
+			//gibMenueAus();
+			break;
+			
 		default:
 			System.out.println("Ungueltige Eingabe!\n");
-//			gibMenueAus();
+			//gibMenueAus();
 		}
 	}
 	
@@ -185,21 +204,31 @@ public class ShopClientCUI {
 			Collections.sort(liste);
 			for (Artikel artikel : liste) {
 				System.out.println(artikel);
-		
 			}
 		}
 	}
 	
 	public void menueWk(BufferedReader br) throws NumberFormatException, IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
-		System.out.print("> ");
-		int artNummer = Integer.parseInt(br.readLine());
-		System.out.println("Geben Sie die Stückzahl an: \n");
-		System.out.print("> ");
-		int artAnzahl = Integer.parseInt(br.readLine());
-		System.out.println(shop.artikelZumWarenkorb(artNummer, artAnzahl));
-//		hauptmenueKunde();
+		int artNummer=0;
+		int artAnzahl=0;
+		try {
+		//setzt artNummer welches vorher 0 ist auf die Nummer die eingegeben wurde
+		artNummer = Integer.parseInt(br.readLine());
+		System.out.println("Geben Sie die Stueckzahl an: \n");
+		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
+		artAnzahl = Integer.parseInt(br.readLine());
+		} catch (NumberFormatException exception) {
+			System.out.println("Geben sie eine Zahl ein!!!");
+			menueWk(br);
+		}
+		//die eingegebenen Zahlen werden zur Methode wkBefuellen übergeben
+		
+			System.out.println(shop.wkBefuellen(artNummer, artAnzahl));
+
+//		gibMenueAus();
 	}
+
 	
 	/**
 	 * Methode zur Ausführung der Hauptschleife:
