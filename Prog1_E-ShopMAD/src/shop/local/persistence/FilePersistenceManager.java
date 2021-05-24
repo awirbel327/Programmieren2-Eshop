@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-//Für Dateien einlesen usw.
+//Fï¿½r Dateien einlesen usw.
 
 public class FilePersistenceManager  implements PersistenceManager  {
 	private BufferedReader reader = null;
@@ -63,7 +63,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
 	
-	// Kunde wird übergeben und gespeichert
+	// Kunde wird ï¿½bergeben und gespeichert
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
 		schreibeZeile(kunde.getName());
 		schreibeZeile(kunde.getStrasse());
@@ -103,14 +103,19 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String verfuegbarCode = liesZeile();
 		// Codierung des Ausleihstatus in boolean umwandeln
 		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;
-		
+		//Preis einlesen
+		String preisString = liesZeile();
+		// ... und von String in int konvertieren
+		double preis = Double.parseDouble(preisString);
 		// Bestand einlesen ...
 				String bestandString = liesZeile();
 				// ... und von String in int konvertieren
 				int bestand = Integer.parseInt(bestandString);
+
 		
 		// neues Buch-Objekt anlegen und zurÃ¼ckgeben
-		return new Artikel(titel, nummer, verfuegbar, bestand);
+				
+		return new Artikel(titel, nummer, verfuegbar, bestand, preis);
 		}
 	
 	private String liesZeile() throws IOException {

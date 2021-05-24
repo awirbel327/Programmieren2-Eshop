@@ -54,6 +54,7 @@ public class ArtikelVerwaltung {
 					}
 				});
 				System.out.println(Arrays.asList(vecZuArr));
+
 			}		
 	
 	

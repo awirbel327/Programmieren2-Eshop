@@ -89,6 +89,9 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(titel); 
 	}
 	//WARENKORBVERWALTUNG ?????
+	
+	
+	
 	//Methode um Artikel zum Warenkorb hinzuzufügen
 		public String artikelZumWarenkorb(int artNummer, int artAnzahl) {
 			Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
@@ -101,7 +104,7 @@ public class Eshop {
 					//Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 					
 					if((gefundenArt.getBestand()>= artAnzahl) == true) {
-//						erhoehenOderhinzufuegen(gefundenArt, dieserKunde, artAnzahl);
+//						erhoehenOderhinzufuegen(gefundenArt, artAnzahl); //bei dem parameter muss kunde mit rein
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 					} else {
 						bestaetigung = "Leider haben wir nicht genuegend Artikel auf Lager, der Bestand des Artikels "+ gefundenArt.getTitel() + " betraegt: " + gefundenArt.getBestand() + ". Bitte wiederholen Sie die Eingabe.";

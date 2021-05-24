@@ -18,20 +18,21 @@ public class Artikel implements Comparable<Artikel>{
 	private int artikelnummer;
 	private boolean verfuegbar; 
 	private int bestand;		//String damit Warnung weg geht ?
-	
+	double artikelPreis;
+	double gruppenpreis;
 
-
-	public Artikel(String titel, int nr, boolean verfuegbar, int bestand) {
+	public Artikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
 		artikelnummer = nr;
 		this.bezeichnung = titel;
-		this.verfuegbar = verfuegbar; //können wir das nicht beim erstellen direkt auf true setzen?
+		this.verfuegbar = verfuegbar; //kï¿½nnen wir das nicht beim erstellen direkt auf true setzen?
 		this.bestand = bestand;
+		this.artikelPreis = artikelPreis;
 	}
 	
 	// wird benÃ¶tigt um die Artikel aus der Liste auszugeben
 	public String toString() {
-		String verfuegbarkeit = verfuegbar ? "Noch " + bestand + " Stück auf Lager" : "Ausverkauft";
-		return (" Artikelnummer: " + artikelnummer + " \n Artikel: " + bezeichnung + " \n Bestand: " + verfuegbarkeit +"\n"); 
+		String verfuegbarkeit = verfuegbar ? "Noch " + bestand + " Stueck auf Lager" : "Ausverkauft";
+		return (" Artikelnummer: " + artikelnummer + " \n Artikel: " + bezeichnung + " \n Artikelpreis: " + artikelPreis + " \n Bestand: " + verfuegbarkeit +"\n"); 
 	}
 		
 	public int getNummer() {
@@ -49,7 +50,9 @@ public class Artikel implements Comparable<Artikel>{
 	public boolean isVerfuegbar() {
 		return verfuegbar;
 	}
-	
+	public double getPreis() {
+		return artikelPreis;
+	}
 
 	@Override	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
 	public int compareTo(Artikel o) {
