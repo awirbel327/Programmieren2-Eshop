@@ -22,6 +22,8 @@ public class ShopClientCUI {
 	
 	//nocheintest
 // ja ich kanns sehen?
+	
+	// test dilala
 	private Eshop shop;
 	private BufferedReader in;
 	
