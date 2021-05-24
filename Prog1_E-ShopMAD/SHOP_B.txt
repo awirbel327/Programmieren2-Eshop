@@ -2,12 +2,8 @@ Bananen
 1
 t
 Aepfel
-=======
 3
-Äpfel
-2
 t
-10
 Kirschen
 4
 t
