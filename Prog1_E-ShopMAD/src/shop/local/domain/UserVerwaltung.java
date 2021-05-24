@@ -72,8 +72,8 @@ public class UserVerwaltung {
 	return kunde; 
 	}*/
 	
-	
-	/*public void liesMitarbeiter(String datei) throws IOException {
+	/*
+	public void liesMitarbeiter(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
 
 		Mitarbeiter einMitarbeiter;

@@ -48,8 +48,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
-	
-	/*public Mitarbeiter ladeMitarbeiter() throws IOException {
+	/*
+	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
 			return null;

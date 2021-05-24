@@ -22,7 +22,6 @@ public class Eshop {
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
 	private UserVerwaltung meineNutzer;
-	//private Userverwaltung meineMitarbeiter;
 	
 	
 	public Eshop(String datei) throws IOException {
@@ -35,8 +34,8 @@ public class Eshop {
 		meineNutzer = new UserVerwaltung();
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
-		//meineMitarbeiter = new UserVerwaltung();
-		//meineMitarbeiter.liesMitarbeiter("SHOP_Mitarbeiter.txt");
+		meineNutzer = new UserVerwaltung();
+		//meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 	}
 	
@@ -49,7 +48,7 @@ public class Eshop {
 	}*/
 	
 	/*public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
-		return meineMitarbeiter.mitarbeiterlogIn(username, passwort);
+		return meineNutzer.mitarbeiterlogIn(username, passwort);
 	}*/
 	
 
