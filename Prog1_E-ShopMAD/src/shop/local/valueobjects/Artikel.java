@@ -8,7 +8,6 @@ import shop.local.valueobjects.Artikel;
 
 /**
  * Klasse zur Repräsentation einzelner Bücher.
- * 
  * @author teschke
  */
 public class Artikel implements Comparable<Artikel>{
