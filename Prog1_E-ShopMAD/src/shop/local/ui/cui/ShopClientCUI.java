@@ -70,9 +70,9 @@ public class ShopClientCUI {
 			auswahl = liesEingabe();
 			if(auswahl.equals("j")) {
 				kundenlogin();
-			} /*else {
+			} else {
 				mitarbeiterlogin();
-			}*/
+			}
 			break;
 			
 		// Als Kunde regstrieren
@@ -175,7 +175,7 @@ public class ShopClientCUI {
 	}
 		
 	
-	/*private void mitarbeiterlogin() {
+	private void mitarbeiterlogin() {
 		String username = "";
 		String passwort ="";
 		System.out.print("Username eingeben :   > ");
@@ -195,7 +195,7 @@ public class ShopClientCUI {
 		Mitarbeiter mitarbeiter =shop.mitarbeiterlogIn(username, passwort);
 		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
 		mitarbeiterEingeloggt = mitarbeiter;		
-	}*/
+	}
 	
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {

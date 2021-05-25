@@ -20,4 +20,6 @@ public void openForReading(String datenquelle) throws IOException;
 	public Kunde ladeKunde() throws IOException;
 
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException;
+
+	public Mitarbeiter ladeMitarbeiter() throws IOException;
 }

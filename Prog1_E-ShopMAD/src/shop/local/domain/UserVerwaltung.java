@@ -13,16 +13,8 @@ public class UserVerwaltung {
 	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
 	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
 	
-	//public User angemeldeterUser;
-	
 	/********KUNDEN und MITARBEITER********/
-	/*public User getAngemeldeterUser() {
-		return angemeldeterUser;
-	}
 	
-	public void setAngemeldeterUser() {
-		angemeldeterUser = user;
-	}*/
 	//Getter & Setter für angemeldete User
 		public static User getAngemeldeterUser() {
 			return angemeldeterUser;
@@ -32,6 +24,7 @@ public class UserVerwaltung {
 			angemeldeterUser = kunde;
 		}
 	
+		
 	public void liesKunden(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
 
@@ -89,7 +82,7 @@ public class UserVerwaltung {
 		pm.close();
 	}
 	
-	/*
+	
 	public void liesMitarbeiter(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
 
@@ -99,7 +92,7 @@ public class UserVerwaltung {
 			if (einMitarbeiter != null) {
 				try {
 					mitarbeiterEinfuegen(einMitarbeiter);
-				} catch (KundeExistiertBereitsException e1) {
+				} catch (MitarbeiterExistiertBereitsException e1) {
 				}
 			}
 		} while (einMitarbeiter != null);
@@ -107,12 +100,12 @@ public class UserVerwaltung {
 	}
 	
 	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
-		if (kundenListe.contains(einMitarbeiter)) {
+		if (mitarbeiterListe.contains(einMitarbeiter)) {
 			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'einfuegen()'");
 		}
 
-		kundenListe.add(einMitarbeiter);
-	}*/
+		mitarbeiterListe.add(einMitarbeiter);
+	}
 	
 	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	

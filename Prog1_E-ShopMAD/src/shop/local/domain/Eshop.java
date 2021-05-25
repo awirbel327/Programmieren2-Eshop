@@ -39,7 +39,7 @@ public class Eshop {
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
 		meineNutzer = new UserVerwaltung();
-		//meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
+		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 	}
 	
@@ -52,9 +52,9 @@ public class Eshop {
 		return meineNutzer.registrieren(einKunde);
 	}
 	
-	/*public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
+	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
-	}*/
+	}
 	
 
 	public void artikelsortiertAusgebenBezeichnung() {
@@ -122,7 +122,7 @@ public class Eshop {
 		return bestaetigung;
 	}	
 	
-//		Schnittstelle
+
 		public void speicherKunden() throws IOException {
 			// TODO Auto-generated method stub
 			meineNutzer.speicherKunden();

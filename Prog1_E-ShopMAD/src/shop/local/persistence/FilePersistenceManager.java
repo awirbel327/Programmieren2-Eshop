@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-//Fï¿½r Dateien einlesen usw.
+//Fuer Dateien einlesen usw.
 
 public class FilePersistenceManager  implements PersistenceManager  {
 	private BufferedReader reader = null;
@@ -31,6 +31,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		writer = new PrintWriter(new BufferedWriter(new FileWriter(datei)));
 	}
 	
+	
+	//Close() -->  zum schließen der leser und schreiber
 	public boolean close() {
 		if(writer != null) {
 			writer.close();
@@ -46,6 +48,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return true;
 	}
 	
+	
+	//Kunden laden
 	public Kunde ladeKunde() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -63,7 +67,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
 	
-	// Kunde wird ï¿½bergeben und gespeichert
+	
+	// Kunde wird uebergeben und gespeichert
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
 		schreibeZeile(kunde.getName());
 		schreibeZeile(kunde.getStrasse());
@@ -74,7 +79,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		schreibeZeile(kunde.getPasswort());
 		return true;
 		}
-	/*
+	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -85,45 +90,38 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String username = liesZeile();
 		String passwort = liesZeile();
 		
-		return new Mitarbeiter(name,nr, username, passwort);
-	}*/
+		return new Mitarbeiter(name, mitarbeiterNr, username,  passwort);	//statt mitarbeiternR vllt nr ?
+	}
 	
+	
+	//Methode zum laden von Artikeln
 	public Artikel ladeArtikel() throws IOException {
-		String titel = liesZeile();
+		String titel = liesZeile();										//liest Titel
 		if (titel == null) {
-			// keine Daten mehr vorhanden
-			return null;
+			return null;												// keine Daten mehr vorhanden
 		}
-		// Nummer einlesen ...
-		String nummerString = liesZeile();
-		// ... und von String in int konvertieren
-		int nummer = Integer.parseInt(nummerString);
+		String nummerString = liesZeile();								//Nummer einlesen
+		int nummer = Integer.parseInt(nummerString);					//String in int konvertieren
 		
-		// Buch ausgeliehen?
-		String verfuegbarCode = liesZeile();
-		// Codierung des Ausleihstatus in boolean umwandeln
-		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;
-		//Preis einlesen
-		String preisString = liesZeile();
-		// ... und von String in int konvertieren
-		double preis = Double.parseDouble(preisString);
-		// Bestand einlesen ...
-				String bestandString = liesZeile();
-				// ... und von String in int konvertieren
-				int bestand = Integer.parseInt(bestandString);
-
-		
-		// neues Buch-Objekt anlegen und zurÃ¼ckgeben
+		String verfuegbarCode = liesZeile();							//Verfügbar?
+		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
+		String preisString = liesZeile();								//Preis einlesen
+		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
+				String bestandString = liesZeile();						// Bestand einlesen
+				int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
 				
-		return new Artikel(titel, nummer, verfuegbar, bestand, preis);
+		return new Artikel(titel, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
 		}
 	
+	
+	// Methode zum Lesen von Dateien
 	private String liesZeile() throws IOException {
 		if (reader != null)
 			return reader.readLine();
 		else
 			return "";
 	}
+	
 	
 	// Methode zum Schreiben in Dateien
 	private void schreibeZeile(String daten) {
