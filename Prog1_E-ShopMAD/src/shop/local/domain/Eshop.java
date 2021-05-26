@@ -77,17 +77,17 @@ public class Eshop {
 	}
 	
 	
-	public String zumWKhinzufuegen() {
-		/*
-		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
-		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
-		 * bestand prüfen
-		 * if artikel verfügbar
-		 * WK befüllen else "Artikel nicht vorhanden oder falsche nummer"
-		 */
-		
-		return null;
-	}
+//	public String zumWKhinzufuegen() {
+//		/*
+//		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
+//		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
+//		 * bestand prüfen
+//		 * if artikel verfügbar
+//		 * WK befüllen else "Artikel nicht vorhanden oder falsche nummer"
+//		 */
+//		
+//		return null;
+//	}
 	
 	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
 		return meineArtikel.getArtikelBestand();
