@@ -10,10 +10,10 @@ import shop.local.valueobjects.Artikel;
  * Klasse zur Repräsentation einzelner Bücher.
  * @author teschke */
 
-public class Artikel implements Comparable<Artikel>{
+public class Artikel implements Comparable<Artikel> {
 
 
-	// Attribute zur Beschreibung eines Buchs:
+	// Attribute zur Beschreibung eines Artikels:
 	private String bezeichnung;
 	private int artikelnummer;
 	private boolean verfuegbar; 
@@ -21,6 +21,7 @@ public class Artikel implements Comparable<Artikel>{
 	double artikelPreis;
 	double gruppenpreis;
 
+	
 	public Artikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
 		artikelnummer = nr;
 		this.bezeichnung = titel;
@@ -38,6 +39,11 @@ public class Artikel implements Comparable<Artikel>{
 	public int getNummer() {
 		return artikelnummer;
 	}
+	//Setter fuer Artikelnummer	
+		public void setNummer(int artikelZaehler) {
+			artikelnummer = artikelZaehler;
+
+		}
 
 	public String getTitel() {
 		return bezeichnung;
@@ -45,6 +51,10 @@ public class Artikel implements Comparable<Artikel>{
 	
 	public int getBestand() {
 		return bestand;
+	}
+	public void setBestand(int plusBestand) {
+		bestand = plusBestand;
+//		setGruppenpreisBerechnen();
 	}
 
 	public boolean isVerfuegbar() {

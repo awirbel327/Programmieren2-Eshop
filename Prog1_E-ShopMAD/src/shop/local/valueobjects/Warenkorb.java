@@ -7,6 +7,19 @@ import shop.local.domain.Eshop;
 public class Warenkorb {
 	private Vector <Artikel> warenkorbVector = new Vector<Artikel>();
 	
+
+	
+	public Vector <Artikel> getListe() {
+		return warenkorbVector;
+	}
+	
+	public void artikelwkHinzufuegen(Artikel artikel, int anzahl) {
+		if (anzahl > 0) {
+		warenkorbVector.add(artikel);
+//		berechneWkGesamt();
+		}
+	}
+	
 	public String warenkorbAusgeben() {
 		String inhalt="Ihr Warenkorb ist leer";
 //		berechneGesamtsumme();

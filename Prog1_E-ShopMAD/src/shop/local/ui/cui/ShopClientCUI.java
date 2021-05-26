@@ -136,13 +136,13 @@ public class ShopClientCUI {
 			
 		//Warenkorb anzeigen
 		case "d":
-			System.out.println(""+shop.wkAusgeben());
+			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
 			//gibMenueAus();
 			break;
 			
 		//Warenkorb bearbeiten
 		case "e":
-			System.out.println(""+shop.wkAusgeben());
+			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
 			//gibMenueAus();
 			break;
 			
@@ -224,7 +224,7 @@ public class ShopClientCUI {
 		}
 		//die eingegebenen Zahlen werden zur Methode wkBefuellen übergeben
 		
-			System.out.println(shop.wkBefuellen(artNummer, artAnzahl));
+			System.out.println(shop.wkBefuellen(kundeEingeloggt,artNummer, artAnzahl));
 
 //		gibMenueAus();
 	}
