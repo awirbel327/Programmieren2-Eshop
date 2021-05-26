@@ -15,9 +15,10 @@ import shop.local.domain.UserVerwaltung;
 
 /**
  * Klasse zur Verwaltung unseres E-Shops.
- * Bietet Methoden zum Ausgeben aller Artikel (soriert),
- * zur Suche nach Artiekln, zum Einfügen neuer Artikel
- * und zum Speichern des Bestands.
+ * Bietet Methoden 
+ * Zum Ausgeben aller Artikel (soriert), zur Suche nach Artikeln und zur suche nach Artikeln.
+ * Zum einloggen, registrieren und speichern von Kunden sowie zum einloggen von Mitarbeitern.
+ * ...WARENKORB METHODEN tbd.....
  * E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
  */
 
@@ -66,6 +67,10 @@ public class Eshop {
 	
 	
 	
+	
+	
+	
+	
 	// Methodenaufrufe zur (sortierten) Ausgabe und suche nach Artikeln aus der Artikelverwaltung 
 	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
@@ -85,6 +90,13 @@ public class Eshop {
 
 	
 	
+	
+	
+	/**
+	 * Methoden zur Warenkorbverwaltung: Auslagern in passende Klasse, hier dann nur
+	 * noch Aufrufen der Methoden
+	 * 
+	 */
 	
 	public String wkAusgeben(Kunde kundeEingeloggt) {
 				//warenkorb des EINGELOGTEN KUNDEN ausgeben
@@ -111,16 +123,17 @@ public class Eshop {
 	
 	//WARENKORBVERWALTUNG ?????
 	
-	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt
-		public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
-			for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
-				if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
-					return true;
-				}
+	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt (würde die Methode vielleicht anders nennen)
+	public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
+		for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
+			if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
+				return true;
 			}
-			return false;
 		}
+		return false;
+	}
 		
+	
 	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
 	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
@@ -133,33 +146,36 @@ public class Eshop {
 		}
 	}
 	
-	//Methode zum Erhöhen des Bestand
-		// TODO: Das allermeiste in Artikelverwaltung erledigen
-		public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) {
-//			Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
-			Vector <Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
-			Artikel gesuchterArt = sucheArtikelinListe(warenkorbFuellung, artNummer);
-			Artikel ausArtliste = sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
-					if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
-						gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand());
-					} else {
-						System.out.println("LagerbestandsException ...");
-//						throw new LagerbestandsException(ausArtliste.getArtikelBestand()-gesuchterArt.getArtikelBestand());
-					}
-				}	
+	
+	//Methode zum Erhöhen der Anzahl des Artikels im WK 
+	// TODO: Das allermeiste in Artikelverwaltung erledigen
+	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) {
+//		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
+		Vector <Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
+		Artikel gesuchterArt = sucheArtikelinListe(warenkorbFuellung, artNummer);
+		Artikel ausArtliste = sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
+			if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
+				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand());
+			} else {
+				System.out.println("LagerbestandsException ...");
+//				throw new LagerbestandsException(ausArtliste.getArtikelBestand()-gesuchterArt.getArtikelBestand());
+			}
+	}	
 				
 	
-		
-		public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-			Artikel gesuchterArt=null; // warum =null?
-			for (int i = 0; artListe.size() > i; i++) {
-				if(artListe.elementAt(i).getNummer() == nummer) {
-					gesuchterArt = artListe.elementAt(i);
-				}
+	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
+	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
+		Artikel gesuchterArt=null; // warum =null?
+		for (int i = 0; artListe.size() > i; i++) {
+			if(artListe.elementAt(i).getNummer() == nummer) {
+				gesuchterArt = artListe.elementAt(i);
 			}
-			return gesuchterArt;
 		}
-		
+		return gesuchterArt;
+	}
+	
+	
+	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
 	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) {
 		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
 // 		clone() Methode ????
