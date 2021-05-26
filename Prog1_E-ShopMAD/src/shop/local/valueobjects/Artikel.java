@@ -25,7 +25,7 @@ public class Artikel implements Comparable<Artikel> {
 	public Artikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
 		artikelnummer = nr;
 		this.bezeichnung = titel;
-		this.verfuegbar = verfuegbar; //k�nnen wir das nicht beim erstellen direkt auf true setzen?
+		this.verfuegbar = verfuegbar; //können wir das nicht beim erstellen direkt auf true setzen?
 		this.bestand = bestand;
 		this.artikelPreis = artikelPreis;
 	}

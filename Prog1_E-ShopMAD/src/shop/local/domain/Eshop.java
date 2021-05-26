@@ -40,7 +40,7 @@ public class Eshop {
 		meineNutzer = new UserVerwaltung();
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
-		meineNutzer = new UserVerwaltung();
+		meineNutzer = new UserVerwaltung(); // kann man löschen?
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 	}
@@ -77,17 +77,17 @@ public class Eshop {
 	}
 	
 	
-	public String zumWKhinzufuegen() {
-		/*
-		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
-		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
-		 * bestand prüfen
-		 * if artikel verfügbar
-		 * WK befüllen else "Artikel nicht vorhanden oder falsche nummer"
-		 */
-		
-		return null;
-	}
+//	public String zumWKhinzufuegen() {
+//		/*
+//		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
+//		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
+//		 * bestand prüfen
+//		 * if artikel verfügbar
+//		 * WK befüllen else "Artikel nicht vorhanden oder falsche nummer"
+//		 */
+//		
+//		return null;
+//	}
 	
 	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
 		return meineArtikel.getArtikelBestand();
@@ -113,6 +113,7 @@ public class Eshop {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 			erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl);
 		} else {
+			//HIER IST NOCH EIN FEHLER "ANZAHL" WIRD DER BESTAND GENOMMEN STATT DIE ANZAHL DIE MAN HABEN MÖCHTE
 			Artikel gesuchterArt = new Artikel (gefundenArt.getTitel(),gefundenArt.getNummer(),gefundenArt.isVerfuegbar(),gefundenArt.getBestand(),gefundenArt.getPreis());
 			gesuchterArt.setNummer(gefundenArt.getNummer());
 			kundEingeloggt.getWk().artikelwkHinzufuegen(gesuchterArt, anzahl);
