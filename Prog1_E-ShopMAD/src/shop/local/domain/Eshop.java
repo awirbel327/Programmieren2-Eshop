@@ -37,15 +37,17 @@ public class Eshop {
 		meineArtikel = new ArtikelVerwaltung();
 		meineArtikel.liesDaten(datei + "_B.txt");
 		
+		// Kundendaten aus Datei einlesen
 		meineNutzer = new UserVerwaltung();
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
+		// Mitarbeiterdaten aus Datei einlesen
 		meineNutzer = new UserVerwaltung(); // kann man lÃ¶schen?
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 	}
 	
-	
+	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	public Kunde kundenlogIn(String username, String passwort) {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
@@ -57,8 +59,14 @@ public class Eshop {
 	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
 	}
+	public void speicherKunden() throws IOException {
+		// TODO Auto-generated method stub
+		meineNutzer.speicherKunden();
+	}	
 	
-
+	
+	
+	// Methodenaufrufe zur (sortierten) Ausgabe und suche nach Artikeln aus der Artikelverwaltung 
 	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
 	}
@@ -66,7 +74,18 @@ public class Eshop {
 	public void artikelsortiertAusgebenNummer() {
 		meineArtikel.artikelSortNummer(meineArtikel.getArtikelBestand());
 	}
+	
+	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
+		return meineArtikel.getArtikelBestand();
+	}
+	
+	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
+		return meineArtikel.sucheArtikel(titel); 
+	}
 
+	
+	
+	
 	public String wkAusgeben(Kunde kundeEingeloggt) {
 				//warenkorb des EINGELOGTEN KUNDEN ausgeben
 //		Warenkorb wk = new Warenkorb();
@@ -89,16 +108,10 @@ public class Eshop {
 //		return null;
 //	}
 	
-	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
-		return meineArtikel.getArtikelBestand();
-	}
 	
-	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
-		return meineArtikel.sucheArtikel(titel); 
-	}
 	//WARENKORBVERWALTUNG ?????
 	
-	//Methode zum PrÃ¼fen des Warenkorbbestandes 
+	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt
 		public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
 			for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
 				if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
@@ -108,7 +121,7 @@ public class Eshop {
 			return false;
 		}
 		
-	//Methode zum PrÃ¼fen des Warenkorbbestandes 
+	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
 	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 			erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl);
@@ -120,7 +133,7 @@ public class Eshop {
 		}
 	}
 	
-	//Methode zum ErhÃ¶hen des Einkaufs
+	//Methode zum Erhöhen des Bestand
 		// TODO: Das allermeiste in Artikelverwaltung erledigen
 		public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) {
 //			Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -138,7 +151,7 @@ public class Eshop {
 	
 		
 		public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-			Artikel gesuchterArt=null;
+			Artikel gesuchterArt=null; // warum =null?
 			for (int i = 0; artListe.size() > i; i++) {
 				if(artListe.elementAt(i).getNummer() == nummer) {
 					gesuchterArt = artListe.elementAt(i);
@@ -172,9 +185,6 @@ public class Eshop {
 	}	
 	
 
-		public void speicherKunden() throws IOException {
-			// TODO Auto-generated method stub
-			meineNutzer.speicherKunden();
-		}	
+		
 	
 }
