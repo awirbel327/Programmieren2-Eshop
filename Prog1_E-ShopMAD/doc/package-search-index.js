@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"shop.local.domain"},{"l":"shop.local.domain.exceptions"},{"l":"shop.local.persistence"},{"l":"shop.local.ui.cui"},{"l":"shop.local.valueobjects"}];updateSearchResults();

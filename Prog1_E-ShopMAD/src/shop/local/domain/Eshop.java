@@ -12,13 +12,13 @@ import shop.local.valueobjects.*;
 import shop.local.valueobjects.Artikel;
 import shop.local.domain.UserVerwaltung;
 
-//E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
 
 /**
  * Klasse zur Verwaltung unseres E-Shops.
- * Bietet Methoden zum Zurückgeben aller Bücher im Bestand,
- * zur Suche nach Artiekln, zum Einfügen neuer Bücher
+ * Bietet Methoden zum Ausgeben aller Artikel (soriert),
+ * zur Suche nach Artiekln, zum Einf�gen neuer Artikel
  * und zum Speichern des Bestands.
+ * E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
  */
 
 public class Eshop {
