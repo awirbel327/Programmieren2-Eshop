@@ -9,22 +9,22 @@ import shop.local.valueobjects.*;
 public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
-	
+	public static User angemeldeterUser;
 	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
 	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
 	
-	//public User angemeldeterUser;
-	
 	/********KUNDEN und MITARBEITER********/
-	/*public User getAngemeldeterUser() {
-		return angemeldeterUser;
-	}
 	
-	public void setAngemeldeterUser() {
-		angemeldeterUser = user;
-	}*/
-
+	//Getter & Setter für angemeldete User
+		public static User getAngemeldeterUser() {
+			return angemeldeterUser;
+		}
+		
+		public void setAngemeldeterUser(Kunde kunde) {
+			angemeldeterUser = kunde;
+		}
 	
+		
 	public void liesKunden(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
 
@@ -49,6 +49,7 @@ public class UserVerwaltung {
 		kundenListe.add(einKunde);
 	}
 	
+	//Kern vom Kunde login 
 	public Kunde kundenlogIn (String username, String passwort) {
 		for (Kunde kunde:kundenListe) {	
 			if(username.equals(kunde.getUsername())) {
@@ -59,20 +60,29 @@ public class UserVerwaltung {
 		}
 		return null;
 	}
+	
 	//Kunde registrieren
-	/*public Kunde registrieren(Kunde einKunde){
+	public Kunde registrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 	for(Kunde kunde:kundenListe) {
-		if() {
-			if() {
-				
-			}
+		if(einKunde.getUsername().equals(kunde.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
+			throw new KundeExistiertBereitsException(einKunde, "Kundenname existiert bereits");
 		}
 	}
 	kundenListe.add(einKunde);
-	return kunde; 
-	}*/
+	return einKunde; 
+	}
 	
-	/*
+	//Methode zum speichern der Kundenliste (z.B. bei Registrierung)
+	public void speicherKunden() throws IOException {	
+		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager für Schreibvorgang �ffnen
+		for(Kunde kunde:kundenListe) {
+			System.out.println(kunde.getName() + " wurde gespeichert");
+			pm.speicherKundeDaten(kunde);	
+		}
+		pm.close();
+	}
+	
+	
 	public void liesMitarbeiter(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager für Lesevorgänge öffnen
 
@@ -82,7 +92,7 @@ public class UserVerwaltung {
 			if (einMitarbeiter != null) {
 				try {
 					mitarbeiterEinfuegen(einMitarbeiter);
-				} catch (KundeExistiertBereitsException e1) {
+				} catch (MitarbeiterExistiertBereitsException e1) {
 				}
 			}
 		} while (einMitarbeiter != null);
@@ -90,11 +100,11 @@ public class UserVerwaltung {
 	}
 	
 	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
-		if (kundenListe.contains(einMitarbeiter)) {
+		if (mitarbeiterListe.contains(einMitarbeiter)) {
 			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'einfuegen()'");
 		}
 
-		kundenListe.add(einMitarbeiter);
+		mitarbeiterListe.add(einMitarbeiter);
 	}
 	
 	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
@@ -107,10 +117,10 @@ public class UserVerwaltung {
 			}
 		}
 		return null;
-	}*/
+	}
 		
 	
-	/******** Methoden f�r MITARBEITER ********/
+	/******** Methoden f�r MITARBEITER ********/
 	
 	public void newArticle (String articleName, int stock) {
 	}
@@ -119,7 +129,7 @@ public class UserVerwaltung {
 		
 	}
 	
-	/********Methoden f�r KUNDEN********/
+	/********Methoden f�r KUNDEN********/
 	
 	
 	public void emptyCart () {

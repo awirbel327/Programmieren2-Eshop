@@ -2,16 +2,15 @@ package shop.local.valueobjects;
 
 public class Mitarbeiter {
 
-	private int mitarbeiterNr;
 	private String name;
+	private int mitarbeiterNr;
 	private String username;
 	private String passwort;
 	
 	//Konstruktor Mitarbeiter anmeldung usw....
-	public Mitarbeiter(int nr, String name, String username, String passwort) {
-		//mitarbeiterNr = nr;
-		this.mitarbeiterNr = mitarbeiterNr;
+	public Mitarbeiter(String name, int mitarbeiterNr, String username, String passwort) {
 		this.name = name;
+		this.mitarbeiterNr = mitarbeiterNr;
 		this.username = username;
 		this.passwort = passwort;
 		

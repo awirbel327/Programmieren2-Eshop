@@ -17,21 +17,39 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-//Für Dateien einlesen usw.
+//Fuer Dateien einlesen usw.
 
 public class FilePersistenceManager  implements PersistenceManager  {
 	private BufferedReader reader = null;
+	private PrintWriter writer = null;
 	
 	public void openForReading(String datei) throws FileNotFoundException {
 		reader = new BufferedReader(new FileReader(datei));
 	}
-
-	public void openForWriting(String datei) throws IOException {	}
 	
+	public void openForWriting(String datei) throws IOException {	
+		writer = new PrintWriter(new BufferedWriter(new FileWriter(datei)));
+	}
+	
+	
+	//Close() -->  zum schließen der leser und schreiber
 	public boolean close() {
+		if(writer != null) {
+			writer.close();
+		}
+		if(reader != null) {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
 	
+	
+	//Kunden laden
 	public Kunde ladeKunde() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -48,7 +66,20 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
-	/*
+	
+	
+	// Kunde wird uebergeben und gespeichert
+	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
+		schreibeZeile(kunde.getName());
+		schreibeZeile(kunde.getStrasse());
+		schreibeZeile(Integer.toString(kunde.getHausNr()));
+		schreibeZeile(Integer.toString(kunde.getPlz()));
+		schreibeZeile(kunde.getOrt());
+		schreibeZeile(kunde.getUsername());
+		schreibeZeile(kunde.getPasswort());
+		return true;
+		}
+	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -59,38 +90,44 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String username = liesZeile();
 		String passwort = liesZeile();
 		
-		return new Mitarbeiter(name,nr, username, passwort);
-	}*/
+		return new Mitarbeiter(name, mitarbeiterNr, username,  passwort);	//statt mitarbeiternR vllt nr ?
+	}
 	
+	
+	//Methode zum laden von Artikeln
 	public Artikel ladeArtikel() throws IOException {
-		String titel = liesZeile();
+		String titel = liesZeile();										//liest Titel
 		if (titel == null) {
-			// keine Daten mehr vorhanden
-			return null;
+			return null;												// keine Daten mehr vorhanden
 		}
-		// Nummer einlesen ...
-		String nummerString = liesZeile();
-		// ... und von String in int konvertieren
-		int nummer = Integer.parseInt(nummerString);
+		String nummerString = liesZeile();								//Nummer einlesen
+		int nummer = Integer.parseInt(nummerString);					//String in int konvertieren
 		
-		// Buch ausgeliehen?
-		String verfuegbarCode = liesZeile();
-		// Codierung des Ausleihstatus in boolean umwandeln
-		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;
-		
-		// Bestand einlesen ...
-				String bestandString = liesZeile();
-				// ... und von String in int konvertieren
-				int bestand = Integer.parseInt(bestandString);
-		
-		// neues Buch-Objekt anlegen und zurÃ¼ckgeben
-		return new Artikel(titel, nummer, verfuegbar, bestand);
+		String verfuegbarCode = liesZeile();							//Verfügbar?
+		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
+		String preisString = liesZeile();								//Preis einlesen
+		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
+				String bestandString = liesZeile();						// Bestand einlesen
+				int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
+				
+		return new Artikel(titel, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
 		}
 	
+	
+	// Methode zum Lesen von Dateien
 	private String liesZeile() throws IOException {
 		if (reader != null)
 			return reader.readLine();
 		else
 			return "";
 	}
-	}
+	
+	
+	// Methode zum Schreiben in Dateien
+	private void schreibeZeile(String daten) {
+        if (writer != null)
+            writer.println(daten);
+        else 
+        	System.out.println("Fehler?");
+    }
+}
