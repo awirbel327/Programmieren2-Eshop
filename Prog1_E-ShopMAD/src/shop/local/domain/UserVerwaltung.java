@@ -6,6 +6,13 @@ import shop.local.domain.exceptions.*;
 import shop.local.persistence.*;
 import shop.local.valueobjects.*;
 
+
+
+/*
+ * Klasse zur Verwaltung unserer Userdaten
+ * Beinhaltet Methoden für MITARBEITER und für KUNDEN
+ * Beide sind Unterklassen dieser Klasse
+ */
 public class UserVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
@@ -15,16 +22,20 @@ public class UserVerwaltung {
 	
 	/********KUNDEN und MITARBEITER********/
 	
-	//Getter & Setter fÃ¼r angemeldete User
-		public static User getAngemeldeterUser() {
-			return angemeldeterUser;
-		}
-		
-		public void setAngemeldeterUser(Kunde kunde) {
-			angemeldeterUser = kunde;
-		}
+	// Getter & Setter fÃ¼r angemeldete User
+	public static User getAngemeldeterUser() {
+		return angemeldeterUser;
+	}
 	
-		
+	
+	// FRAGE: Müsste dieser Methode nicht dann auch ein User Objekt übergeben werden?
+	public void setAngemeldeterUser(Kunde kunde) {
+		angemeldeterUser = kunde;
+	}
+	
+	
+	
+	
 	public void liesKunden(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager fÃ¼r LesevorgÃ¤nge Ã¶ffnen
 
