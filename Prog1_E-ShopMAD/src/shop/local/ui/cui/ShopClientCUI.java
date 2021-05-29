@@ -15,6 +15,16 @@ import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.*;
 import shop.local.domain.*;
 
+
+
+/**
+ * Klasse zur Interaktion mit dem User.
+ * Führt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
+ * Main Methode wird in dieser Klasse ausgeführt, welche den E-Shop aufbaut. 
+ * @author Mareike
+ *
+ */
+
 public class ShopClientCUI {
 	
 	private Eshop shop;
@@ -23,11 +33,13 @@ public class ShopClientCUI {
 	private Mitarbeiter mitarbeiterEingeloggt;
 	
 	
+	// Konstruktor-Methode welche neben dem Shop ansich auch einen BufferedReader initalisiert.
 	public ShopClientCUI(String datei) throws IOException {
 		shop = new Eshop(datei);
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
-
+	
+	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
 		System.out.print("	       \n  Registrieren:  '1'");
@@ -45,10 +57,12 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
+	// Methode um die User-Eingaben einzulesen
 	private String liesEingabe() throws IOException{
 		return in.readLine();
 	}
 	
+	// Kernmethode der CUI die je nach Eingabe die nötigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
 	private void verarbeiteEingabe(String line) throws IOException {
 		String auswahl;
 		String titel;
@@ -64,7 +78,8 @@ public class ShopClientCUI {
 		BufferedReader br = new BufferedReader(is);	
 		
 		switch(line) {
-		//einloggen
+		
+		// Einloggen
 		case "0":
 			System.out.print("Als Kunde anmelden(j/n) :   > ");
 			auswahl = liesEingabe();
@@ -75,7 +90,7 @@ public class ShopClientCUI {
 			}
 			break;
 			
-		// Als Kunde regstrieren
+		// Regstrieren (Kunden)
 		case "1":	
 			System.out.print("Vollstï¿½ndiger Name :   > ");
 			name = liesEingabe();
@@ -105,13 +120,13 @@ public class ShopClientCUI {
 			}
 			break;
 			
-		//Artikel ausgeben normal
+		// Alle Artikel als Liste ausgeben (unsortiert)
 		case "a":
 			liste = shop.gibAlleArtikel();
 			gibArtikellisteAus(liste);
 			break;
 			
-		//Artikel suchen
+		// Artikel suchen nach Bezeichnung (ändern von Titel)
 		case "b":
 			System.out.print("Welchen Artikel suchen Sie? :   > ");
 			titel = liesEingabe();
@@ -119,28 +134,28 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 			
-		//Artikel nach Bezeichnung sortieren
+		// Artikel nach Bezeichnung sortieren (vielleicht als Untermenü von "Artikel ausgeben")
 		case "a1" :
 			shop.artikelsortiertAusgebenBezeichnung();
 			break;
 			
-		//Artikel nach Nummer sortieren
+		// Artikel nach Nummer sortieren
 		case "a2" :
 			shop.artikelsortiertAusgebenNummer();
 			break;
 			
-		//Artikel zum WK hinzufÃ¼gen
+		// Artikel zum WK hinzufügen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "c":
 			menueWk(br);
 			break;
 			
-		//Warenkorb anzeigen
+		// Warenkorb anzeigen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "d":
 			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
 			//gibMenueAus();
 			break;
 			
-		//Warenkorb bearbeiten
+		// Warenkorb bearbeiten (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "e":
 			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
 			//gibMenueAus();
@@ -152,6 +167,7 @@ public class ShopClientCUI {
 		}
 	}
 	
+	// Methode zum einlesen der Anmeldedaten wenn sich ein Kunde einloggen will
 	private void kundenlogin() {
 		String username = "";
 		String passwort ="";
@@ -174,7 +190,7 @@ public class ShopClientCUI {
 		kundeEingeloggt = kunde;		
 	}
 		
-	
+	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
 	private void mitarbeiterlogin() {
 		String username = "";
 		String passwort ="";
@@ -197,6 +213,7 @@ public class ShopClientCUI {
 		mitarbeiterEingeloggt = mitarbeiter;		
 	}
 	
+	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {
 			System.out.println("Liste ist leer.");
@@ -208,6 +225,7 @@ public class ShopClientCUI {
 		}
 	}
 	
+	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws NumberFormatException, IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
 		int artNummer=0;
@@ -253,6 +271,8 @@ public class ShopClientCUI {
 			}
 		} while (!input.equals("q"));
 	}
+	
+	
 	/**
 	 * Die main-Methode...
 	 */
