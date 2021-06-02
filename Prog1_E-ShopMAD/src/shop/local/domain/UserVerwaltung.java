@@ -91,6 +91,18 @@ public class UserVerwaltung {
 	return einKunde; 
 	}
 	
+	//Mitarbieter registrieren Mitarbieter
+		public Mitarbeiter mitRegistrierenMit(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
+		for(Mitarbeiter mitarbeiter:mitarbeiterListe) {
+			if(einMitarbeiter.getUsername().equals(mitarbeiter.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
+				throw new MitarbeiterExistiertBereitsException(einMitarbeiter, "Mitarbeitername existiert bereits");
+			}
+		}
+		einMitarbeiter.setMitarbeiterNr(mitarbeiterListe.size() + 1);		//setzen der Mitarbeiternummer
+		mitarbeiterListe.add(einMitarbeiter);
+		return einMitarbeiter; 
+		}
+	
 	
 	
 	//Methode zum speichern der Kundenliste (z.B. bei Registrierung) 
@@ -103,6 +115,15 @@ public class UserVerwaltung {
 		pm.close();
 	}
 
+	//Methode zum speichern der Mitarbeiterliste (z.B. bei Registrierung) 
+		public void speicherMitarbeiter() throws IOException {	
+			pm.openForWriting("SHOP_Mitarbeiter.txt"); // PersistenzManager für Schreibvorgang �ffnen
+			for(Mitarbeiter mitarbeiter:mitarbeiterListe) {
+				System.out.println(mitarbeiter.getName() + " wurde gespeichert");
+				pm.speicherMitarbeiterDaten(mitarbeiter);	
+			}
+			pm.close();
+		}
 	
 	/****** Interaktionen mit Warenkorb *******/
 	

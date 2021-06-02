@@ -80,6 +80,24 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return true;
 		}
 	
+	// Mitarbeiter wird uebergeben und gespeichert
+		public boolean speicherMitarbeiterDaten(Mitarbeiter mitarbeiter) throws IOException {
+			schreibeZeile(mitarbeiter.getName());
+			schreibeZeile(Integer.toString(mitarbeiter.getMitarbeiterNr()));
+			schreibeZeile(mitarbeiter.getUsername());
+			schreibeZeile(mitarbeiter.getPasswort());
+			return true;
+			}
+		
+	// Artikel wird uebergeben und gespeichert
+		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
+			schreibeZeile(artikel.getTitel());
+			schreibeZeile(Integer.toString(artikel.getNummer()));
+			schreibeZeile(Integer.toString(artikel.getBestand()));
+			schreibeZeile(Double.toString(artikel.getPreis()));
+			return true;
+					}
+	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {

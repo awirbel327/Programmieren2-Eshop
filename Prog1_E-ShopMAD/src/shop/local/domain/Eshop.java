@@ -57,6 +57,10 @@ public class Eshop {
 		return meineNutzer.registrieren(einKunde);
 	}
 	
+	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
+		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
+	}
+	
 	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
 	}
@@ -65,8 +69,15 @@ public class Eshop {
 		meineNutzer.speicherKunden();
 	}	
 	
+	public void speicherMitarbeiter() throws IOException {
+		// TODO Auto-generated method stub
+		meineNutzer.speicherMitarbeiter();
+	}
 	
-	
+	public void speicherArtikel() throws IOException {
+		// TODO Auto-generated method stub
+		meineArtikel.speicherArtikel();
+	}
 	
 	
 	
@@ -89,6 +100,10 @@ public class Eshop {
 	}
 
 	
+	//Methodenaufrufe Artikel Mitarbeiter
+	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
+	meineArtikel.einfuegen(artikel);
+	}
 	
 	
 	

@@ -1,8 +1,5 @@
 package shop.local.domain;
 
-
-
-
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +13,7 @@ import shop.local.persistence.FilePersistenceManager;
 import shop.local.persistence.PersistenceManager;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Mitarbeiter;
 
 
 
@@ -99,7 +97,7 @@ public class ArtikelVerwaltung {
 		if (artikelBestand.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
 		}
-
+		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelBestand.add(einArtikel);
 	}
 
@@ -127,5 +125,15 @@ public class ArtikelVerwaltung {
 				}
 		return suchErg;
 		}
-
+	
+	//Methode zum speichern der Artikelliste (z.B. bei hinzufuegen)
+	public void speicherArtikel() throws IOException {
+		pm.openForWriting("SHOP_B.txt"); // PersistenzManager für Schreibvorgang �ffnen
+			for(Artikel artikel:artikelListeVector) {
+				System.out.println(artikel.getTitel() + " wurde gespeichert");
+				pm.speicherArtikelDaten(artikel);	
+			}
+				pm.close();
+		}
 	}
+

@@ -29,8 +29,9 @@ public class ShopClientCUI {
 	
 	private Eshop shop;
 	private BufferedReader in;
-	private Kunde kundeEingeloggt;
-	private Mitarbeiter mitarbeiterEingeloggt;
+	//private Kunde kundeEingeloggt;
+	//private Mitarbeiter mitarbeiterEingeloggt;
+	private User userEingeloggt;
 	
 	
 	// Konstruktor-Methode welche neben dem Shop ansich auch einen BufferedReader initalisiert.
@@ -42,7 +43,7 @@ public class ShopClientCUI {
 	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
-		System.out.print("	       \n  Registrieren:  '1'");
+		System.out.print("	       \n  als Kunde Registrieren:  '1'");
 		System.out.print("		   \n  Artikel ausgeben:  'A'");
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
 		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
@@ -55,6 +56,11 @@ public class ShopClientCUI {
 		System.out.println("       \n  Beenden:        'Q'");
 		System.out.print("> "); // Prompt
 		System.out.flush(); // ohne NL ausgeben
+	}
+	
+	private void gibMitarbeiterMenueAus() {
+		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
+		System.out.println("	    \n einen neuen Artikel hinzufuegen: 'W'");
 	}
 	
 	// Methode um die User-Eingaben einzulesen
@@ -111,7 +117,7 @@ public class ShopClientCUI {
 			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	//neuen Kunden erschaffen
 			try {
 				shop.kundenRegistrieren(einKunde);	
-				kundeEingeloggt = einKunde ;
+				userEingeloggt = einKunde ;
 				System.out.println("Sie haben sich erfolgreich Registriert!");
 				shop.speicherKunden();
 			} catch (KundeExistiertBereitsException e) {
@@ -151,16 +157,55 @@ public class ShopClientCUI {
 			
 		// Warenkorb anzeigen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "d":
-			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
+			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			//gibMenueAus();
 			break;
 			
 		// Warenkorb bearbeiten (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "e":
-			System.out.println(""+shop.wkAusgeben(kundeEingeloggt));
+			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			//gibMenueAus();
 			break;
+		
+		//Mitarbeiter registrieren
+		case "z":
+			System.out.print("Vollstï¿½ndiger Name :   > ");
+			name = liesEingabe();
+			System.out.print("Username :   > ");
+			username = liesEingabe();
+			System.out.print("passwort :   > ");
+			passwort = liesEingabe();
+			Mitarbeiter einMitarbeiter = new Mitarbeiter(name,username, passwort );	//neuen Mitarbeiter erschaffen
+			try {
+				shop.mitarbeiterRegistrieren(einMitarbeiter);
+				System.out.println("Sie haben einen weiteren Mitarbeiter erfolgreich Registriert!");
+				shop.speicherMitarbeiter();
+			} catch (MitarbeiterExistiertBereitsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 			
+			//mitarbeiter artikel hinzufügen
+		case "w":
+			System.out.print("Artikelbezeichnung :   >");
+			String bezeichnung = liesEingabe();
+			System.out.print("Artikelbestand :   >");
+			String bestandString = liesEingabe();
+			int bestand = Integer.parseInt(bestandString);
+			System.out.print("Artikelpreis :   >");
+			String artikelPreisString = liesEingabe();
+			double artikelPreis = Double.parseDouble(artikelPreisString);
+			Artikel einArtikel = new Artikel(bezeichnung, bestand, artikelPreis);
+			try {
+				shop.mitArtikelHinzu(einArtikel);
+				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
+				shop.speicherArtikel();
+			} catch (ArtikelExistiertBereitsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		default:
 			System.out.println("Ungueltige Eingabe!\n");
 			//gibMenueAus();
@@ -187,7 +232,7 @@ public class ShopClientCUI {
 		}
 		Kunde kunde =shop.kundenlogIn(username, passwort);
 		System.out.println("erfolgreich eingeloggt als "+ kunde.getName()+ "!!");
-		kundeEingeloggt = kunde;		
+		userEingeloggt = kunde;		
 	}
 		
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
@@ -210,7 +255,7 @@ public class ShopClientCUI {
 		}
 		Mitarbeiter mitarbeiter =shop.mitarbeiterlogIn(username, passwort);
 		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
-		mitarbeiterEingeloggt = mitarbeiter;		
+		userEingeloggt = mitarbeiter;		
 	}
 	
 	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
@@ -242,7 +287,7 @@ public class ShopClientCUI {
 		}
 		//die eingegebenen Zahlen werden zur Methode wkBefuellen Ã¼bergeben
 		
-			System.out.println(shop.wkBefuellen(kundeEingeloggt,artNummer, artAnzahl));
+			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
 
 //		gibMenueAus();
 	}
@@ -259,8 +304,9 @@ public class ShopClientCUI {
 		// Variable fÃ¼r Eingaben von der Konsole
 		String input = ""; 
 	
-		// Hauptschleife der Benutzungsschnittstelle
+		// Hauptschleife der Benutzungsschnittstelle / Überprüfung Ausgabe Menue
 		do {
+			if(userEingeloggt == null) {
 			gibMenueAus();
 			try {
 				input = liesEingabe();
@@ -269,6 +315,26 @@ public class ShopClientCUI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			} else if(userEingeloggt instanceof Kunde) {		//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist 
+				gibMenueAus();
+				try {
+					input = liesEingabe();
+					verarbeiteEingabe(input);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else if (userEingeloggt instanceof Mitarbeiter) {
+				gibMitarbeiterMenueAus();
+				try {
+					input = liesEingabe();
+					verarbeiteEingabe(input);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		} while (!input.equals("q"));
 	}
 	
