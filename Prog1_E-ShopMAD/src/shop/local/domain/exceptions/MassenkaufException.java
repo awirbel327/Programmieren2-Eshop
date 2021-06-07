@@ -1,5 +1,5 @@
 package shop.local.domain.exceptions;
 
-public class MassenkaufException {
+public class MassenkaufException extends Exception {
 
 }

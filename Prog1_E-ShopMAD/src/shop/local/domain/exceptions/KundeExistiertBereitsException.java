@@ -7,7 +7,7 @@ public class KundeExistiertBereitsException extends Exception {
 	private Kunde kunde;
 	
 	public KundeExistiertBereitsException(Kunde kunde, String zusatzMsg) {
-		super("Kunde existiert bereits");
+		super("Kunde mit Nummer: " + kunde.getKundenNr() + " existiert bereits" + zusatzMsg);
 		this.kunde = kunde;
 	}
 

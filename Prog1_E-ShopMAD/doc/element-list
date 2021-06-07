@@ -1,0 +1,5 @@
+shop.local.domain
+shop.local.domain.exceptions
+shop.local.persistence
+shop.local.ui.cui
+shop.local.valueobjects

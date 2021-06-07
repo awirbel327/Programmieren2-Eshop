@@ -30,6 +30,13 @@ public class Artikel implements Comparable<Artikel> {
 		this.artikelPreis = artikelPreis;
 	}
 	
+	public Artikel(String titel, int bestand2, double artikelPreis2) {
+		this.bezeichnung = titel;
+		this.verfuegbar = true; //können wir das nicht beim erstellen direkt auf true setzen?
+		this.bestand = bestand2;
+		this.artikelPreis = artikelPreis2;
+	}
+
 	// wird benötigt um die Artikel aus der Liste auszugeben
 	public String toString() {
 		String verfuegbarkeit = verfuegbar ? "Noch " + bestand + " Stueck auf Lager" : "Ausverkauft";
