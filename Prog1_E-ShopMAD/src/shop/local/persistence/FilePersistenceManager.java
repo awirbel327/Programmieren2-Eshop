@@ -32,7 +32,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	}
 	
 	
-	//Close() -->  zum schließen der leser und schreiber
+	//Close() -->  zum schlieï¿½en der leser und schreiber
 	public boolean close() {
 		if(writer != null) {
 			writer.close();
@@ -90,7 +90,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String username = liesZeile();
 		String passwort = liesZeile();
 		
-		return new Mitarbeiter(name, mitarbeiterNr, username,  passwort);	//statt mitarbeiternR vllt nr ?
+		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);	//statt mitarbeiternR vllt nr ?
 	}
 	
 	
@@ -103,12 +103,13 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String nummerString = liesZeile();								//Nummer einlesen
 		int nummer = Integer.parseInt(nummerString);					//String in int konvertieren
 		
-		String verfuegbarCode = liesZeile();							//Verfügbar?
+		String verfuegbarCode = liesZeile();							//Verfï¿½gbar?
 		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
+		String bestandString = liesZeile();						// Bestand einlesen
+		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
+		
 		String preisString = liesZeile();								//Preis einlesen
 		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
-				String bestandString = liesZeile();						// Bestand einlesen
-				int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
 				
 		return new Artikel(titel, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
 		}
