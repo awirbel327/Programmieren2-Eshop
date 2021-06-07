@@ -1,4 +1,3 @@
-
 package shop.local.domain.exceptions;
 
 import shop.local.valueobjects.*;
@@ -8,7 +7,7 @@ public class MitarbeiterExistiertBereitsException extends Exception {
 	private Mitarbeiter mitarbeiter;
 	
 	public MitarbeiterExistiertBereitsException(Mitarbeiter mitarbeiter, String zusatzMsg) {
-		super("Mitarbeiter existiert bereits");
+		super("Mitarbeiter mit Nummer: " + mitarbeiter.getMitarbeiterNr() + " existiert bereits" + zusatzMsg);
 		this.mitarbeiter = mitarbeiter;
 	}
 

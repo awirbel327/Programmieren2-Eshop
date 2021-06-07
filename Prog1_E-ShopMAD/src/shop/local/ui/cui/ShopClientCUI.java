@@ -271,7 +271,7 @@ public class ShopClientCUI {
 	}
 	
 	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
-	public void menueWk(BufferedReader br) throws NumberFormatException, IOException {
+	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
 		int artNummer=0;
 		int artAnzahl=0;
@@ -285,10 +285,13 @@ public class ShopClientCUI {
 			System.out.println("Geben sie eine Zahl ein!!!");
 			menueWk(br);
 		}
-		//die eingegebenen Zahlen werden zur Methode wkBefuellen Ã¼bergeben
-		
+		try {
 			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
-
+		} catch (LagerbestandsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		menueWk(br);
 //		gibMenueAus();
 	}
 

@@ -29,7 +29,6 @@ public class ArtikelVerwaltung {
 	
 	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	
-	
 	public Vector <Artikel> getArtikelliste(){
 		return artikelListeVector;
 	}

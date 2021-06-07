@@ -100,9 +100,10 @@ public class Eshop {
 	}
 
 	
+	//Gehört die Methode nicht in die UserVerwaltung unter Mitarbeiter?
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
-	meineArtikel.einfuegen(artikel);
+		meineArtikel.einfuegen(artikel);
 	}
 	
 	
@@ -150,10 +151,15 @@ public class Eshop {
 		
 	
 	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
-	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) {
+	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) throws LagerbestandsException {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
+			//try {
 			erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl);
-		} else {
+			//} catch (LagerbestandsException e) {
+				// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			//}
+		} else { 
 			//HIER IST NOCH EIN FEHLER "ANZAHL" WIRD DER BESTAND GENOMMEN STATT DIE ANZAHL DIE MAN HABEN MÃ–CHTE
 			Artikel gesuchterArt = new Artikel (gefundenArt.getTitel(),gefundenArt.getNummer(),gefundenArt.isVerfuegbar(),gefundenArt.getBestand(),gefundenArt.getPreis());
 			gesuchterArt.setNummer(gefundenArt.getNummer());
@@ -164,16 +170,16 @@ public class Eshop {
 	
 	//Methode zum Erhöhen der Anzahl des Artikels im WK 
 	// TODO: Das allermeiste in Artikelverwaltung erledigen
-	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) {
+	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) throws LagerbestandsException {
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
 		Vector <Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
 		Artikel gesuchterArt = sucheArtikelinListe(warenkorbFuellung, artNummer);
 		Artikel ausArtliste = sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 			if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
-				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand());
+				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
 			} else {
-				System.out.println("LagerbestandsException ...");
-//				throw new LagerbestandsException(ausArtliste.getArtikelBestand()-gesuchterArt.getArtikelBestand());
+				//System.out.println("LagerbestandsException ...");
+				throw new LagerbestandsException(ausArtliste);
 			}
 	}	
 				
@@ -191,7 +197,7 @@ public class Eshop {
 	
 	
 	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
-	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) {
+	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) throws LagerbestandsException {
 		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
 // 		clone() Methode ????
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -201,17 +207,22 @@ public class Eshop {
 			if(artListe.elementAt(i).getNummer() == artNummer) {
 				Artikel gefundenArt = artListe.elementAt(i);
 //					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
-					if((gefundenArt.getBestand()>= artAnzahl) == true) {
-//						Hier muss eine Methode hinzufÃ¼gen stehhen
+				
+				
+					// If Abfrage wird unnötig, da die Exception schon in der Methode hinzufügenOderErhoehen geprüft wird
+					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
+				
+				
+//						
 						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
-//						String "bestaetigung" neu Ã¼berschrieben
+//						String "bestaetigung" wird überschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
-					} else {
-//						throw new LagerbestandsException(gefundenArt.getBestand());
+
+						//					} else {
+//						throw new LagerbestandsException(gefundenArt);
 					}
-//			}
 		}
-		}
+//		}
 		return bestaetigung;
 	}	
 	
