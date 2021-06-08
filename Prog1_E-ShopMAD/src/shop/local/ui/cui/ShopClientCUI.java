@@ -164,7 +164,7 @@ public class ShopClientCUI {
 		// Warenkorb bearbeiten (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
 		case "e":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
-			//gibMenueAus();
+			gibMenueAus();
 			break;
 		
 		//Mitarbeiter registrieren
@@ -291,7 +291,6 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		menueWk(br);
 //		gibMenueAus();
 	}
 

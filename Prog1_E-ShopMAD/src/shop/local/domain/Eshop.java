@@ -48,6 +48,12 @@ public class Eshop {
 		
 	}
 	
+	public void speicherArtikel() throws IOException {
+		// TODO Auto-generated method stub
+		meineArtikel.speicherArtikel();
+	}
+	
+	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	public Kunde kundenlogIn(String username, String passwort) {
 		return meineNutzer.kundenlogIn(username, passwort);
@@ -74,10 +80,11 @@ public class Eshop {
 		meineNutzer.speicherMitarbeiter();
 	}
 	
-	public void speicherArtikel() throws IOException {
-		// TODO Auto-generated method stub
-		meineArtikel.speicherArtikel();
+	//Methodenaufrufe Artikel Mitarbeiter
+	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
+		meineArtikel.einfuegen(artikel);
 	}
+	
 	
 	
 	
@@ -100,11 +107,10 @@ public class Eshop {
 	}
 
 	
-	//Gehört die Methode nicht in die UserVerwaltung unter Mitarbeiter?
-	//Methodenaufrufe Artikel Mitarbeiter
-	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
-		meineArtikel.einfuegen(artikel);
-	}
+	
+	
+	
+	
 	
 	
 	
@@ -178,7 +184,6 @@ public class Eshop {
 			if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
 				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
 			} else {
-				//System.out.println("LagerbestandsException ...");
 				throw new LagerbestandsException(ausArtliste);
 			}
 	}	
@@ -211,9 +216,7 @@ public class Eshop {
 				
 					// If Abfrage wird unnötig, da die Exception schon in der Methode hinzufügenOderErhoehen geprüft wird
 					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
-				
-				
-//						
+										
 						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
 //						String "bestaetigung" wird überschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
