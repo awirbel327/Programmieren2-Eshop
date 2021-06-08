@@ -81,8 +81,8 @@ public class Eshop {
 	}
 	
 	//Methodenaufrufe Artikel Mitarbeiter
-	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
-		meineArtikel.einfuegen(artikel);
+	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException {
+		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 	}
 	
 	
