@@ -14,6 +14,7 @@ import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.*;
 import shop.local.domain.*;
+import shop.local.domain.WarenkorbVerwaltung;
 
 /**
  * Klasse zur Interaktion mit dem User.
@@ -24,6 +25,7 @@ import shop.local.domain.*;
 public class ShopClientCUI {
 	
 	private Eshop shop;
+//	private WarenkorbVerwaltung warenkorb;
 	private BufferedReader in;
 	//private Kunde kundeEingeloggt;
 	//private Mitarbeiter mitarbeiterEingeloggt;

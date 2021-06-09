@@ -9,8 +9,8 @@ import shop.local.domain.exceptions.*;
 import shop.local.domain.exceptions.*;
 import shop.local.domain.*;
 import shop.local.valueobjects.*;
-import shop.local.valueobjects.Artikel;
 import shop.local.domain.UserVerwaltung;
+
 
 
 /**
@@ -27,7 +27,7 @@ public class Eshop {
 	private String datei = "";
 	
 	private ArtikelVerwaltung meineArtikel;
-//	private Warenkorb warenkorb;
+	private WarenkorbVerwaltung meinWarenkorb;
 	private UserVerwaltung meineNutzer;
 	
 	
@@ -46,6 +46,17 @@ public class Eshop {
 		meineNutzer = new UserVerwaltung(); // kann man lÃ¶schen?
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
+		meinWarenkorb = new WarenkorbVerwaltung();
+		
+	}
+	
+	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException {
+		
+		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
+	}
+	
+	public String wkAusgeben(Kunde userEingeloggt) {
+		return meinWarenkorb.wkAusgeben(userEingeloggt);
 	}
 	
 	public void speicherArtikel() throws IOException {
@@ -85,10 +96,6 @@ public class Eshop {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 	}
 	
-	
-	
-	
-	
 	// Methodenaufrufe zur (sortierten) Ausgabe und suche nach Artikeln aus der Artikelverwaltung 
 	public void artikelsortiertAusgebenBezeichnung() {
 		meineArtikel.artikelSortBezeichnung(meineArtikel.getArtikelBestand());
@@ -106,89 +113,6 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(titel); 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * Methoden zur Warenkorbverwaltung: Auslagern in passende Klasse, hier dann nur
-	 * noch Aufrufen der Methoden
-	 * 
-	 */
-	
-	public String wkAusgeben(Kunde kundeEingeloggt) {
-				//warenkorb des EINGELOGTEN KUNDEN ausgeben
-//		Warenkorb wk = new Warenkorb();
-//		 return wk.warenkorbAusgeben();
-//		Kunde kundeEingeloggt = (Kunde) UserVerwaltung.getAngemeldeterUser();
-		//warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
-		return kundeEingeloggt.getWk().warenkorbAusgeben();
-	}
-	
-	
-//	public String zumWKhinzufuegen() {
-//		/*
-//		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
-//		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
-//		 * bestand prÃ¼fen
-//		 * if artikel verfÃ¼gbar
-//		 * WK befÃ¼llen else "Artikel nicht vorhanden oder falsche nummer"
-//		 */
-//		
-//		return null;
-//	}
-	
-	
-	//WARENKORBVERWALTUNG ?????
-	
-	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt (würde die Methode vielleicht anders nennen)
-	public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
-		for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
-			if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
-				return true;
-			}
-		}
-		return false;
-	}
-		
-	
-	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
-	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) throws LagerbestandsException {
-		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
-			//try {
-			erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl);
-			//} catch (LagerbestandsException e) {
-				// TODO Auto-generated catch block
-			//	e.printStackTrace();
-			//}
-		} else { 
-			//HIER IST NOCH EIN FEHLER "ANZAHL" WIRD DER BESTAND GENOMMEN STATT DIE ANZAHL DIE MAN HABEN MÃ–CHTE
-			Artikel gesuchterArt = new Artikel (gefundenArt.getTitel(),gefundenArt.getNummer(),gefundenArt.isVerfuegbar(),gefundenArt.getBestand(),gefundenArt.getPreis());
-			gesuchterArt.setNummer(gefundenArt.getNummer());
-			kundEingeloggt.getWk().artikelwkHinzufuegen(gesuchterArt, anzahl);
-		}
-	}
-	
-	
-	//Methode zum Erhöhen der Anzahl des Artikels im WK 
-	// TODO: Das allermeiste in Artikelverwaltung erledigen
-	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) throws LagerbestandsException {
-//		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
-		Vector <Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
-		Artikel gesuchterArt = sucheArtikelinListe(warenkorbFuellung, artNummer);
-		Artikel ausArtliste = sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
-			if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
-				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
-			} else {
-				throw new LagerbestandsException(ausArtliste);
-			}
-	}	
-				
-	
 	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
 	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
 		Artikel gesuchterArt=null; // warum =null?
@@ -199,37 +123,4 @@ public class Eshop {
 		}
 		return gesuchterArt;
 	}
-	
-	
-	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
-	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) throws LagerbestandsException {
-		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
-// 		clone() Methode ????
-//		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
-		String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
-// 		Die Artikelliste wird nach den gewuenschten Artikel durchsucht.
-		for(int i = 0 ; artListe.size() > i ; i++) {
-			if(artListe.elementAt(i).getNummer() == artNummer) {
-				Artikel gefundenArt = artListe.elementAt(i);
-//					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
-				
-				
-					// If Abfrage wird unnötig, da die Exception schon in der Methode hinzufügenOderErhoehen geprüft wird
-					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
-										
-						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
-//						String "bestaetigung" wird überschrieben
-						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
-
-						//					} else {
-//						throw new LagerbestandsException(gefundenArt);
-					}
-		}
-//		}
-		return bestaetigung;
-	}	
-	
-
-		
-	
 }
