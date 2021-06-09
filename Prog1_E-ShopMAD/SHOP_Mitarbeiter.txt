@@ -6,14 +6,11 @@ Lana
 2
 Lulu
 huhu
-<<<<<<< HEAD
 mitarbeiter dilara
 3
 mitarbeiter1
 1234
-=======
 Martin Hell
 3
 Hell
 Helli
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git

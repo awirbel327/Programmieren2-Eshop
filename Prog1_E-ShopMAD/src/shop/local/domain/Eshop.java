@@ -43,7 +43,7 @@ public class Eshop {
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
 		// Mitarbeiterdaten aus Datei einlesen
-		meineNutzer = new UserVerwaltung(); // kann man löschen?
+		meineNutzer = new UserVerwaltung(); // kann man lÃ¶schen?
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 	}
@@ -107,18 +107,10 @@ public class Eshop {
 	}
 
 	
-<<<<<<< HEAD
-	//Geh�rt die Methode nicht in die UserVerwaltung unter Mitarbeiter?
-	//Methodenaufrufe Artikel Mitarbeiter
-	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
-		meineArtikel.einfuegen(artikel);
-	}
-=======
 	
 	
 	
 	
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 	
 	
 	
@@ -142,9 +134,9 @@ public class Eshop {
 //		/*
 //		 * Nummer die man eingegeben hat mit Artikelliste vergleichen
 //		 * wenn eingegebene Nummer == Nummer in Artikelliste dann 
-//		 * bestand prüfen
-//		 * if artikel verfügbar
-//		 * WK befüllen else "Artikel nicht vorhanden oder falsche nummer"
+//		 * bestand prÃ¼fen
+//		 * if artikel verfÃ¼gbar
+//		 * WK befÃ¼llen else "Artikel nicht vorhanden oder falsche nummer"
 //		 */
 //		
 //		return null;
@@ -153,7 +145,7 @@ public class Eshop {
 	
 	//WARENKORBVERWALTUNG ?????
 	
-	//Methode zum Pr�fen ob ein Artikel bereits im Warenkorb liegt (w�rde die Methode vielleicht anders nennen)
+	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt (würde die Methode vielleicht anders nennen)
 	public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
 		for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
 			if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
@@ -164,7 +156,7 @@ public class Eshop {
 	}
 		
 	
-	//Methode zum hinzuf�gen eines Artikels (falls noch nicht im WK) oder Erh�hens seiner Anzahl
+	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
 	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) throws LagerbestandsException {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 			//try {
@@ -174,7 +166,7 @@ public class Eshop {
 			//	e.printStackTrace();
 			//}
 		} else { 
-			//HIER IST NOCH EIN FEHLER "ANZAHL" WIRD DER BESTAND GENOMMEN STATT DIE ANZAHL DIE MAN HABEN MÖCHTE
+			//HIER IST NOCH EIN FEHLER "ANZAHL" WIRD DER BESTAND GENOMMEN STATT DIE ANZAHL DIE MAN HABEN MÃ–CHTE
 			Artikel gesuchterArt = new Artikel (gefundenArt.getTitel(),gefundenArt.getNummer(),gefundenArt.isVerfuegbar(),gefundenArt.getBestand(),gefundenArt.getPreis());
 			gesuchterArt.setNummer(gefundenArt.getNummer());
 			kundEingeloggt.getWk().artikelwkHinzufuegen(gesuchterArt, anzahl);
@@ -182,7 +174,7 @@ public class Eshop {
 	}
 	
 	
-	//Methode zum Erh�hen der Anzahl des Artikels im WK 
+	//Methode zum Erhöhen der Anzahl des Artikels im WK 
 	// TODO: Das allermeiste in Artikelverwaltung erledigen
 	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) throws LagerbestandsException {
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -209,12 +201,12 @@ public class Eshop {
 	}
 	
 	
-	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem pers�nlichen WK (des Kunden) hinzuzuf�gen(inkl. Best�tigung)	
+	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
 	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) throws LagerbestandsException {
 		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
 // 		clone() Methode ????
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
-		String bestaetigung = "Dieser Artikel existiert nicht.";
+		String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
 // 		Die Artikelliste wird nach den gewuenschten Artikel durchsucht.
 		for(int i = 0 ; artListe.size() > i ; i++) {
 			if(artListe.elementAt(i).getNummer() == artNummer) {
@@ -222,11 +214,11 @@ public class Eshop {
 //					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 				
 				
-					// If Abfrage wird unn�tig, da die Exception schon in der Methode hinzuf�genOderErhoehen gepr�ft wird
+					// If Abfrage wird unnötig, da die Exception schon in der Methode hinzufügenOderErhoehen geprüft wird
 					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
 										
 						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
-//						String "bestaetigung" wird �berschrieben
+//						String "bestaetigung" wird überschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 
 						//					} else {

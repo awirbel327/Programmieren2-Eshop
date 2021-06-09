@@ -17,15 +17,8 @@ import shop.local.domain.*;
 
 /**
  * Klasse zur Interaktion mit dem User.
-<<<<<<< HEAD
- * F�hrt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
- * Main Methode wird in dieser Klasse ausgef�hrt, welche den E-Shop aufbaut. 
- * @author Mareike
- *
-=======
- * F�hrt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
- * Main Methode wird in dieser Klasse ausgef�hrt, welche den E-Shop aufbaut. 
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
+ * Führt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
+ * Main Methode wird in dieser Klasse ausgeführt, welche den E-Shop aufbaut. 
  */
 
 public class ShopClientCUI {
@@ -43,9 +36,6 @@ public class ShopClientCUI {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
 	
-<<<<<<< HEAD
-	// Methode zur Ausgabe des Men�s. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
-=======
 	// Methode um die User-Eingaben einzulesen
 	private String liesEingabe() throws IOException{
 		return in.readLine();
@@ -53,8 +43,7 @@ public class ShopClientCUI {
 	
 	
 	
-	// Methode zur Ausgabe des Men�s. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
+	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
 		System.out.print("	       \n  als Kunde Registrieren:  '1'");
@@ -95,21 +84,7 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
-<<<<<<< HEAD
-	private void gibMitarbeiterMenueAus() {
-		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
-		System.out.println("	    \n einen neuen Artikel hinzufuegen: 'W'");
-	}
-	
-	// Methode um die User-Eingaben einzulesen
-	private String liesEingabe() throws IOException{
-		return in.readLine();
-	}
-	
-	// Kernmethode der CUI die je nach Eingabe die n�tigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
-=======
 	// Kernmethode der CUI die je nach Eingabe die noetigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 	private void verarbeiteEingabe(String line) throws IOException {
 		String auswahl;
 		String titel;
@@ -139,9 +114,9 @@ public class ShopClientCUI {
 			
 		// Regstrieren (Kunden)
 		case "1":	
-			System.out.print("Vollst�ndiger Name :   > ");
+			System.out.print("Vollstï¿½ndiger Name :   > ");
 			name = liesEingabe();
-			System.out.print("Stra�enname :   > ");
+			System.out.print("Straï¿½enname :   > ");
 			strasse = liesEingabe();
 			System.out.print("Hausnummer :   > ");			
 			String hausNrString = liesEingabe();
@@ -173,7 +148,7 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 			
-		// Artikel suchen nach Bezeichnung (�ndern von Titel)
+		// Artikel suchen nach Bezeichnung (ändern von Titel)
 		case "b":
 			System.out.print("Welchen Artikel suchen Sie? :   > ");
 			titel = liesEingabe();
@@ -181,7 +156,7 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 			
-		// Artikel nach Bezeichnung sortieren (vielleicht als Untermen� von "Artikel ausgeben")
+		// Artikel nach Bezeichnung sortieren (vielleicht als Untermenü von "Artikel ausgeben")
 		case "a1" :
 			shop.artikelsortiertAusgebenBezeichnung();
 			break;
@@ -191,31 +166,18 @@ public class ShopClientCUI {
 			shop.artikelsortiertAusgebenNummer();
 			break;
 			
-<<<<<<< HEAD
-		// Artikel zum WK hinzuf�gen (Vielleicht als Untermen� von "einloggen" wenn sich ein Kunde einloggt)
-=======
-		// Artikel zum WK hinzuf�gen 
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
+		// Artikel zum WK hinzufügen 
 		case "c":
 			menueWk(br);
-//			gibMenueAus();
 			break;
 			
-<<<<<<< HEAD
-		// Warenkorb anzeigen (Vielleicht als Untermen� von "einloggen" wenn sich ein Kunde einloggt)
-=======
 		// Warenkorb anzeigen 
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 		case "d":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
-//			gibMenueAus();
+			//gibMenueAus();
 			break;
 			
-<<<<<<< HEAD
-		// Warenkorb bearbeiten (Vielleicht als Untermen� von "einloggen" wenn sich ein Kunde einloggt)
-=======
 		// Warenkorb bearbeiten
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 		case "e":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			gibMenueAus();
@@ -223,7 +185,7 @@ public class ShopClientCUI {
 		
 		//Mitarbeiter registrieren
 		case "z":
-			System.out.print("Vollst�ndiger Name :   > ");
+			System.out.print("Vollstï¿½ndiger Name :   > ");
 			name = liesEingabe();
 			System.out.print("Username :   > ");
 			username = liesEingabe();
@@ -240,7 +202,7 @@ public class ShopClientCUI {
 			}
 			break;
 			
-			//mitarbeiter artikel hinzuf�gen
+			//mitarbeiter artikel hinzufügen
 		case "w":
 			System.out.print("Artikelbezeichnung :   >");
 			String bezeichnung = liesEingabe();
@@ -286,7 +248,7 @@ public class ShopClientCUI {
 			e.printStackTrace();
 		}
 		Kunde kunde =shop.kundenlogIn(username, passwort);
-		System.out.println("Hallo "+ kunde.getName()+ "!! Sch�n, dass du da bist!");
+		System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
 		userEingeloggt = kunde;		
 	}
 	
@@ -329,7 +291,7 @@ public class ShopClientCUI {
 		}
 	}
 	
-	// Methode um den Warenkorb zu bef�llen. Kunde kann Artikelnummer und Anzahl eingeben.
+	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
 		int artNummer=0;
@@ -350,25 +312,21 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-//		menueWk(br);
-=======
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 //		gibMenueAus();
 	}
 
 	
 	/**
-	 * Methode zur Ausführung der Hauptschleife:
-	 * - Menü ausgeben
+	 * Methode zur AusfÃ¼hrung der Hauptschleife:
+	 * - MenÃ¼ ausgeben
 	 * - Eingabe des Benutzers einlesen
 	 * - Eingabe verarbeiten und Ergebnis ausgeben
 	 * (EVA-Prinzip: Eingabe-Verarbeitung-Ausgabe)
 	 */
 	public void run() {
-		String input = ""; // Variable für Eingaben von der Konsole
+		String input = ""; // Variable fÃ¼r Eingaben von der Konsole
 	
-		// Hauptschleife der Benutzungsschnittstelle / �berpr�fung Ausgabe Menue
+		// Hauptschleife der Benutzungsschnittstelle / Überprüfung Ausgabe Menue
 		do {
 			if(userEingeloggt == null) {
 			gibMenueAus();
@@ -379,13 +337,8 @@ public class ShopClientCUI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
-			} else if(userEingeloggt instanceof Kunde) {		//�berpr�ft ob usereingeloggt Objekt aus Klasse Kunde ist 
-				gibMenueAus();
-=======
-			} else if(userEingeloggt instanceof Kunde) {		//�berpr�ft ob usereingeloggt Objekt aus Klasse Kunde ist 
+			} else if(userEingeloggt instanceof Kunde) {		//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist 
 				eingeloggterUserMenue();
->>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 				try {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
