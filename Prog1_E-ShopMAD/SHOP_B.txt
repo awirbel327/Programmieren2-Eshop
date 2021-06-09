@@ -1,10 +1,20 @@
 Bananen
 1
-t
-22
+true
+10
 1.0
 Aepfel
 2
-t
+true
 50
 1.0
+Handy
+3
+true
+5
+100.0
+Monster Energy
+4
+true
+55
+3.0

@@ -28,7 +28,7 @@ public class ArtikelVerwaltung {
 //	private Warenkorb warenkorb;
 	private UserVerwaltung meineNutzer;
 	
-	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
+//	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
 	
 	private PersistenceManager pm = new FilePersistenceManager();
 	
@@ -94,10 +94,10 @@ public class ArtikelVerwaltung {
 	
 	// Methode um neue Artikel zur Artikelliste hinzuzuf�gen. Fehler wenn Artikel bereits in der Liste ist.
 	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
-		if (artikelBestand.contains(einArtikel)) {
+		if (artikelListeVector.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
 		}
-		artikelBestand.add(einArtikel);
+		artikelListeVector.add(einArtikel);
 	}
 	
 	//Mitarbeiter f�gt Artikel hinzu
@@ -115,7 +115,7 @@ public class ArtikelVerwaltung {
 	
 	// Getter Methode f�r den Artikel Bestands Vector, gibt Liste aus
 	public Vector<Artikel> getArtikelBestand() {
-		return new Vector<Artikel>(artikelBestand);
+		return new Vector<Artikel>(artikelListeVector);
 	}	
 	
 	public Vector <Artikel> getArtikelliste(){
@@ -129,7 +129,7 @@ public class ArtikelVerwaltung {
 		List<Artikel> suchErg = new Vector<Artikel>();
 
 		// Artikelbestand durchlaufen und nach Bezeichnung des Artikels suchen
-		Iterator<Artikel> iter = artikelBestand.iterator();
+		Iterator<Artikel> iter = artikelListeVector.iterator();
 		while (iter.hasNext()) {
 			// WICHTIG: Type Cast auf 'Buch' für späteren Zugriff auf Titel
 			// 		    hier nicht erforderlich wegen Verwendung von Generics   ------>>> HIER NOCHMAL PR�FEN WENN WIR GENERCIS HATTEN
@@ -150,5 +150,20 @@ public class ArtikelVerwaltung {
 			}
 				pm.close();
 		}
+
+
+	public void mitErhoehtArtikel(String artikelname, int erhohung) {
+		for (Artikel artikel:artikelListeVector) {
+			if(artikelname.equals(artikel.getTitel())) {
+				artikel.setBestand(artikel.getBestand() + erhohung);
+		}
+	}
+		try {
+			speicherArtikel();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	}
 

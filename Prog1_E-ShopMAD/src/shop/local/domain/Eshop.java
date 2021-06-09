@@ -123,4 +123,8 @@ public class Eshop {
 		}
 		return gesuchterArt;
 	}
+
+	public void mitErhoehtArtikel(String artikelname, int erhohung) {
+		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
+	}
 }
