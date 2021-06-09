@@ -15,14 +15,10 @@ import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.*;
 import shop.local.domain.*;
 
-
-
 /**
  * Klasse zur Interaktion mit dem User.
  * Führt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
  * Main Methode wird in dieser Klasse ausgeführt, welche den E-Shop aufbaut. 
- * @author Mareike
- *
  */
 
 public class ShopClientCUI {
@@ -40,6 +36,13 @@ public class ShopClientCUI {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
 	
+	// Methode um die User-Eingaben einzulesen
+	private String liesEingabe() throws IOException{
+		return in.readLine();
+	}
+	
+	
+	
 	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
@@ -48,7 +51,30 @@ public class ShopClientCUI {
 		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
 		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
 		System.out.print("         \n  Artikel suchen  'B'");
-		System.out.print("         \n  Artikel zum WK hinzufÃ¼gen: 'C'");
+		System.out.print("         \n  ---------------------");
+		System.out.println("       \n  Beenden:        'Q'");
+		System.out.print("> "); // Prompt
+		System.out.flush(); // ohne NL ausgeben
+	}
+	
+	
+	//Methode zur Ausgabe des Mitarbeiter Menues
+	private void gibMitarbeiterMenueAus() {
+		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
+		System.out.println("	   \n  einen neuen Artikel hinzufuegen: 'W'");
+		System.out.print("         \n  ---------------------");
+		System.out.println("       \n  Beenden:        'Q'");
+		System.out.print("> "); // Prompt
+		System.out.flush(); // ohne NL ausgeben
+	}
+	
+	//Methode zur Ausgabe des eingeloggten Kunden Menues
+	private void eingeloggterUserMenue() {
+		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
+		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
+		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
+		System.out.print("         \n  Artikel suchen  'B'");
+		System.out.print("         \n  Artikel zum WK hinzufuegen: 'C'");
 		System.out.print("         \n  Warenkorb anzeigen:  'D'");
 		System.out.print("         \n  Warenkorb bearbeiten:  'E'");
 		System.out.print("         \n  Bezahlen:  'F'");
@@ -58,17 +84,7 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
-	private void gibMitarbeiterMenueAus() {
-		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
-		System.out.println("	    \n einen neuen Artikel hinzufuegen: 'W'");
-	}
-	
-	// Methode um die User-Eingaben einzulesen
-	private String liesEingabe() throws IOException{
-		return in.readLine();
-	}
-	
-	// Kernmethode der CUI die je nach Eingabe die nötigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
+	// Kernmethode der CUI die je nach Eingabe die noetigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
 	private void verarbeiteEingabe(String line) throws IOException {
 		String auswahl;
 		String titel;
@@ -87,9 +103,9 @@ public class ShopClientCUI {
 		
 		// Einloggen
 		case "0":
-			System.out.print("Als Kunde anmelden(j/n) :   > ");
+			System.out.print("Als Kunde(k) oder als Mitarbeiter(m) anmelden :   > ");
 			auswahl = liesEingabe();
-			if(auswahl.equals("j")) {
+			if(auswahl.equals("k")) {
 				kundenlogin();
 			} else {
 				mitarbeiterlogin();
@@ -150,18 +166,18 @@ public class ShopClientCUI {
 			shop.artikelsortiertAusgebenNummer();
 			break;
 			
-		// Artikel zum WK hinzufügen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Artikel zum WK hinzufügen 
 		case "c":
 			menueWk(br);
 			break;
 			
-		// Warenkorb anzeigen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Warenkorb anzeigen 
 		case "d":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			//gibMenueAus();
 			break;
 			
-		// Warenkorb bearbeiten (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Warenkorb bearbeiten
 		case "e":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			gibMenueAus();
@@ -207,10 +223,11 @@ public class ShopClientCUI {
 			}
 			break;
 		default:
-			System.out.println("Ungueltige Eingabe!\n");
-			//gibMenueAus();
+			System.out.println("Der Vorgang wurde abgebrochen\n");
+			gibMenueAus();
 		}
 	}
+	
 	
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Kunde einloggen will
 	private void kundenlogin() {
@@ -231,9 +248,12 @@ public class ShopClientCUI {
 			e.printStackTrace();
 		}
 		Kunde kunde =shop.kundenlogIn(username, passwort);
-		System.out.println("erfolgreich eingeloggt als "+ kunde.getName()+ "!!");
+		System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
 		userEingeloggt = kunde;		
 	}
+	
+	
+	
 		
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
 	private void mitarbeiterlogin() {
@@ -257,6 +277,7 @@ public class ShopClientCUI {
 		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
 		userEingeloggt = mitarbeiter;		
 	}
+	
 	
 	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
 	private void gibArtikellisteAus(List<Artikel> liste) {
@@ -303,8 +324,7 @@ public class ShopClientCUI {
 	 * (EVA-Prinzip: Eingabe-Verarbeitung-Ausgabe)
 	 */
 	public void run() {
-		// Variable fÃ¼r Eingaben von der Konsole
-		String input = ""; 
+		String input = ""; // Variable fÃ¼r Eingaben von der Konsole
 	
 		// Hauptschleife der Benutzungsschnittstelle / Überprüfung Ausgabe Menue
 		do {
@@ -318,7 +338,7 @@ public class ShopClientCUI {
 				e.printStackTrace();
 			}
 			} else if(userEingeloggt instanceof Kunde) {		//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist 
-				gibMenueAus();
+				eingeloggterUserMenue();
 				try {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
