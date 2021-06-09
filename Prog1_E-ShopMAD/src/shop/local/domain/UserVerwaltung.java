@@ -209,12 +209,13 @@ public class UserVerwaltung {
 		
 	/***** Interaktion mit Artikel(Bestand) *****/
 	
-	// Auf Deutsch ändern
 	
-	public void newArticle (String articleName, int stock) {
+	// EINLESEN IN TEXTDATEI 
+	
+	public void neuenArtikelAnlegen (String artikelBezeichnung, int artikelAnzahl) {
 	}
 	
-	public void increaseStock (Artikel artikel, int increasedStock) {
+	public void lagerBestandErhoehen (Artikel artikel, int anzahlHinz) {
 		
 	}
 	
