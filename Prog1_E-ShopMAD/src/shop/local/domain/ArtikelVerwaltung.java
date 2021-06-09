@@ -23,6 +23,11 @@ import shop.local.valueobjects.Mitarbeiter;
 
 
 public class ArtikelVerwaltung {
+	
+	private ArtikelVerwaltung meineArtikel;
+//	private Warenkorb warenkorb;
+	private UserVerwaltung meineNutzer;
+	
 	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
 	
 	private PersistenceManager pm = new FilePersistenceManager();
@@ -40,7 +45,7 @@ public class ArtikelVerwaltung {
 		artikel.toArray(vecZuArr); //Vector Array
 		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() {		
 			@Override 
-			public int compare(Artikel artikel1, Artikel artikel2) { //Methode compare der Java-Klasse Comparator wird überschrieben
+			public int compare(Artikel artikel1, Artikel artikel2) { //Methode compare der Java-Klasse Comparator wird ï¿½berschrieben
 				String nr1 = Integer.toString(artikel1.getNummer());	// Int zu String
 				String nr2 = Integer.toString(artikel2.getNummer());	// Int zu String
 				return nr1.compareTo(nr2);	// vergleich Nachbarn (nur Strings vergelichbar)
@@ -57,7 +62,7 @@ public class ArtikelVerwaltung {
 		artikel.toArray(vecZuArr); //Vector Array
 		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() { //
 			@Override 
-			public int compare(Artikel artikel1, Artikel artikel2) { //Methode compare der Java-Klasse Comparator wird überschrieben
+			public int compare(Artikel artikel1, Artikel artikel2) { //Methode compare der Java-Klasse Comparator wird ï¿½berschrieben
 				return artikel1.getTitel().compareTo(artikel2.getTitel());	// vergleichen Nachbarn anhand von Buchstaben
 			}
 		});
@@ -65,8 +70,8 @@ public class ArtikelVerwaltung {
 	}		
 	
 	
-	// Methode der unsere E-Shop Datei übergeben wird um die Artikelliste in die Persistenz zu überführen
-	// So ist diese bei jedem öffnen des E-Shops auf dem neusten Stand und wird über längere Zeit gespeichert!
+	// Methode der unsere E-Shop Datei ï¿½bergeben wird um die Artikelliste in die Persistenz zu ï¿½berfï¿½hren
+	// So ist diese bei jedem ï¿½ffnen des E-Shops auf dem neusten Stand und wird ï¿½ber lï¿½ngere Zeit gespeichert!
 	public void liesDaten(String datei) throws IOException {
 		// PersistenzManager fÃ¼r LesevorgÃ¤nge Ã¶ffnen
 		pm.openForReading(datei);
@@ -91,7 +96,7 @@ public class ArtikelVerwaltung {
 	}
 	
 	
-	// Methode um neue Artikel zur Artikelliste hinzuzufügen. Fehler wenn Artikel bereits in der Liste ist.
+	// Methode um neue Artikel zur Artikelliste hinzuzufï¿½gen. Fehler wenn Artikel bereits in der Liste ist.
 	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
 		if (artikelBestand.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
@@ -101,14 +106,14 @@ public class ArtikelVerwaltung {
 	}
 
 	
-	// Getter Methode für den Artikel Bestands Vector, gibt Liste aus
+	// Getter Methode fï¿½r den Artikel Bestands Vector, gibt Liste aus
 	public Vector<Artikel> getArtikelBestand() {
 		return new Vector<Artikel>(artikelBestand);
 	}	
 	
 	
 	// Methode die einen Artikel anhand des Titels (BEZEICHNUNG???) sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt
-	// FRAGE:warum wird hier eine Liste ausgegeben? Haben die Artikel nicht sowieso unique Bezeichnungen? Wofür wird diese Methode gebraucht?
+	// FRAGE:warum wird hier eine Liste ausgegeben? Haben die Artikel nicht sowieso unique Bezeichnungen? Wofï¿½r wird diese Methode gebraucht?
 	public List<Artikel> sucheArtikel(String titel) { //TITEL = BEZEICHNUNG?
 		List<Artikel> suchErg = new Vector<Artikel>();
 
@@ -116,7 +121,7 @@ public class ArtikelVerwaltung {
 		Iterator<Artikel> iter = artikelBestand.iterator();
 		while (iter.hasNext()) {
 			// WICHTIG: Type Cast auf 'Buch' fÃ¼r spÃ¤teren Zugriff auf Titel
-			// 		    hier nicht erforderlich wegen Verwendung von Generics   ------>>> HIER NOCHMAL PRÜFEN WENN WIR GENERCIS HATTEN
+			// 		    hier nicht erforderlich wegen Verwendung von Generics   ------>>> HIER NOCHMAL PRï¿½FEN WENN WIR GENERCIS HATTEN
 			// 			(-> Vergleiche mit Einsatz von Vector OHNE Generics) 
 			Artikel a = iter.next();
 				if (a.getTitel().equals(titel)) //TITEL = BEZEICHNUNG?

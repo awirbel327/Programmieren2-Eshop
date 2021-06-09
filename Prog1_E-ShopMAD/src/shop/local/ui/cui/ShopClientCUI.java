@@ -19,8 +19,8 @@ import shop.local.domain.*;
 
 /**
  * Klasse zur Interaktion mit dem User.
- * Führt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
- * Main Methode wird in dieser Klasse ausgeführt, welche den E-Shop aufbaut. 
+ * Fï¿½hrt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
+ * Main Methode wird in dieser Klasse ausgefï¿½hrt, welche den E-Shop aufbaut. 
  * @author Mareike
  *
  */
@@ -40,7 +40,7 @@ public class ShopClientCUI {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
 	
-	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
+	// Methode zur Ausgabe des Menï¿½s. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
 		System.out.print("	       \n  als Kunde Registrieren:  '1'");
@@ -68,7 +68,7 @@ public class ShopClientCUI {
 		return in.readLine();
 	}
 	
-	// Kernmethode der CUI die je nach Eingabe die nötigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
+	// Kernmethode der CUI die je nach Eingabe die nï¿½tigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
 	private void verarbeiteEingabe(String line) throws IOException {
 		String auswahl;
 		String titel;
@@ -132,7 +132,7 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 			
-		// Artikel suchen nach Bezeichnung (ändern von Titel)
+		// Artikel suchen nach Bezeichnung (ï¿½ndern von Titel)
 		case "b":
 			System.out.print("Welchen Artikel suchen Sie? :   > ");
 			titel = liesEingabe();
@@ -140,7 +140,7 @@ public class ShopClientCUI {
 			gibArtikellisteAus(liste);
 			break;
 			
-		// Artikel nach Bezeichnung sortieren (vielleicht als Untermenü von "Artikel ausgeben")
+		// Artikel nach Bezeichnung sortieren (vielleicht als Untermenï¿½ von "Artikel ausgeben")
 		case "a1" :
 			shop.artikelsortiertAusgebenBezeichnung();
 			break;
@@ -150,18 +150,19 @@ public class ShopClientCUI {
 			shop.artikelsortiertAusgebenNummer();
 			break;
 			
-		// Artikel zum WK hinzufügen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Artikel zum WK hinzufï¿½gen (Vielleicht als Untermenï¿½ von "einloggen" wenn sich ein Kunde einloggt)
 		case "c":
 			menueWk(br);
+//			gibMenueAus();
 			break;
 			
-		// Warenkorb anzeigen (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Warenkorb anzeigen (Vielleicht als Untermenï¿½ von "einloggen" wenn sich ein Kunde einloggt)
 		case "d":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
-			//gibMenueAus();
+//			gibMenueAus();
 			break;
 			
-		// Warenkorb bearbeiten (Vielleicht als Untermenü von "einloggen" wenn sich ein Kunde einloggt)
+		// Warenkorb bearbeiten (Vielleicht als Untermenï¿½ von "einloggen" wenn sich ein Kunde einloggt)
 		case "e":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
 			//gibMenueAus();
@@ -186,7 +187,7 @@ public class ShopClientCUI {
 			}
 			break;
 			
-			//mitarbeiter artikel hinzufügen
+			//mitarbeiter artikel hinzufï¿½gen
 		case "w":
 			System.out.print("Artikelbezeichnung :   >");
 			String bezeichnung = liesEingabe();
@@ -270,7 +271,7 @@ public class ShopClientCUI {
 		}
 	}
 	
-	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
+	// Methode um den Warenkorb zu befï¿½llen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
 		int artNummer=0;
@@ -291,7 +292,7 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		menueWk(br);
+//		menueWk(br);
 //		gibMenueAus();
 	}
 
@@ -307,7 +308,7 @@ public class ShopClientCUI {
 		// Variable fÃ¼r Eingaben von der Konsole
 		String input = ""; 
 	
-		// Hauptschleife der Benutzungsschnittstelle / Überprüfung Ausgabe Menue
+		// Hauptschleife der Benutzungsschnittstelle / ï¿½berprï¿½fung Ausgabe Menue
 		do {
 			if(userEingeloggt == null) {
 			gibMenueAus();
@@ -318,7 +319,7 @@ public class ShopClientCUI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			} else if(userEingeloggt instanceof Kunde) {		//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist 
+			} else if(userEingeloggt instanceof Kunde) {		//ï¿½berprï¿½ft ob usereingeloggt Objekt aus Klasse Kunde ist 
 				gibMenueAus();
 				try {
 					input = liesEingabe();

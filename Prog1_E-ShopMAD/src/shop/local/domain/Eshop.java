@@ -100,7 +100,7 @@ public class Eshop {
 	}
 
 	
-	//Gehört die Methode nicht in die UserVerwaltung unter Mitarbeiter?
+	//Gehï¿½rt die Methode nicht in die UserVerwaltung unter Mitarbeiter?
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
 		meineArtikel.einfuegen(artikel);
@@ -139,7 +139,7 @@ public class Eshop {
 	
 	//WARENKORBVERWALTUNG ?????
 	
-	//Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt (würde die Methode vielleicht anders nennen)
+	//Methode zum Prï¿½fen ob ein Artikel bereits im Warenkorb liegt (wï¿½rde die Methode vielleicht anders nennen)
 	public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
 		for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
 			if(kundEingeloggt.getWk().getListe().elementAt(i).getTitel().equals(artikel.getTitel())) {
@@ -150,7 +150,7 @@ public class Eshop {
 	}
 		
 	
-	//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
+	//Methode zum hinzufï¿½gen eines Artikels (falls noch nicht im WK) oder Erhï¿½hens seiner Anzahl
 	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl) throws LagerbestandsException {
 		if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 			//try {
@@ -168,7 +168,7 @@ public class Eshop {
 	}
 	
 	
-	//Methode zum Erhöhen der Anzahl des Artikels im WK 
+	//Methode zum Erhï¿½hen der Anzahl des Artikels im WK 
 	// TODO: Das allermeiste in Artikelverwaltung erledigen
 	public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand) throws LagerbestandsException {
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -196,12 +196,12 @@ public class Eshop {
 	}
 	
 	
-	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
+	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persï¿½nlichen WK (des Kunden) hinzuzufï¿½gen(inkl. Bestï¿½tigung)	
 	public String wkBefuellen(Kunde kundeEingeloggt,  int artNummer, int artAnzahl) throws LagerbestandsException {
 		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
 // 		clone() Methode ????
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
-		String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
+		String bestaetigung = "Dieser Artikel existiert nicht.";
 // 		Die Artikelliste wird nach den gewuenschten Artikel durchsucht.
 		for(int i = 0 ; artListe.size() > i ; i++) {
 			if(artListe.elementAt(i).getNummer() == artNummer) {
@@ -209,13 +209,13 @@ public class Eshop {
 //					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 				
 				
-					// If Abfrage wird unnötig, da die Exception schon in der Methode hinzufügenOderErhoehen geprüft wird
+					// If Abfrage wird unnï¿½tig, da die Exception schon in der Methode hinzufï¿½genOderErhoehen geprï¿½ft wird
 					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
 				
 				
 //						
 						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
-//						String "bestaetigung" wird überschrieben
+//						String "bestaetigung" wird ï¿½berschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 
 						//					} else {
