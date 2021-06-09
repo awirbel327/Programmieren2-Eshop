@@ -32,11 +32,7 @@ public class ArtikelVerwaltung {
 	
 	private PersistenceManager pm = new FilePersistenceManager();
 	
-	private Vector <Artikel> artikelListeVector = new Vector<Artikel>();
-	
-	public Vector <Artikel> getArtikelliste(){
-		return artikelListeVector;
-	}
+	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	
 	
 	//Methode zum Sortieren von Artikel nach ArtikelNummer.
@@ -101,8 +97,19 @@ public class ArtikelVerwaltung {
 		if (artikelBestand.contains(einArtikel)) {
 			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
 		}
-		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelBestand.add(einArtikel);
+	}
+	
+	//Mitarbeiter fügt Artikel hinzu
+	public void mitArtikelhinzufuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
+		for(Artikel artikel:artikelListeVector) {
+			if(einArtikel.getTitel().equals(artikel.getTitel())) {
+				throw new ArtikelExistiertBereitsException(einArtikel, "Artikel existiert bereits");
+			}
+		}
+		einArtikel.setNummer(artikelListeVector.size() + 1);
+		artikelListeVector.add(einArtikel);
+		return;
 	}
 
 	
@@ -110,6 +117,10 @@ public class ArtikelVerwaltung {
 	public Vector<Artikel> getArtikelBestand() {
 		return new Vector<Artikel>(artikelBestand);
 	}	
+	
+	public Vector <Artikel> getArtikelliste(){
+		return artikelListeVector;
+	}
 	
 	
 	// Methode die einen Artikel anhand des Titels (BEZEICHNUNG???) sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt

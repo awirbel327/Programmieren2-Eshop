@@ -48,6 +48,12 @@ public class Eshop {
 		
 	}
 	
+	public void speicherArtikel() throws IOException {
+		// TODO Auto-generated method stub
+		meineArtikel.speicherArtikel();
+	}
+	
+	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	public Kunde kundenlogIn(String username, String passwort) {
 		return meineNutzer.kundenlogIn(username, passwort);
@@ -74,10 +80,11 @@ public class Eshop {
 		meineNutzer.speicherMitarbeiter();
 	}
 	
-	public void speicherArtikel() throws IOException {
-		// TODO Auto-generated method stub
-		meineArtikel.speicherArtikel();
+	//Methodenaufrufe Artikel Mitarbeiter
+	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException {
+		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 	}
+	
 	
 	
 	
@@ -100,11 +107,18 @@ public class Eshop {
 	}
 
 	
+<<<<<<< HEAD
 	//Geh�rt die Methode nicht in die UserVerwaltung unter Mitarbeiter?
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel artikel) throws ArtikelExistiertBereitsException {
 		meineArtikel.einfuegen(artikel);
 	}
+=======
+	
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
 	
 	
 	
@@ -178,7 +192,6 @@ public class Eshop {
 			if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
 				gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
 			} else {
-				//System.out.println("LagerbestandsException ...");
 				throw new LagerbestandsException(ausArtliste);
 			}
 	}	
@@ -211,9 +224,7 @@ public class Eshop {
 				
 					// If Abfrage wird unn�tig, da die Exception schon in der Methode hinzuf�genOderErhoehen gepr�ft wird
 					//	if((gefundenArt.getBestand()>= artAnzahl) == true) {
-				
-				
-//						
+										
 						hinzufuegenOderErhoehen(kundeEingeloggt,gefundenArt, artAnzahl);
 //						String "bestaetigung" wird �berschrieben
 						bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getTitel() + " in der Stueckzahl " + artAnzahl + " befuellt.\n";

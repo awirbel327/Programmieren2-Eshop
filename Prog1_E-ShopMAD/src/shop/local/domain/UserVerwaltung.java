@@ -32,9 +32,9 @@ public class UserVerwaltung {
 	
 	
 	// FRAGE: Müsste dieser Methode nicht dann auch ein User Objekt übergeben werden?
-	public void setAngemeldeterUser(Kunde kunde) {
-		angemeldeterUser = kunde;
-	}
+	//public void setAngemeldeterUser(Kunde kunde) {
+		//angemeldeterUser = kunde;
+	//}
 	
 	
 	/********Methoden für KUNDEN********/
@@ -67,7 +67,7 @@ public class UserVerwaltung {
 		kundenListe.add(einKunde);
 	}
 	
-	// Methode zum Abgleichen der eingegeben Kundendaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Kunde wieder.
+	//Methode zum Abgleichen der eingegeben Kundendaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Kunde wieder.
 	//Kern vom Kunde login 
 	public Kunde kundenlogIn (String username, String passwort) {
 		for (Kunde kunde:kundenListe) {	
@@ -85,13 +85,14 @@ public class UserVerwaltung {
 	// neuen Kunden aus und fügt ihn zur Liste der Kunden hinzu.
 	//Kunde registrieren
 	public Kunde registrieren(Kunde einKunde) throws KundeExistiertBereitsException {
-	for(Kunde kunde:kundenListe) {
-		if(einKunde.getUsername().equals(kunde.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
-			throw new KundeExistiertBereitsException(einKunde, "Kundenname existiert bereits");
+		for(Kunde kunde:kundenListe) {
+			if(einKunde.getUsername().equals(kunde.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
+				throw new KundeExistiertBereitsException(einKunde, "-in Kundenliste");
+			}
 		}
-	}
-	kundenListe.add(einKunde);
-	return einKunde; 
+		einKunde.setKundenNr(kundenListe.size() + 1);
+		kundenListe.add(einKunde);
+		return einKunde; 
 	}
 	
 	
@@ -102,7 +103,7 @@ public class UserVerwaltung {
 	public void speicherKunden() throws IOException {	
 		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager fÃ¼r Schreibvorgang ï¿½ffnen
 		for(Kunde kunde:kundenListe) {
-			System.out.println(kunde.getName() + " wurde gespeichert");
+			System.out.println(kunde.getName() + " wurde gespeichert"); // einKunden statt alle Kunden
 			pm.speicherKundeDaten(kunde);	
 		}
 		pm.close();
@@ -155,7 +156,7 @@ public class UserVerwaltung {
 		pm.close();
 	}
 	
-	
+	// Gucken ob Methode noch nötig? (In Registrieren wird das auch abgefragt)
 	// Methode um einen Mitarbeiter zur Mitarbeiterliste hinzuzufügen. Fehler wenn Mitarbeiter bereits in der Liste ist.
 	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
 		if (mitarbeiterListe.contains(einMitarbeiter)) {
@@ -207,6 +208,8 @@ public class UserVerwaltung {
 	
 		
 	/***** Interaktion mit Artikel(Bestand) *****/
+	
+	// Auf Deutsch ändern
 	
 	public void newArticle (String articleName, int stock) {
 	}
