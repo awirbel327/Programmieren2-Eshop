@@ -14,25 +14,27 @@ public class Artikel implements Comparable<Artikel> {
 
 
 	// Attribute zur Beschreibung eines Artikels:
-	private String bezeichnung;
-	private int artikelnummer;
-	private boolean verfuegbar; 
-	private int bestand;		//String damit Warnung weg geht ?
-	double artikelPreis;
-	double gruppenpreis;
+	protected String bezeichnung;
+	protected int artikelnummer;
+	protected boolean verfuegbar; 
+	protected int bestand;		//String damit Warnung weg geht ?
+	protected double artikelPreis;
+	protected double gruppenpreis;
 
 	
 	public Artikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
 		artikelnummer = nr;
 		this.bezeichnung = titel;
-		this.verfuegbar = verfuegbar; //können wir das nicht beim erstellen direkt auf true setzen?
+		this.verfuegbar = verfuegbar; 
 		this.bestand = bestand;
 		this.artikelPreis = artikelPreis;
 	}
 	
+	
+	//Wo wird dieser Konstruktor verwendet? Wenn der Artikel in den Warenkorb gelegt wird?
 	public Artikel(String titel, int bestand2, double artikelPreis2) {
 		this.bezeichnung = titel;
-		this.verfuegbar = true; //können wir das nicht beim erstellen direkt auf true setzen?
+		this.verfuegbar = true; 
 		this.bestand = bestand2;
 		this.artikelPreis = artikelPreis2;
 	}
@@ -46,11 +48,11 @@ public class Artikel implements Comparable<Artikel> {
 	public int getNummer() {
 		return artikelnummer;
 	}
+	
 	//Setter fuer Artikelnummer	
-		public void setNummer(int artikelZaehler) {
-			artikelnummer = artikelZaehler;
-
-		}
+	public void setNummer(int artikelZaehler) {
+		artikelnummer = artikelZaehler;
+	}
 
 	public String getTitel() {
 		return bezeichnung;

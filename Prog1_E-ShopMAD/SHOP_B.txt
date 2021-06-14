@@ -18,3 +18,8 @@ Monster Energy
 true
 55
 3.0
+Dosenbier
+6
+true
+24
+0.60

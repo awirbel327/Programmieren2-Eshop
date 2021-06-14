@@ -302,9 +302,8 @@ public class ShopClientCUI {
 			System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
 			userEingeloggt = mitarbeiter;	
 		} catch (PasswortOderUsernameFalschException e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
-			
 	}
 	
 	

@@ -13,6 +13,7 @@ import shop.local.persistence.FilePersistenceManager;
 import shop.local.persistence.PersistenceManager;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Massengutartikel;
 import shop.local.valueobjects.Mitarbeiter;
 
 
@@ -33,6 +34,7 @@ public class ArtikelVerwaltung {
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
+	private Massengutartikel mArtikel;
 	
 	
 	//Methode zum Sortieren von Artikel nach ArtikelNummer.
@@ -79,7 +81,7 @@ public class ArtikelVerwaltung {
 			if (einArtikel != null) {
 				// Buch in Liste einfÃ¼gen
 				try {
-					einfuegen(einArtikel);
+					mitArtikelhinzufuegen(einArtikel);
 				} catch (ArtikelExistiertBereitsException e1) {
 					// Kann hier eigentlich nicht auftreten,
 					// daher auch keine Fehlerbehandlung...
@@ -91,7 +93,7 @@ public class ArtikelVerwaltung {
 		pm.close();
 	}
 	
-	
+	/*
 	// Methode um neue Artikel zur Artikelliste hinzuzufï¿½gen. Fehler wenn Artikel bereits in der Liste ist.
 	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
 		if (artikelListeVector.contains(einArtikel)) {
@@ -99,6 +101,7 @@ public class ArtikelVerwaltung {
 		}
 		artikelListeVector.add(einArtikel);
 	}
+	*/
 	
 	//Mitarbeiter fügt Artikel hinzu
 	public void mitArtikelhinzufuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
@@ -107,8 +110,13 @@ public class ArtikelVerwaltung {
 				throw new ArtikelExistiertBereitsException(einArtikel, "Artikel existiert bereits");
 			}
 		}
+		
 		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelListeVector.add(einArtikel);
+		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgröße gesetzt
+		if (einArtikel instanceof Massengutartikel) {
+			einArtikel.setBestand(((Massengutartikel) einArtikel).getPackungsgroesse()); //Downcasting
+		}
 		return;
 	}
 
@@ -151,13 +159,29 @@ public class ArtikelVerwaltung {
 				pm.close();
 		}
 
-
+	/* TEST bitte noch drin lassen, falls man das noch braucht :)
+	 * 
+	public void MassengutArtikelEinfügen (Artikel artikel, int erhohung) {
+		mArtikel = null;
+		artikel = (Massengutartikel) mArtikel;
+		if (mArtikel.getBestand() + erhohung % mArtikel.getPackungsgroesse() != 0) {
+			System.out.println("Massenartikel muss im Pack gekauft werden"); //Exception einfügen
+		}
+	}
+	*/
+	
+	//Methode um Artikelbestand zu erhöhen (Mitarbeiter), prüft jetzt auch ob es sich um Massengutartikel handelt!
 	public void mitErhoehtArtikel(String artikelname, int erhohung) {
 		for (Artikel artikel:artikelListeVector) {
 			if(artikelname.equals(artikel.getTitel())) {
-				artikel.setBestand(artikel.getBestand() + erhohung);
+				if (artikel instanceof Massengutartikel && artikel.getBestand() + erhohung % ((Massengutartikel) artikel).getPackungsgroesse() != 0) { //Downcasting
+					System.out.println("Massenartikel muss im Pack gekauft werden"); //Exception kommt noch
+					//MassengutArtikelEinfügen(artikel, erhohung);
+				}
+				artikel.setBestand(artikel.getBestand() + erhohung);		
+			}
+				
 		}
-	}
 		try {
 			speicherArtikel();
 		} catch (IOException e) {
