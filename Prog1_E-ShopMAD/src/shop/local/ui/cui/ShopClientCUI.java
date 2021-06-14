@@ -266,9 +266,14 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Kunde kunde =shop.kundenlogIn(username, passwort);
-		System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
-		userEingeloggt = kunde;		
+		try {
+			Kunde kunde =shop.kundenlogIn(username, passwort);
+			System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
+			userEingeloggt = kunde;
+		} catch (PasswortOderUsernameFalschException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -292,9 +297,14 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Mitarbeiter mitarbeiter =shop.mitarbeiterlogIn(username, passwort);
-		System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
-		userEingeloggt = mitarbeiter;		
+		try {
+			Mitarbeiter mitarbeiter = shop.mitarbeiterlogIn(username, passwort);
+			System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
+			userEingeloggt = mitarbeiter;	
+		} catch (PasswortOderUsernameFalschException e) {
+			e.printStackTrace();
+		}
+			
 	}
 	
 	

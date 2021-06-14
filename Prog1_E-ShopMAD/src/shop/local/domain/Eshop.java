@@ -66,7 +66,7 @@ public class Eshop {
 	
 	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
-	public Kunde kundenlogIn(String username, String passwort) {
+	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
 	
@@ -78,7 +78,7 @@ public class Eshop {
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
 	
-	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) {
+	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
 	}
 	public void speicherKunden() throws IOException {

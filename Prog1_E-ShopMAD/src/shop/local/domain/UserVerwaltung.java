@@ -69,7 +69,7 @@ public class UserVerwaltung {
 	
 	//Methode zum Abgleichen der eingegeben Kundendaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Kunde wieder.
 	//Kern vom Kunde login 
-	public Kunde kundenlogIn (String username, String passwort) {
+	public Kunde kundenlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
 		for (Kunde kunde:kundenListe) {	
 			if(username.equals(kunde.getUsername())) {
 				if(passwort.equals(kunde.getPasswort())) {
@@ -77,7 +77,7 @@ public class UserVerwaltung {
 				}
 			}
 		}
-		return null; //Warum wird hier am Ende nochmal null zurückgegeben?
+		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
 	}
 	
 	
@@ -113,23 +113,21 @@ public class UserVerwaltung {
 	
 	/****** Interaktionen mit Warenkorb *******/
 	
-	public void emptyCart () {
+	public void wkLeeren () {
 	}
 	
-	public void buyCart() {
-		emptyCart();
-		//createBill();
-		reduceStock();
+	public void wkKaufen() {
+	
 	}
 	
-	public void addItemtoCart(int Anzahl, String Artikel) {
+	public void artikelZumWkHinz(int Anzahl, String Artikel) {
 	}
 	
-	public void changeAmound () {
+	public void artikelAnzahlimWkAendern () {
 	}
 	
 	
-	public void reduceStock () {
+	public void bestandVerringern () {
 	}
 	
 	
@@ -167,16 +165,15 @@ public class UserVerwaltung {
 	}
 	
 	// Methode zum Abgleichen der eingegeben Mitarbeiterdaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Mitarbeiter wieder.
-	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) {
+	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
 			if(username.equals(mitarbeiter.getUsername())) {
 				if(passwort.equals(mitarbeiter.getPasswort())) {
 					return mitarbeiter;
-					
-				}
-			}
+				} 
+			} 
 		}
-		return null;
+		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
 	}
 	
 	
@@ -213,10 +210,13 @@ public class UserVerwaltung {
 	// EINLESEN IN TEXTDATEI 
 	
 	public void neuenArtikelAnlegen (String artikelBezeichnung, int artikelAnzahl) {
+		//pm.openForWriting("SHOP_Logistik.txt");
+		//pm.close();
 	}
 	
-	public void lagerBestandErhoehen (Artikel artikel, int anzahlHinz) {
-		
+	public void lagerBestandErhoehen (Artikel artikel, int plusAnzahl) {
+		//pm.openForWriting("SHOP_Logistik.txt");
+		//pm.close();
 	}
 	
 	
