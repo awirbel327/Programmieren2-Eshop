@@ -64,6 +64,7 @@ public class ShopClientCUI {
 	private void gibMitarbeiterMenueAus() {
 		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
 		System.out.println("	   \n  einen neuen Artikel hinzufuegen: 'W'");
+		System.out.println("	   \n  Bestand erhöhen: 'L'");
 		System.out.print("         \n  ---------------------");
 		System.out.println("       \n  Beenden:        'Q'");
 		System.out.print("> "); // Prompt
@@ -222,6 +223,22 @@ public class ShopClientCUI {
 			} catch (ArtikelExistiertBereitsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			break;
+			//Mitarbeiter erhoeht bestand
+		case "l":
+			System.out.print("Artikelbezeichnung :   >");
+			String artikelname = liesEingabe();
+			List<Artikel> gefundeneArtikel = shop.sucheNachTitel(artikelname);
+			if(gefundeneArtikel.size() > 1 ) {
+				System.out.println("fehler mehr als 1 artiekl in liste!");
+				return;
+			} else {
+				System.out.print("Bestand erhoehen um :   >");
+				String erhoehung = liesEingabe();
+				int erhohung = Integer.parseInt(erhoehung);
+				shop.mitErhoehtArtikel(artikelname, erhohung);
+				
 			}
 			break;
 		default:
