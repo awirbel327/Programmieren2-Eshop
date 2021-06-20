@@ -7,8 +7,7 @@ import java.util.Vector;
 import shop.local.valueobjects.Artikel;
 
 /**
- * Klasse zur Repräsentation einzelner Bücher.
- * @author teschke */
+ * Klasse f�r Artikel */
 
 public class Artikel implements Comparable<Artikel> {
 

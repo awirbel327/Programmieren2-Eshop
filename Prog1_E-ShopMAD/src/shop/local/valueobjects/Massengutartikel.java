@@ -11,17 +11,17 @@ public class Massengutartikel extends Artikel {
 
 	
 	
-	protected int packungsgroesse;
+	private int packungsgroesse;
 	
 	
 	public Massengutartikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis, int packungsgroesse) {
 		super(titel, nr, verfuegbar, bestand, artikelPreis);
 		this.packungsgroesse = packungsgroesse;
-		// TODO Auto-generated constructor stub
 	}
 
-	public Massengutartikel (String titel, int bestand2, double artikelPreis2) {
+	public Massengutartikel (String titel, int bestand2, double artikelPreis2, int packungsgroesse) {
 		super(titel, bestand2, artikelPreis2);
+		this.packungsgroesse = packungsgroesse;
 	}
 	
 	

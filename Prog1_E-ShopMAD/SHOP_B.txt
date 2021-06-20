@@ -19,7 +19,12 @@ true
 55
 3.0
 Dosenbier
-6
+5
 true
 24
-0.60
+0.6
+Becks
+6
+true
+12
+1.0

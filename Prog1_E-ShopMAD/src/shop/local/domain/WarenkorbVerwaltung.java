@@ -3,8 +3,10 @@ package shop.local.domain;
 import java.util.Vector;
 
 import shop.local.domain.exceptions.LagerbestandsException;
+import shop.local.domain.exceptions.PackungsgroesseException;
 import shop.local.valueobjects.Artikel;
 import shop.local.valueobjects.Kunde;
+import shop.local.valueobjects.Massengutartikel;
 import shop.local.domain.Eshop;
 
 
@@ -37,7 +39,7 @@ public class WarenkorbVerwaltung {
 	}
 
 	//Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)	
-	public String wkBefuellen(Kunde userEingeloggt,  int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
+	public String wkBefuellen(Kunde userEingeloggt,  int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException, PackungsgroesseException {
 		Vector <Artikel> artListe = meineArtikel.getArtikelBestand();
 // 		clone() Methode ????
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -66,22 +68,26 @@ public class WarenkorbVerwaltung {
 	
 	//Methode zum Erhöhen der Anzahl des Artikels im WK 
 		// TODO: Das allermeiste in Artikelverwaltung erledigen
-		public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
+		public void erhoeheEinkauf(Kunde kundEingeloggt,int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException, PackungsgroesseException {
 //			Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
 			Vector <Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
 			Artikel gesuchterArt = shop.sucheArtikelinListe(warenkorbFuellung, artNummer);
 			Artikel ausArtliste = shop.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 				if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
+					if (ausArtliste instanceof Massengutartikel && plusBestand % ((Massengutartikel) gesuchterArt).getPackungsgroesse() != 0) {
+						throw new PackungsgroesseException((Massengutartikel) gesuchterArt);
+					}
+						
 					gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
 				} else {
 					throw new LagerbestandsException(ausArtliste);
 				}
 		}	
 		//Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder Erhöhens seiner Anzahl
-		public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
+		public void hinzufuegenOderErhoehen(Kunde kundEingeloggt,Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException, PackungsgroesseException {
 			if(wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 				//try {
-				erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl, meineArtikel);
+				erhoeheEinkauf(kundEingeloggt,gefundenArt.getNummer(), anzahl, meineArtikel); 
 				//} catch (LagerbestandsException e) {
 					// TODO Auto-generated catch block
 				//	e.printStackTrace();

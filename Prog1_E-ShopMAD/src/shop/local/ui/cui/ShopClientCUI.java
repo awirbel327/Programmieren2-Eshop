@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Vector;
 
 import shop.local.domain.exceptions.*;
-import shop.local.valueobjects.Warenkorb;
 import shop.local.domain.exceptions.*;
 import java.util.Collections;
 import shop.local.domain.Eshop;
@@ -101,6 +100,7 @@ public class ShopClientCUI {
 		List<Artikel>liste;
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);	
+		Artikel einArtikel = null;
 		
 		switch(line) {
 		
@@ -209,22 +209,43 @@ public class ShopClientCUI {
 		case "w":
 			System.out.print("Artikelbezeichnung :   >");
 			String bezeichnung = liesEingabe();
+			System.out.print("Massengutartikel? j/n :   >");
+			String artikelArt = liesEingabe();
 			System.out.print("Artikelbestand :   >");
 			String bestandString = liesEingabe();
 			int bestand = Integer.parseInt(bestandString);
 			System.out.print("Artikelpreis :   >");
 			String artikelPreisString = liesEingabe();
 			double artikelPreis = Double.parseDouble(artikelPreisString);
-			Artikel einArtikel = new Artikel(bezeichnung, bestand, artikelPreis);
+			
+			if (artikelArt.equals("j")) {
+				System.out.print("Packungsgröße :   >");
+				String packungsgroesseString = liesEingabe();
+				int packungsgroesse = Integer.parseInt(packungsgroesseString);
+				einArtikel = new Massengutartikel(bezeichnung, bestand, artikelPreis, packungsgroesse);
+				
+			} 
+			else if (artikelArt.equals("n")) {
+				einArtikel = new Artikel(bezeichnung, bestand, artikelPreis);
+			}
+			else {
+				System.out.println("Bitte wählen sie j/n.");
+			}
+			
 			try {
 				shop.mitArtikelHinzu(einArtikel);
 				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
 				shop.speicherArtikel();
-			} catch (ArtikelExistiertBereitsException e) {
+			} catch (ArtikelExistiertBereitsException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
+			}
+			catch (PackungsgroesseException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
 			}
 			break;
+			
 			//Mitarbeiter erhoeht bestand
 		case "l":
 			System.out.print("Artikelbezeichnung :   >");
@@ -237,8 +258,11 @@ public class ShopClientCUI {
 				System.out.print("Bestand erhoehen um :   >");
 				String erhoehung = liesEingabe();
 				int erhohung = Integer.parseInt(erhoehung);
+				try {
 				shop.mitErhoehtArtikel(artikelname, erhohung);
-				
+				} catch (PackungsgroesseException e){
+					e.printStackTrace();
+				}
 			}
 			break;
 		default:
@@ -339,6 +363,8 @@ public class ShopClientCUI {
 		} catch (LagerbestandsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (PackungsgroesseException e2) {
+			e2.printStackTrace();
 		}
 //		gibMenueAus();
 	}

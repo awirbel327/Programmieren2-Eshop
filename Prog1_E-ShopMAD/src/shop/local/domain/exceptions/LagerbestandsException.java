@@ -13,8 +13,9 @@ public class LagerbestandsException extends Exception {
 		this.artikel = artikel;
 	}
 	
+	/*
 	public Artikel getArtikel() {
 		return artikel;
 	}
-
+	*/
 }

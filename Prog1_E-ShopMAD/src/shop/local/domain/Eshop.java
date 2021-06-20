@@ -50,7 +50,7 @@ public class Eshop {
 		
 	}
 	
-	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException {
+	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
 		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
 	}
@@ -92,7 +92,7 @@ public class Eshop {
 	}
 	
 	//Methodenaufrufe Artikel Mitarbeiter
-	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException {
+	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 	}
 	
@@ -124,7 +124,7 @@ public class Eshop {
 		return gesuchterArt;
 	}
 
-	public void mitErhoehtArtikel(String artikelname, int erhohung) {
+	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
 	}
 }
