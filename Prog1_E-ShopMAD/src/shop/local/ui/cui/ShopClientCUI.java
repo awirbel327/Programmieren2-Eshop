@@ -252,7 +252,7 @@ public class ShopClientCUI {
 			String artikelname = liesEingabe();
 			List<Artikel> gefundeneArtikel = shop.sucheNachTitel(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
-				System.out.println("fehler mehr als 1 artiekl in liste!");
+				System.out.println("fehler mehr als 1 artikel in liste!");
 				return;
 			} else {
 				System.out.print("Bestand erhoehen um :   >");
@@ -364,7 +364,7 @@ public class ShopClientCUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (PackungsgroesseException e2) {
-			e2.printStackTrace();
+			System.out.println(e2.getMessage());
 		}
 //		gibMenueAus();
 	}

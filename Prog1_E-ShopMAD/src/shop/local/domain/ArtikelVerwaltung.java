@@ -120,7 +120,7 @@ public class ArtikelVerwaltung {
 		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgröße gesetzt
 		if (einArtikel instanceof Massengutartikel) {
 			if (einArtikel.getBestand() % ((Massengutartikel) einArtikel).getPackungsgroesse() !=0) {
-				throw new PackungsgroesseException((Massengutartikel) einArtikel);
+				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzufügen");
 			}
 		}
 		return;
@@ -182,7 +182,7 @@ public class ArtikelVerwaltung {
 			if(artikelname.equals(artikel.getTitel())) {
 				if (artikel instanceof Massengutartikel && artikel.getBestand() + erhohung % ((Massengutartikel) artikel).getPackungsgroesse() != 0) { //Downcasting
 					mArtikel = (Massengutartikel)artikel;
-					throw new PackungsgroesseException(mArtikel);
+					throw new PackungsgroesseException(mArtikel, "-in mitErhoehtArtikel");
 				}
 				artikel.setBestand(artikel.getBestand() + erhohung);
 			}

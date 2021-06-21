@@ -75,7 +75,7 @@ public class WarenkorbVerwaltung {
 			Artikel ausArtliste = shop.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 				if((ausArtliste.getBestand() - gesuchterArt.getBestand())>= plusBestand) {
 					if (ausArtliste instanceof Massengutartikel && plusBestand % ((Massengutartikel) gesuchterArt).getPackungsgroesse() != 0) {
-						throw new PackungsgroesseException((Massengutartikel) gesuchterArt);
+						throw new PackungsgroesseException((Massengutartikel) gesuchterArt, "-in erhoeheEinkauf");
 					}
 						
 					gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?

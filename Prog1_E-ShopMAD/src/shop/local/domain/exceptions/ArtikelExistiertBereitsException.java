@@ -7,7 +7,7 @@ public class ArtikelExistiertBereitsException extends Exception {
 	private Artikel artikel;
 	
 	public ArtikelExistiertBereitsException(Artikel artikel, String zusatzMsg) {
-		super("Buch mit Titel " + artikel.getTitel() + " und Nummer " + artikel.getNummer() 
+		super("Artikel mit Bezeichnung " + artikel.getTitel() + " und Nummer " + artikel.getNummer() 
 				+ " existiert bereits" + zusatzMsg);
 		this.artikel = artikel;
 	}
