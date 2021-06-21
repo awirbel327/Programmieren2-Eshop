@@ -56,6 +56,8 @@ public class ArtikelVerwaltung {
 	
 	//Methode zum Sortieren von Artikel nach ArtikelBezeichnung.
 	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
+	
+	// TO-DO: SCHÖNERE AUSGABE
 	public void artikelSortBezeichnung(Vector <Artikel> artikel) {
 		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige grï¿½ï¿½e
 		artikel.toArray(vecZuArr); //Vector Array

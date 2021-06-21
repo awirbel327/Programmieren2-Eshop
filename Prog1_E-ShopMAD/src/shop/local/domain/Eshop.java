@@ -119,10 +119,10 @@ public class Eshop {
 
 	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
 	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-		Artikel gesuchterArt=null; // warum =null?
+		Artikel gesuchterArt = null; // warum =null?
 		for (int i = 0; artListe.size() > i; i++) {
 			if(artListe.elementAt(i).getNummer() == nummer) {
-				gesuchterArt = artListe.elementAt(i);
+				 gesuchterArt = artListe.elementAt(i);
 			}
 		}
 		return gesuchterArt;

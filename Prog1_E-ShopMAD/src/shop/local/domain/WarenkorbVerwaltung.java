@@ -81,7 +81,7 @@ public class WarenkorbVerwaltung {
 						
 					gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); //Bestand aus Lager verringern?
 				} else {
-					//throw new LagerbestandsException(ausArtliste);
+					 //throw new LagerbestandsException(ausArtliste);
 				}
 
 			String bestaetigung = "Der Artikel befindet sich nicht im Warenkorb";
