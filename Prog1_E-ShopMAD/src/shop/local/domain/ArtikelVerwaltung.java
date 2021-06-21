@@ -62,7 +62,7 @@ public class ArtikelVerwaltung {
 		Arrays.sort((Artikel[])vecZuArr, new Comparator<Artikel>() { //
 			@Override 
 			public int compare(Artikel artikel1, Artikel artikel2) { //Methode compare der Java-Klasse Comparator wird ï¿½berschrieben
-				return artikel1.getTitel().compareTo(artikel2.getTitel());	// vergleichen Nachbarn anhand von Buchstaben
+				return artikel1.getBezeichnung().compareTo(artikel2.getBezeichnung());	// vergleichen Nachbarn anhand von Buchstaben
 			}
 		});
 		System.out.println(Arrays.asList(vecZuArr));
@@ -107,17 +107,17 @@ public class ArtikelVerwaltung {
 	}
 	*/
 	
-	//Mitarbeiter fügt Artikel hinzu
+	//Mitarbeiter fï¿½gt Artikel hinzu
 	public void mitArtikelhinzufuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
 		for(Artikel artikel:artikelListeVector) {
-			if(einArtikel.getTitel().equals(artikel.getTitel())) {
+			if(einArtikel.getBezeichnung().equals(artikel.getBezeichnung())) {
 				throw new ArtikelExistiertBereitsException(einArtikel, "Artikel existiert bereits");
 			}
 		}
 		
 		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelListeVector.add(einArtikel);
-		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgröße gesetzt
+		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgrï¿½ï¿½e gesetzt
 		if (einArtikel instanceof Massengutartikel) {
 			if (einArtikel.getBestand() % ((Massengutartikel) einArtikel).getPackungsgroesse() !=0) {
 				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzufügen");
@@ -139,7 +139,7 @@ public class ArtikelVerwaltung {
 	
 	// Methode die einen Artikel anhand des Titels (BEZEICHNUNG???) sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt
 	// FRAGE:warum wird hier eine Liste ausgegeben? Haben die Artikel nicht sowieso unique Bezeichnungen? Wofï¿½r wird diese Methode gebraucht?
-	public List<Artikel> sucheArtikel(String titel) { //TITEL = BEZEICHNUNG?
+	public List<Artikel> sucheArtikel(String bezeichnung) { //TITEL = BEZEICHNUNG?
 		List<Artikel> suchErg = new Vector<Artikel>();
 
 		// Artikelbestand durchlaufen und nach Bezeichnung des Artikels suchen
@@ -149,7 +149,7 @@ public class ArtikelVerwaltung {
 			// 		    hier nicht erforderlich wegen Verwendung von Generics   ------>>> HIER NOCHMAL PRï¿½FEN WENN WIR GENERCIS HATTEN
 			// 			(-> Vergleiche mit Einsatz von Vector OHNE Generics) 
 			Artikel a = iter.next();
-				if (a.getTitel().equals(titel)) //TITEL = BEZEICHNUNG?
+				if (a.getBezeichnung().equals(bezeichnung)) //TITEL = BEZEICHNUNG?
 					suchErg.add(a);
 				}
 		return suchErg;
@@ -159,7 +159,7 @@ public class ArtikelVerwaltung {
 	public void speicherArtikel() throws IOException {
 		pm.openForWriting("SHOP_B.txt"); // PersistenzManager fÃ¼r Schreibvorgang ï¿½ffnen
 			for(Artikel artikel:artikelListeVector) {
-				System.out.println(artikel.getTitel() + " wurde gespeichert");
+				System.out.println(artikel.getBezeichnung() + " wurde gespeichert");
 				pm.speicherArtikelDaten(artikel);	
 			}
 				pm.close();
@@ -167,19 +167,19 @@ public class ArtikelVerwaltung {
 
 	/* TEST bitte noch drin lassen, falls man das noch braucht :)
 	 * 
-	public void MassengutArtikelEinfügen (Artikel artikel, int erhohung) {
+	public void MassengutArtikelEinfï¿½gen (Artikel artikel, int erhohung) {
 		mArtikel = null;
 		artikel = (Massengutartikel) mArtikel;
 		if (mArtikel.getBestand() + erhohung % mArtikel.getPackungsgroesse() != 0) {
-			System.out.println("Massenartikel muss im Pack gekauft werden"); //Exception einfügen
+			System.out.println("Massenartikel muss im Pack gekauft werden"); //Exception einfï¿½gen
 		}
 	}
 	*/
 	
-	//Methode um Artikelbestand zu erhöhen (Mitarbeiter), prüft jetzt auch ob es sich um Massengutartikel handelt!
+	//Methode um Artikelbestand zu erhï¿½hen (Mitarbeiter), prï¿½ft jetzt auch ob es sich um Massengutartikel handelt!
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		for (Artikel artikel:artikelListeVector) {
-			if(artikelname.equals(artikel.getTitel())) {
+			if(artikelname.equals(artikel.getBezeichnung())) {
 				if (artikel instanceof Massengutartikel && artikel.getBestand() + erhohung % ((Massengutartikel) artikel).getPackungsgroesse() != 0) { //Downcasting
 					mArtikel = (Massengutartikel)artikel;
 					throw new PackungsgroesseException(mArtikel, "-in mitErhoehtArtikel");

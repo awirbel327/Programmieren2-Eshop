@@ -8,7 +8,7 @@ public class LagerbestandsException extends Exception {
 	private Artikel artikel;
 	
 	public LagerbestandsException (Artikel artikel) {
-		super("Leider sind nicht genügend Artikel vorrätig. Sie könen höhstens" + artikel.getBestand() + artikel.getTitel() 
+		super("Leider sind nicht genï¿½gend Artikel vorrï¿½tig. Sie kï¿½nen hï¿½hstens" + artikel.getBestand() + artikel.getBezeichnung() 
 		+ "in ihren Warenkorb legen.");
 		this.artikel = artikel;
 	}

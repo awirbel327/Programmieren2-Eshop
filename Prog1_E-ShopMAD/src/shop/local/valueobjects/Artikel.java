@@ -7,23 +7,23 @@ import java.util.Vector;
 import shop.local.valueobjects.Artikel;
 
 /**
- * Klasse für Artikel */
+ * Klasse fï¿½r Artikel */
 
 public class Artikel implements Comparable<Artikel> {
 
 
 	// Attribute zur Beschreibung eines Artikels:
-	protected String bezeichnung;
-	protected int artikelnummer;
-	protected boolean verfuegbar; 
-	protected int bestand;		//String damit Warnung weg geht ?
-	protected double artikelPreis;
-	protected double gruppenpreis;
+	 String bezeichnung;
+	 int artikelnummer;
+	 boolean verfuegbar; 
+	 int bestand;		//String damit Warnung weg geht ?
+	 double artikelPreis;
+	 double gruppenpreis;
 
 	
-	public Artikel(String titel, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
+	public Artikel(String bezeichnung, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
 		artikelnummer = nr;
-		this.bezeichnung = titel;
+		this.bezeichnung = bezeichnung;
 		this.verfuegbar = verfuegbar; 
 		this.bestand = bestand;
 		this.artikelPreis = artikelPreis;
@@ -31,8 +31,8 @@ public class Artikel implements Comparable<Artikel> {
 	
 	
 	//Wo wird dieser Konstruktor verwendet? Wenn der Artikel in den Warenkorb gelegt wird?
-	public Artikel(String titel, int bestand2, double artikelPreis2) {
-		this.bezeichnung = titel;
+	public Artikel(String bezeichnung, int bestand2, double artikelPreis2) {
+		this.bezeichnung = bezeichnung;
 		this.verfuegbar = true; 
 		this.bestand = bestand2;
 		this.artikelPreis = artikelPreis2;
@@ -53,7 +53,7 @@ public class Artikel implements Comparable<Artikel> {
 		artikelnummer = artikelZaehler;
 	}
 
-	public String getTitel() {
+	public String getBezeichnung() {
 		return bezeichnung;
 	}
 	

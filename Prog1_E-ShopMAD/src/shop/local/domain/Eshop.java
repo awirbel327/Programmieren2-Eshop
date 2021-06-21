@@ -59,6 +59,10 @@ public class Eshop {
 		return meinWarenkorb.wkAusgeben(userEingeloggt);
 	}
 	
+	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) {
+		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
+	}
+	
 	public void speicherArtikel() throws IOException {
 		// TODO Auto-generated method stub
 		meineArtikel.speicherArtikel();
@@ -109,8 +113,8 @@ public class Eshop {
 		return meineArtikel.getArtikelBestand();
 	}
 	
-	public List<Artikel> sucheNachTitel(String titel) {// einfach delegieren an ArtieklVerwaltung meineArtikel
-		return meineArtikel.sucheArtikel(titel); 
+	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {// einfach delegieren an ArtieklVerwaltung meineArtikel
+		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
 
 	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
