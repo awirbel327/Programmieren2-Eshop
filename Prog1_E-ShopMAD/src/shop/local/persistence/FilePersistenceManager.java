@@ -91,7 +91,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 	// Artikel wird uebergeben und gespeichert
 		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
-			schreibeZeile(artikel.getTitel());
+			schreibeZeile(artikel.getBezeichnung());
 			schreibeZeile(Integer.toString(artikel.getNummer()));
 			schreibeZeile(Boolean.toString(artikel.isVerfuegbar()));
 			schreibeZeile(Integer.toString(artikel.getBestand()));
@@ -115,8 +115,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	
 	//Methode zum laden von Artikeln
 	public Artikel ladeArtikel() throws IOException {
-		String titel = liesZeile();										//liest Titel
-		if (titel == null) {
+		String bezeichnung = liesZeile();										//liest Titel
+		if (bezeichnung == null) {
 			return null;												// keine Daten mehr vorhanden
 		}
 		String nummerString = liesZeile();								//Nummer einlesen
@@ -130,7 +130,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String preisString = liesZeile();								//Preis einlesen
 		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
 				
-		return new Artikel(titel, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
+		return new Artikel(bezeichnung, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
 		}
 	
 	

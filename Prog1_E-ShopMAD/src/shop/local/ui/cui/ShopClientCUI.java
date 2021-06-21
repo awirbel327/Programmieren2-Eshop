@@ -63,7 +63,7 @@ public class ShopClientCUI {
 	private void gibMitarbeiterMenueAus() {
 		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
 		System.out.println("	   \n  einen neuen Artikel hinzufuegen: 'W'");
-		System.out.println("	   \n  Bestand erh�hen: 'L'");
+		System.out.println("	   \n  Bestand erhoehen: 'L'");
 		System.out.print("         \n  ---------------------");
 		System.out.println("       \n  Beenden:        'Q'");
 		System.out.print("> "); // Prompt
@@ -89,7 +89,7 @@ public class ShopClientCUI {
 	// Kernmethode der CUI die je nach Eingabe die noetigen Untereingaben einliest und die passenden Methoden aus der Domain aufruft
 	private void verarbeiteEingabe(String line) throws IOException {
 		String auswahl;
-		String titel;
+		String bezeichnung;
 		String name;
 		String strasse;
 		int hausNr;
@@ -117,7 +117,7 @@ public class ShopClientCUI {
 			
 		// Regstrieren (Kunden)
 		case "1":	
-			System.out.print("Vollstï¿½ndiger Name :   > ");
+			System.out.print("Vollstaendiger Name :   > ");
 			name = liesEingabe();
 			System.out.print("Straï¿½enname :   > ");
 			strasse = liesEingabe();
@@ -154,8 +154,8 @@ public class ShopClientCUI {
 		// Artikel suchen nach Bezeichnung (ändern von Titel)
 		case "b":
 			System.out.print("Welchen Artikel suchen Sie? :   > ");
-			titel = liesEingabe();
-			liste = shop.sucheNachTitel(titel);
+			bezeichnung = liesEingabe();
+			liste = shop.sucheNachBezeichnung(bezeichnung);
 			gibArtikellisteAus(liste);
 			break;
 			
@@ -182,13 +182,32 @@ public class ShopClientCUI {
 			
 		// Warenkorb bearbeiten
 		case "e":
-			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
+			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)? > ");
+			int abfrageWK = Integer.parseInt(br.readLine());
+			if(abfrageWK == 5) {
+				System.out.println("Geben Sie die Artikelnummer ein: \n");
+				System.out.println("> ");
+				int wkNummer = Integer.parseInt(br.readLine());
+				System.out.println("Um wie viel soll erhöht werden?: \n");
+				System.out.println("> ");
+				int wkStueck = Integer.parseInt(br.readLine());
+				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
+//				System.out.println(shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck));
+			}else {
+				System.out.println("Geben Sie die Artikelnummer ein: \n");
+				System.out.println("> ");
+				int wkNummer2 = Integer.parseInt(br.readLine());
+				System.out.println("Um wie viel soll gesenkt werden?: \n");
+				System.out.println("> ");
+				int wkStueck2 = Integer.parseInt(br.readLine());
+//				System.out.println(shop.senkeEinkauf(wkNummer2,wkStueck2));
+			}
 			gibMenueAus();
 			break;
 		
 		//Mitarbeiter registrieren
 		case "z":
-			System.out.print("Vollstï¿½ndiger Name :   > ");
+			System.out.print("Vollstaendiger Name :   > ");
 			name = liesEingabe();
 			System.out.print("Username :   > ");
 			username = liesEingabe();
@@ -208,7 +227,7 @@ public class ShopClientCUI {
 			//mitarbeiter artikel hinzufügen
 		case "w":
 			System.out.print("Artikelbezeichnung :   >");
-			String bezeichnung = liesEingabe();
+			String bezeichnung1 = liesEingabe();
 			System.out.print("Massengutartikel? j/n :   >");
 			String artikelArt = liesEingabe();
 			System.out.print("Artikelbestand :   >");
@@ -219,17 +238,17 @@ public class ShopClientCUI {
 			double artikelPreis = Double.parseDouble(artikelPreisString);
 			
 			if (artikelArt.equals("j")) {
-				System.out.print("Packungsgr��e :   >");
+				System.out.print("Packungsgr��e :   >");
 				String packungsgroesseString = liesEingabe();
 				int packungsgroesse = Integer.parseInt(packungsgroesseString);
-				einArtikel = new Massengutartikel(bezeichnung, bestand, artikelPreis, packungsgroesse);
+				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
 				
 			} 
 			else if (artikelArt.equals("n")) {
-				einArtikel = new Artikel(bezeichnung, bestand, artikelPreis);
+				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
 			}
 			else {
-				System.out.println("Bitte w�hlen sie j/n.");
+				System.out.println("Bitte w�hlen sie j/n.");
 			}
 			
 			try {
@@ -250,9 +269,9 @@ public class ShopClientCUI {
 		case "l":
 			System.out.print("Artikelbezeichnung :   >");
 			String artikelname = liesEingabe();
-			List<Artikel> gefundeneArtikel = shop.sucheNachTitel(artikelname);
+			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
-				System.out.println("fehler mehr als 1 artiekl in liste!");
+				System.out.println("fehler mehr als 1 artikel in liste!");
 				return;
 			} else {
 				System.out.print("Bestand erhoehen um :   >");
@@ -343,19 +362,33 @@ public class ShopClientCUI {
 		}
 	}
 	
+//	public void menueWk(BufferedReader br) throws IOException {
+//		System.out.println("Geben Sie die Artikelnummer ein: \n");
+//		System.out.print("> ");
+//		int artNummer = Integer.parseInt(br.readLine());
+//		System.out.println("Geben Sie die Stueckzahl an: \n");
+//		System.out.print("> ");
+//		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
+//		int artAnzahl = Integer.parseInt(br.readLine());
+//		System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
+//	}
+//	
 	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
+		System.out.print("> ");
 		int artNummer=0;
 		int artAnzahl=0;
 		try {
 		//setzt artNummer welches vorher 0 ist auf die Nummer die eingegeben wurde
 		artNummer = Integer.parseInt(br.readLine());
 		System.out.println("Geben Sie die Stueckzahl an: \n");
+		System.out.print("> ");
 		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
 		artAnzahl = Integer.parseInt(br.readLine());
 		} catch (NumberFormatException exception) {
 			System.out.println("Geben sie eine Zahl ein!!!");
+			System.out.print("> ");
 			menueWk(br);
 		}
 		try {
@@ -369,6 +402,7 @@ public class ShopClientCUI {
 //		gibMenueAus();
 	}
 
+	
 	
 	/**
 	 * Methode zur AusfÃ¼hrung der Hauptschleife:

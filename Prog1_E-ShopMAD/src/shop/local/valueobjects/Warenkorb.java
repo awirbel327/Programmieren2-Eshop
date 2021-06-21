@@ -27,7 +27,7 @@ public class Warenkorb {
 			inhalt = "In Ihrem Warenkorb befinden sich folgende Artikel: \n";
 			for(int i=0;warenkorbVector.size() > i; i++) {
 				Artikel artikel = warenkorbVector.elementAt(i);
-				inhalt += "Artikelnummer: " + artikel.getNummer() + "\nArtikelbezeichnung: " + artikel.getTitel() +"\nPreis pro Stueck: " + artikel.getPreis() + "\nAnzahl: " + artikel.getBestand() + "\nArtikel Preis gesamt: "  + "\n\n" + "Gesamtpreis: " +  " Euro\n\n" ;
+				inhalt += "Artikelnummer: " + artikel.getNummer() + "\nArtikelbezeichnung: " + artikel.getBezeichnung() +"\nPreis pro Stueck: " + artikel.getPreis() + "\nAnzahl: " + artikel.getBestand() + "\nArtikel Preis gesamt: "  + "\n\n" + "Gesamtpreis: " +  " Euro\n\n" ;
 			}
 		}
 		return inhalt;
