@@ -29,6 +29,8 @@ public class Eshop {
 	private ArtikelVerwaltung meineArtikel;
 	private WarenkorbVerwaltung meinWarenkorb;
 	private UserVerwaltung meineNutzer;
+	private EreignisVerwaltung meineEreignisse;
+	private User userEingeloggt;
 	
 	
 	public Eshop(String datei) throws IOException {
@@ -47,6 +49,9 @@ public class Eshop {
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 		meinWarenkorb = new WarenkorbVerwaltung();
+		
+		meineEreignisse = new EreignisVerwaltung();
+		//meineEreignisse.liesEreignisse("SHOP_Ereignisse.txt");
 		
 	}
 	
@@ -98,7 +103,11 @@ public class Eshop {
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
+		meineEreignisse.addEreignis(ereignis);
+		//DATUM NOCH HINZUFUEGEN
 	}
+
 	
 	// Methodenaufrufe zur (sortierten) Ausgabe und suche nach Artikeln aus der Artikelverwaltung 
 	public void artikelsortiertAusgebenBezeichnung() {
@@ -130,5 +139,9 @@ public class Eshop {
 
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
+	}
+	
+	public void userEingeloggt(User userEingeloggt) {
+		this.userEingeloggt = userEingeloggt;
 	}
 }

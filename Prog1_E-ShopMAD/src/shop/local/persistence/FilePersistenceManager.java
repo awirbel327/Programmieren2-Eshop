@@ -67,6 +67,24 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
 	
+	//Ereignisse laden
+		/*public Ereignis ladeEreignisse() throws IOException {
+			String name = liesZeile();
+			if (name == null) {
+				return null;
+			}
+			String strasse = liesZeile();
+			String hausNrString = liesZeile();
+			int hausNr = Integer.parseInt(hausNrString);
+			String plzString = liesZeile();
+			int plz = Integer.parseInt(plzString);
+			String ort = liesZeile();
+			String kUsername = liesZeile();
+			String kPasswort = liesZeile();
+			
+			return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
+		}*/
+	
 	
 	// Kunde wird uebergeben und gespeichert
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {

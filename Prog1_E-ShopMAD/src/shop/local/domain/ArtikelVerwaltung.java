@@ -9,13 +9,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-import shop.local.persistence.FilePersistenceManager;
-import shop.local.persistence.PersistenceManager;
-import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Massengutartikel;
-import shop.local.valueobjects.Mitarbeiter;
-import shop.local.domain.exceptions.PackungsgroesseException;
+import shop.local.persistence.*;
+import shop.local.domain.exceptions.*;
+import shop.local.valueobjects.*;
+
 
 
 
