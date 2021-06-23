@@ -140,8 +140,7 @@ public class ShopClientCUI {
 				System.out.println("Sie haben sich erfolgreich Registriert!");
 				shop.speicherKunden();
 			} catch (KundeExistiertBereitsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			break;
 			
@@ -219,8 +218,7 @@ public class ShopClientCUI {
 				System.out.println("Sie haben einen weiteren Mitarbeiter erfolgreich Registriert!");
 				shop.speicherMitarbeiter();
 			} catch (MitarbeiterExistiertBereitsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			break;
 			
@@ -256,12 +254,10 @@ public class ShopClientCUI {
 				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
 				shop.speicherArtikel();
 			} catch (ArtikelExistiertBereitsException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println(e1.getMessage());
 			}
 			catch (PackungsgroesseException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				System.out.println(e2.getMessage());
 			}
 			break;
 			
@@ -280,7 +276,7 @@ public class ShopClientCUI {
 				try {
 				shop.mitErhoehtArtikel(artikelname, erhohung);
 				} catch (PackungsgroesseException e){
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 			break;
@@ -315,7 +311,7 @@ public class ShopClientCUI {
 			userEingeloggt = kunde;
 			shop.userEingeloggt(kunde);
 		} catch (PasswortOderUsernameFalschException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
 	}
@@ -347,7 +343,7 @@ public class ShopClientCUI {
 			userEingeloggt = mitarbeiter;
 			shop.userEingeloggt(mitarbeiter);	
 		} catch (PasswortOderUsernameFalschException e) {
-			e.printStackTrace();	
+			System.out.println(e.getMessage());	
 		}
 	}
 	
@@ -395,9 +391,8 @@ public class ShopClientCUI {
 		}
 		try {
 			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
-		} catch (LagerbestandsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (LagerbestandsException e1) {
+			System.out.println(e1.getMessage());
 		} catch (PackungsgroesseException e2) {
 			System.out.println(e2.getMessage());
 		}

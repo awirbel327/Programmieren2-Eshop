@@ -1,8 +1,6 @@
 package shop.local.valueobjects;
 
 import java.util.Vector;
-import shop.local.valueobjects.Artikel;
-import shop.local.domain.Eshop;
 
 public class Warenkorb {
 	

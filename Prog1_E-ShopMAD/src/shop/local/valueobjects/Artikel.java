@@ -1,9 +1,5 @@
 package shop.local.valueobjects;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Vector;
-
 import shop.local.valueobjects.Artikel;
 
 /**

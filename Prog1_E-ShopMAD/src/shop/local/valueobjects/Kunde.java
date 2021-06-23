@@ -3,7 +3,6 @@ package shop.local.valueobjects;
 public class Kunde extends User {
 
 	private int kundenNr;
-
 	private String strasse = " ";
 	private int hausNr;
 	private int plz;
