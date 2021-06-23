@@ -55,25 +55,24 @@ public class Eshop {
 		
 	}
 	
+	/* Warenkorb-Methoden*/
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
 		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
 	}
 	
 	public String wkAusgeben(Kunde userEingeloggt) {
-		return meinWarenkorb.wkAusgeben(userEingeloggt);
+		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
 	}
 	
 	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) {
 		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
 	
-	public void speicherArtikel() throws IOException {
-		// TODO Auto-generated method stub
-		meineArtikel.speicherArtikel();
-	}
 	
 	
+	
+	/* U-Methoden*/
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.kundenlogIn(username, passwort);
@@ -83,6 +82,12 @@ public class Eshop {
 		return meineNutzer.registrieren(einKunde);
 	}
 	
+	public void speicherKunden() throws IOException {
+		// TODO Auto-generated method stub
+		meineNutzer.speicherKunden();
+	}	
+	
+	
 	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
@@ -90,15 +95,14 @@ public class Eshop {
 	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.mitarbeiterlogIn(username, passwort);
 	}
-	public void speicherKunden() throws IOException {
-		// TODO Auto-generated method stub
-		meineNutzer.speicherKunden();
-	}	
-	
+
 	public void speicherMitarbeiter() throws IOException {
 		// TODO Auto-generated method stub
 		meineNutzer.speicherMitarbeiter();
 	}
+	
+	
+	/* Artikel-Methoden*/
 	
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
@@ -107,7 +111,11 @@ public class Eshop {
 		meineEreignisse.addEreignis(ereignis);
 		//DATUM NOCH HINZUFUEGEN
 	}
-
+	
+	public void speicherArtikel() throws IOException {
+		// TODO Auto-generated method stub
+		meineArtikel.speicherArtikel();
+	}
 	
 	// Methodenaufrufe zur (sortierten) Ausgabe und suche nach Artikeln aus der Artikelverwaltung 
 	public void artikelsortiertAusgebenBezeichnung() {
@@ -140,6 +148,7 @@ public class Eshop {
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
 	}
+	
 	
 	public void userEingeloggt(User userEingeloggt) {
 		this.userEingeloggt = userEingeloggt;

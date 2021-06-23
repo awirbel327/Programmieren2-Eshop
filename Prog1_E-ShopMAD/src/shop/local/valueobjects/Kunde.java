@@ -8,7 +8,6 @@ public class Kunde extends User {
 	private int hausNr;
 	private int plz;
 	private String ort = " ";
-
 	private Warenkorb warenkorb;
 
 	//konstruktor für anmeldung usw.
@@ -18,7 +17,6 @@ public class Kunde extends User {
 		this.hausNr = hausNr;
 		this.plz = plz;
 		this.ort = ort;
-		
 		warenkorb = new Warenkorb();
 	}
 

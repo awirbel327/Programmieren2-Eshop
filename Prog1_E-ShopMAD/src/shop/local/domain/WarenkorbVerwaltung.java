@@ -30,14 +30,14 @@ public class WarenkorbVerwaltung {
 		return warenkorbVector;
 	}
 
+	// ??
 	public WarenkorbVerwaltung() {
 
 	}
 
-	// Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem
-	// persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)
-	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel)
-			throws LagerbestandsException, PackungsgroesseException {
+	// Methode um einen Artikel anhand seiner Nummer in beliebiger Anzahl dem persönlichen WK (des Kunden) hinzuzufügen(inkl. Bestätigung)
+	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) {
+//		throws LagerbestandsException, PackungsgroesseException 
 		Vector<Artikel> artListe = meineArtikel.getArtikelliste();
 // 		clone() Methode ????
 //		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
@@ -48,12 +48,7 @@ public class WarenkorbVerwaltung {
 				Artikel gefundenArt = artListe.elementAt(i);
 //					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 
-				// If Abfrage wird unnötig, da die Exception schon in der Methode
-				// hinzufügenOderErhoehen geprüft wird
-				// if((gefundenArt.getBestand()>= artAnzahl) == true) {
-
 				hinzufuegenOderErhoehen(userEingeloggt, gefundenArt, artAnzahl, meineArtikel);
-//						String "bestaetigung" wird überschrieben
 				bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getBezeichnung()
 						+ " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 
@@ -65,31 +60,34 @@ public class WarenkorbVerwaltung {
 		return bestaetigung;
 	}
 
+	
+	
 	// Methode zum Erhöhen der Anzahl des Artikels im WK
-	// TODO: Das allermeiste in Artikelverwaltung erledigen
 	public void erhoeheEinkauf(Kunde kundEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) {// throws
 																														// LagerbestandsException,
 																														// PackungsgroesseException
-//			Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
+//		Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
 		Vector<Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
-		Artikel gesuchterArt = shop.sucheArtikelinListe(warenkorbFuellung, artNummer);
+		//suchen im Warenkorb des Kunden
+		Artikel ausWkListe = shop.sucheArtikelinListe(warenkorbFuellung, artNummer);
+		//suche in der allgemeinen Artikelliste
 		Artikel ausArtliste = shop.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 
-		if ((ausArtliste.getBestand() - gesuchterArt.getBestand()) >= plusBestand) {
+		if ((ausArtliste.getBestand() - ausWkListe.getBestand()) >= plusBestand) {
 			if (ausArtliste instanceof Massengutartikel
-					&& plusBestand % ((Massengutartikel) gesuchterArt).getPackungsgroesse() != 0) {
+					&& plusBestand % ((Massengutartikel) ausWkListe).getPackungsgroesse() != 0) {
 				// throw new PackungsgroesseException((Massengutartikel) gesuchterArt, "-in
 				// erhoeheEinkauf");
 			}
 
-			gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand()); // Bestand aus Lager verringern?
+			ausWkListe.setBestand(plusBestand + ausWkListe.getBestand()); // Bestand aus Lager verringern?
 		} else {
 			// throw new LagerbestandsException(ausArtliste);
 		}
 
 		String bestaetigung = "Der Artikel befindet sich nicht im Warenkorb";
 		if (ausArtliste.getBestand() >= plusBestand) {
-			gesuchterArt.setBestand(plusBestand + gesuchterArt.getBestand());
+			ausWkListe.setBestand(plusBestand + ausWkListe.getBestand());
 			bestaetigung = "Sie haben den Bestand erhöht";
 		} else {
 			bestaetigung = "hat nicht geklappt";
@@ -109,8 +107,7 @@ public class WarenkorbVerwaltung {
 	
 	// Methode zum hinzufügen eines Artikels (falls noch nicht im WK) oder
 	// Erhöhens seiner Anzahl
-	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt, Artikel gefundenArt, int anzahl,
-			ArtikelVerwaltung meineArtikel) {
+	public void hinzufuegenOderErhoehen(Kunde kundEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) {
 		if (wkBestandspruefung(gefundenArt, kundEingeloggt) == true) {
 //				try {
 			erhoeheEinkauf(kundEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);
@@ -137,12 +134,34 @@ public class WarenkorbVerwaltung {
 		return false;
 	}
 
-	public String wkAusgeben(Kunde userEingeloggt) {
-		// warenkorb des EINGELOGTEN KUNDEN ausgeben
-		//	Warenkorb wk = new Warenkorb();
-		//	 return wk.warenkorbAusgeben();
-		//	Kunde kundeEingeloggt = (Kunde) UserVerwaltung.getAngemeldeterUser();
-		// warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
-		return userEingeloggt.getWk().warenkorbAusgeben();
+//	public String wkAusgeben(Kunde userEingeloggt) {
+//		// warenkorb des EINGELOGTEN KUNDEN ausgeben
+//		//	Warenkorb wk = new Warenkorb();
+//		//	 return wk.warenkorbAusgeben();
+//		//	Kunde kundeEingeloggt = (Kunde) UserVerwaltung.getAngemeldeterUser();
+//		// warenkorb des EINGELOGTEN KUNDEN ??? ausgeben
+//		return userEingeloggt.getWk().warenkorbAusgeben();
+//	}
+	
+//	public void artikelwkHinzufuegen(Artikel artikel, int anzahl) {
+//		if (anzahl > 0) {
+//			warenkorbVector.add(artikel);
+////			berechneWkGesamt();
+//		}
+//	}
+
+	public String warenkorbAusgeben(Kunde userEingeloggt) {
+		String inhalt = "Ihr Warenkorb ist leer";
+		warenkorbVector = userEingeloggt.getWk().getListe();
+		if (userEingeloggt.getWk().getListe().size() > 0) {
+			inhalt = "In Ihrem Warenkorb befinden sich folgende Artikel: \n";
+			for (int i = 0; warenkorbVector.size() > i; i++) {
+				Artikel artikel = warenkorbVector.elementAt(i);
+				inhalt += "Artikelnummer: " + artikel.getNummer() + "\nArtikelbezeichnung: " + artikel.getBezeichnung()
+						+ "\nPreis pro Stueck: " + artikel.getPreis() + "\nAnzahl: " + artikel.getBestand()
+						+ "\nArtikel Preis gesamt: " + "\n\n" + "Gesamtpreis: " + " Euro\n\n";
+			}
+		}
+		return inhalt;
 	}
 }

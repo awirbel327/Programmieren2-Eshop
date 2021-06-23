@@ -310,8 +310,9 @@ public class ShopClientCUI {
 			e.printStackTrace();
 		}
 		try {
-			Kunde kunde =shop.kundenlogIn(username, passwort);
+			Kunde kunde = shop.kundenlogIn(username, passwort);
 			System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
+			userEingeloggt = kunde;
 			shop.userEingeloggt(kunde);
 		} catch (PasswortOderUsernameFalschException e) {
 			e.printStackTrace();
@@ -343,6 +344,7 @@ public class ShopClientCUI {
 		try {
 			Mitarbeiter mitarbeiter = shop.mitarbeiterlogIn(username, passwort);
 			System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
+			userEingeloggt = mitarbeiter;
 			shop.userEingeloggt(mitarbeiter);	
 		} catch (PasswortOderUsernameFalschException e) {
 			e.printStackTrace();	
