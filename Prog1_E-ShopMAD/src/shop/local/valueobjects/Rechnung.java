@@ -15,8 +15,8 @@ public class Rechnung {
 	public Rechnung(Vector<Artikel> wkVector, User user, double gesamtpreis) throws IOException{
 		rechnungsVector = wkVector;
 		this.user = (Kunde) user;
-		userDaten = "Name blabla " +"<br>"+"<br>"+"<br>"+"<br>";
-		rechnungsNachricht = userDaten +   "Sehr geehrte/r " + user.getName() + ", <br> \nHier ist Ihre Rechnung: \n<br><br>" + sammelDaten();
+//		userDaten = "";
+		rechnungsNachricht = "Sehr geehrte/r " + user.getName() + " \n Hier ist Ihre Rechnung: \n \n " + sammelDaten();
 		rechnungArchivieren();
 	}
 	
@@ -25,7 +25,7 @@ public class Rechnung {
 			String gesammelteDaten = "";
 			
 			for (int i = 0; rechnungsVector.size() > i; i++) {
-				gesammelteDaten += "Artikelname: " + rechnungsVector.elementAt(i).getBezeichnung() + ",<br> Artikelnummer: " + rechnungsVector.elementAt(i).getNummer()+ ",<br> Artikelanzahl: " + rechnungsVector.elementAt(i).getBestand()+ ",<br> Preis pro Artikel: " + rechnungsVector.elementAt(i).getPreis() + " Euro" + ",<br> Artikel gesamt: " + rechnungsVector.elementAt(i).getArtikelpreisBerechnen() + "\n\n<br><br>";
+				gesammelteDaten += "Artikelname: " + rechnungsVector.elementAt(i).getBezeichnung() + "\n Artikelanzahl: " + rechnungsVector.elementAt(i).getBestand()+ "\n Preis pro Artikel: " + rechnungsVector.elementAt(i).getPreis() + " Euro" + "\n Artikel gesamtpreis: " + rechnungsVector.elementAt(i).getArtikelpreisBerechnen() + "\n\n";
 				
 			}
 			return gesammelteDaten;

@@ -1,0 +1,11 @@
+
+Rechnung:
+Datum: Mon Jun 28 13:26:45 CEST 2021
+Sehr geehrte/r Dilara Kanmaz 
+ Hier ist Ihre Rechnung: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 1
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 1.0
+
