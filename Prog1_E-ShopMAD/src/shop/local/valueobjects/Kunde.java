@@ -9,7 +9,7 @@ public class Kunde extends User {
 	private String ort = " ";
 	private Warenkorb warenkorb;
 
-	//konstruktor für anmeldung usw.
+	//konstruktor fï¿½r anmeldung usw.
 	public Kunde(String name, String strasse, int hausNr, int plz, String ort, String username, String passwort) {
 		super(name, username, passwort);
 		this.strasse = strasse;
@@ -19,6 +19,8 @@ public class Kunde extends User {
 		warenkorb = new Warenkorb();
 	}
 
+
+	
 	// getter und setter usw Kunden-Eigenschaften
 	public int getKundenNr() {
 		return kundenNr;

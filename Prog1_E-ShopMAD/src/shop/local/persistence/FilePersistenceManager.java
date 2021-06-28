@@ -140,15 +140,15 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String nummerString = liesZeile();								//Nummer einlesen
 		int nummer = Integer.parseInt(nummerString);					//String in int konvertieren
 		
-		String verfuegbarCode = liesZeile();							//Verf�gbar?
-		boolean verfuegbar = verfuegbarCode.equals("true") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
+//		String verfuegbarCode = liesZeile();							//Verf�gbar?
+//		boolean verfuegbar = verfuegbarCode.equals("true") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
 		String bestandString = liesZeile();						// Bestand einlesen
 		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
 		
 		String preisString = liesZeile();								//Preis einlesen
 		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
 				
-		return new Artikel(bezeichnung, nummer, verfuegbar, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
+		return new Artikel(bezeichnung, nummer, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
 		}
 	
 	
@@ -168,4 +168,16 @@ public class FilePersistenceManager  implements PersistenceManager  {
         else 
         	System.out.println("Fehler?");
     }
+	@Override
+	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector)
+			throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }

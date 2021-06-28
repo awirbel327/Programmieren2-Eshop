@@ -203,6 +203,9 @@ public class ShopClientCUI {
 			}
 			gibMenueAus();
 			break;
+			case "f":
+			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));
+			break;
 		
 		//Mitarbeiter registrieren
 		case "z":
@@ -239,11 +242,13 @@ public class ShopClientCUI {
 				System.out.print("Packungsgr��e :   >");
 				String packungsgroesseString = liesEingabe();
 				int packungsgroesse = Integer.parseInt(packungsgroesseString);
-				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
-				
+//				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
+//				einArtikel = new Massengutartikel(bezeichnung, nr, artikelPreis, bestand, packungsgroesse);
+
 			} 
 			else if (artikelArt.equals("n")) {
-				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
+//				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
+//				einArtikel = new Artikel(bezeichnung, bestand, abfrageWK, artikelPreis);
 			}
 			else {
 				System.out.println("Bitte w�hlen sie j/n.");
@@ -391,6 +396,7 @@ public class ShopClientCUI {
 		}
 		try {
 			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
+//			System.out.println(shop.wkBefuellen(Kunde)userEingeloggt,artNummer, artAnzahl);
 		} catch (LagerbestandsException e1) {
 			System.out.println(e1.getMessage());
 		} catch (PackungsgroesseException e2) {
