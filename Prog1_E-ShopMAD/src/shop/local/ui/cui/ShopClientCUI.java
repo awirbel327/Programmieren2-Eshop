@@ -79,7 +79,7 @@ public class ShopClientCUI {
 		System.out.print("         \n  Artikel zum WK hinzufuegen: 'C'");
 		System.out.print("         \n  Warenkorb anzeigen:  'D'");
 		System.out.print("         \n  Warenkorb bearbeiten:  'E'");
-		System.out.print("         \n  Bezahlen:  'F'");
+		System.out.print("         \n  Warenkorb kaufen:  'F'");
 		System.out.print("         \n  ---------------------");
 		System.out.println("       \n  Beenden:        'Q'");
 		System.out.print("> "); // Prompt

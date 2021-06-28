@@ -10,13 +10,13 @@ public class Rechnung {
 	private static String rechnungsNachricht;
 	private Kunde user;
 	private String userDaten;
-	
-	//Konstruktor Rechnung
+		//Konstruktor Rechnung
 	public Rechnung(Vector<Artikel> wkVector, User user, double gesamtpreis) throws IOException{
 		rechnungsVector = wkVector;
 		this.user = (Kunde) user;
+		Date df = new Date();
 //		userDaten = "";
-		rechnungsNachricht = "Sehr geehrte/r " + user.getName() + " \n Hier ist Ihre Rechnung: \n \n " + sammelDaten();
+		rechnungsNachricht = "\n ZAHLUNGSINFORMATION \n \n Guten Tag " + user.getName() + ", \n \n Vielen Dank für die Bestellung vom: " + df.toString() + " in unserem MAD-SHOP! \n \n HIER IST IHRE RECHNUNG: \n \n " + sammelDaten();
 		rechnungArchivieren();
 	}
 	
