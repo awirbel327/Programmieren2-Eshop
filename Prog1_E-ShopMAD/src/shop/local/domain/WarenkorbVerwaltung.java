@@ -148,9 +148,9 @@ public class WarenkorbVerwaltung {
 			} else {
 				//Wahrscheinlich Unnötig
 				if (gefundenArt instanceof Massengutartikel) {
-					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), gefundenArt.getNummer(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
+					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
 				} else {
-					gesuchterArt = new Artikel(gefundenArt.getBezeichnung(), gefundenArt.getNummer(), anzahl, gefundenArt.getPreis());
+					gesuchterArt = new Artikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis());
 				}
 				gesuchterArt.setNummer(gefundenArt.getNummer());
 				userEingeloggt.getWk().artikelwkHinzufuegen(gesuchterArt, anzahl);

@@ -17,7 +17,7 @@ public class Artikel implements Comparable<Artikel> {
 	 double gruppenpreis;
 
 	
-	public Artikel(String bezeichnung, int artikelnummer, int bestand, double artikelPreis) { //int verfügbar
+	public Artikel(String bezeichnung, int bestand, double artikelPreis) { //int verfügbar
 //		artikelnummer = nr;
 		this.bezeichnung = bezeichnung;
 		this.artikelnummer = artikelnummer;

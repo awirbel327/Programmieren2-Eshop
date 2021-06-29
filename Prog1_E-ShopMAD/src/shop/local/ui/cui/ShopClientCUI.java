@@ -238,12 +238,12 @@ public class ShopClientCUI {
 				System.out.print("Packungsgr��e :   >");
 				String packungsgroesseString = liesEingabe();
 				int packungsgroesse = Integer.parseInt(packungsgroesseString);
-//				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
+				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
 //				einArtikel = new Massengutartikel(bezeichnung, nr, artikelPreis, bestand, packungsgroesse);
 
 			} 
 			else if (artikelArt.equals("n")) {
-//				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
+				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
 //				einArtikel = new Artikel(bezeichnung, bestand, abfrageWK, artikelPreis);
 			}
 			else {

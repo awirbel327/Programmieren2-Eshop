@@ -106,7 +106,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
 			schreibeZeile(artikel.getBezeichnung());
 			schreibeZeile(Integer.toString(artikel.getNummer()));
-			schreibeZeile(Boolean.toString(artikel.isVerfuegbar()));
 			schreibeZeile(Integer.toString(artikel.getBestand()));
 			schreibeZeile(Double.toString(artikel.getPreis()));
 			return true;
@@ -138,12 +137,10 @@ public class FilePersistenceManager  implements PersistenceManager  {
 //		String verfuegbarCode = liesZeile();							//Verf�gbar?
 //		boolean verfuegbar = verfuegbarCode.equals("true") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
 		String bestandString = liesZeile();						// Bestand einlesen
-		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren
-		
+		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren	
 		String preisString = liesZeile();								//Preis einlesen
-		double preis = Double.parseDouble(preisString); 				//String in int konvertieren
-				
-		return new Artikel(bezeichnung, nummer, bestand, preis);	// neues Buch-Objekt anlegen und zurueckgeben
+		double preis = Double.parseDouble(preisString); 				//String in int konvertieren		
+		return new Artikel(bezeichnung, bestand, preis);	// neues Artikel-Objekt anlegen und zurueckgeben
 		}
 	
 	

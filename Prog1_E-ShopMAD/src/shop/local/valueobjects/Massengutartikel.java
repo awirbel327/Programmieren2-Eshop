@@ -14,8 +14,8 @@ public class Massengutartikel extends Artikel {
 	private int packungsgroesse;
 	
 	
-	public Massengutartikel(String bezeichnung, int nr, int bestand, double artikelPreis, int packungsgroesse) {
-		super(bezeichnung, nr, bestand, artikelPreis);
+	public Massengutartikel(String bezeichnung, int bestand, double artikelPreis, int packungsgroesse) {
+		super(bezeichnung, bestand, artikelPreis);
 		this.packungsgroesse = packungsgroesse;
 	}
 
