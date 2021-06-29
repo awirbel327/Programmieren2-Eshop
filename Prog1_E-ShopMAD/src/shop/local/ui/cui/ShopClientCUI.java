@@ -23,8 +23,7 @@ import shop.local.domain.WarenkorbVerwaltung;
 
 public class ShopClientCUI {
 	
-	// Test Dilara
-	// TEST TEST
+	
 	private Eshop shop;
 //	private WarenkorbVerwaltung warenkorb;
 	private BufferedReader in;
