@@ -4,16 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Vector;
 
-import shop.local.domain.exceptions.*;
 import shop.local.domain.exceptions.*;
 import java.util.Collections;
 import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.*;
-import shop.local.domain.*;
-import shop.local.domain.WarenkorbVerwaltung;
 
 /**
  * Klasse zur Interaktion mit dem User.
@@ -24,10 +20,7 @@ import shop.local.domain.WarenkorbVerwaltung;
 public class ShopClientCUI {
 	
 	private Eshop shop;
-//	private WarenkorbVerwaltung warenkorb;
 	private BufferedReader in;
-	//private Kunde kundeEingeloggt;
-	//private Mitarbeiter mitarbeiterEingeloggt;
 	private User userEingeloggt;
 	
 	
@@ -41,8 +34,6 @@ public class ShopClientCUI {
 	private String liesEingabe() throws IOException{
 		return in.readLine();
 	}
-	
-	
 	
 	// Methode zur Ausgabe des Menüs. Gibt Liste aller Optionen an, die der User beim Start des E-Shops hat.
 	private void gibMenueAus() {
