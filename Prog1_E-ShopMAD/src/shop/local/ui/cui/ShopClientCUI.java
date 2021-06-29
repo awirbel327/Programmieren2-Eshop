@@ -19,6 +19,7 @@ import shop.local.valueobjects.*;
 
 public class ShopClientCUI {
 	
+	
 	private Eshop shop;
 	private BufferedReader in;
 	private User userEingeloggt;
