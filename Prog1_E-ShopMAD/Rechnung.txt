@@ -97,3 +97,64 @@ Artikelname: Aepfel
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 3.0
 
+
+Rechnung:
+Datum: Tue Jun 29 14:05:09 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jun 29 14:05:09 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 2
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 2.0
+
+Artikelname: Handy
+ Artikelanzahl: 2
+ Preis pro Artikel: 100.0 Euro
+ Artikel gesamtpreis: 200.0
+
+
+Rechnung:
+Datum: Tue Jun 29 14:05:09 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jun 29 14:05:09 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 2
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 2.0
+
+Artikelname: Handy
+ Artikelanzahl: 2
+ Preis pro Artikel: 100.0 Euro
+ Artikel gesamtpreis: 200.0
+
+
+Rechnung:
+Datum: Tue Jun 29 14:06:12 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jun 29 14:06:12 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Ein Keks
+ Artikelanzahl: 5
+ Preis pro Artikel: 2.0 Euro
+ Artikel gesamtpreis: 10.0
+
