@@ -10,6 +10,8 @@ public class Rechnung {
 	private static String rechnungsNachricht;
 	private Kunde user;
 	private String userDaten;
+	
+	
 		//Konstruktor Rechnung
 	public Rechnung(Vector<Artikel> wkVector, User user, double gesamtpreis) throws IOException{
 		rechnungsVector = wkVector;
@@ -29,11 +31,9 @@ public class Rechnung {
 				
 			}
 			return gesammelteDaten;
-			
 		}
 		
 
-		
 		public void rechnungArchivieren() throws IOException {
 			FileWriter fw = new FileWriter("Rechnung.txt", true);
 			Date df = new Date();
