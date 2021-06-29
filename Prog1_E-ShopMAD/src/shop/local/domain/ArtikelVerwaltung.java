@@ -54,7 +54,7 @@ public class ArtikelVerwaltung {
 	//Methode zum Sortieren von Artikel nach ArtikelBezeichnung.
 	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
 	
-	// TO-DO: SCHÖNERE AUSGABE
+	// TO-DO: SCHï¿½NERE AUSGABE
 	public void artikelSortBezeichnung(Vector <Artikel> artikel) {
 		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige grï¿½ï¿½e
 		artikel.toArray(vecZuArr); //Vector Array
@@ -119,7 +119,7 @@ public class ArtikelVerwaltung {
 		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgrï¿½ï¿½e gesetzt
 		if (einArtikel instanceof Massengutartikel) {
 			if (einArtikel.getBestand() % ((Massengutartikel) einArtikel).getPackungsgroesse() !=0) {
-				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzufügen");
+				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzufï¿½gen");
 			}
 		}
 		return;
@@ -192,6 +192,10 @@ public class ArtikelVerwaltung {
 			e.printStackTrace();
 			}
 		}
+	}
+	public void aendereBestandDurchKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
+		pm.bestandKauf(name, bestandEins, bestandZwei, username);
+		pm.artikellisteAbspeichernPm(artikelListeVector);
 	}
 
 }

@@ -1,11 +1,11 @@
 package shop.local.valueobjects;
 
 import java.util.Vector;
-
+import shop.local.domain.*;
 public class Warenkorb {
 	
 	private Vector <Artikel> warenkorbVector;
-	
+	private WarenkorbVerwaltung wkverwaltung;
 	
 	public Warenkorb () {
 		 this.warenkorbVector = new Vector<Artikel>();
@@ -33,6 +33,15 @@ public class Warenkorb {
 //			berechneWkGesamt();
 		}
 	}
+	public double getWkGesamtpreis() {
+		return 22.0;
+
+	}
+	public void warenkorbLeeren() {
+		warenkorbVector.clear();
+//		wkGesamtpreis = 0;
+	}
+}
 
 	
 //	public String warenkorbAusgeben() {
@@ -52,4 +61,3 @@ public class Warenkorb {
 
 
 
-}

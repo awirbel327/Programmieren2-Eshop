@@ -56,6 +56,12 @@ public class Eshop {
 	}
 	
 	/* Warenkorb-Methoden*/
+	
+//	public void wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
+//	
+//	meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
+////	return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
+//}
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
 		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
@@ -69,7 +75,9 @@ public class Eshop {
 		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
 	
-	
+	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
+		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
+	}
 	
 	
 	/* U-Methoden*/

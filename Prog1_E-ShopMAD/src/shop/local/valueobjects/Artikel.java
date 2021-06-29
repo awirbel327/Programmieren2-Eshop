@@ -17,27 +17,29 @@ public class Artikel implements Comparable<Artikel> {
 	 double gruppenpreis;
 
 	
-	public Artikel(String bezeichnung, int nr, boolean verfuegbar, int bestand, double artikelPreis) {
-		artikelnummer = nr;
+	public Artikel(String bezeichnung, int artikelnummer, int bestand, double artikelPreis) { //int verfügbar
+//		artikelnummer = nr;
 		this.bezeichnung = bezeichnung;
-		this.verfuegbar = verfuegbar; 
+		this.artikelnummer = artikelnummer;
+//		this.verfuegbar = verfuegbar; 
 		this.bestand = bestand;
 		this.artikelPreis = artikelPreis;
+		setArtikelpreisBerechnen();
 	}
 	
-	
+//	int artikelBestand, String artikelName, double artikelPreis, int massengutGroesse
 	//Wo wird dieser Konstruktor verwendet? Wenn der Artikel in den Warenkorb gelegt wird?
-	public Artikel(String bezeichnung, int bestand2, double artikelPreis2) {
-		this.bezeichnung = bezeichnung;
-		this.verfuegbar = true; 
-		this.bestand = bestand2;
-		this.artikelPreis = artikelPreis2;
-	}
+//	public Artikel(String bezeichnung, int bestand2, double artikelPreis2) {
+//		this.bezeichnung = bezeichnung;
+//		this.verfuegbar = true; 
+//		this.bestand = bestand2;
+//		this.artikelPreis = artikelPreis2;
+//	}
 
 	// wird benötigt um die Artikel aus der Liste auszugeben
 	public String toString() {
-		String verfuegbarkeit = verfuegbar ? "Noch " + bestand + " Stueck auf Lager" : "Ausverkauft";
-		return (" Artikelnummer: " + artikelnummer + " \n Artikel: " + bezeichnung + " \n Artikelpreis: " + artikelPreis + " \n Bestand: " + verfuegbarkeit +"\n"); 
+		String verfuegbarkeit =  "Noch " + bestand + " Stueck auf Lager";
+		return (" Artikelnummer: " + artikelnummer + " \n Artikel: " + bezeichnung + " \n Artikelpreis: " + artikelPreis + " Euro "+ " \n Bestand: " + verfuegbarkeit +"\n"); 
 	}
 		
 	public int getNummer() {
@@ -58,7 +60,7 @@ public class Artikel implements Comparable<Artikel> {
 	}
 	public void setBestand(int plusBestand) {
 		bestand = plusBestand;
-//		setGruppenpreisBerechnen();
+		setArtikelpreisBerechnen();
 	}
 
 	public boolean isVerfuegbar() {
@@ -71,6 +73,13 @@ public class Artikel implements Comparable<Artikel> {
 	@Override	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
 	public int compareTo(Artikel o) {
 		return toString().compareTo(o.toString());		// zu String und vergelciht mit Artikel "o"
+	}
+	public void setArtikelpreisBerechnen() {
+		gruppenpreis = artikelPreis * bestand;
+	}
+
+	public double getArtikelpreisBerechnen() {
+		return gruppenpreis;
 	}
 
 }
