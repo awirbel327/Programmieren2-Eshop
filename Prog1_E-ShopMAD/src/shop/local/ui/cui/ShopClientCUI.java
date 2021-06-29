@@ -23,6 +23,7 @@ public class ShopClientCUI {
 	private Eshop shop;
 	private BufferedReader in;
 	private User userEingeloggt;
+	private Artikel einArtikel;
 	
 	
 	// Konstruktor-Methode welche neben dem Shop ansich auch einen BufferedReader initalisiert.
@@ -92,7 +93,6 @@ public class ShopClientCUI {
 		List<Artikel>liste;
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);	
-		Artikel einArtikel = null;
 		
 		switch(line) {
 		
@@ -182,8 +182,12 @@ public class ShopClientCUI {
 				System.out.println("Um wie viel soll erhöht werden?: \n");
 				System.out.println("> ");
 				int wkStueck = Integer.parseInt(br.readLine());
+			try {
 				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
 //				System.out.println(shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck));
+			} catch (PackungsgroesseException e) {
+				System.out.println(e.getMessage());
+			}
 			}else {
 				System.out.println("Geben Sie die Artikelnummer ein: \n");
 				System.out.println("> ");

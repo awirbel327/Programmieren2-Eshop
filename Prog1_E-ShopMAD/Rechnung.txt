@@ -158,3 +158,20 @@ Datum: Tue Jun 29 14:06:12 CEST 2021
  Preis pro Artikel: 2.0 Euro
  Artikel gesamtpreis: 10.0
 
+
+Rechnung:
+Datum: Tue Jun 29 14:40:40 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Mareike Aust, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jun 29 14:40:40 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Becks
+ Artikelanzahl: 10
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 10.0
+

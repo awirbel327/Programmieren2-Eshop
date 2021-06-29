@@ -25,8 +25,6 @@ public class ArtikelVerwaltung {
 	
 	private ArtikelVerwaltung meineArtikel;
 //	private Warenkorb warenkorb;
-	private UserVerwaltung meineNutzer;
-	
 //	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
 	
 	private PersistenceManager pm = new FilePersistenceManager();
@@ -116,7 +114,6 @@ public class ArtikelVerwaltung {
 		
 		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelListeVector.add(einArtikel);
-		//Falls es sich um einen neuen Massenartikel handelt, wird der Bestand direkt auf die vorgegebene Packungsgr��e gesetzt
 		if (einArtikel instanceof Massengutartikel) {
 			if (einArtikel.getBestand() % ((Massengutartikel) einArtikel).getPackungsgroesse() !=0) {
 				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzuf�gen");

@@ -26,3 +26,7 @@ Ein Keks
 7
 30
 2.0
+Heineken
+8
+12
+1.0
