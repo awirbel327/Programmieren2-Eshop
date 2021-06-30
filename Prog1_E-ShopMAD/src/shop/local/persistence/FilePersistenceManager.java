@@ -41,8 +41,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			}
 		}
 		return true;
@@ -91,25 +91,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		schreibeZeile(kunde.getUsername());
 		schreibeZeile(kunde.getPasswort());
 		return true;
-		}
+	}
 	
-	// Mitarbeiter wird uebergeben und gespeichert
-		public boolean speicherMitarbeiterDaten(Mitarbeiter mitarbeiter) throws IOException {
-			schreibeZeile(mitarbeiter.getName());
-			schreibeZeile(Integer.toString(mitarbeiter.getMitarbeiterNr()));
-			schreibeZeile(mitarbeiter.getUsername());
-			schreibeZeile(mitarbeiter.getPasswort());
-			return true;
-			}
-		
-	// Artikel wird uebergeben und gespeichert
-		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
-			schreibeZeile(artikel.getBezeichnung());
-			schreibeZeile(Integer.toString(artikel.getNummer()));
-			schreibeZeile(Integer.toString(artikel.getBestand()));
-			schreibeZeile(Double.toString(artikel.getPreis()));
-			return true;
-					}
 	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
@@ -124,26 +107,53 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);	//statt mitarbeiternR vllt nr ?
 	}
 	
+	// Mitarbeiter wird uebergeben und gespeichert
+	public boolean speicherMitarbeiterDaten(Mitarbeiter mitarbeiter) throws IOException {
+		schreibeZeile(mitarbeiter.getName());
+		schreibeZeile(Integer.toString(mitarbeiter.getMitarbeiterNr()));
+		schreibeZeile(mitarbeiter.getUsername());
+		schreibeZeile(mitarbeiter.getPasswort());
+		return true;
+	}
+	
 	
 	//Methode zum laden von Artikeln
 	public Artikel ladeArtikel() throws IOException {
-		String bezeichnung = liesZeile();										//liest Titel
+		String bezeichnung = liesZeile();						//liest Bezeichnung
 		if (bezeichnung == null) {
-			return null;												// keine Daten mehr vorhanden
+			return null;										// keine Daten mehr vorhanden
 		}
-		String nummerString = liesZeile();								//Nummer einlesen
-		int nummer = Integer.parseInt(nummerString);					//String in int konvertieren
-		
-//		String verfuegbarCode = liesZeile();							//Verf�gbar?
-//		boolean verfuegbar = verfuegbarCode.equals("true") ? true : false;	// Codierung des Ausleihstatus in boolean umwandeln
-		String bestandString = liesZeile();						// Bestand einlesen
+		String nummerString = liesZeile();						//Nummer einlesen
+		int nummer = Integer.parseInt(nummerString);			//String in int konvertieren
+		String bestandString = liesZeile();						//Bestand einlesen
 		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren	
-		String preisString = liesZeile();								//Preis einlesen
-		double preis = Double.parseDouble(preisString); 				//String in int konvertieren		
-		return new Artikel(bezeichnung, bestand, preis);	// neues Artikel-Objekt anlegen und zurueckgeben
+		String preisString = liesZeile();						//Preis einlesen
+		double preis = Double.parseDouble(preisString); 		//String in int konvertieren
+		String typ = liesZeile();
+		if (typ.equals("Massengut")) {
+			return new Artikel(bezeichnung, bestand, preis);	//neues Massengut-Objekt anlegen und zurueckgeben
+		} else {
+			return new Artikel(bezeichnung, bestand, preis);	//neues Artikel-Objekt anlegen und zurueckgeben
+		}
+					
+	}
+	
+	// Artikel wird uebergeben und gespeichert
+		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
+			schreibeZeile(artikel.getBezeichnung());
+			schreibeZeile(Integer.toString(artikel.getNummer()));
+			schreibeZeile(Integer.toString(artikel.getBestand()));
+			schreibeZeile(Double.toString(artikel.getPreis()));
+			if (artikel instanceof Massengutartikel) {
+				schreibeZeile("Massengut");
+			} else {
+			schreibeZeile("Einzelgut");
+			}
+			return true;	
 		}
 	
-	
+		
+		
 	// Methode zum Lesen von Dateien
 	private String liesZeile() throws IOException {
 		if (reader != null)
@@ -160,6 +170,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
         else 
         	System.out.println("Fehler?");
     }
+	
+	
 	@Override
 	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
 		// TODO Auto-generated method stub
