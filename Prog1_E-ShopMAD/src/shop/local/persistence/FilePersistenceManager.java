@@ -131,7 +131,9 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		double preis = Double.parseDouble(preisString); 		//String in int konvertieren
 		String typ = liesZeile();
 		if (typ.equals("Massengut")) {
-			return new Artikel(bezeichnung, bestand, preis);	//neues Massengut-Objekt anlegen und zurueckgeben
+			String packungsgroesseString = liesZeile();
+			int packungsgroesse = Integer.parseInt(packungsgroesseString);			//String in int konvertieren
+			return new Massengutartikel(bezeichnung, bestand, preis, packungsgroesse);	//neues Massengut-Objekt anlegen und zurueckgeben
 		} else {
 			return new Artikel(bezeichnung, bestand, preis);	//neues Artikel-Objekt anlegen und zurueckgeben
 		}
@@ -146,6 +148,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			schreibeZeile(Double.toString(artikel.getPreis()));
 			if (artikel instanceof Massengutartikel) {
 				schreibeZeile("Massengut");
+				schreibeZeile(Integer.toString(((Massengutartikel) artikel).getPackungsgroesse()));
 			} else {
 			schreibeZeile("Einzelgut");
 			}
