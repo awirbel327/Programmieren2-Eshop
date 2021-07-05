@@ -97,8 +97,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		}
 	
 	
-	
-	
 	// Kunde wird uebergeben und gespeichert
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
 		schreibeZeile(kunde.getName());
