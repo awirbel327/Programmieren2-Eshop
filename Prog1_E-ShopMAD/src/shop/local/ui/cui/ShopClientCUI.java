@@ -217,7 +217,7 @@ public class ShopClientCUI {
 			Mitarbeiter einMitarbeiter = new Mitarbeiter(name,username, passwort );	//neuen Mitarbeiter erschaffen
 			try {
 				shop.mitarbeiterRegistrieren(einMitarbeiter);
-				System.out.println("Sie haben einen weiteren Mitarbeiter erfolgreich Registriert!");
+				System.out.println(name + " wurde erfolgreich registriert!");
 				shop.speicherMitarbeiter();
 				shop.speicherEreignis();
 			} catch (MitarbeiterExistiertBereitsException e) {

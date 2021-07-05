@@ -30,7 +30,6 @@ public class ArtikelVerwaltung {
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
-	private Massengutartikel mArtikel;
 	
 	
 	//Methode zum Sortieren von Artikel nach ArtikelNummer.
