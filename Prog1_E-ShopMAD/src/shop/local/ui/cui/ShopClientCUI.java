@@ -131,6 +131,7 @@ public class ShopClientCUI {
 				userEingeloggt = einKunde ;
 				System.out.println("Sie haben sich erfolgreich Registriert!");
 				shop.speicherKunden();
+				shop.speicherEreignis();
 			} catch (KundeExistiertBereitsException e) {
 				System.out.println(e.getMessage());
 			}
@@ -216,6 +217,7 @@ public class ShopClientCUI {
 				shop.mitarbeiterRegistrieren(einMitarbeiter);
 				System.out.println("Sie haben einen weiteren Mitarbeiter erfolgreich Registriert!");
 				shop.speicherMitarbeiter();
+				shop.speicherEreignis();
 			} catch (MitarbeiterExistiertBereitsException e) {
 				System.out.println(e.getMessage());
 			}
@@ -277,6 +279,8 @@ public class ShopClientCUI {
 				int erhohung = Integer.parseInt(erhoehung);
 				try {
 				shop.mitErhoehtArtikel(artikelname, erhohung);
+				shop.speicherArtikel();
+				shop.speicherEreignis();
 				} catch (PackungsgroesseException e){
 					System.out.println(e.getMessage());
 				}

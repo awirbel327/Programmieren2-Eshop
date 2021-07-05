@@ -86,7 +86,10 @@ public class Eshop {
 	}
 	
 	public Kunde kundenRegistrieren(Kunde einKunde) throws KundeExistiertBereitsException {
+		Ereignis ereignis = new Ereignis("Kunde", ((Kunde) userEingeloggt).getKundenNr(), einKunde.getName(), 1, "Kunde hinzugefügt");
+		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.registrieren(einKunde);
+		
 	}
 	
 	public void speicherKunden() throws IOException {
@@ -96,6 +99,8 @@ public class Eshop {
 	
 	
 	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einMitarbeiter.getName(), 1, "Mitarbeiter hinzugefügt");
+		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
 	
@@ -154,6 +159,8 @@ public class Eshop {
 
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), artikelname,erhohung, "Artikelbestand Erhoeht");
+		meineEreignisse.addEreignis(ereignis);
 	}
 	
 	
