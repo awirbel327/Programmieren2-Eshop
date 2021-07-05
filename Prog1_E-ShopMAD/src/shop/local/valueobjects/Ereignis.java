@@ -1,11 +1,13 @@
 package shop.local.valueobjects;
 
+import java.util.Date;
+
 public class Ereignis {
 
 	private String kUserId;
 	private int userId;
 	private String artikelbezeichnung;
-	//private String datum;
+	private String datum;
 	private int anzahl;
 	private String aktion;
 	
@@ -16,7 +18,6 @@ public class Ereignis {
 		this.artikelbezeichnung = artikelbezeichnung;
 		this.anzahl = anzahl;
 		this.aktion = aktion;
-		
 		Date df = new Date();
 		this.datum = df.toString();
 	}
