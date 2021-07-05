@@ -51,8 +51,7 @@ public class Eshop {
 		meinWarenkorb = new WarenkorbVerwaltung();
 		
 		meineEreignisse = new EreignisVerwaltung();
-		//meineEreignisse.liesEreignisse("SHOP_Ereignisse.txt");
-		
+		meineEreignisse.liesDaten("SHOP_Ereignisse");
 	}
 	
 	/* Warenkorb-Methoden*/
@@ -117,8 +116,8 @@ public class Eshop {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
 		meineEreignisse.addEreignis(ereignis);
-		
 	}
+	
 	
 	public void speicherArtikel() throws IOException {
 		// TODO Auto-generated method stub
@@ -160,5 +159,10 @@ public class Eshop {
 	
 	public void userEingeloggt(User userEingeloggt) {
 		this.userEingeloggt = userEingeloggt;
+	}
+
+	public void speicherEreignis() throws IOException {
+		meineEreignisse.speicherEreignis();
+		
 	}
 }

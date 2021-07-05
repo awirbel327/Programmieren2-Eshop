@@ -44,3 +44,8 @@ Flens
 1.2
 Massengut
 24
+Hund
+10
+7
+950.0
+Einzelgut

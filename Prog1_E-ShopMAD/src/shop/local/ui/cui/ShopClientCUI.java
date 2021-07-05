@@ -254,6 +254,7 @@ public class ShopClientCUI {
 				shop.mitArtikelHinzu(einArtikel);
 				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
 				shop.speicherArtikel();
+				shop.speicherEreignis();
 			} catch (ArtikelExistiertBereitsException e1) {
 				System.out.println(e1.getMessage());
 			}
@@ -445,6 +446,7 @@ public class ShopClientCUI {
 			}
 			
 		} while (!input.equals("q"));
+		
 	}
 	
 	

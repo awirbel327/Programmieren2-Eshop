@@ -34,7 +34,7 @@ public class EreignisVerwaltung {
 	
 	//ereignis Daten speichern
 	public void speicherEreignis() throws IOException {
-		pm.openForWriting("SHOP_Ereignisse.txt"); // PersistenzManager für Schreibvorgang �ffnen
+		pm.openForWriting("SHOP_Ereignisse"); // PersistenzManager für Schreibvorgang �ffnen
 			for(Ereignis ereignis:ereignisListeVector) {
 				System.out.println("Ein Ereignis wurde gespeichert!");
 				pm.speicherEreignis(ereignis);	
