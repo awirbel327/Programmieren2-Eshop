@@ -117,7 +117,7 @@ public class Eshop {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
 		meineEreignisse.addEreignis(ereignis);
-		//DATUM NOCH HINZUFUEGEN
+		
 	}
 	
 	public void speicherArtikel() throws IOException {

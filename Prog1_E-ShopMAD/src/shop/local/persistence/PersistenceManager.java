@@ -32,5 +32,7 @@ public void openForReading(String datenquelle) throws IOException;
 
 	public boolean speicherArtikelDaten(Artikel artikel) throws IOException;
 	
+	public Ereignis ladeEreignisse() throws IOException;
 	
+	public boolean speicherEreignis(Ereignis ereignis) throws IOException;
 }
