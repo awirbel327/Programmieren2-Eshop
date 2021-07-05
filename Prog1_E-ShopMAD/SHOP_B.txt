@@ -44,9 +44,17 @@ Flens
 1.2
 Massengut
 24
+<<<<<<< HEAD
 Zitronen
 10
 40
 0.2
 Massengut
 5
+=======
+Hund
+10
+7
+950.0
+Einzelgut
+>>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
