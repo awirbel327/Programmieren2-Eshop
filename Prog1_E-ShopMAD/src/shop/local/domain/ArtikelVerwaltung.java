@@ -149,10 +149,7 @@ public class ArtikelVerwaltung {
 
 		// Artikelbestand durchlaufen und nach Bezeichnung des Artikels suchen
 		Iterator<Artikel> iter = artikelListeVector.iterator();
-		while (iter.hasNext()) {
-			// WICHTIG: Type Cast auf 'Buch' für späteren Zugriff auf Titel
-			// 		    hier nicht erforderlich wegen Verwendung von Generics   ------>>> HIER NOCHMAL PR�FEN WENN WIR GENERCIS HATTEN
-			// 			(-> Vergleiche mit Einsatz von Vector OHNE Generics) 
+		while (iter.hasNext()) { 
 			Artikel a = iter.next();
 				if (a.getBezeichnung().equals(bezeichnung)) //TITEL = BEZEICHNUNG?
 					suchErg.add(a);
@@ -164,7 +161,7 @@ public class ArtikelVerwaltung {
 	public void speicherArtikel() throws IOException {
 		pm.openForWriting("SHOP_B.txt"); // PersistenzManager für Schreibvorgang �ffnen
 			for(Artikel artikel:artikelListeVector) {
-				System.out.println(artikel.getBezeichnung() + " wurde gespeichert");
+				//System.out.println(artikel.getBezeichnung() + " wurde gespeichert");
 				pm.speicherArtikelDaten(artikel);	
 			}
 				pm.close();

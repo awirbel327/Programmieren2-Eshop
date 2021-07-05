@@ -176,30 +176,33 @@ public class ShopClientCUI {
 		case "e":
 			System.out.println("Artikelbestand im Warenkorb erhÃ¶hen (5) oder senken(6)? > ");
 			int abfrageWK = Integer.parseInt(br.readLine());
+			System.out.println("Geben Sie die Artikelnummer ein: \n");
+			System.out.println("> ");
+			int wkNummer = Integer.parseInt(br.readLine());
+			int wkStueck = 0;
 			if(abfrageWK == 5) {
-				System.out.println("Geben Sie die Artikelnummer ein: \n");
-				System.out.println("> ");
-				int wkNummer = Integer.parseInt(br.readLine());
 				System.out.println("Um wie viel soll erhÃ¶ht werden?: \n");
 				System.out.println("> ");
-				int wkStueck = Integer.parseInt(br.readLine());
+				wkStueck = Integer.parseInt(br.readLine());
+			}
+			else if(abfrageWK == 6 ) {
+				System.out.println("Um wie viel soll gesenkt werden?: \n");
+				System.out.println("> ");
+				wkStueck = Integer.parseInt(br.readLine());
+				wkStueck = -wkStueck;
+			} 
+			else {
+				System.out.println("bitte wählen Sie (5) oder (6) aus.");
+			}
 			try {
 				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
-//				System.out.println(shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck));
+				System.out.println("Die Artikelanzahl wurde erfolgreich angepasst.");
 			} catch (PackungsgroesseException e) {
 				System.out.println(e.getMessage());
 			} catch (LagerbestandsException e) {
 				System.out.println(e.getMessage());
 			}
-			}else {
-				System.out.println("Geben Sie die Artikelnummer ein: \n");
-				System.out.println("> ");
-				int wkNummer2 = Integer.parseInt(br.readLine());
-				System.out.println("Um wie viel soll gesenkt werden?: \n");
-				System.out.println("> ");
-				int wkStueck2 = Integer.parseInt(br.readLine());
-//				System.out.println(shop.senkeEinkauf(wkNummer2,wkStueck2));
-			}
+			
 			gibMenueAus();
 			break;
 			case "f":
@@ -256,7 +259,7 @@ public class ShopClientCUI {
 			
 			try {
 				shop.mitArtikelHinzu(einArtikel);
-				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
+				System.out.println("Sie haben " + einArtikel  + " erfolgreich zum Lager hinzugefuegt!");
 				shop.speicherArtikel();
 				shop.speicherEreignis();
 			} catch (ArtikelExistiertBereitsException e1) {
@@ -271,6 +274,7 @@ public class ShopClientCUI {
 		case "l":
 			System.out.print("Artikelbezeichnung :   >");
 			String artikelname = liesEingabe();
+			//Wieso Liste?
 			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
 				System.out.println("fehler mehr als 1 artikel in liste!");
@@ -289,7 +293,7 @@ public class ShopClientCUI {
 			}
 			break;
 		default:
-			System.out.println("Der Vorgang wurde abgebrochen\n");
+			System.out.println("Der Vorgang wurde abgebrochen. Bitte wählen Sie eine der vorgegebenen Optionen aus.\n");
 			gibMenueAus();
 		}
 	}
@@ -315,7 +319,7 @@ public class ShopClientCUI {
 		}
 		try {
 			Kunde kunde = shop.kundenlogIn(username, passwort);
-			System.out.println("Hallo "+ kunde.getName()+ "!! SchÃ¶n, dass du da bist!");
+			System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
 			userEingeloggt = kunde;
 			shop.userEingeloggt(kunde);
 		} catch (PasswortOderUsernameFalschException e) {
@@ -393,7 +397,7 @@ public class ShopClientCUI {
 		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
 		artAnzahl = Integer.parseInt(br.readLine());
 		} catch (NumberFormatException exception) {
-			System.out.println("Geben sie eine Zahl ein!!!");
+			System.out.println("Geben Sie eine Zahl ein!!!");
 			System.out.print("> ");
 			menueWk(br);
 		}

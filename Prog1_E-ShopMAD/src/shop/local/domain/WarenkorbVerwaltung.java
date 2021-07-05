@@ -58,16 +58,12 @@ public class WarenkorbVerwaltung {
 					bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getBezeichnung()
 						+ " in der Stueckzahl " + artAnzahl + " befuellt.\n";
 					}
-					//}else {
-					//System.out.println("zu wenig Artikel im Bestand");
 				} else {
 					throw new LagerbestandsException(gefundenArt);
 				}
 			}
-//			}
 		}
 		return bestaetigung;
-//		System.out.println(bestaetigung);
 	}
 	
 
