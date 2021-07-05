@@ -1,6 +1,6 @@
 package shop.local.valueobjects;
 
-public class Mitarbeiter extends User{
+public class Mitarbeiter extends User {
 
 	private String name;
 	private int mitarbeiterNr;
@@ -16,7 +16,7 @@ public class Mitarbeiter extends User{
 		this.passwort = passwort;
 	}
 	
-	//Konstruktor 2 Registrieren Mitarbeiter höhö
+	//Konstruktor 2 Registrieren Mitarbeiter
 	public Mitarbeiter(String name, String username, String passwort) {
 		super(name, username, passwort);
 		this.name = name;

@@ -24,7 +24,7 @@ import shop.local.domain.UserVerwaltung;
 
 public class Eshop {
 	
-	private String datei = "";
+	private String datei;;
 	
 	private ArtikelVerwaltung meineArtikel;
 	private WarenkorbVerwaltung meinWarenkorb;
@@ -71,7 +71,7 @@ public class Eshop {
 		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
 	}
 	
-	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException {
+	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
 		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
 	
@@ -142,16 +142,7 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
 
-	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
-	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-		Artikel gesuchterArt = null; // warum =null?
-		for (int i = 0; artListe.size() > i; i++) {
-			if(artListe.elementAt(i).getNummer() == nummer) {
-				 gesuchterArt = artListe.elementAt(i);
-			}
-		}
-		return gesuchterArt;
-	}
+
 
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);

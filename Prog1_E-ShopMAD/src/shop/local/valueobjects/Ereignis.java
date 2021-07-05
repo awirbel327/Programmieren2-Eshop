@@ -1,14 +1,11 @@
 package shop.local.valueobjects;
 
-import java.io.FileWriter;
-import java.util.Date;
-
 public class Ereignis {
 
 	private String kUserId;
 	private int userId;
 	private String artikelbezeichnung;
-	private String datum;
+	//private String datum;
 	private int anzahl;
 	private String aktion;
 	

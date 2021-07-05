@@ -132,6 +132,16 @@ public class ArtikelVerwaltung {
 		return artikelListeVector;
 	}
 	
+	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
+	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
+		Artikel gesuchterArt = null; // warum =null?
+		for (int i = 0; artListe.size() > i; i++) {
+			if(artListe.elementAt(i).getNummer() == nummer) {
+				 gesuchterArt = artListe.elementAt(i);
+			} 
+		}
+		return gesuchterArt;
+	}
 	
 	// Methode die einen Artikel anhand des Titels (BEZEICHNUNG???) sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt
 	// FRAGE:warum wird hier eine Liste ausgegeben? Haben die Artikel nicht sowieso unique Bezeichnungen? Wof�r wird diese Methode gebraucht?
@@ -176,20 +186,20 @@ public class ArtikelVerwaltung {
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		for (Artikel artikel:artikelListeVector) {
 			if(artikelname.equals(artikel.getBezeichnung())) {
-				if (artikel instanceof Massengutartikel && artikel.getBestand() + erhohung % ((Massengutartikel) artikel).getPackungsgroesse() != 0) { //Downcasting
-					mArtikel = (Massengutartikel)artikel;
-					throw new PackungsgroesseException(mArtikel, "-in mitErhoehtArtikel");
-				}
+				if (artikel instanceof Massengutartikel && erhohung % ((Massengutartikel) artikel).getPackungsgroesse() != 0) { //Downcasting
+					throw new PackungsgroesseException((Massengutartikel)artikel, "-in mitErhoehtArtikel");
+				} 
 				artikel.setBestand(artikel.getBestand() + erhohung);
+				try {
+					speicherArtikel();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			try {
-			speicherArtikel();
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-		}
+		}	
 	}
+	
 	public void aendereBestandDurchKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
 		pm.bestandKauf(name, bestandEins, bestandZwei, username);
 		pm.artikellisteAbspeichernPm(artikelListeVector);

@@ -1,12 +1,9 @@
 package shop.local.persistence;
 
-import shop.local.persistence.PersistenceManager;
 
 import java.util.*;
 import java.io.BufferedReader;
-import shop.local.valueobjects.*;	// * = importiert alles aus valueobjects
-import shop.local.domain.*;
-import java.io.BufferedReader;
+import shop.local.valueobjects.*;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,12 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 //Fuer Dateien einlesen usw.
-
-public class FilePersistenceManager  implements PersistenceManager  {
+public class FilePersistenceManager implements PersistenceManager  {
 	private BufferedReader reader = null;
 	private PrintWriter writer = null;
 	
@@ -30,7 +23,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	public void openForWriting(String datei) throws IOException {	
 		writer = new PrintWriter(new BufferedWriter(new FileWriter(datei)));
 	}
-	
 	
 	//Close() -->  zum schlie�en der leser und schreiber
 	public boolean close() {
@@ -67,6 +59,17 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
 	
+	// Kunde wird uebergeben und gespeichert
+	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
+		schreibeZeile(kunde.getName());
+		schreibeZeile(kunde.getStrasse());
+		schreibeZeile(Integer.toString(kunde.getHausNr()));
+		schreibeZeile(Integer.toString(kunde.getPlz()));
+		schreibeZeile(kunde.getOrt());
+		schreibeZeile(kunde.getUsername());
+		schreibeZeile(kunde.getPasswort());
+		return true;
+	}
 	//Ereignis laden Methode ?
 		/*
 	
@@ -81,17 +84,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	}*/
 	
 	
-	// Kunde wird uebergeben und gespeichert
-	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
-		schreibeZeile(kunde.getName());
-		schreibeZeile(kunde.getStrasse());
-		schreibeZeile(Integer.toString(kunde.getHausNr()));
-		schreibeZeile(Integer.toString(kunde.getPlz()));
-		schreibeZeile(kunde.getOrt());
-		schreibeZeile(kunde.getUsername());
-		schreibeZeile(kunde.getPasswort());
-		return true;
-	}
+	
 	
 	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
@@ -103,8 +96,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		int mitarbeiterNr = Integer.parseInt(mitarbeiterNrString);
 		String username = liesZeile();
 		String passwort = liesZeile();
-		
-		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);	//statt mitarbeiternR vllt nr ?
+		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);
 	}
 	
 	// Mitarbeiter wird uebergeben und gespeichert
@@ -124,7 +116,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			return null;										// keine Daten mehr vorhanden
 		}
 		String nummerString = liesZeile();						//Nummer einlesen
-		int nummer = Integer.parseInt(nummerString);			//String in int konvertieren
+		//int nummer = Integer.parseInt(nummerString);			//String in int konvertieren
 		String bestandString = liesZeile();						//Bestand einlesen
 		int bestand = Integer.parseInt(bestandString);			//String in int konvertieren	
 		String preisString = liesZeile();						//Preis einlesen
@@ -141,18 +133,18 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	}
 	
 	// Artikel wird uebergeben und gespeichert
-		public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
-			schreibeZeile(artikel.getBezeichnung());
-			schreibeZeile(Integer.toString(artikel.getNummer()));
-			schreibeZeile(Integer.toString(artikel.getBestand()));
-			schreibeZeile(Double.toString(artikel.getPreis()));
-			if (artikel instanceof Massengutartikel) {
-				schreibeZeile("Massengut");
-				schreibeZeile(Integer.toString(((Massengutartikel) artikel).getPackungsgroesse()));
-			} else {
+	public boolean speicherArtikelDaten(Artikel artikel) throws IOException {
+		schreibeZeile(artikel.getBezeichnung());
+		schreibeZeile(Integer.toString(artikel.getNummer()));
+		schreibeZeile(Integer.toString(artikel.getBestand()));
+		schreibeZeile(Double.toString(artikel.getPreis()));
+		if (artikel instanceof Massengutartikel) {
+			schreibeZeile("Massengut");
+			schreibeZeile(Integer.toString(((Massengutartikel) artikel).getPackungsgroesse()));
+		} else {
 			schreibeZeile("Einzelgut");
-			}
-			return true;	
+		}
+		return true;	
 		}
 	
 		

@@ -187,6 +187,8 @@ public class ShopClientCUI {
 //				System.out.println(shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck));
 			} catch (PackungsgroesseException e) {
 				System.out.println(e.getMessage());
+			} catch (LagerbestandsException e) {
+				System.out.println(e.getMessage());
 			}
 			}else {
 				System.out.println("Geben Sie die Artikelnummer ein: \n");

@@ -19,8 +19,6 @@ public class Kunde extends User {
 		warenkorb = new Warenkorb();
 	}
 
-
-	
 	// getter und setter usw Kunden-Eigenschaften
 	public int getKundenNr() {
 		return kundenNr;

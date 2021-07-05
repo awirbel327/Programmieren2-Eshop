@@ -40,7 +40,13 @@ Heineken
 Einzelgut
 Flens
 9
-24
+96
 1.2
 Massengut
 24
+Zitronen
+10
+40
+0.2
+Massengut
+5

@@ -9,16 +9,15 @@ import shop.local.valueobjects.*;
 public interface PersistenceManager {
 
 	
-public void openForReading(String datenquelle) throws IOException;
+	public void openForReading(String datenquelle) throws IOException;
 	
 	public void openForWriting(String datenquelle) throws IOException;
 	
 	public Artikel ladeArtikel() throws IOException;
 	
 	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException;
-	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector) throws FileNotFoundException, IOException;
-
 	
+	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector) throws FileNotFoundException, IOException;
 	
 	public boolean close();
 	

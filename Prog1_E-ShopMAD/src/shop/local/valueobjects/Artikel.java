@@ -7,34 +7,21 @@ import shop.local.valueobjects.Artikel;
 
 public class Artikel implements Comparable<Artikel> {
 
-
 	// Attribute zur Beschreibung eines Artikels:
 	 String bezeichnung;
 	 int artikelnummer;
 	 boolean verfuegbar; 
-	 int bestand;		//String damit Warnung weg geht ?
+	 int bestand;	
 	 double artikelPreis;
 	 double gruppenpreis;
 
 	
-	public Artikel(String bezeichnung, int bestand, double artikelPreis) { //int verfügbar
-//		artikelnummer = nr;
-		this.bezeichnung = bezeichnung;
-		this.artikelnummer = artikelnummer;
-//		this.verfuegbar = verfuegbar; 
+	public Artikel(String bezeichnung, int bestand, double artikelPreis) {
+		this.bezeichnung = bezeichnung; 
 		this.bestand = bestand;
 		this.artikelPreis = artikelPreis;
 		setArtikelpreisBerechnen();
 	}
-	
-//	int artikelBestand, String artikelName, double artikelPreis, int massengutGroesse
-	//Wo wird dieser Konstruktor verwendet? Wenn der Artikel in den Warenkorb gelegt wird?
-//	public Artikel(String bezeichnung, int bestand2, double artikelPreis2) {
-//		this.bezeichnung = bezeichnung;
-//		this.verfuegbar = true; 
-//		this.bestand = bestand2;
-//		this.artikelPreis = artikelPreis2;
-//	}
 
 	// wird benötigt um die Artikel aus der Liste auszugeben
 	public String toString() {
@@ -46,7 +33,6 @@ public class Artikel implements Comparable<Artikel> {
 		return artikelnummer;
 	}
 	
-	//Setter fuer Artikelnummer	
 	public void setNummer(int artikelZaehler) {
 		artikelnummer = artikelZaehler;
 	}
