@@ -108,7 +108,7 @@ public class ArtikelVerwaltung {
 		artikelListeVector.add(einArtikel);
 		if (einArtikel instanceof Massengutartikel) {
 			if (einArtikel.getBestand() % ((Massengutartikel) einArtikel).getPackungsgroesse() !=0) {
-				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzuf�gen");
+				throw new PackungsgroesseException((Massengutartikel) einArtikel, "-in mitArtikelhinzufuegen");
 			}
 		}
 		return;
