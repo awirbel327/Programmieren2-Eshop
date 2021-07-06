@@ -17,7 +17,8 @@ public interface PersistenceManager {
 	
 	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException;
 	
-	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector) throws FileNotFoundException, IOException;
+	//LÖSCHEN WENN NOCH KOMMENTOERT
+	//public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector) throws FileNotFoundException, IOException;
 	
 	public boolean close();
 	

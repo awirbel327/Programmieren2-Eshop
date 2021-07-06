@@ -23,7 +23,7 @@ import shop.local.valueobjects.Rechnung;
 public class WarenkorbVerwaltung {
 
 
-	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
+	//LÖSCHEN WENN NOCH KOMM public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	private Vector<Artikel> warenkorbVector = new Vector<Artikel>();
 	private double wkGesamtpreis;
 	private Artikel gesuchterArt;
@@ -57,7 +57,7 @@ public class WarenkorbVerwaltung {
 		return bestaetigung;
 	}
 	
-	// Methode zum ErhÃ¶hen der Anzahl des Artikels im WK
+	// Methode zum Erhoehen der Anzahl des Artikels im WK
 		public void erhoeheEinkauf(Kunde kundEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException { 
 			Vector<Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
 			//suchen im Warenkorb des Kunden
@@ -73,14 +73,14 @@ public class WarenkorbVerwaltung {
 	}
 	
 
-	// Methode die prï¿½ft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
+	// Methode die prueft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
 		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
 
 			if (wkBestandspruefung(gefundenArt, userEingeloggt) == true) {
 				erhoeheEinkauf(userEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);
 
 			} else {
-				//Wahrscheinlich Unnï¿½tig
+				//Wahrscheinlich Unnoetig
 				if (gefundenArt instanceof Massengutartikel) {
 					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
 				} else {
@@ -129,7 +129,8 @@ public class WarenkorbVerwaltung {
 		String bestaetigung = "";
 		berechneWkGesamt();
 		Vector <Artikel> warenkorbInhalt = userEingeloggt.getWk().getListe();
-		for(Artikel a: warenkorbInhalt) {
+		//LÖSCHEN
+		/*for(Artikel a: warenkorbInhalt) {
 			int nummer = a.getNummer();
 			int bestand = a.getBestand();
 			Vector <Artikel> artikelliste = meineArtikel.getArtikelliste();
@@ -137,16 +138,17 @@ public class WarenkorbVerwaltung {
 					if(l.getNummer() == nummer) {
 						int aktuellerBestand = l.getBestand();
 						l.setBestand(aktuellerBestand - bestand);
-						meineArtikel.aendereBestandDurchKauf(l.getBezeichnung(), aktuellerBestand, l.getBestand(),userEingeloggt.getUsername()); 
-						LocalDate currentDate = LocalDate.now();
+						//LÖSCHEN meineArtikel.aendereBestandDurchKauf(l.getBezeichnung(), aktuellerBestand, l.getBestand(),userEingeloggt.getUsername()); 
+						*/
 //						Ereignis kaufEreignis = new Ereignis(currentDate, l.getBezeichnung(), l.getBestand(), userEingeloggt.getUsername());
 //						vecEreignisse.add(kaufEreignis);
 //						artikelverwaltung.artVEreignis(vecEreignisse);
+						LocalDate currentDate = LocalDate.now();
 						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); //userEingeloggt, userEingeloggt.getWk().getWkGesamtpreis()
 						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; // userEingeloggt.getWk().getWkGesamtpreis() + "Euro \n\n";
-					}
-				}
-		}
+					//}
+				//}
+		//}
 		userEingeloggt.getWk().warenkorbLeeren();
 		return bestaetigung;	
 	}		

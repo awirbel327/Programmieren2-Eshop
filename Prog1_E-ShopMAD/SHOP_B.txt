@@ -1,6 +1,6 @@
 Bananen
 1
-10
+8
 1.0
 Einzelgut
 Aepfel
@@ -36,7 +36,7 @@ Zitronen
 Massengut
 5
 Hund
-10
+8
 7
 950.0
 Einzelgut

@@ -189,9 +189,9 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		
 	}
 
-	@Override
+	/*@Override LÖSCHEN ?!
 	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector)
 			throws FileNotFoundException, IOException {
 		
-	}
+	}*/
 }

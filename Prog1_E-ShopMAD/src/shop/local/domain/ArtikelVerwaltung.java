@@ -46,7 +46,10 @@ public class ArtikelVerwaltung {
 				return nr1.compareTo(nr2);	// vergleich Nachbarn (nur Strings vergelichbar)
 			}
 		});
-		System.out.println(Arrays.asList(vecZuArr));
+		for(int i = 0; vecZuArr.length > i ;i++) {
+			Artikel art = vecZuArr[i];
+			System.out.println(art.toString());
+		}
 	}
 	
 	
@@ -60,7 +63,12 @@ public class ArtikelVerwaltung {
 				return artikel1.getBezeichnung().compareTo(artikel2.getBezeichnung());	// vergleichen Nachbarn anhand von Buchstaben
 			}
 		});
-		System.out.println(Arrays.asList(vecZuArr));
+		//System.out.println(Arrays.asList(vecZuArr));
+		for(int i = 0; vecZuArr.length > i ;i++) {
+			Artikel art = vecZuArr[i];
+			System.out.println(art.toString());
+			
+		}
 	}		
 	
 	// Methode der unsere E-Shop Datei �bergeben wird um die Artikelliste in die Persistenz zu �berf�hren
@@ -140,6 +148,22 @@ public class ArtikelVerwaltung {
 				pm.close();
 		}
 	
+	public void kaufen(Vector <Artikel> warenkorb) {
+		for(Artikel artikel:warenkorb) {
+			for(Artikel arti:artikelListeVector) {
+				if(artikel.getNummer() == arti.getNummer()) {
+					arti.setBestand(arti.getBestand() - artikel.getBestand());
+				}
+			}
+		}
+		try {
+			speicherArtikel();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//Methode um Artikelbestand zu erh�hen (Mitarbeiter)
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		for (Artikel artikel:artikelListeVector) {
@@ -157,9 +181,9 @@ public class ArtikelVerwaltung {
 		}	
 	}
 	
-	public void aendereBestandDurchKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
+	/*public void aendereBestandDurchKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
 		pm.bestandKauf(name, bestandEins, bestandZwei, username);
-		pm.artikellisteAbspeichernPm(artikelListeVector);
-	}
+		//pm.artikellisteAbspeichernPm(artikelListeVector);
+	}*/
 
 }

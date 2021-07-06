@@ -2,7 +2,7 @@ package shop.local.domain;
 
 import java.io.IOException;
 import java.util.List;
-
+import java.util.Vector;
 
 import shop.local.domain.exceptions.*;
 
@@ -64,6 +64,8 @@ public class Eshop {
 	}
 
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
+		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
+		meineArtikel.kaufen(warenkorb);
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
 	}
 	
