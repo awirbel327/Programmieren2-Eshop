@@ -1,6 +1,5 @@
 package shop.local.valueobjects;
 
-import java.io.FileWriter;
 import java.util.Date;
 
 public class Ereignis {
@@ -19,17 +18,28 @@ public class Ereignis {
 		this.artikelbezeichnung = artikelbezeichnung;
 		this.anzahl = anzahl;
 		this.aktion = aktion;
-		
-		//DATUM NOCH AUTOMATISCH ERSTELLEN 
-		/*FileWriter fw = new FileWriter("Rechnung.txt", true);
-			Date df = new Date();
-			fw.write("\nRechnung:\n" + "Datum: " + df.toString() + "\n" + rechnungsNachricht);
-			fw.close();*/
+		Date df = new Date();
+		this.datum = df.toString();
 	}
 	
-	//getterundsetter
+	//Einlese-Konstruktor
+	public Ereignis(String kUserId, int userId,String artikelbezeichnung, int anzahl, String aktion, String datum ) {
+		this.kUserId = kUserId;
+		this.userId =userId;
+		this.artikelbezeichnung = artikelbezeichnung;
+		this.anzahl = anzahl;
+		this.aktion = aktion;
+		this.datum = datum;
+	}
+	
+	//getter
+	
 	public String getKUserId() {
 		return kUserId;
+	}
+	
+	public String getDatum() {
+		return datum;
 	}
 
 	

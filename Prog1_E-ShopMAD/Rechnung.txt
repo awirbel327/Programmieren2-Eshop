@@ -175,3 +175,84 @@ Datum: Tue Jun 29 14:40:40 CEST 2021
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 10.0
 
+
+Rechnung:
+Datum: Mon Jul 05 15:19:43 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Hannah, 
+ 
+ Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 8
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 8.0
+
+Artikelname: Handy
+ Artikelanzahl: 1
+ Preis pro Artikel: 100.0 Euro
+ Artikel gesamtpreis: 100.0
+
+Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+
+
+Rechnung:
+Datum: Mon Jul 05 15:19:43 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Hannah, 
+ 
+ Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 8
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 8.0
+
+Artikelname: Handy
+ Artikelanzahl: 1
+ Preis pro Artikel: 100.0 Euro
+ Artikel gesamtpreis: 100.0
+
+Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+
+
+Rechnung:
+Datum: Mon Jul 05 15:19:43 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Hannah, 
+ 
+ Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 8
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 8.0
+
+Artikelname: Handy
+ Artikelanzahl: 1
+ Preis pro Artikel: 100.0 Euro
+ Artikel gesamtpreis: 100.0
+
+Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+

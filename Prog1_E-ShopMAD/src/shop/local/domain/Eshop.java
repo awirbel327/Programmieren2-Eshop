@@ -24,7 +24,7 @@ import shop.local.domain.UserVerwaltung;
 
 public class Eshop {
 	
-	private String datei = "";
+	private String datei;;
 	
 	private ArtikelVerwaltung meineArtikel;
 	private WarenkorbVerwaltung meinWarenkorb;
@@ -51,8 +51,7 @@ public class Eshop {
 		meinWarenkorb = new WarenkorbVerwaltung();
 		
 		meineEreignisse = new EreignisVerwaltung();
-		//meineEreignisse.liesEreignisse("SHOP_Ereignisse.txt");
-		
+		meineEreignisse.liesDaten("SHOP_Ereignisse");
 	}
 	
 	/* Warenkorb-Methoden*/
@@ -71,10 +70,15 @@ public class Eshop {
 		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
 	}
 	
+
 //	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException {
 //		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 //	}
-	
+
+	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
+		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
+	}
+
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
 	}
@@ -88,7 +92,10 @@ public class Eshop {
 	}
 	
 	public Kunde kundenRegistrieren(Kunde einKunde) throws KundeExistiertBereitsException {
+		Ereignis ereignis = new Ereignis("Kunde", ((Kunde) userEingeloggt).getKundenNr(), einKunde.getName(), 1, "Kunde hinzugef�gt");
+		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.registrieren(einKunde);
+		
 	}
 	
 	public void speicherKunden() throws IOException {
@@ -98,6 +105,8 @@ public class Eshop {
 	
 	
 	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einMitarbeiter.getName(), 1, "Mitarbeiter hinzugef�gt");
+		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
 	
@@ -118,8 +127,8 @@ public class Eshop {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
 		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
 		meineEreignisse.addEreignis(ereignis);
-		//DATUM NOCH HINZUFUEGEN
 	}
+	
 	
 	public void speicherArtikel() throws IOException {
 		// TODO Auto-generated method stub
@@ -143,23 +152,21 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
 
-	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
-	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-		Artikel gesuchterArt = null; // warum =null?
-		for (int i = 0; artListe.size() > i; i++) {
-			if(artListe.elementAt(i).getNummer() == nummer) {
-				 gesuchterArt = artListe.elementAt(i);
-			}
-		}
-		return gesuchterArt;
-	}
+
 
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), artikelname,erhohung, "Artikelbestand Erhoeht");
+		meineEreignisse.addEreignis(ereignis);
 	}
 	
 	
 	public void userEingeloggt(User userEingeloggt) {
 		this.userEingeloggt = userEingeloggt;
+	}
+
+	public void speicherEreignis() throws IOException {
+		meineEreignisse.speicherEreignis();
+		
 	}
 }

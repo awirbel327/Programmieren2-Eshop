@@ -131,6 +131,7 @@ public class ShopClientCUI {
 				userEingeloggt = einKunde ;
 				System.out.println("Sie haben sich erfolgreich Registriert!");
 				shop.speicherKunden();
+				shop.speicherEreignis();
 			} catch (KundeExistiertBereitsException e) {
 				System.out.println(e.getMessage());
 			}
@@ -173,6 +174,7 @@ public class ShopClientCUI {
 			
 		// Warenkorb bearbeiten
 		case "e":
+
 //			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)");
 //			System.out.println("> ");
 //			int abfrageWK = Integer.parseInt(br.readLine());
@@ -195,6 +197,37 @@ public class ShopClientCUI {
 //				}
 //			}				
 //			}
+
+			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)? > ");
+			int abfrageWK = Integer.parseInt(br.readLine());
+			System.out.println("Geben Sie die Artikelnummer ein: \n");
+			System.out.println("> ");
+			int wkNummer = Integer.parseInt(br.readLine());
+			int wkStueck = 0;
+			if(abfrageWK == 5) {
+				System.out.println("Um wie viel soll erhöht werden?: \n");
+				System.out.println("> ");
+				wkStueck = Integer.parseInt(br.readLine());
+			}
+			else if(abfrageWK == 6 ) {
+				System.out.println("Um wie viel soll gesenkt werden?: \n");
+				System.out.println("> ");
+				wkStueck = Integer.parseInt(br.readLine());
+				wkStueck = -wkStueck;
+			} 
+			else {
+				System.out.println("bitte w�hlen Sie (5) oder (6) aus.");
+			}
+			try {
+				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
+				System.out.println("Die Artikelanzahl wurde erfolgreich angepasst.");
+			} catch (PackungsgroesseException e) {
+				System.out.println(e.getMessage());
+			} catch (LagerbestandsException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			gibMenueAus();
 			break;
 			case "f":
 			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));
@@ -211,8 +244,9 @@ public class ShopClientCUI {
 			Mitarbeiter einMitarbeiter = new Mitarbeiter(name,username, passwort );	//neuen Mitarbeiter erschaffen
 			try {
 				shop.mitarbeiterRegistrieren(einMitarbeiter);
-				System.out.println("Sie haben einen weiteren Mitarbeiter erfolgreich Registriert!");
+				System.out.println(name + " wurde erfolgreich registriert!");
 				shop.speicherMitarbeiter();
+				shop.speicherEreignis();
 			} catch (MitarbeiterExistiertBereitsException e) {
 				System.out.println(e.getMessage());
 			}
@@ -249,8 +283,9 @@ public class ShopClientCUI {
 			
 			try {
 				shop.mitArtikelHinzu(einArtikel);
-				System.out.println("Sie haben einen Artikel erfolgreich neu hinzugefuegt!");
+				System.out.println("Sie haben " + einArtikel  + " erfolgreich zum Lager hinzugefuegt!");
 				shop.speicherArtikel();
+				shop.speicherEreignis();
 			} catch (ArtikelExistiertBereitsException e1) {
 				System.out.println(e1.getMessage());
 			}
@@ -263,6 +298,7 @@ public class ShopClientCUI {
 		case "l":
 			System.out.print("Artikelbezeichnung :   >");
 			String artikelname = liesEingabe();
+			//Wieso Liste?
 			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
 				System.out.println("fehler mehr als 1 artikel in liste!");
@@ -273,13 +309,15 @@ public class ShopClientCUI {
 				int erhohung = Integer.parseInt(erhoehung);
 				try {
 				shop.mitErhoehtArtikel(artikelname, erhohung);
+				shop.speicherArtikel();
+				shop.speicherEreignis();
 				} catch (PackungsgroesseException e){
 					System.out.println(e.getMessage());
 				}
 			}
 			break;
 		default:
-			System.out.println("Der Vorgang wurde abgebrochen\n");
+			System.out.println("Der Vorgang wurde abgebrochen. Bitte w�hlen Sie eine der vorgegebenen Optionen aus.\n");
 			gibMenueAus();
 		}
 	}
@@ -305,7 +343,7 @@ public class ShopClientCUI {
 		}
 		try {
 			Kunde kunde = shop.kundenlogIn(username, passwort);
-			System.out.println("Hallo "+ kunde.getName()+ "!! Schön, dass du da bist!");
+			System.out.println("Hallo "+ kunde.getName()+ "!! Sch�n, dass du da bist!");
 			userEingeloggt = kunde;
 			shop.userEingeloggt(kunde);
 		} catch (PasswortOderUsernameFalschException e) {
@@ -383,7 +421,7 @@ public class ShopClientCUI {
 		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
 		artAnzahl = Integer.parseInt(br.readLine());
 		} catch (NumberFormatException exception) {
-			System.out.println("Geben sie eine Zahl ein!!!");
+			System.out.println("Geben Sie eine Zahl ein!!!");
 			System.out.print("> ");
 			menueWk(br);
 		}
@@ -442,6 +480,7 @@ public class ShopClientCUI {
 			}
 			
 		} while (!input.equals("q"));
+		
 	}
 	
 	

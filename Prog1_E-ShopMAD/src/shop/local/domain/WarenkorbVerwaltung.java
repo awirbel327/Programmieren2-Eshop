@@ -43,48 +43,45 @@ public class WarenkorbVerwaltung {
 
 	}
 
+
 	// Methode die pr�ft ob noch genug Artikel auf Lager sind
-	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws PackungsgroesseException{
-//		throws LagerbestandsException, PackungsgroesseException 
+
+	// Methode die pr�ft ob noch genug Artikel auf Lager sind
+	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws PackungsgroesseException, LagerbestandsException{
+		Artikel gefundenArt;
 		Vector<Artikel> artListe = meineArtikel.getArtikelliste();
 		String bestaetigung = "Es ist ein Fehler aufgetreten, versuchen Sie es noch mal.";
 // 		Die Artikelliste wird nach den gewuenschten Artikel durchsucht.
 		for (int i = 0; artListe.size() > i; i++) {
 			if (artListe.elementAt(i).getNummer() == artNummer) {
-				Artikel gefundenArt = artListe.elementAt(i);
+				gefundenArt = artListe.elementAt(i);
 //					Hat man den Artikel gefunden, wird geschaut ob man genug auf Lager hat.
 				if ((gefundenArt.getBestand() >= artAnzahl) == true) {
 					if (gefundenArt instanceof Massengutartikel	&& artAnzahl % ((Massengutartikel) gefundenArt).getPackungsgroesse() != 0) {
 						throw new PackungsgroesseException((Massengutartikel) gefundenArt, "-inerhoeheEinkauf");
-					}
-				hinzufuegenOderErhoehen(userEingeloggt, gefundenArt, artAnzahl, meineArtikel);
-				bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getBezeichnung()
+					} else {
+					hinzufuegenOderErhoehen(userEingeloggt, gefundenArt, artAnzahl, meineArtikel);
+					bestaetigung = "Sie haben Ihren Warenkorb erfolgreich mit dem Artikel " + gefundenArt.getBezeichnung()
 						+ " in der Stueckzahl " + artAnzahl + " befuellt.\n";
-
-				// } else {
-//						throw new LagerbestandsException(gefundenArt);
-				}else {
-					System.out.println("zu wenig Artikel im Bestand");
+					}
+				} else {
+					throw new LagerbestandsException(gefundenArt);
 				}
 			}
-			
 		}
-//		}
 		return bestaetigung;
-//		System.out.println(bestaetigung);
 	}
 	
 
 	// Methode zum Erhöhen der Anzahl des Artikels im WK
-		public void erhoeheEinkauf(Kunde kundEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) {// throws
-																															// LagerbestandsException,
-																															// 
+		public void erhoeheEinkauf(Kunde kundEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException { 
+
 //			Kunde unserKunde = (Kunde) meineNutzer.getAngemeldeterUser();
 			Vector<Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
 			//suchen im Warenkorb des Kunden
-			Artikel ausWkListe = shop.sucheArtikelinListe(warenkorbFuellung, artNummer);
+			Artikel ausWkListe = meineArtikel.sucheArtikelinListe(warenkorbFuellung, artNummer);
 			//suche in der allgemeinen Artikelliste
-			Artikel ausArtliste = shop.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
+			Artikel ausArtliste = meineArtikel.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 
 			if ((ausArtliste.getBestand() - ausWkListe.getBestand()) >= plusBestand) {
 				
@@ -93,8 +90,7 @@ public class WarenkorbVerwaltung {
 
 			
 			 else {
-				System.out.println("BLABLABLA HIHIHI LAGERBESTANDEXCEPTION");
-				// throw new LagerbestandsException(ausArtliste);
+				throw new LagerbestandsException(ausArtliste);
 			}
 
 	}
@@ -142,8 +138,12 @@ public class WarenkorbVerwaltung {
 			}
 */
 	
+
 	// Methode die pr�ft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
-		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) {
+	
+	// Methode die pr�ft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
+		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
+
 			if (wkBestandspruefung(gefundenArt, userEingeloggt) == true) {
 //					try {
 				erhoeheEinkauf(userEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);

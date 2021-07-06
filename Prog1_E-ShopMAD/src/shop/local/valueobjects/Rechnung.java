@@ -12,7 +12,7 @@ public class Rechnung {
 	private String userDaten;
 	
 	
-		//Konstruktor Rechnung
+	//Konstruktor Rechnung
 	public Rechnung(Vector<Artikel> wkVector, User user, double gesamtpreis) throws IOException{
 		rechnungsVector = wkVector;
 		this.user = (Kunde) user;
@@ -23,23 +23,22 @@ public class Rechnung {
 	}
 	
 	//Methode um Daten zu sammeln und sie zurück zugeben
-		public String sammelDaten() throws IOException {
-			String gesammelteDaten = "";
-			
-			for (int i = 0; rechnungsVector.size() > i; i++) {
-				gesammelteDaten += "Artikelname: " + rechnungsVector.elementAt(i).getBezeichnung() + "\n Artikelanzahl: " + rechnungsVector.elementAt(i).getBestand()+ "\n Preis pro Artikel: " + rechnungsVector.elementAt(i).getPreis() + " Euro" + "\n Artikel gesamtpreis: " + rechnungsVector.elementAt(i).getArtikelpreisBerechnen() + "\n\n";
+	public String sammelDaten() throws IOException {
+		String gesammelteDaten = "";
+		for (int i = 0; rechnungsVector.size() > i; i++) {
+			gesammelteDaten += "Artikelname: " + rechnungsVector.elementAt(i).getBezeichnung() + "\n Artikelanzahl: " + rechnungsVector.elementAt(i).getBestand()+ "\n Preis pro Artikel: " + rechnungsVector.elementAt(i).getPreis() + " Euro" + "\n Artikel gesamtpreis: " + rechnungsVector.elementAt(i).getArtikelpreisBerechnen() + "\n\n";
 				
-			}
-			return gesammelteDaten;
 		}
+		return gesammelteDaten;
+	}
 		
 
-		public void rechnungArchivieren() throws IOException {
-			FileWriter fw = new FileWriter("Rechnung.txt", true);
-			Date df = new Date();
-			fw.write("\nRechnung:\n" + "Datum: " + df.toString() + "\n" + rechnungsNachricht);
-			fw.close();
-		}
+	public void rechnungArchivieren() throws IOException {
+		FileWriter fw = new FileWriter("Rechnung.txt", true);
+		Date df = new Date();
+		fw.write("\nRechnung:\n" + "Datum: " + df.toString() + "\n" + rechnungsNachricht);
+		fw.close();
+	}
 	
 	public String toString() {
 		return rechnungsNachricht;
