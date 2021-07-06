@@ -11,12 +11,6 @@ import shop.local.domain.Eshop;
 import shop.local.ui.cui.ShopClientCUI;
 import shop.local.valueobjects.*;
 
-/**
- * Klasse zur Interaktion mit dem User.
- * Führt Methoden der Domain-Klassen aus und liest Eingaben der User ein.
- * Main Methode wird in dieser Klasse ausgeführt, welche den E-Shop aufbaut. 
- */
-
 public class ShopClientCUI {
 	
 	
@@ -174,30 +168,6 @@ public class ShopClientCUI {
 			
 		// Warenkorb bearbeiten
 		case "e":
-
-//			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)");
-//			System.out.println("> ");
-//			int abfrageWK = Integer.parseInt(br.readLine());
-//			if(abfrageWK == 5) {
-//				System.out.println("Geben Sie die Artikelnummer ein: \n");
-//				System.out.println("> ");
-//				String artikelNameinWk = liesEingabe();
-//				List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelNameinWk);
-//				if(gefundeneArtikel.size() > 1 ) {
-//					System.out.println("fehler mehr als 1 artikel in liste!");
-//					return;
-//			}else {
-//				System.out.print("Bestand erhoehen um :   >");
-//				String erhoehung = liesEingabe();
-//				int erhohung = Integer.parseInt(erhoehung);
-//				try {
-//				shop.einkaufErhoehen( (Kunde)userEingeloggt,artikelNameinWk, erhohung);
-//				}catch (PackungsgroesseException e){
-//					System.out.println(e.getMessage());
-//				}
-//			}				
-//			}
-
 			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)? > ");
 			int abfrageWK = Integer.parseInt(br.readLine());
 			System.out.println("Geben Sie die Artikelnummer ein: \n");
@@ -322,7 +292,6 @@ public class ShopClientCUI {
 		}
 	}
 	
-	
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Kunde einloggen will
 	private void kundenlogin() {
 		String username = "";
@@ -352,9 +321,6 @@ public class ShopClientCUI {
 		
 	}
 	
-	
-	
-		
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
 	private void mitarbeiterlogin() {
 		String username = "";
@@ -396,17 +362,6 @@ public class ShopClientCUI {
 		}
 	}
 	
-//	public void menueWk(BufferedReader br) throws IOException {
-//		System.out.println("Geben Sie die Artikelnummer ein: \n");
-//		System.out.print("> ");
-//		int artNummer = Integer.parseInt(br.readLine());
-//		System.out.println("Geben Sie die Stueckzahl an: \n");
-//		System.out.print("> ");
-//		//setzt artAnzahl welches vorher 0 ist auf die Nummer die eingegeben wurde
-//		int artAnzahl = Integer.parseInt(br.readLine());
-//		System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
-//	}
-//	
 	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
@@ -435,9 +390,6 @@ public class ShopClientCUI {
 		}
 //		gibMenueAus();
 	}
-
-	
-	
 	/**
 	 * Methode zur AusfÃ¼hrung der Hauptschleife:
 	 * - MenÃ¼ ausgeben
@@ -482,11 +434,6 @@ public class ShopClientCUI {
 		} while (!input.equals("q"));
 		
 	}
-	
-	
-	/**
-	 * Die main-Methode...
-	 */
 	public static void main(String[] args) {
 		ShopClientCUI cui;
 		try {

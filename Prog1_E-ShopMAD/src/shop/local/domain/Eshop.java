@@ -55,12 +55,6 @@ public class Eshop {
 	}
 	
 	/* Warenkorb-Methoden*/
-	
-//	public void wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
-//	
-//	meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
-////	return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
-//}
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
 		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
@@ -70,11 +64,6 @@ public class Eshop {
 		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
 	}
 	
-
-//	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException {
-//		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
-//	}
-
 	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
 		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
@@ -84,9 +73,9 @@ public class Eshop {
 	}
 	
 	
-	
-	/* U-Methoden*/
+	/* User-Methoden*/
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
+	
 	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
@@ -102,7 +91,6 @@ public class Eshop {
 		// TODO Auto-generated method stub
 		meineNutzer.speicherKunden();
 	}	
-	
 	
 	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
 		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einMitarbeiter.getName(), 1, "Mitarbeiter hinzugef�gt");
@@ -152,14 +140,11 @@ public class Eshop {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
 
-
-
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
 		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), artikelname,erhohung, "Artikelbestand Erhoeht");
 		meineEreignisse.addEreignis(ereignis);
 	}
-	
 	
 	public void userEingeloggt(User userEingeloggt) {
 		this.userEingeloggt = userEingeloggt;

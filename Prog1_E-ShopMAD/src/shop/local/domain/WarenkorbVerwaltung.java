@@ -189,8 +189,8 @@ public class WarenkorbVerwaltung {
 
 	public String warenkorbAusgeben(Kunde userEingeloggt) {
 		String inhalt = "Ihr Warenkorb ist leer";
-		berechneWkGesamt();
 		warenkorbVector = userEingeloggt.getWk().getListe();
+		berechneWkGesamt();
 		if (userEingeloggt.getWk().getListe().size() > 0) {
 			inhalt = "In Ihrem Warenkorb befinden sich folgende Artikel: \n";
 			for (int i = 0; warenkorbVector.size() > i; i++) {
@@ -208,9 +208,9 @@ public class WarenkorbVerwaltung {
 		for(int i = 0; warenkorbVector.size() > i; i++) {
 			preis += warenkorbVector.elementAt(i).getArtikelpreisBerechnen();
 		}
-		preis = wkGesamtpreis;
-	
+		wkGesamtpreis = preis;
 	}
+	
 	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel) throws IOException{
 		String bestaetigung = "";
 //		Kunde unserKunde = (Kunde) userverwaltung.getAngemeldeterUser();
@@ -228,8 +228,8 @@ public class WarenkorbVerwaltung {
 //						Ereignis kaufEreignis = new Ereignis(currentDate, l.getBezeichnung(), l.getBestand(), userEingeloggt.getUsername());
 //						vecEreignisse.add(kaufEreignis);
 //						artikelverwaltung.artVEreignis(vecEreignisse);
-						Rechnung rechnung = new Rechnung(warenkorbInhalt, userEingeloggt, userEingeloggt.getWk().getWkGesamtpreis());
-						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ userEingeloggt.getWk().getWkGesamtpreis() + "Euro \n\n";
+						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); //userEingeloggt, userEingeloggt.getWk().getWkGesamtpreis()
+						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; // userEingeloggt.getWk().getWkGesamtpreis() + "Euro \n\n";
 					}
 				}
 		}
@@ -239,7 +239,6 @@ public class WarenkorbVerwaltung {
 		return bestaetigung;
 		
 	}
-	
 	
 		
 }

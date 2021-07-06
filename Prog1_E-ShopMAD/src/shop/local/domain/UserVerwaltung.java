@@ -10,7 +10,7 @@ import shop.local.valueobjects.*;
 
 /*
  * Klasse zur Verwaltung unserer Userdaten
- * Beinhaltet Methoden für MITARBEITER und für KUNDEN
+ * Beinhaltet Methoden fï¿½r MITARBEITER und fï¿½r KUNDEN
  * Beide sind Unterklassen dieser Klasse
  */
 public class UserVerwaltung {
@@ -25,22 +25,15 @@ public class UserVerwaltung {
 	
 	/********KUNDEN und MITARBEITER********/
 	
-	// Getter & Setter für angemeldete User
+	// Getter & Setter fï¿½r angemeldete User
 	public static User getAngemeldeterUser() {
 		return angemeldeterUser;
 	}
 	
+	/********Methoden fï¿½r KUNDEN********/
 	
-	// FRAGE: Müsste dieser Methode nicht dann auch ein User Objekt übergeben werden?
-	//public void setAngemeldeterUser(Kunde kunde) {
-		//angemeldeterUser = kunde;
-	//}
-	
-	
-	/********Methoden für KUNDEN********/
-	
-	// Methode der unsere E-Shop Datei übergeben wird um die Kundenliste in die Persistenz zu überführen
-	// So ist diese bei jedem Öffnen des E-Shops auf dem neusten Stand und wird über längere Zeit gespeichert!
+	// Methode der unsere E-Shop Datei ï¿½bergeben wird um die Kundenliste in die Persistenz zu ï¿½berfï¿½hren
+	// So ist diese bei jedem ï¿½ffnen des E-Shops auf dem neusten Stand und wird ï¿½ber lï¿½ngere Zeit gespeichert!
 	public void liesKunden(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager fÃ¼r LesevorgÃ¤nge Ã¶ffnen
 		Kunde einKunde;
@@ -57,8 +50,8 @@ public class UserVerwaltung {
 	}
 	
 	
-	// Methode um einen Kunden zur Kundenliste hinzuzufügen. Fehler wenn Kunde bereits in der Liste ist.
-	// Für Registrieren
+	// Methode um einen Kunden zur Kundenliste hinzuzufï¿½gen. Fehler wenn Kunde bereits in der Liste ist.
+	// Fï¿½r Registrieren
 	public void kundeEinfuegen(Kunde einKunde) throws KundeExistiertBereitsException {
 		if (kundenListe.contains(einKunde)) {
 			throw new KundeExistiertBereitsException(einKunde, " - in 'kundeEinfuegen()'");
@@ -82,7 +75,7 @@ public class UserVerwaltung {
 	
 	
 	// Methode zum Abgleichen des neuen Kundenobjekts mit den bestehenden Kundendaten. Gibt, wenn es keine Dopplung gibt, den 
-	// neuen Kunden aus und fügt ihn zur Liste der Kunden hinzu.
+	// neuen Kunden aus und fï¿½gt ihn zur Liste der Kunden hinzu.
 	//Kunde registrieren
 	public Kunde registrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 		for(Kunde kunde:kundenListe) {
@@ -95,10 +88,6 @@ public class UserVerwaltung {
 		return einKunde; 
 	}
 	
-	
-	
-	
-	
 	//Methode zum speichern der Kundenliste (z.B. bei Registrierung) 
 	public void speicherKunden() throws IOException {	
 		pm.openForWriting("SHOP_Kunde.txt"); // PersistenzManager fÃ¼r Schreibvorgang ï¿½ffnen
@@ -109,7 +98,7 @@ public class UserVerwaltung {
 		pm.close();
 	}
 
-	
+
 	
 	/****** Interaktionen mit Warenkorb *******/
 	
@@ -130,14 +119,11 @@ public class UserVerwaltung {
 	public void bestandVerringern () {
 	}
 	
+	/******** Methoden fï¿½r MITARBEITER ********/
 	
-	
-	
-	/******** Methoden für MITARBEITER ********/
-	
-	// FRAGE: Könnte man die beiden Lese-Methoden vielleicht zusammenlegen?
-	// Methode der unsere E-Shop Datei übergeben wird um die Mitarbeiterliste in die Persistenz zu überführen
-	// So ist diese bei jedem öffnen des E-Shops auf dem neusten Stand und wird über längere Zeit gespeichert!
+	// FRAGE: Kï¿½nnte man die beiden Lese-Methoden vielleicht zusammenlegen?
+	// Methode der unsere E-Shop Datei ï¿½bergeben wird um die Mitarbeiterliste in die Persistenz zu ï¿½berfï¿½hren
+	// So ist diese bei jedem ï¿½ffnen des E-Shops auf dem neusten Stand und wird ï¿½ber lï¿½ngere Zeit gespeichert!
 	public void liesMitarbeiter(String datei) throws IOException {
 		pm.openForReading(datei); // PersistenzManager fÃ¼r LesevorgÃ¤nge Ã¶ffnen
 
@@ -154,8 +140,8 @@ public class UserVerwaltung {
 		pm.close();
 	}
 	
-	// Gucken ob Methode noch nötig? (In Registrieren wird das auch abgefragt)
-	// Methode um einen Mitarbeiter zur Mitarbeiterliste hinzuzufügen. Fehler wenn Mitarbeiter bereits in der Liste ist.
+	// Gucken ob Methode noch nï¿½tig? (In Registrieren wird das auch abgefragt)
+	// Methode um einen Mitarbeiter zur Mitarbeiterliste hinzuzufï¿½gen. Fehler wenn Mitarbeiter bereits in der Liste ist.
 	public void mitarbeiterEinfuegen(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
 		if (mitarbeiterListe.contains(einMitarbeiter)) {
 			throw new MitarbeiterExistiertBereitsException(einMitarbeiter, " - in 'mitarbeiterEinfuegen()'");
