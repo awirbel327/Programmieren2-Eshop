@@ -1,6 +1,6 @@
 Bananen
 1
-50
+49
 1.0
 Einzelgut
 Aepfel
@@ -11,7 +11,7 @@ Einzelgut
 Thermomix
 3
 5
-400.00
+400.0
 Einzelgut
 Monster Energy
 4
@@ -26,7 +26,7 @@ Einzelgut
 Flens
 6
 24
-0.50
+0.5
 Massengut
 24
 Zitronen
@@ -38,5 +38,5 @@ Massengut
 vergoldeter Plueschhund
 8
 7
-950.00
+950.0
 Einzelgut

@@ -62,17 +62,10 @@ public class Eshop {
 	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
 		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
-
-	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
-		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
-		Vector<Ereignis>eri = meineArtikel.kaufen(warenkorb, userEingeloggt);
-		for(Ereignis ereig :eri  ) {
-			meineEreignisse.addEreignis(ereig);
-		}
-		meineEreignisse.speicherEreignis();
-		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
-	}
 	
+	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
+		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel, meineEreignisse);
+	}
 	
 	/* User-Methoden*/
 	

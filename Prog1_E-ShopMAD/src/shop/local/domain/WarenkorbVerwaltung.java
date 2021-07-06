@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import shop.local.domain.exceptions.LagerbestandsException;
 import shop.local.domain.exceptions.PackungsgroesseException;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Ereignis;
 import shop.local.valueobjects.Kunde;
 import shop.local.valueobjects.Massengutartikel;
 
@@ -124,13 +125,22 @@ public class WarenkorbVerwaltung {
 	}
 	
 	//Erzeugt Rechnung, leert WK und gibt Bestätigung an Kunden aus
-	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel) throws IOException{
-		String bestaetigung = "";
+	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel, EreignisVerwaltung meineEreignisse) throws IOException{
+		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
+		Vector<Ereignis>eri = meineArtikel.kaufen(warenkorb, userEingeloggt);
+		for(Ereignis ereig :eri  ) {
+			meineEreignisse.addEreignis(ereig);
+		}
+		meineEreignisse.speicherEreignis();
+		
+		String kundenRechnung = "";
 		berechneWkGesamt();
 		Vector <Artikel> warenkorbInhalt = userEingeloggt.getWk().getListe();
 						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); 
-						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; 
+						kundenRechnung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; 
 		userEingeloggt.getWk().warenkorbLeeren();
-		return bestaetigung;	
+		return kundenRechnung;	
 	}		
+	
+	
 }
