@@ -65,6 +65,17 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
 	}
 	
+	// Kunde wird uebergeben und gespeichert
+	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
+		schreibeZeile(kunde.getName());
+		schreibeZeile(kunde.getStrasse());
+		schreibeZeile(Integer.toString(kunde.getHausNr()));
+		schreibeZeile(Integer.toString(kunde.getPlz()));
+		schreibeZeile(kunde.getOrt());
+		schreibeZeile(kunde.getUsername());
+		schreibeZeile(kunde.getPasswort());
+		return true;
+	}
 	
 	//Ereignisse wird �bergeben und gespeichert 
 	public boolean speicherEreignis(Ereignis ereignis) throws IOException{
@@ -77,7 +88,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return true;
 	}
 	
-	//Kunden laden
+	//Ereignisse laden
 		public Ereignis ladeEreignisse() throws IOException {
 			String kUserId = liesZeile();
 			if (kUserId == null) {
@@ -94,17 +105,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			return new Ereignis(kUserId, userId, artikelbezeichnung, anzahl, aktion, datum);
 		}
 	
-	// Kunde wird uebergeben und gespeichert
-	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
-		schreibeZeile(kunde.getName());
-		schreibeZeile(kunde.getStrasse());
-		schreibeZeile(Integer.toString(kunde.getHausNr()));
-		schreibeZeile(Integer.toString(kunde.getPlz()));
-		schreibeZeile(kunde.getOrt());
-		schreibeZeile(kunde.getUsername());
-		schreibeZeile(kunde.getPasswort());
-		return true;
-	}
+	
 	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
@@ -115,7 +116,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		int mitarbeiterNr = Integer.parseInt(mitarbeiterNrString);
 		String username = liesZeile();
 		String passwort = liesZeile();
-		
 		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);
 	}
 	

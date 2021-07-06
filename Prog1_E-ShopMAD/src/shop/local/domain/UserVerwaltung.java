@@ -137,13 +137,8 @@ public class UserVerwaltung {
 	
 	//Mitarbieter registrieren Mitarbeiter
 	public Mitarbeiter mitRegistrierenMit(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
-		for(Mitarbeiter mitarbeiter:mitarbeiterListe) {
-			if(einMitarbeiter.getUsername().equals(mitarbeiter.getUsername())) {	//Gucken ob Kunde mit Namen bereits existiert
-				throw new MitarbeiterExistiertBereitsException(einMitarbeiter, "- in mitRegistrierenMit");
-			}
-		}
-		einMitarbeiter.setMitarbeiterNr(mitarbeiterListe.size() + 1);		//setzen der Mitarbeiternummer
-		mitarbeiterListe.add(einMitarbeiter);
+		mitarbeiterEinfuegen(einMitarbeiter);
+		einMitarbeiter.setMitarbeiterNr(mitarbeiterListe.size());		//setzen der Mitarbeiternummer
 		return einMitarbeiter; 
 	}
 			
