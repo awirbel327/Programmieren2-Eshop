@@ -1,11 +1,11 @@
 Bananen
 1
-7
+5
 1.0
 Einzelgut
 Aepfel
 2
-50
+47
 1.0
 Einzelgut
 Handy

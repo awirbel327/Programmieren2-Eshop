@@ -102,7 +102,7 @@ public class ShopClientCUI {
 		case "1":	
 			System.out.print("Vollstaendiger Name :   > ");
 			name = liesEingabe();
-			System.out.print("Straï¿½enname :   > ");
+			System.out.print("Str.:   > ");
 			strasse = liesEingabe();
 			System.out.print("Hausnummer :   > ");			
 			String hausNrString = liesEingabe();
@@ -234,7 +234,7 @@ public class ShopClientCUI {
 			double artikelPreis = Double.parseDouble(artikelPreisString);
 			
 			if (artikelArt.equals("j")) {
-				System.out.print("Packungsgr��e :   >");
+				System.out.print("Packungsgroesse :   >");
 				String packungsgroesseString = liesEingabe();
 				int packungsgroesse = Integer.parseInt(packungsgroesseString);
 				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
@@ -243,7 +243,7 @@ public class ShopClientCUI {
 				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
 			}
 			else {
-				System.out.println("Bitte w�hlen sie j/n.");
+				System.out.println("Bitte waehlen sie j/n.");
 			}
 			
 			try {
@@ -282,7 +282,7 @@ public class ShopClientCUI {
 			}
 			break;
 		default:
-			System.out.println("Der Vorgang wurde abgebrochen. Bitte w�hlen Sie eine der vorgegebenen Optionen aus.\n");
+			System.out.println("Der Vorgang wurde abgebrochen. Bitte waehlen Sie eine der vorgegebenen Optionen aus.\n");
 			gibMenueAus();
 		}
 	}
@@ -305,7 +305,7 @@ public class ShopClientCUI {
 		}
 		try {
 			Kunde kunde = shop.kundenlogIn(username, passwort);
-			System.out.println("Hallo "+ kunde.getName()+ "!! Sch�n, dass du da bist!");
+			System.out.println("Hallo "+ kunde.getName()+ "!! Schoen, dass du da bist!");
 			userEingeloggt = kunde;
 			shop.userEingeloggt(kunde);
 		} catch (PasswortOderUsernameFalschException e) {
