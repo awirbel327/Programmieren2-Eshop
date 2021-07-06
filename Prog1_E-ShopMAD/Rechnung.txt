@@ -1,631 +1,129 @@
 
 Rechnung:
-Datum: Mon Jun 28 13:26:45 CEST 2021
-Sehr geehrte/r Dilara Kanmaz 
- Hier ist Ihre Rechnung: 
+Datum: Tue Jul 06 19:49:44 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Hannah, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 19:49:44 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
  
  Artikelname: Bananen
+ Artikelanzahl: 5
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 5.0
+
+Artikelname: Aepfel
  Artikelanzahl: 1
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 1.0
 
 
 Rechnung:
-Datum: Mon Jun 28 13:48:27 CEST 2021
+Datum: Tue Jul 06 19:54:29 CEST 2021
 
  ZAHLUNGSINFORMATION 
  
- Guten Tag Dilara Kanmaz 
+ Guten Tag Hannah, 
  
- Vielen Dank für die Bestellung vom: Mon Jun 28 13:48:27 CEST 2021in dem MAD-SHOP 
- 
-  Hier ist Ihre Rechnung: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-
-Rechnung:
-Datum: Mon Jun 28 13:48:27 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz 
- 
- Vielen Dank für die Bestellung vom: Mon Jun 28 13:48:27 CEST 2021in dem MAD-SHOP 
- 
-  Hier ist Ihre Rechnung: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-
-Rechnung:
-Datum: Mon Jun 28 13:50:18 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Mon Jun 28 13:50:18 CEST 2021 in unserem MAD-SHOP 
- 
-HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-
-Rechnung:
-Datum: Mon Jun 28 13:50:18 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Mon Jun 28 13:50:18 CEST 2021 in unserem MAD-SHOP 
- 
-HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-
-Rechnung:
-Datum: Tue Jun 29 14:05:09 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jun 29 14:05:09 CEST 2021 in unserem MAD-SHOP! 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 19:54:29 CEST 2021 in unserem MAD-SHOP! 
  
  HIER IST IHRE RECHNUNG: 
  
- Artikelname: Bananen
+ Artikelname: Monster Energy
+ Artikelanzahl: 1
+ Preis pro Artikel: 3.0 Euro
+ Artikel gesamtpreis: 3.0
+
+Artikelname: Bananen
  Artikelanzahl: 2
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 2.0
 
-Artikelname: Handy
- Artikelanzahl: 2
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 200.0
-
 
 Rechnung:
-Datum: Tue Jun 29 14:05:09 CEST 2021
+Datum: Tue Jul 06 20:08:06 CEST 2021
 
  ZAHLUNGSINFORMATION 
  
- Guten Tag Dilara Kanmaz, 
+ Guten Tag Maria Blumental, 
  
- Vielen Dank für die Bestellung vom: Tue Jun 29 14:05:09 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Handy
- Artikelanzahl: 2
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 200.0
-
-
-Rechnung:
-Datum: Tue Jun 29 14:06:12 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jun 29 14:06:12 CEST 2021 in unserem MAD-SHOP! 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 20:08:06 CEST 2021 in unserem MAD-SHOP! 
  
  HIER IST IHRE RECHNUNG: 
  
  Artikelname: Ein Keks
- Artikelanzahl: 5
+ Artikelanzahl: 1
  Preis pro Artikel: 2.0 Euro
- Artikel gesamtpreis: 10.0
+ Artikel gesamtpreis: 2.0
 
 
 Rechnung:
-Datum: Tue Jun 29 14:40:40 CEST 2021
+Datum: Tue Jul 06 20:20:43 CEST 2021
 
  ZAHLUNGSINFORMATION 
  
- Guten Tag Mareike Aust, 
+ Guten Tag Jochen, 
  
- Vielen Dank für die Bestellung vom: Tue Jun 29 14:40:40 CEST 2021 in unserem MAD-SHOP! 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 20:20:43 CEST 2021 in unserem MAD-SHOP! 
  
  HIER IST IHRE RECHNUNG: 
  
- Artikelname: Becks
+ Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+
+
+Rechnung:
+Datum: Tue Jul 06 20:21:24 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Jochen, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 20:21:24 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+
+
+Rechnung:
+Datum: Tue Jul 06 20:26:24 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Maria Blumental, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 20:26:24 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Flens
+ Artikelanzahl: 24
+ Preis pro Artikel: 1.2 Euro
+ Artikel gesamtpreis: 28.799999999999997
+
+
+Rechnung:
+Datum: Tue Jul 06 20:31:40 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Maria Blumental, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 20:31:40 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Zitronen
  Artikelanzahl: 10
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 10.0
-
-
-Rechnung:
-Datum: Mon Jul 05 15:19:43 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Hannah, 
- 
- Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 8
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 8.0
-
-Artikelname: Handy
- Artikelanzahl: 1
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 100.0
-
-Artikelname: Flens
- Artikelanzahl: 24
- Preis pro Artikel: 1.2 Euro
- Artikel gesamtpreis: 28.799999999999997
-
-
-Rechnung:
-Datum: Mon Jul 05 15:19:43 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Hannah, 
- 
- Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 8
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 8.0
-
-Artikelname: Handy
- Artikelanzahl: 1
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 100.0
-
-Artikelname: Flens
- Artikelanzahl: 24
- Preis pro Artikel: 1.2 Euro
- Artikel gesamtpreis: 28.799999999999997
-
-
-Rechnung:
-Datum: Mon Jul 05 15:19:43 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Hannah, 
- 
- Vielen Dank für die Bestellung vom: Mon Jul 05 15:19:43 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 8
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 8.0
-
-Artikelname: Handy
- Artikelanzahl: 1
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 100.0
-
-Artikelname: Flens
- Artikelanzahl: 24
- Preis pro Artikel: 1.2 Euro
- Artikel gesamtpreis: 28.799999999999997
-
-
-Rechnung:
-Datum: Tue Jul 06 09:41:56 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 09:41:56 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Ein Keks
- Artikelanzahl: 1
- Preis pro Artikel: 2.0 Euro
+ Preis pro Artikel: 0.2 Euro
  Artikel gesamtpreis: 2.0
-
-
-Rechnung:
-Datum: Tue Jul 06 09:44:33 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 09:44:33 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-
-Rechnung:
-Datum: Tue Jul 06 10:08:33 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 10:08:33 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Handy
- Artikelanzahl: 5
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 500.0
-
-
-Rechnung:
-Datum: Tue Jul 06 10:08:33 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 10:08:33 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Handy
- Artikelanzahl: 5
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 500.0
-
-
-Rechnung:
-Datum: Tue Jul 06 10:08:33 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 10:08:33 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Aepfel
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-Artikelname: Handy
- Artikelanzahl: 5
- Preis pro Artikel: 100.0 Euro
- Artikel gesamtpreis: 500.0
-
-
-Rechnung:
-Datum: Tue Jul 06 10:34:48 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 10:34:48 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Aepfel
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-Artikelname: Monster Energy
- Artikelanzahl: 3
- Preis pro Artikel: 3.0 Euro
- Artikel gesamtpreis: 9.0
-
-
-Rechnung:
-Datum: Tue Jul 06 10:34:48 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 10:34:48 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Aepfel
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-Artikelname: Monster Energy
- Artikelanzahl: 3
- Preis pro Artikel: 3.0 Euro
- Artikel gesamtpreis: 9.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:05:48 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:05:48 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 2
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 2.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:06:08 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:06:08 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 3
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 3.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:07:38 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:07:38 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:13:55 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:13:55 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:14:24 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:14:24 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-Artikelname: Aepfel
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:14:24 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:14:24 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-Artikelname: Aepfel
- Artikelanzahl: 4
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 4.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:17:10 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:17:10 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 5
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 5.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:17:32 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:17:32 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 5
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 5.0
-
-
-Rechnung:
-Datum: Tue Jul 06 14:18:43 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Dilara Kanmaz, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 14:18:43 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 5
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 5.0
-
-
-Rechnung:
-Datum: Tue Jul 06 16:46:14 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Maria Blumental, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 16:46:14 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 1
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 1.0
-
-
-Rechnung:
-Datum: Tue Jul 06 16:47:43 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Maria Blumental, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 16:47:43 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 1
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 1.0
-
-
-Rechnung:
-Datum: Tue Jul 06 17:15:29 CEST 2021
-
- ZAHLUNGSINFORMATION 
- 
- Guten Tag Maria Blumental, 
- 
- Vielen Dank für die Bestellung vom: Tue Jul 06 17:15:29 CEST 2021 in unserem MAD-SHOP! 
- 
- HIER IST IHRE RECHNUNG: 
- 
- Artikelname: Bananen
- Artikelanzahl: 1
- Preis pro Artikel: 1.0 Euro
- Artikel gesamtpreis: 1.0
 

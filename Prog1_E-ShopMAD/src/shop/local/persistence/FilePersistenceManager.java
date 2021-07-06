@@ -61,8 +61,9 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String ort = liesZeile();
 		String kUsername = liesZeile();
 		String kPasswort = liesZeile();
-		
-		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort);
+		String kundenNr = liesZeile();
+		int kNr = Integer.parseInt(kundenNr);
+		return new Kunde (name, strasse, hausNr, plz, ort, kUsername, kPasswort, kNr);
 	}
 	
 	// Kunde wird uebergeben und gespeichert
@@ -74,6 +75,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		schreibeZeile(kunde.getOrt());
 		schreibeZeile(kunde.getUsername());
 		schreibeZeile(kunde.getPasswort());
+		schreibeZeile(Integer.toString(kunde.getKundenNr()));
 		return true;
 	}
 	
@@ -188,10 +190,4 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
 		
 	}
-
-	/*@Override LÖSCHEN ?!
-	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector)
-			throws FileNotFoundException, IOException {
-		
-	}*/
 }

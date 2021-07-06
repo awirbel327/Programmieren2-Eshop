@@ -147,7 +147,7 @@ public class UserVerwaltung {
 		pm.openForWriting("SHOP_Mitarbeiter.txt"); // PersistenzManager für Schreibvorgang �ffnen
 		
 		for(Mitarbeiter mitarbeiter:mitarbeiterListe) {
-			System.out.println(mitarbeiter.getName() + " wurde gespeichert");
+			//System.out.println(mitarbeiter.getName() + " wurde gespeichert");
 			pm.speicherMitarbeiterDaten(mitarbeiter);	
 		}
 		pm.close();

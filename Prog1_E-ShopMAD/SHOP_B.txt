@@ -1,11 +1,11 @@
 Bananen
 1
-7
+0
 1.0
 Einzelgut
 Aepfel
 2
-50
+49
 1.0
 Einzelgut
 Handy
@@ -15,23 +15,23 @@ Handy
 Einzelgut
 Monster Energy
 4
-55
+54
 3.0
 Einzelgut
 Ein Keks
 5
-30
+29
 2.0
 Einzelgut
 Flens
 6
-96
+24
 1.2
 Massengut
 24
 Zitronen
 7
-40
+30
 0.2
 Massengut
 5

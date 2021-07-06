@@ -18,6 +18,17 @@ public class Kunde extends User {
 		this.ort = ort;
 		warenkorb = new Warenkorb();
 	}
+	
+	//Kostruktor für Laden aus der Persistenz
+	public Kunde(String name, String strasse, int hausNr, int plz, String ort, String username, String passwort, int kundenNr) {
+		super(name, username, passwort);
+		this.strasse = strasse;
+		this.hausNr = hausNr;
+		this.plz = plz;
+		this.ort = ort;
+		this.kundenNr = kundenNr;
+		warenkorb = new Warenkorb();
+	}
 
 	// getter und setter usw Kunden-Eigenschaften
 	public int getKundenNr() {

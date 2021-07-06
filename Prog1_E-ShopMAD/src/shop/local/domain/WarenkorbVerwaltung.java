@@ -22,8 +22,6 @@ import shop.local.valueobjects.Rechnung;
  */
 public class WarenkorbVerwaltung {
 
-
-	//LÖSCHEN WENN NOCH KOMM public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	private Vector<Artikel> warenkorbVector = new Vector<Artikel>();
 	private double wkGesamtpreis;
 	private Artikel gesuchterArt;
@@ -125,30 +123,13 @@ public class WarenkorbVerwaltung {
 		wkGesamtpreis = preis;
 	}
 	
+	//Erzeugt Rechnung, leert WK und gibt Bestätigung an Kunden aus
 	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel) throws IOException{
 		String bestaetigung = "";
 		berechneWkGesamt();
 		Vector <Artikel> warenkorbInhalt = userEingeloggt.getWk().getListe();
-		//LÖSCHEN
-		/*for(Artikel a: warenkorbInhalt) {
-			int nummer = a.getNummer();
-			int bestand = a.getBestand();
-			Vector <Artikel> artikelliste = meineArtikel.getArtikelliste();
-				for(Artikel l: artikelliste) {
-					if(l.getNummer() == nummer) {
-						int aktuellerBestand = l.getBestand();
-						l.setBestand(aktuellerBestand - bestand);
-						//LÖSCHEN meineArtikel.aendereBestandDurchKauf(l.getBezeichnung(), aktuellerBestand, l.getBestand(),userEingeloggt.getUsername()); 
-						*/
-//						Ereignis kaufEreignis = new Ereignis(currentDate, l.getBezeichnung(), l.getBestand(), userEingeloggt.getUsername());
-//						vecEreignisse.add(kaufEreignis);
-//						artikelverwaltung.artVEreignis(vecEreignisse);
-						LocalDate currentDate = LocalDate.now();
-						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); //userEingeloggt, userEingeloggt.getWk().getWkGesamtpreis()
-						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; // userEingeloggt.getWk().getWkGesamtpreis() + "Euro \n\n";
-					//}
-				//}
-		//}
+						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); 
+						bestaetigung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; 
 		userEingeloggt.getWk().warenkorbLeeren();
 		return bestaetigung;	
 	}		
