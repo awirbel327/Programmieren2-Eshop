@@ -11,6 +11,7 @@ import shop.local.valueobjects.Massengutartikel;
 import shop.local.domain.Eshop;
 import shop.local.valueobjects.Ereignis;
 import shop.local.valueobjects.Rechnung;
+import shop.local.domain.ArtikelVerwaltung;
 
 /**
  * Klasse zur Verwaltung vom Warenkorb TO DO +Artikelbestand ï¿½ndern (Zugriff
@@ -26,11 +27,13 @@ public class WarenkorbVerwaltung {
 //	private ArtikelVerwaltung meineArtikel;
 	private Eshop shop;
 
+	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
+	
 	private Vector<Artikel> warenkorbVector = new Vector<Artikel>();
 	private double wkGesamtpreis;
-
+	private Massengutartikel mArtikel;
 	private Artikel gesuchterArt;
-
+	private ArtikelVerwaltung artikelverwaltung;
 	public Vector<Artikel> getListe() {
 		return warenkorbVector;
 	}
@@ -40,7 +43,7 @@ public class WarenkorbVerwaltung {
 
 	}
 
-	// Methode die prüft ob noch genug Artikel auf Lager sind
+	// Methode die prï¿½ft ob noch genug Artikel auf Lager sind
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws PackungsgroesseException{
 //		throws LagerbestandsException, PackungsgroesseException 
 		Vector<Artikel> artListe = meineArtikel.getArtikelliste();
@@ -139,14 +142,14 @@ public class WarenkorbVerwaltung {
 			}
 */
 	
-	// Methode die prüft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
+	// Methode die prï¿½ft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
 		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) {
 			if (wkBestandspruefung(gefundenArt, userEingeloggt) == true) {
 //					try {
 				erhoeheEinkauf(userEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);
 
 			} else {
-				//Wahrscheinlich Unnötig
+				//Wahrscheinlich Unnï¿½tig
 				if (gefundenArt instanceof Massengutartikel) {
 					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
 				} else {
@@ -232,7 +235,11 @@ public class WarenkorbVerwaltung {
 		}
 		
 		userEingeloggt.getWk().warenkorbLeeren();
+		
 		return bestaetigung;
 		
 	}
+	
+	
+		
 }

@@ -173,31 +173,28 @@ public class ShopClientCUI {
 			
 		// Warenkorb bearbeiten
 		case "e":
-			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)? > ");
-			int abfrageWK = Integer.parseInt(br.readLine());
-			if(abfrageWK == 5) {
-				System.out.println("Geben Sie die Artikelnummer ein: \n");
-				System.out.println("> ");
-				int wkNummer = Integer.parseInt(br.readLine());
-				System.out.println("Um wie viel soll erhöht werden?: \n");
-				System.out.println("> ");
-				int wkStueck = Integer.parseInt(br.readLine());
-			try {
-				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
-//				System.out.println(shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck));
-			} catch (PackungsgroesseException e) {
-				System.out.println(e.getMessage());
-			}
-			}else {
-				System.out.println("Geben Sie die Artikelnummer ein: \n");
-				System.out.println("> ");
-				int wkNummer2 = Integer.parseInt(br.readLine());
-				System.out.println("Um wie viel soll gesenkt werden?: \n");
-				System.out.println("> ");
-				int wkStueck2 = Integer.parseInt(br.readLine());
-//				System.out.println(shop.senkeEinkauf(wkNummer2,wkStueck2));
-			}
-			gibMenueAus();
+//			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)");
+//			System.out.println("> ");
+//			int abfrageWK = Integer.parseInt(br.readLine());
+//			if(abfrageWK == 5) {
+//				System.out.println("Geben Sie die Artikelnummer ein: \n");
+//				System.out.println("> ");
+//				String artikelNameinWk = liesEingabe();
+//				List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelNameinWk);
+//				if(gefundeneArtikel.size() > 1 ) {
+//					System.out.println("fehler mehr als 1 artikel in liste!");
+//					return;
+//			}else {
+//				System.out.print("Bestand erhoehen um :   >");
+//				String erhoehung = liesEingabe();
+//				int erhohung = Integer.parseInt(erhoehung);
+//				try {
+//				shop.einkaufErhoehen( (Kunde)userEingeloggt,artikelNameinWk, erhohung);
+//				}catch (PackungsgroesseException e){
+//					System.out.println(e.getMessage());
+//				}
+//			}				
+//			}
 			break;
 			case "f":
 			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));

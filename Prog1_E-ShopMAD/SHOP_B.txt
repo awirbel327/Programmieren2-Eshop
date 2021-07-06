@@ -1,6 +1,6 @@
 Bananen
 1
-10
+20
 1.0
 Einzelgut
 Aepfel

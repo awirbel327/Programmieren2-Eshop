@@ -71,13 +71,14 @@ public class Eshop {
 		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
 	}
 	
-	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException {
-		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
-	}
+//	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException {
+//		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
+//	}
 	
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
 	}
+	
 	
 	
 	/* U-Methoden*/
