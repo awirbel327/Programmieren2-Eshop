@@ -148,11 +148,15 @@ public class ArtikelVerwaltung {
 				pm.close();
 		}
 	
-	public void kaufen(Vector <Artikel> warenkorb) {
+	//String kUserId, int userId,String artikelbezeichnung, int anzahl, String aktion
+	public Vector<Ereignis> kaufen(Vector <Artikel> warenkorb, Kunde kunde) {
+		Vector<Ereignis> er = new Vector<Ereignis>();
 		for(Artikel artikel:warenkorb) {
 			for(Artikel arti:artikelListeVector) {
 				if(artikel.getNummer() == arti.getNummer()) {
 					arti.setBestand(arti.getBestand() - artikel.getBestand());
+					Ereignis erei = new Ereignis("Kunde", kunde.getKundenNr(), artikel.getBezeichnung(), artikel.getBestand(), "wurde gekauft"  );
+					er.add(erei);
 				}
 			}
 		}
@@ -162,6 +166,7 @@ public class ArtikelVerwaltung {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return er;
 	}
 	
 	//Methode um Artikelbestand zu erh�hen (Mitarbeiter)

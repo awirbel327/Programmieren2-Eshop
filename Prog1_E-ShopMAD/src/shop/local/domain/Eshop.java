@@ -65,7 +65,11 @@ public class Eshop {
 
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
 		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
-		meineArtikel.kaufen(warenkorb);
+		Vector<Ereignis>eri = meineArtikel.kaufen(warenkorb, userEingeloggt);
+		for(Ereignis ereig :eri  ) {
+			meineEreignisse.addEreignis(ereig);
+		}
+		meineEreignisse.speicherEreignis();
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel);
 	}
 	
@@ -78,8 +82,6 @@ public class Eshop {
 	}
 	
 	public Kunde kundenRegistrieren(Kunde einKunde) throws KundeExistiertBereitsException {
-		Ereignis ereignis = new Ereignis("Kunde", ((Kunde) userEingeloggt).getKundenNr(), einKunde.getName(), 1, "Kunde hinzugef�gt");
-		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.registrieren(einKunde);
 		
 	}
@@ -89,8 +91,6 @@ public class Eshop {
 	}	
 	
 	public Mitarbeiter mitarbeiterRegistrieren (Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException{
-		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einMitarbeiter.getName(), 1, "Mitarbeiter hinzugef�gt");
-		meineEreignisse.addEreignis(ereignis);
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
 	

@@ -196,6 +196,8 @@ public class ShopClientCUI {
 			
 			gibMenueAus();
 			break;
+			
+			//Warenkorb kaufen
 			case "f":
 			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));
 			break;
@@ -213,7 +215,6 @@ public class ShopClientCUI {
 				shop.mitarbeiterRegistrieren(einMitarbeiter);
 				System.out.println(name + " wurde erfolgreich registriert!");
 				shop.speicherMitarbeiter();
-				shop.speicherEreignis();
 			} catch (MitarbeiterExistiertBereitsException e) {
 				System.out.println(e.getMessage());
 			}
