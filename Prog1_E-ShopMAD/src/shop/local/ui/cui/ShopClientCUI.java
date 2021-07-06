@@ -35,21 +35,21 @@ public class ShopClientCUI {
 	private void gibMenueAus() {
 		System.out.print("Befehle: \n  Einloggen:  '0'");
 		System.out.print("	       \n  als Kunde Registrieren:  '1'");
-		System.out.print("		   \n  Artikel ausgeben:  'A'");
-		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
-		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
-		System.out.print("         \n  Artikel suchen  'B'");
+		System.out.print("		   \n  Artikel ausgeben:  'a'");
+		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'a1'");
+		System.out.print("         \n  Artikel nach Nummer ausgeben 'a2'");
+		System.out.print("         \n  Artikel suchen  'b'");
 		System.out.print("         \n  ---------------------");
-		System.out.println("       \n  Beenden:        'Q'");
+		System.out.println("       \n  Beenden:        'q'");
 		System.out.print("> "); // Prompt
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
 	//Methode zur Ausgabe des Mitarbeiter Menues
 	private void gibMitarbeiterMenueAus() {
-		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
-		System.out.println("	   \n  einen neuen Artikel hinzufuegen: 'W'");
-		System.out.println("	   \n  Bestand erhoehen: 'L'");
+		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'z'");
+		System.out.println("	   \n  einen neuen Artikel hinzufuegen: 'w'");
+		System.out.println("	   \n  Bestand erhoehen: 'l'");
 		System.out.print("         \n  ---------------------");
 		System.out.println("       \n  Beenden:        'Q'");
 		System.out.print("> "); // Prompt
@@ -58,16 +58,16 @@ public class ShopClientCUI {
 	
 	//Methode zur Ausgabe des eingeloggten Kunden Menues
 	private void eingeloggterUserMenue() {
-		System.out.print("Befehle: \n  Artikel ausgeben:  'A'");
-		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'A1'");
-		System.out.print("         \n  Artikel nach Nummer ausgeben 'A2'");
-		System.out.print("         \n  Artikel suchen  'B'");
-		System.out.print("         \n  Artikel zum WK hinzufuegen: 'C'");
-		System.out.print("         \n  Warenkorb anzeigen:  'D'");
-		System.out.print("         \n  Warenkorb bearbeiten:  'E'");
-		System.out.print("         \n  Warenkorb kaufen:  'F'");
+		System.out.print("Befehle: \n  Artikel ausgeben:  'a'");
+		System.out.print("         \n  Artikel nach Bezeichnung ausgeben 'a1'");
+		System.out.print("         \n  Artikel nach Nummer ausgeben 'a2'");
+		System.out.print("         \n  Artikel suchen  'b'");
+		System.out.print("         \n  Artikel zum WK hinzufuegen: 'c'");
+		System.out.print("         \n  Warenkorb anzeigen:  'd'");
+		System.out.print("         \n  Warenkorb bearbeiten:  'e'");
+		System.out.print("         \n  Warenkorb kaufen:  'f'");
 		System.out.print("         \n  ---------------------");
-		System.out.println("       \n  Beenden:        'Q'");
+		System.out.println("       \n  Beenden:        'q'");
 		System.out.print("> "); // Prompt
 		System.out.flush(); // ohne NL ausgeben
 	}
@@ -94,8 +94,11 @@ public class ShopClientCUI {
 			auswahl = liesEingabe();
 			if(auswahl.equals("k")) {
 				kundenlogin();
-			} else {
+			}
+			else if(auswahl.equals("m")) {
 				mitarbeiterlogin();
+			} else {
+				System.out.println("Bitte w�hlen Sie (k) oder (m) aus.");
 			}
 			break;
 		// Regstrieren (Kunden)
@@ -165,14 +168,14 @@ public class ShopClientCUI {
 			
 		// Warenkorb bearbeiten
 		case "e":
-			System.out.println("Artikelbestand im Warenkorb erhöhen (5) oder senken(6)? > ");
+			System.out.println("Artikelbestand im Warenkorb erhoehen (5) oder senken(6)? > ");
 			int abfrageWK = Integer.parseInt(br.readLine());
 			System.out.println("Geben Sie die Artikelnummer ein: \n");
 			System.out.println("> ");
 			int wkNummer = Integer.parseInt(br.readLine());
 			int wkStueck = 0;
 			if(abfrageWK == 5) {
-				System.out.println("Um wie viel soll erhöht werden?: \n");
+				System.out.println("Um wie viel soll erhoeht werden?: \n");
 				System.out.println("> ");
 				wkStueck = Integer.parseInt(br.readLine());
 			}
@@ -183,7 +186,7 @@ public class ShopClientCUI {
 				wkStueck = -wkStueck;
 			} 
 			else {
-				System.out.println("bitte w�hlen Sie (5) oder (6) aus.");
+				System.out.println("bitte waehlen Sie (5) oder (6) aus.");
 			}
 			try {
 				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
@@ -266,7 +269,7 @@ public class ShopClientCUI {
 			//Wieso Liste?
 			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
-				System.out.println("fehler mehr als 1 artikel in liste!");
+				System.out.println("Fehler: mehr als ein Artikel mit dieser Bezeichnung in Liste!");
 				return;
 			} else {
 				System.out.print("Bestand erhoehen um :   >");
@@ -295,13 +298,13 @@ public class ShopClientCUI {
 		try {
 			username = liesEingabe();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		System.out.print("Passwort eingeben :   > ");
 		try {
 			passwort = liesEingabe();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		try {
 			Kunde kunde = shop.kundenlogIn(username, passwort);
@@ -322,13 +325,13 @@ public class ShopClientCUI {
 		try {
 			username = liesEingabe();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		System.out.print("Passwort eingeben :   > ");
 		try {
 			passwort = liesEingabe();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		try {
 			Mitarbeiter mitarbeiter = shop.mitarbeiterlogIn(username, passwort);
@@ -398,7 +401,8 @@ public class ShopClientCUI {
 				input = liesEingabe();
 				verarbeiteEingabe(input);
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
+				gibMenueAus();
 			}//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist
 			} else if(userEingeloggt instanceof Kunde) {
 				eingeloggterUserMenue();
@@ -406,7 +410,8 @@ public class ShopClientCUI {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
+					eingeloggterUserMenue();
 				}
 			} else if (userEingeloggt instanceof Mitarbeiter) {
 				gibMitarbeiterMenueAus();
@@ -414,7 +419,8 @@ public class ShopClientCUI {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
+					gibMitarbeiterMenueAus();
 				}
 			}
 			
@@ -427,7 +433,7 @@ public class ShopClientCUI {
 			cui = new ShopClientCUI("SHOP");
 			cui.run();
 		} catch (IOException e) {	
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

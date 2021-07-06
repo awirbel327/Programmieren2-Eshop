@@ -163,8 +163,7 @@ public class ArtikelVerwaltung {
 		try {
 			speicherArtikel();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return er;
 	}
@@ -180,15 +179,9 @@ public class ArtikelVerwaltung {
 				try {
 					speicherArtikel();
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 		}	
 	}
-	
-	/*public void aendereBestandDurchKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
-		pm.bestandKauf(name, bestandEins, bestandZwei, username);
-		//pm.artikellisteAbspeichernPm(artikelListeVector);
-	}*/
-
 }
