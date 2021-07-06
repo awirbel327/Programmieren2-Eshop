@@ -68,7 +68,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	}
 	
 	
-	//Ereignisse wird übergeben und gespeichert 
+	//Ereignisse wird ï¿½bergeben und gespeichert 
 	public boolean speicherEreignis(Ereignis ereignis) throws IOException{
 		schreibeZeile(ereignis.getKUserId());
 		schreibeZeile(Integer.toString(ereignis.getUserId()));
@@ -200,7 +200,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	@Override
 	public void artikellisteAbspeichernPm(Vector<Artikel> artikelListeVector)
 			throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
 		
 	}
 }
