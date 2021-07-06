@@ -651,3 +651,20 @@ Artikelname: Aepfel
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 3.0
 
+
+Rechnung:
+Datum: Tue Jul 06 19:39:38 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Tue Jul 06 19:39:38 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 2
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 2.0
+
