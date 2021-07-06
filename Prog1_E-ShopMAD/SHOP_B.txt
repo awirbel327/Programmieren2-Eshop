@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Bananen
 1
 3
@@ -40,3 +41,47 @@ Hund
 7
 950.0
 Einzelgut
+=======
+Bananen
+1
+0
+1.0
+Einzelgut
+Aepfel
+2
+49
+1.0
+Einzelgut
+Handy
+3
+5
+100.0
+Einzelgut
+Monster Energy
+4
+54
+3.0
+Einzelgut
+Ein Keks
+5
+29
+2.0
+Einzelgut
+Flens
+6
+24
+1.2
+Massengut
+24
+Zitronen
+7
+30
+0.2
+Massengut
+5
+Hund
+8
+7
+950.0
+Einzelgut
+>>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git

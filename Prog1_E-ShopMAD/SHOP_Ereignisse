@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Mitarbeiter
 1
 Hund
@@ -46,3 +47,11 @@ Bananen
 2
 wurde gekauft
 Tue Jul 06 19:39:38 CEST 2021
+=======
+Kunde
+1
+Zitronen
+10
+wurde gekauft
+Tue Jul 06 20:31:40 CEST 2021
+>>>>>>> branch 'master' of https://github.com/awirbel327/Programmieren2-Eshop.git
