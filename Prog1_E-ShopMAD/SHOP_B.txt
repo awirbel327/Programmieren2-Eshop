@@ -8,25 +8,25 @@ Aepfel
 49
 1.0
 Einzelgut
-Handy
+Thermomix
 3
 5
-100.0
+400.00
 Einzelgut
 Monster Energy
 4
 54
 3.0
 Einzelgut
-Ein Keks
+Rotwein
 5
 29
-2.0
+3.99
 Einzelgut
 Flens
 6
 24
-1.2
+0.50
 Massengut
 24
 Zitronen
@@ -35,8 +35,8 @@ Zitronen
 0.2
 Massengut
 5
-Hund
+vergoldeter Plueschhund
 8
 7
-950.0
+950.00
 Einzelgut
