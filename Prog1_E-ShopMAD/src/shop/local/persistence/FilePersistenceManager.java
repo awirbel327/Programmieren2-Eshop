@@ -31,7 +31,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		writer = new PrintWriter(new BufferedWriter(new FileWriter(datei)));
 	}
 	
-	
 	//Close() -->  zum schlie�en der leser und schreiber
 	public boolean close() {
 		if(writer != null) {
@@ -41,7 +40,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			try {
 				reader.close();
 			} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
 		}
@@ -96,7 +94,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			return new Ereignis(kUserId, userId, artikelbezeichnung, anzahl, aktion, datum);
 		}
 	
-	
 	// Kunde wird uebergeben und gespeichert
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
 		schreibeZeile(kunde.getName());
@@ -109,7 +106,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		return true;
 	}
 	
-	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {
@@ -120,7 +116,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		String username = liesZeile();
 		String passwort = liesZeile();
 		
-		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);	//statt mitarbeiternR vllt nr ?
+		return new Mitarbeiter(name, mitarbeiterNr, username, passwort);
 	}
 	
 	// Mitarbeiter wird uebergeben und gespeichert
@@ -171,8 +167,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			return true;	
 		}
 	
-		
-		
 	// Methode zum Lesen von Dateien
 	private String liesZeile() throws IOException {
 		if (reader != null)
@@ -180,7 +174,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		else
 			return "";
 	}
-	
 	
 	// Methode zum Schreiben in Dateien
 	private void schreibeZeile(String daten) {
@@ -193,7 +186,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	
 	@Override
 	public void bestandKauf(String name, int bestandEins, int bestandZwei, String username) throws IOException {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 import shop.local.persistence.*;
@@ -23,14 +21,18 @@ import shop.local.valueobjects.*;
 
 public class ArtikelVerwaltung {
 	
-	private ArtikelVerwaltung meineArtikel;
-//	private Warenkorb warenkorb;
-//	private Vector<Artikel> artikelBestand = new Vector<Artikel>();
-	
 	private PersistenceManager pm = new FilePersistenceManager();
 	
 	public static Vector <Artikel> artikelListeVector = new Vector<Artikel>();
 	
+	// Getter Methode f�r den Artikel Bestands Vector, gibt Liste aus
+		public Vector<Artikel> getArtikelBestand() {
+			return new Vector<Artikel>(artikelListeVector);
+		}	
+		
+		public Vector <Artikel> getArtikelliste(){
+			return artikelListeVector;
+		}
 	
 	//Methode zum Sortieren von Artikel nach ArtikelNummer.
 	public void artikelSortNummer(Vector <Artikel> artikel) {
@@ -49,9 +51,6 @@ public class ArtikelVerwaltung {
 	
 	
 	//Methode zum Sortieren von Artikel nach ArtikelBezeichnung.
-	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
-	
-	// TO-DO: SCH�NERE AUSGABE
 	public void artikelSortBezeichnung(Vector <Artikel> artikel) {
 		Artikel[] vecZuArr = new Artikel[artikel.size()];	//damit Array richtige gr��e
 		artikel.toArray(vecZuArr); //Vector Array
@@ -64,7 +63,6 @@ public class ArtikelVerwaltung {
 		System.out.println(Arrays.asList(vecZuArr));
 	}		
 	
-	
 	// Methode der unsere E-Shop Datei �bergeben wird um die Artikelliste in die Persistenz zu �berf�hren
 	// So ist diese bei jedem �ffnen des E-Shops auf dem neusten Stand und wird �ber l�ngere Zeit gespeichert!
 	public void liesDaten(String datei) throws IOException {
@@ -73,7 +71,6 @@ public class ArtikelVerwaltung {
 
 		Artikel einArtikel;
 		do {
-	
 			einArtikel = pm.ladeArtikel();
 			if (einArtikel != null) {
 				
@@ -88,20 +85,9 @@ public class ArtikelVerwaltung {
 				}
 			}
 		} while (einArtikel != null);
-
 		// Persistenz-Schnittstelle wieder schließen
 		pm.close();
 	}
-	
-	/*
-	// Methode um neue Artikel zur Artikelliste hinzuzuf�gen. Fehler wenn Artikel bereits in der Liste ist.
-	public void einfuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException {
-		if (artikelListeVector.contains(einArtikel)) {
-			throw new ArtikelExistiertBereitsException(einArtikel, " - in 'einfuegen()'");
-		}
-		artikelListeVector.add(einArtikel);
-	}
-	*/
 	
 	//Mitarbeiter f�gt Artikel hinzu
 	public void mitArtikelhinzufuegen(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
@@ -110,7 +96,6 @@ public class ArtikelVerwaltung {
 				throw new ArtikelExistiertBereitsException(einArtikel, "Artikel existiert bereits");
 			}
 		}
-		
 		einArtikel.setNummer(artikelListeVector.size() + 1);
 		artikelListeVector.add(einArtikel);
 		if (einArtikel instanceof Massengutartikel) {
@@ -121,19 +106,9 @@ public class ArtikelVerwaltung {
 		return;
 	}
 
-	
-	// Getter Methode f�r den Artikel Bestands Vector, gibt Liste aus
-	public Vector<Artikel> getArtikelBestand() {
-		return new Vector<Artikel>(artikelListeVector);
-	}	
-	
-	public Vector <Artikel> getArtikelliste(){
-		return artikelListeVector;
-	}
-	
 	//Methode um einen Artikel anhand seiner Nummer aus einem beliebigen Vector rauszusuchen	
 	public Artikel sucheArtikelinListe(Vector<Artikel> artListe, int nummer) {
-		Artikel gesuchterArt = null; // warum =null?
+		Artikel gesuchterArt = null; 
 		for (int i = 0; artListe.size() > i; i++) {
 			if(artListe.elementAt(i).getNummer() == nummer) {
 				 gesuchterArt = artListe.elementAt(i);
@@ -142,16 +117,15 @@ public class ArtikelVerwaltung {
 		return gesuchterArt;
 	}
 	
-	// Methode die einen Artikel anhand des Titels (BEZEICHNUNG???) sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt
-	// FRAGE:warum wird hier eine Liste ausgegeben? Haben die Artikel nicht sowieso unique Bezeichnungen? Wof�r wird diese Methode gebraucht?
-	public List<Artikel> sucheArtikel(String bezeichnung) { //TITEL = BEZEICHNUNG?
+	// Methode die einen Artikel anhand der Bezeichnung sucht und eine Liste aller Artikel mit dieser Bezeichnung ausgibt
+	public List<Artikel> sucheArtikel(String bezeichnung) { 
 		List<Artikel> suchErg = new Vector<Artikel>();
 
 		// Artikelbestand durchlaufen und nach Bezeichnung des Artikels suchen
 		Iterator<Artikel> iter = artikelListeVector.iterator();
 		while (iter.hasNext()) { 
 			Artikel a = iter.next();
-				if (a.getBezeichnung().equals(bezeichnung)) //TITEL = BEZEICHNUNG?
+				if (a.getBezeichnung().equals(bezeichnung)) 
 					suchErg.add(a);
 				}
 		return suchErg;
@@ -161,24 +135,12 @@ public class ArtikelVerwaltung {
 	public void speicherArtikel() throws IOException {
 		pm.openForWriting("SHOP_B.txt"); // PersistenzManager für Schreibvorgang �ffnen
 			for(Artikel artikel:artikelListeVector) {
-				//System.out.println(artikel.getBezeichnung() + " wurde gespeichert");
 				pm.speicherArtikelDaten(artikel);	
 			}
 				pm.close();
 		}
-
-	/* TEST bitte noch drin lassen, falls man das noch braucht :)
-	 * 
-	public void MassengutArtikelEinf�gen (Artikel artikel, int erhohung) {
-		mArtikel = null;
-		artikel = (Massengutartikel) mArtikel;
-		if (mArtikel.getBestand() + erhohung % mArtikel.getPackungsgroesse() != 0) {
-			System.out.println("Massenartikel muss im Pack gekauft werden"); //Exception einf�gen
-		}
-	}
-	*/
 	
-	//Methode um Artikelbestand zu erh�hen (Mitarbeiter), pr�ft jetzt auch ob es sich um Massengutartikel handelt!
+	//Methode um Artikelbestand zu erh�hen (Mitarbeiter)
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		for (Artikel artikel:artikelListeVector) {
 			if(artikelname.equals(artikel.getBezeichnung())) {
@@ -189,7 +151,6 @@ public class ArtikelVerwaltung {
 				try {
 					speicherArtikel();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -6,8 +6,6 @@ import shop.local.domain.exceptions.*;
 import shop.local.persistence.*;
 import shop.local.valueobjects.*;
 
-
-
 /*
  * Klasse zur Verwaltung unserer Userdaten
  * Beinhaltet Methoden f�r MITARBEITER und f�r KUNDEN
@@ -19,10 +17,7 @@ public class UserVerwaltung {
 	public static User angemeldeterUser;
 	public static Vector <Kunde> kundenListe = new Vector<Kunde>();	
 	public static Vector <Mitarbeiter> mitarbeiterListe = new Vector<Mitarbeiter>();
-	
-	
-	
-	
+		
 	/********KUNDEN und MITARBEITER********/
 	
 	// Getter & Setter f�r angemeldete User
@@ -73,7 +68,6 @@ public class UserVerwaltung {
 		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
 	}
 	
-	
 	// Methode zum Abgleichen des neuen Kundenobjekts mit den bestehenden Kundendaten. Gibt, wenn es keine Dopplung gibt, den 
 	// neuen Kunden aus und f�gt ihn zur Liste der Kunden hinzu.
 	//Kunde registrieren
@@ -97,31 +91,10 @@ public class UserVerwaltung {
 		}
 		pm.close();
 	}
-
-
 	
-	/****** Interaktionen mit Warenkorb *******/
-	
-	public void wkLeeren () {
-	}
-	
-	public void wkKaufen() {
-	
-	}
-	
-	public void artikelZumWkHinz(int Anzahl, String Artikel) {
-	}
-	
-	public void artikelAnzahlimWkAendern () {
-	}
-	
-	
-	public void bestandVerringern () {
-	}
 	
 	/******** Methoden f�r MITARBEITER ********/
 	
-	// FRAGE: K�nnte man die beiden Lese-Methoden vielleicht zusammenlegen?
 	// Methode der unsere E-Shop Datei �bergeben wird um die Mitarbeiterliste in die Persistenz zu �berf�hren
 	// So ist diese bei jedem �ffnen des E-Shops auf dem neusten Stand und wird �ber l�ngere Zeit gespeichert!
 	public void liesMitarbeiter(String datei) throws IOException {
@@ -162,8 +135,6 @@ public class UserVerwaltung {
 		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
 	}
 	
-	
-	//
 	//Mitarbieter registrieren Mitarbeiter
 	public Mitarbeiter mitRegistrierenMit(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
 		for(Mitarbeiter mitarbeiter:mitarbeiterListe) {
@@ -176,8 +147,6 @@ public class UserVerwaltung {
 		return einMitarbeiter; 
 	}
 			
-	
-	
 	//Methode zum speichern der Mitarbeiterliste (z.B. bei Registrierung) 
 	public void speicherMitarbeiter() throws IOException {	
 		pm.openForWriting("SHOP_Mitarbeiter.txt"); // PersistenzManager für Schreibvorgang �ffnen
@@ -188,22 +157,4 @@ public class UserVerwaltung {
 		}
 		pm.close();
 	}
-	
-		
-	/***** Interaktion mit Artikel(Bestand) *****/
-	
-	
-	// EINLESEN IN TEXTDATEI 
-	
-	public void neuenArtikelAnlegen (String artikelBezeichnung, int artikelAnzahl) {
-		//pm.openForWriting("SHOP_Logistik.txt");
-		//pm.close();
-	}
-	
-	public void lagerBestandErhoehen (Artikel artikel, int plusAnzahl) {
-		//pm.openForWriting("SHOP_Logistik.txt");
-		//pm.close();
-	}
-	
-	
 }

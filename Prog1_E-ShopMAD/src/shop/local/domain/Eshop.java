@@ -2,29 +2,24 @@ package shop.local.domain;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Vector;
 
 
 import shop.local.domain.exceptions.*;
-import shop.local.domain.exceptions.*;
-import shop.local.domain.*;
+
 import shop.local.valueobjects.*;
-import shop.local.domain.UserVerwaltung;
-
-
 
 /**
  * Klasse zur Verwaltung unseres E-Shops.
  * Bietet Methoden 
  * Zum Ausgeben aller Artikel (soriert), zur Suche nach Artikeln und zur suche nach Artikeln.
  * Zum einloggen, registrieren und speichern von Kunden sowie zum einloggen von Mitarbeitern.
- * ...WARENKORB METHODEN tbd.....
+ * Warenkorb methoden
  * E-Shop ist eig nur eine Schnittstelle zwischen der Ansicht und Logik!!!!!
  */
 
 public class Eshop {
 	
-	private String datei;;
+	private String datei;
 	
 	private ArtikelVerwaltung meineArtikel;
 	private WarenkorbVerwaltung meinWarenkorb;
@@ -45,7 +40,7 @@ public class Eshop {
 		meineNutzer.liesKunden("SHOP_Kunde.txt");
 		
 		// Mitarbeiterdaten aus Datei einlesen
-		meineNutzer = new UserVerwaltung(); // kann man lÃ¶schen?
+		meineNutzer = new UserVerwaltung();
 		meineNutzer.liesMitarbeiter("SHOP_Mitarbeiter.txt");
 		
 		meinWarenkorb = new WarenkorbVerwaltung();
@@ -74,8 +69,8 @@ public class Eshop {
 	
 	
 	/* User-Methoden*/
-	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	
+	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
 	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		return meineNutzer.kundenlogIn(username, passwort);
 	}
@@ -88,7 +83,6 @@ public class Eshop {
 	}
 	
 	public void speicherKunden() throws IOException {
-		// TODO Auto-generated method stub
 		meineNutzer.speicherKunden();
 	}	
 	
@@ -103,7 +97,6 @@ public class Eshop {
 	}
 
 	public void speicherMitarbeiter() throws IOException {
-		// TODO Auto-generated method stub
 		meineNutzer.speicherMitarbeiter();
 	}
 	
@@ -119,7 +112,6 @@ public class Eshop {
 	
 	
 	public void speicherArtikel() throws IOException {
-		// TODO Auto-generated method stub
 		meineArtikel.speicherArtikel();
 	}
 	
@@ -132,11 +124,11 @@ public class Eshop {
 		meineArtikel.artikelSortNummer(meineArtikel.getArtikelBestand());
 	}
 	
-	public List<Artikel> gibAlleArtikel() {// einfach delegieren an ArtikelVerwaltung meineArtikel
+	public List<Artikel> gibAlleArtikel() {
 		return meineArtikel.getArtikelBestand();
 	}
 	
-	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {// einfach delegieren an ArtieklVerwaltung meineArtikel
+	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
 

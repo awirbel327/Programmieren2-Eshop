@@ -45,7 +45,6 @@ public class ShopClientCUI {
 		System.out.flush(); // ohne NL ausgeben
 	}
 	
-	
 	//Methode zur Ausgabe des Mitarbeiter Menues
 	private void gibMitarbeiterMenueAus() {
 		System.out.print("Befehle: \n  Mitarbeiter Registrieren:  'Z'");
@@ -89,7 +88,6 @@ public class ShopClientCUI {
 		BufferedReader br = new BufferedReader(is);	
 		
 		switch(line) {
-		
 		// Einloggen
 		case "0":
 			System.out.print("Als Kunde(k) oder als Mitarbeiter(m) anmelden :   > ");
@@ -100,7 +98,6 @@ public class ShopClientCUI {
 				mitarbeiterlogin();
 			}
 			break;
-			
 		// Regstrieren (Kunden)
 		case "1":	
 			System.out.print("Vollstaendiger Name :   > ");
@@ -119,7 +116,8 @@ public class ShopClientCUI {
 			username = liesEingabe();
 			System.out.print("passwort :   > ");
 			passwort = liesEingabe();
-			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	//neuen Kunden erschaffen
+			//neuen Kunden erschaffen
+			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	
 			try {
 				shop.kundenRegistrieren(einKunde);	
 				userEingeloggt = einKunde ;
@@ -130,7 +128,7 @@ public class ShopClientCUI {
 				System.out.println(e.getMessage());
 			}
 			break;
-			
+		
 		// Alle Artikel als Liste ausgeben (unsortiert)
 		case "a":
 			liste = shop.gibAlleArtikel();
@@ -154,7 +152,7 @@ public class ShopClientCUI {
 		case "a2" :
 			shop.artikelsortiertAusgebenNummer();
 			break;
-			
+				
 		// Artikel zum WK hinzufügen 
 		case "c":
 			menueWk(br);
@@ -163,7 +161,6 @@ public class ShopClientCUI {
 		// Warenkorb anzeigen 
 		case "d":
 			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
-			//gibMenueAus();
 			break;
 			
 		// Warenkorb bearbeiten
@@ -240,12 +237,9 @@ public class ShopClientCUI {
 				String packungsgroesseString = liesEingabe();
 				int packungsgroesse = Integer.parseInt(packungsgroesseString);
 				einArtikel = new Massengutartikel(bezeichnung1, bestand, artikelPreis, packungsgroesse);
-//				einArtikel = new Massengutartikel(bezeichnung, nr, artikelPreis, bestand, packungsgroesse);
-
 			} 
 			else if (artikelArt.equals("n")) {
 				einArtikel = new Artikel(bezeichnung1, bestand, artikelPreis);
-//				einArtikel = new Artikel(bezeichnung, bestand, abfrageWK, artikelPreis);
 			}
 			else {
 				System.out.println("Bitte w�hlen sie j/n.");
@@ -300,14 +294,12 @@ public class ShopClientCUI {
 		try {
 			username = liesEingabe();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.print("Passwort eingeben :   > ");
 		try {
 			passwort = liesEingabe();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -320,7 +312,7 @@ public class ShopClientCUI {
 		}
 		
 	}
-	
+
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
 	private void mitarbeiterlogin() {
 		String username = "";
@@ -329,14 +321,12 @@ public class ShopClientCUI {
 		try {
 			username = liesEingabe();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.print("Passwort eingeben :   > ");
 		try {
 			passwort = liesEingabe();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -348,7 +338,6 @@ public class ShopClientCUI {
 			System.out.println(e.getMessage());	
 		}
 	}
-	
 	
 	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
 	private void gibArtikellisteAus(List<Artikel> liste) {
@@ -382,14 +371,13 @@ public class ShopClientCUI {
 		}
 		try {
 			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
-//			System.out.println(shop.wkBefuellen(Kunde)userEingeloggt,artNummer, artAnzahl);
 		} catch (LagerbestandsException e1) {
 			System.out.println(e1.getMessage());
 		} catch (PackungsgroesseException e2) {
 			System.out.println(e2.getMessage());
 		}
-//		gibMenueAus();
 	}
+	
 	/**
 	 * Methode zur AusfÃ¼hrung der Hauptschleife:
 	 * - MenÃ¼ ausgeben
@@ -397,6 +385,7 @@ public class ShopClientCUI {
 	 * - Eingabe verarbeiten und Ergebnis ausgeben
 	 * (EVA-Prinzip: Eingabe-Verarbeitung-Ausgabe)
 	 */
+	
 	public void run() {
 		String input = ""; // Variable fÃ¼r Eingaben von der Konsole
 	
@@ -408,16 +397,14 @@ public class ShopClientCUI {
 				input = liesEingabe();
 				verarbeiteEingabe(input);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			} else if(userEingeloggt instanceof Kunde) {		//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist 
+			}//Überprüft ob usereingeloggt Objekt aus Klasse Kunde ist
+			} else if(userEingeloggt instanceof Kunde) {
 				eingeloggterUserMenue();
 				try {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (userEingeloggt instanceof Mitarbeiter) {
@@ -426,7 +413,6 @@ public class ShopClientCUI {
 					input = liesEingabe();
 					verarbeiteEingabe(input);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -48,18 +48,6 @@ public class Artikel implements Comparable<Artikel> {
 		bestand = plusBestand;
 		setArtikelpreisBerechnen();
 	}
-
-	public boolean isVerfuegbar() {
-		return verfuegbar;
-	}
-	public double getPreis() {
-		return artikelPreis;
-	}
-
-	@Override	//https://stackoverflow.com/questions/18895915/how-to-sort-an-array-of-objects-in-java
-	public int compareTo(Artikel o) {
-		return toString().compareTo(o.toString());		// zu String und vergelciht mit Artikel "o"
-	}
 	public void setArtikelpreisBerechnen() {
 		gruppenpreis = artikelPreis * bestand;
 	}
@@ -67,5 +55,14 @@ public class Artikel implements Comparable<Artikel> {
 	public double getArtikelpreisBerechnen() {
 		return gruppenpreis;
 	}
+	
+	public double getPreis() {
+		return artikelPreis;
+	}
 
+	
+	public int compareTo(Artikel o) {
+		// zu String und vergelciht mit Artikel "o"
+		return toString().compareTo(o.toString());		
+	}
 }

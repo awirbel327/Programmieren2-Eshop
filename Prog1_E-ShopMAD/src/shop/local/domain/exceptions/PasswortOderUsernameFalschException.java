@@ -1,6 +1,5 @@
 package shop.local.domain.exceptions;
 
-import shop.local.valueobjects.*;
 
 public class PasswortOderUsernameFalschException  extends Exception {
 

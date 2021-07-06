@@ -9,7 +9,7 @@ public class Rechnung {
 	private Vector <Artikel> rechnungsVector;
 	private static String rechnungsNachricht;
 	private Kunde user;
-	private String userDaten;
+
 	
 	
 	//Konstruktor Rechnung
@@ -17,7 +17,6 @@ public class Rechnung {
 		rechnungsVector = wkVector;
 		this.user = (Kunde) user;
 		Date df = new Date();
-//		userDaten = "";
 		rechnungsNachricht = "\n ZAHLUNGSINFORMATION \n \n Guten Tag " + user.getName() + ", \n \n Vielen Dank für die Bestellung vom: " + df.toString() + " in unserem MAD-SHOP! \n \n HIER IST IHRE RECHNUNG: \n \n " + sammelDaten();
 		rechnungArchivieren();
 	}
@@ -31,7 +30,6 @@ public class Rechnung {
 		}
 		return gesammelteDaten;
 	}
-		
 
 	public void rechnungArchivieren() throws IOException {
 		FileWriter fw = new FileWriter("Rechnung.txt", true);
