@@ -36,7 +36,6 @@ public class EreignisVerwaltung {
 	public void speicherEreignis() throws IOException {
 		pm.openForWriting("SHOP_Ereignisse"); // PersistenzManager für Schreibvorgang �ffnen
 			for(Ereignis ereignis:ereignisListeVector) {
-				System.out.println("Ein Ereignis wurde gespeichert!");
 				pm.speicherEreignis(ereignis);	
 			}
 				pm.close();
