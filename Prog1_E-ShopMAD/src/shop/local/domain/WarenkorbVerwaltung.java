@@ -103,7 +103,7 @@ public class WarenkorbVerwaltung {
 	public String warenkorbAusgeben(Kunde userEingeloggt) {
 		String inhalt = "Ihr Warenkorb ist leer";
 		warenkorbVector = userEingeloggt.getWk().getListe();
-		berechneWkGesamt();
+		berechneWkGesamt(userEingeloggt);
 		if (userEingeloggt.getWk().getListe().size() > 0) {
 			inhalt = "In Ihrem Warenkorb befinden sich folgende Artikel: \n";
 			for (int i = 0; warenkorbVector.size() > i; i++) {
@@ -116,8 +116,9 @@ public class WarenkorbVerwaltung {
 		return inhalt + "\n\n"+ "Gesamtpreis: "+ wkGesamtpreis + " Euro\n\n";
 	}
 	
-	public void berechneWkGesamt() {
+	public void berechneWkGesamt(Kunde userEingeloggt) {
 		double preis = 0;
+		warenkorbVector = userEingeloggt.getWk().getListe();
 		for(int i = 0; warenkorbVector.size() > i; i++) {
 			preis += warenkorbVector.elementAt(i).getArtikelpreisBerechnen();
 		}
@@ -134,7 +135,7 @@ public class WarenkorbVerwaltung {
 		meineEreignisse.speicherEreignis();
 		
 		String kundenRechnung = "";
-		berechneWkGesamt();
+		berechneWkGesamt(userEingeloggt);
 		Vector <Artikel> warenkorbInhalt = userEingeloggt.getWk().getListe();
 						Rechnung rechnung = new Rechnung(warenkorbInhalt,userEingeloggt, wkGesamtpreis ); 
 						kundenRechnung = rechnung.toString() + "Gesamtpreis: "+ wkGesamtpreis + "Euro \n\n"; 
