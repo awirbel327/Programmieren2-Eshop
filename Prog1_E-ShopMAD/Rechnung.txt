@@ -542,3 +542,16 @@ Datum: Tue Jul 06 21:43:37 CEST 2021
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 1.0
 
+
+Rechnung:
+Datum: Wed Jul 07 10:10:44 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 07 10:10:44 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ 

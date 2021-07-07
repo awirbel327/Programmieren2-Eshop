@@ -65,6 +65,7 @@ public class ShopClientCUI {
 		System.out.print("         \n  Artikel zum WK hinzufuegen: 'c'");
 		System.out.print("         \n  Warenkorb anzeigen:  'd'");
 		System.out.print("         \n  Warenkorb bearbeiten:  'e'");
+		System.out.print("         \n  Warenkorb Leeren:  'g'");
 		System.out.print("         \n  Warenkorb kaufen:  'f'");
 		System.out.print("         \n  ---------------------");
 		System.out.println("       \n  Beenden:        'q'");
@@ -98,7 +99,7 @@ public class ShopClientCUI {
 			else if(auswahl.equals("m")) {
 				mitarbeiterlogin();
 			} else {
-				System.out.println("Bitte wählen Sie (k) oder (m) aus.");
+				System.out.println("Bitte wï¿½hlen Sie (k) oder (m) aus.");
 			}
 			break;
 		// Regstrieren (Kunden)
@@ -204,6 +205,9 @@ public class ShopClientCUI {
 			case "f":
 			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));
 			break;
+			case "g":
+				shop.leereWk((Kunde)userEingeloggt);
+				break;
 		
 		//Mitarbeiter registrieren
 		case "z":

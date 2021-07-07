@@ -124,7 +124,7 @@ public class WarenkorbVerwaltung {
 		wkGesamtpreis = preis;
 	}
 	
-	//Erzeugt Rechnung, leert WK und gibt Bestätigung an Kunden aus
+	//Erzeugt Rechnung, leert WK und gibt Bestï¿½tigung an Kunden aus
 	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel, EreignisVerwaltung meineEreignisse) throws IOException{
 		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
 		Vector<Ereignis>eri = meineArtikel.kaufen(warenkorb, userEingeloggt);
@@ -142,5 +142,9 @@ public class WarenkorbVerwaltung {
 		return kundenRechnung;	
 	}		
 	
-	
+	public void warenkorbLeeren() {
+		warenkorbVector.clear();
+		wkGesamtpreis = 0;
+		System.out.println("\nIhr Warenkorb wurde erfolgreich geleert \n");
+	}
 }

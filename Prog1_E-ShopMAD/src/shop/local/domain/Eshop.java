@@ -66,7 +66,10 @@ public class Eshop {
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel, meineEreignisse);
 	}
-	
+	public void leereWk(Kunde userEingeloogt) {
+		meinWarenkorb.warenkorbLeeren();
+		
+	}
 	/* User-Methoden*/
 	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
