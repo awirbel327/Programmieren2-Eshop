@@ -15,3 +15,20 @@ Datum: Wed Jul 07 11:56:13 CEST 2021
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 3.0
 
+
+Rechnung:
+Datum: Wed Jul 07 12:06:21 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 07 12:06:21 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Aepfel
+ Artikelanzahl: 3
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 3.0
+
