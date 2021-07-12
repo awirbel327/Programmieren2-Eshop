@@ -45,6 +45,7 @@ public class ArtikelVerwaltung {
 				String nr2 = Integer.toString(artikel2.getNummer());	// Int zu String
 				return nr1.compareTo(nr2);	// vergleich Nachbarn (nur Strings vergelichbar)
 			}
+			
 		});
 		for(int i = 0; vecZuArr.length > i ;i++) {
 			Artikel art = vecZuArr[i];

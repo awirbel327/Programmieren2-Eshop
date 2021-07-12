@@ -47,6 +47,7 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	}
 	
 	
+	
 	//Kunden laden
 	public Kunde ladeKunde() throws IOException {
 		String name = liesZeile();

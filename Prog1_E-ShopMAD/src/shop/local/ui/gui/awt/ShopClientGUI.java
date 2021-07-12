@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -19,8 +21,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import shop.local.domain.Eshop;
-import shop.local.domain.UserVerwaltung;
 import shop.local.ui.cui.ShopClientCUI;
 import shop.local.ui.gui.awt.ShopClientGUI.FileMenu;
 import shop.local.ui.gui.panels.AnmeldenPanel;
@@ -35,13 +35,14 @@ import shop.local.valueobjects.Artikel;
 import shop.local.valueobjects.Kunde;
 import shop.local.valueobjects.Mitarbeiter;
 import shop.local.domain.*;
-import shop.local.domain.Eshop;
+import shop.local.persistence.*;
 
 public class ShopClientGUI extends JFrame implements AnmeldenListener{ 
 	
 	private static final long serialVersionUID = 1L;
 	private static Eshop shop;
 	private static UserVerwaltung userverwaltung;
+	private static String datei;
 	
 	private ArtikelTablePanel artikelPanel;
 	private SearchPanel suchenPanel;
@@ -53,15 +54,15 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 //	private HistoriePanel historiePanel;
 	private JScrollPane historieScrollPane;
 	
-	public ShopClientGUI(String titel) {
-		super(titel);
-
+	public ShopClientGUI(String datei) throws IOException {
+//		super(titel);
+		shop = new Eshop(datei);
 		initialize();
 		
 	}
 	
 	public void initialize() {
-		
+		List<Artikel>liste;
 		
 		setupMenu();
 		
@@ -74,10 +75,11 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 				setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				addWindowListener(new WindowCloser());
 				
-//				
-//				java.util.List<Artikel> artikel = shop.gibAlleArtikel();
-//				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
-//				
+				
+				java.util.List<Artikel> artikel = shop.artikelListeGui();
+				
+				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
+				
 				System.out.print(shop);
 				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this);
 				this.add(anmeldenPanel, BorderLayout.SOUTH);
@@ -101,7 +103,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 	class FileMenu extends JMenu implements ActionListener {
 		
 		public FileMenu() {
-			super("SHOP");
+			super("MAD-SHOP");
 			
  		JMenuItem mi = new JMenuItem ("Abmelden");
 			mi.addActionListener(this);
@@ -128,16 +130,34 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 		}
 	}
 	
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) throws IOException {
+	
 		ShopClientGUI gui;
-		gui = new ShopClientGUI("SHOP");
-		gui.run();
-	}
-	public void run() {
-		String input = ""; 
-		ShopClientGUI shopClientGui = new ShopClientGUI("Eshop");
+		try {
+			gui = new ShopClientGUI("SHOP");
+			
+		} catch (IOException e) {	
+			System.out.println(e.getMessage());
+		}
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ShopClientGUI shopClientGui = new ShopClientGUI(datei);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		
 	}
+	
+//	public void run() {
+//		String input = ""; 
+//		ShopClientGUI shopClientGui = new ShopClientGUI("Eshop");
+//		
+//	}
 
 	@Override
 	public void angemeldeterUser(int a) {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
+import shop.local.persistence.*;
 import shop.local.domain.exceptions.*;
 
 import shop.local.valueobjects.*;
@@ -49,6 +50,10 @@ public class Eshop {
 		meineEreignisse.liesDaten("SHOP_Ereignisse");
 	}
 	
+	
+
+
+
 	/* Warenkorb-Methoden*/
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
@@ -126,9 +131,11 @@ public class Eshop {
 		return meineArtikel.getArtikelBestand();
 	}
 	
+	
 	public Vector<Artikel> artikelListeGui() {
-		return meineArtikel.getArtikelliste();
+		return meineArtikel.getArtikelBestand();
 	}
+	
 	
 	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {
 		return meineArtikel.sucheArtikel(bezeichnung); 

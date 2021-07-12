@@ -26,6 +26,7 @@ public class ShopClientCUI {
 		in = new BufferedReader(new InputStreamReader(System.in));
 	}
 	
+	
 	// Methode um die User-Eingaben einzulesen
 	private String liesEingabe() throws IOException{
 		return in.readLine();
