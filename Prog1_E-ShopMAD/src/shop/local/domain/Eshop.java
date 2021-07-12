@@ -126,6 +126,10 @@ public class Eshop {
 		return meineArtikel.getArtikelBestand();
 	}
 	
+	public Vector<Artikel> artikelListeGui() {
+		return meineArtikel.getArtikelliste();
+	}
+	
 	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}

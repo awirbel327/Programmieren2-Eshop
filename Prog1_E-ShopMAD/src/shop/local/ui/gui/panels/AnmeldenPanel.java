@@ -1,6 +1,5 @@
 package shop.local.ui.gui.panels;
 
-import javax.swing.JPanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,35 +8,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 //import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+//import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
-import shop.local.domain.Eshop;
-
-import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
-import shop.local.ui.gui.panels.AnmeldenPanel.addRegListener;
-import shop.local.ui.gui.panels.AnmeldenPanel.loginListener;
+import shop.local.domain.*;
 //import shop.local.ui.gui.awt.ShopClientGUI;
 //import shop.local.valueobjects.Kunde;
-import shop.local.*;
+//import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
+//import shop.local.ui.gui.panels.AnmeldenPanel.addRegListener;
+//import shop.local.ui.gui.panels.AnmeldenPanel.loginListener;
 
 
-public class AnmeldenPanel extends JPanel {
+
+public class AnmeldenPanel extends JPanel{
 	
-	public interface AnmeldenListener {
-		public void angemeldeterUser(int a);
-		public void angemeldeterMitarbeiter();
-		public void regMenue();
-
-	}
 	private static final long serialVersionUID = 1L;
 	Eshop shop = null;
 	private AnmeldenListener anmeldenListener = null; 
@@ -48,6 +38,15 @@ public class AnmeldenPanel extends JPanel {
 	private JLabel userLabel;
 	private JLabel passwortLabel;
 
+	
+	public interface AnmeldenListener {
+		public void angemeldeterUser(int a);
+		public void angemeldeterMitarbeiter();
+		public void regMenue();
+
+	}
+	
+	
 	public AnmeldenPanel(Eshop shop, AnmeldenListener listener) {
 		this.shop = shop;
 		anmeldenListener = listener;
@@ -55,6 +54,9 @@ public class AnmeldenPanel extends JPanel {
 		
 		setupEvents();
 	}
+	
+	
+	
 	private void setupUI() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
@@ -92,15 +94,13 @@ public class AnmeldenPanel extends JPanel {
 		gridBagLayout.setConstraints(searchTextField2, c);
 		this.add(searchTextField2);
 		
-		
 		loginButton = new JButton("Login");
 		c.gridx = 4;
 		c.weightx = 0.2;
 		gridBagLayout.setConstraints(loginButton, c);
 		this.add(loginButton);
 
-		
-		
+
 		regButton = new JButton("Registrieren");
 		c.gridx = 5;
 		c.weightx = 0.2;
@@ -111,44 +111,27 @@ public class AnmeldenPanel extends JPanel {
 
 	}
 	
+	
 	private void setupEvents() {
-		loginButton.addActionListener(new loginListener());
-		loginButton.addKeyListener(new loginListener());
-		searchTextField2.addKeyListener(new loginListener());
-		regButton.addActionListener(new addRegListener());
+//		loginButton.addActionListener(new loginListener());
+//		loginButton.addKeyListener(new loginListener());
+//		searchTextField2.addKeyListener(new loginListener());
+//		regButton.addActionListener(new addRegListener());
 	}
 	
 	
-class loginListener implements ActionListener, KeyListener{
 	
-	public void actionPerformed (ActionEvent ae) {
-		
-		//.kundenlogIn 
-		}
-	public void keyPressed(KeyEvent e) {
-		
-	}
 	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	}
-
-public class addRegListener implements ActionListener {
-	public void actionPerformed (ActionEvent ae) {
-		if (ae.getSource().equals(regButton)) {
-			anmeldenListener.regMenue();
-		}
-	}
 	
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -32,10 +32,12 @@ import shop.local.ui.gui.panels.SearchPanel;
 import shop.local.ui.gui.panels.WarenkorbPanel;
 import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Kunde;
+import shop.local.valueobjects.Mitarbeiter;
 import shop.local.domain.*;
-import shop.local.*;
+import shop.local.domain.Eshop;
 
-public class ShopClientGUI extends JFrame { 
+public class ShopClientGUI extends JFrame implements AnmeldenListener{ 
 	
 	private static final long serialVersionUID = 1L;
 	private static Eshop shop;
@@ -60,6 +62,7 @@ public class ShopClientGUI extends JFrame {
 	
 	public void initialize() {
 		
+		
 		setupMenu();
 		
 		// Fensterlayout
@@ -70,9 +73,15 @@ public class ShopClientGUI extends JFrame {
 				setTitle("Eshop");
 				setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				addWindowListener(new WindowCloser());
-
 				
-//					
+//				
+//				java.util.List<Artikel> artikel = shop.gibAlleArtikel();
+//				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
+//				
+				System.out.print(shop);
+				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this);
+				this.add(anmeldenPanel, BorderLayout.SOUTH);
+				
 				setVisible(true);
 				setSize(640, 480);
 	
@@ -92,7 +101,7 @@ public class ShopClientGUI extends JFrame {
 	class FileMenu extends JMenu implements ActionListener {
 		
 		public FileMenu() {
-			super("Datei");
+			super("SHOP");
 			
  		JMenuItem mi = new JMenuItem ("Abmelden");
 			mi.addActionListener(this);
@@ -120,15 +129,33 @@ public class ShopClientGUI extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		
 		ShopClientGUI gui;
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				ShopClientGUI shopClientGui = new ShopClientGUI("Eshop");
-			}
-		});
+		gui = new ShopClientGUI("SHOP");
+		gui.run();
 	}
-	
+	public void run() {
+		String input = ""; 
+		ShopClientGUI shopClientGui = new ShopClientGUI("Eshop");
+		
+	}
+
+	@Override
+	public void angemeldeterUser(int a) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void angemeldeterMitarbeiter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void regMenue() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
