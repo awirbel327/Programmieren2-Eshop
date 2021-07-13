@@ -54,6 +54,14 @@ public class Eshop {
 
 
 
+	public Eshop() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
 	/* Warenkorb-Methoden*/
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		

@@ -80,6 +80,11 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 				java.util.List<Artikel> artikel = shop.artikelListeGui(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
 				
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
+				scrollPane = new JScrollPane(artikelPanel);
+				this.add(scrollPane, BorderLayout.CENTER);
+				scrollPane.setVisible(true);
+				
+
 				
 				System.out.print(shop);
 				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this); // hier müsste eigentlich nur (shop,this); stehen
@@ -87,7 +92,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 				
 				suchenPanel = new SearchPanel(shop, null); // Hier muss statt null eigentlich this stehen
 				this.add(suchenPanel, BorderLayout.NORTH);
-				
 				
 				
 				setVisible(true);
@@ -136,26 +140,36 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 		}
 	}
 	
-	
+	public void run() {
+		
+	}
 	public static void main(String[] args) throws IOException {
-	
+		
 		ShopClientGUI gui;
 		try {
 			gui = new ShopClientGUI("SHOP");
-			
+			gui.run();
 		} catch (IOException e) {	
 			System.out.println(e.getMessage());
 		}
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ShopClientGUI shopClientGui = new ShopClientGUI(datei);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+	
+//		ShopClientGUI gui;
+//		try {
+//			gui = new ShopClientGUI("SHOP");
+//			
+//		} catch (IOException e) {	
+//			System.out.println(e.getMessage());
+//		}
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ShopClientGUI shopClientGui = new ShopClientGUI(datei);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		});
 		
 	}
 	
