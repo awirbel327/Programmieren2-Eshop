@@ -29,6 +29,7 @@ import shop.local.ui.gui.panels.ArtikelTablePanel;
 import shop.local.ui.gui.panels.MitarbeiterPanel;
 import shop.local.ui.gui.panels.RegisterPanel;
 import shop.local.ui.gui.panels.SearchPanel;
+import shop.local.ui.gui.panels.SearchPanel.SearchResultListener;
 import shop.local.ui.gui.panels.WarenkorbPanel;
 import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
 import shop.local.valueobjects.Artikel;
@@ -76,13 +77,18 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 				addWindowListener(new WindowCloser());
 				
 				
-				java.util.List<Artikel> artikel = shop.artikelListeGui();
+				java.util.List<Artikel> artikel = shop.artikelListeGui(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
 				
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
 				
 				System.out.print(shop);
-				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this);
+				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this); // hier müsste eigentlich nur (shop,this); stehen
 				this.add(anmeldenPanel, BorderLayout.SOUTH);
+				
+				suchenPanel = new SearchPanel(shop, null); // Hier muss statt null eigentlich this stehen
+				this.add(suchenPanel, BorderLayout.NORTH);
+				
+				
 				
 				setVisible(true);
 				setSize(640, 480);
