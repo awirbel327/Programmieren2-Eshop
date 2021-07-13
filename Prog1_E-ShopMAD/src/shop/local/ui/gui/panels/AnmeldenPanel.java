@@ -57,6 +57,7 @@ public class AnmeldenPanel extends JPanel{
 	
 	
 	
+	
 	private void setupUI() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
@@ -113,25 +114,43 @@ public class AnmeldenPanel extends JPanel{
 	
 	
 	private void setupEvents() {
-//		loginButton.addActionListener(new loginListener());
+		loginButton.addActionListener(new loginListener());
 //		loginButton.addKeyListener(new loginListener());
 //		searchTextField2.addKeyListener(new loginListener());
 //		regButton.addActionListener(new addRegListener());
 	}
 	
 	
+	class loginListener implements ActionListener, KeyListener{
+		
+		public void actionPerformed (ActionEvent ae) {
+			if (ae.getSource().equals(loginButton)) {
+				String kundeUsernameLogin = searchTextField.getText();
+				String myPass= searchTextField2.getText();
+				kundeUsernameLogin += myPass;
+				
+			}
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+	}

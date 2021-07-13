@@ -38,7 +38,7 @@ import shop.local.valueobjects.Mitarbeiter;
 import shop.local.domain.*;
 import shop.local.persistence.*;
 
-public class ShopClientGUI extends JFrame implements AnmeldenListener{ 
+public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener{ 
 	
 	private static final long serialVersionUID = 1L;
 	private static Eshop shop;
@@ -87,10 +87,10 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 
 				
 				System.out.print(shop);
-				anmeldenPanel = new AnmeldenPanel(shop, (AnmeldenListener) this); // hier müsste eigentlich nur (shop,this); stehen
+				anmeldenPanel = new AnmeldenPanel(shop, this); // hier müsste eigentlich nur (shop,this); stehen
 				this.add(anmeldenPanel, BorderLayout.SOUTH);
 				
-				suchenPanel = new SearchPanel(shop, null); // Hier muss statt null eigentlich this stehen
+				suchenPanel = new SearchPanel(shop, this); // Hier muss statt null eigentlich this stehen
 				this.add(suchenPanel, BorderLayout.NORTH);
 				
 				
@@ -193,6 +193,12 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener{
 
 	@Override
 	public void regMenue() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSearchResult(Vector<Artikel> artikelListe) {
 		// TODO Auto-generated method stub
 		
 	}

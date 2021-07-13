@@ -10,7 +10,7 @@ public class ArtikelTableModel extends AbstractTableModel  {
 	
 	private static final long serialVersionUID = 1L;
 	private Vector<Artikel> artikel;
-    private String[] spaltenNamen = { "Artikelnummer","Artikelbezeichnung", "Bestand", "Preis" };
+    private String[] spaltenNamen = { "Artikelnummer","Artikelbezeichnung", "Preis", "Bestand" };
 
     public ArtikelTableModel(Vector<Artikel> aktuelleArtikel) {
     	super(); 
@@ -60,9 +60,9 @@ public class ArtikelTableModel extends AbstractTableModel  {
             case 1:
             	return gewaehlteArtikel.getBezeichnung();
             case 2:
-            	return gewaehlteArtikel.getBestand();
+            	return gewaehlteArtikel.getPreis()+"€";
             case 3:
-                return gewaehlteArtikel.getPreis();
+                return gewaehlteArtikel.getBestand(); 
             default:
                 return null;
         }

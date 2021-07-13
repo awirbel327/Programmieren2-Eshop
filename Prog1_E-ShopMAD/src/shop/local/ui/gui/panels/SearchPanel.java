@@ -87,10 +87,10 @@ public class SearchPanel extends JPanel {
 				if (bezeichnung.isEmpty()) {
 					suchErgebnis = shop.artikelListeGui();
 				} else {
-//					suchErgebnis = shop.sucheNachBezeichnung(bezeichnung);
+					suchErgebnis = (Vector<Artikel>) shop.sucheNachBezeichnung(bezeichnung);
 
 				}
-//				searchListener.onSearchResult(suchErgebnis);	
+				searchListener.onSearchResult(suchErgebnis);	
 						
 				}
 
