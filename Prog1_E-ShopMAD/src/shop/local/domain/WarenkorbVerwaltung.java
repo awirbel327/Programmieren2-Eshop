@@ -71,6 +71,7 @@ public class WarenkorbVerwaltung {
 			}
 	}
 	
+		
 
 	// Methode die prueft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
 		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {

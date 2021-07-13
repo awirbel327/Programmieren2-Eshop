@@ -78,6 +78,7 @@ public class UserVerwaltung {
 				throw new KundeExistiertBereitsException(einKunde, "-in Kundenliste");
 			}
 		}
+		
 		einKunde.setKundenNr(kundenListe.size() + 1);
 		kundenListe.add(einKunde);
 		return einKunde; 
@@ -137,21 +138,20 @@ public class UserVerwaltung {
 //	}
 	
 	public User userLogin(String username, String passwort) throws PasswortOderUsernameFalschException{
+		for (Kunde kunde:kundenListe) {	
+			if(username.equals(kunde.getUsername()) && passwort.equals(kunde.getPasswort())) {
+//				if(passwort.equals(kunde.getPasswort())) {
+					return kunde;
+				}
+				
+		}
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
-			if(username.equals(mitarbeiter.getUsername())) {
-				if(passwort.equals(mitarbeiter.getPasswort())) {
+			if(username.equals(mitarbeiter.getUsername()) && passwort.equals(mitarbeiter.getPasswort())) {
+//				if(passwort.equals(mitarbeiter.getPasswort())) {
 					return mitarbeiter;
 				} 
 			} 
-		}
-		for (Kunde kunde:kundenListe) {	
-			if(username.equals(kunde.getUsername())) {
-				if(passwort.equals(kunde.getPasswort())) {
-					return kunde;
-				}
-			}
-		}
-		
+
 		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
 		
 	}

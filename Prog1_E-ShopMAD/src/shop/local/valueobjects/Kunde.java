@@ -1,16 +1,19 @@
 package shop.local.valueobjects;
 
+import java.util.Vector;
+
 public class Kunde extends User {
 
 	private int kundenNr;
 	private String strasse = " ";
-	private int hausNr;
-	private int plz;
+	private String hausNr;
+	private String plz;
 	private String ort = " ";
 	private Warenkorb warenkorb;
 
+	
 	//konstruktor fï¿½r anmeldung usw.
-	public Kunde(String name, String strasse, int hausNr, int plz, String ort, String username, String passwort) {
+	public Kunde(String name, String strasse, String hausNr, String plz, String ort, String username, String passwort) {
 		super(name, username, passwort);
 		this.strasse = strasse;
 		this.hausNr = hausNr;
@@ -19,8 +22,8 @@ public class Kunde extends User {
 		warenkorb = new Warenkorb();
 	}
 	
-	//Kostruktor für Laden aus der Persistenz
-	public Kunde(String name, String strasse, int hausNr, int plz, String ort, String username, String passwort, int kundenNr) {
+	//Kostruktor fï¿½r Laden aus der Persistenz
+	public Kunde(String name, String strasse, String hausNr, String plz, String ort, String username, String passwort, int kundenNr) {
 		super(name, username, passwort);
 		this.strasse = strasse;
 		this.hausNr = hausNr;
@@ -39,11 +42,11 @@ public class Kunde extends User {
 		this.kundenNr = kundenNr;
 	}
 
-	public int getPlz() {
+	public String getPlz() {
 		return plz;
 	}
 
-	public void setPlz(int plz) {
+	public void setPlz(String plz) {
 		this.plz = plz;
 	}
 
@@ -55,11 +58,11 @@ public class Kunde extends User {
 		this.strasse = strasse;
 	}
 
-	public int getHausNr() {
+	public String getHausNr() {
 		return hausNr;
 	}
 
-	public void setHausNr(int hausNr) {
+	public void setHausNr(String hausNr) {
 		this.hausNr = hausNr;
 	}
 
@@ -74,5 +77,7 @@ public class Kunde extends User {
 	public Warenkorb getWk() {
 		return warenkorb;
 	}
+	
+	
 
 }

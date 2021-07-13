@@ -79,15 +79,24 @@ public class Eshop {
 	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
 		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel, meineEreignisse);
 	}
-	public void leereWk(Kunde userEingeloogt) {
+	public void leereWk(Kunde userEingeloggt) {
 		meinWarenkorb.warenkorbLeeren();
 		
+	}
+	public Vector<Artikel> warenkorbGUI(Kunde userEingeloggt) {
+		
+		return userEingeloggt.getWk().getWKGui();
 	}
 	/* User-Methoden*/
 	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
-	public void userLogIn (String username, String passwort)throws PasswortOderUsernameFalschException{
-		this.userEingeloggt = meineNutzer.userLogin(username,passwort);
+//	public void userLogIn (String username, String passwort)throws PasswortOderUsernameFalschException{
+//		this.userEingeloggt = meineNutzer.userLogin(username,passwort);
+//	}
+//	
+	public User userLogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
+		this.userEingeloggt = meineNutzer.userLogin(username, passwort);
+		return userEingeloggt;
 	}
 	
 	
@@ -145,9 +154,7 @@ public class Eshop {
 	}
 	
 	
-	public Vector<Artikel> artikelListeGui() {
-		return meineArtikel.getArtikelBestand();
-	}
+
 	
 	
 	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {

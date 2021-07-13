@@ -24,6 +24,7 @@ import shop.local.domain.*;
 //import shop.local.ui.gui.panels.AnmeldenPanel.addRegListener;
 //import shop.local.ui.gui.panels.AnmeldenPanel.loginListener;
 import shop.local.domain.exceptions.PasswortOderUsernameFalschException;
+import shop.local.valueobjects.User;
 
 
 
@@ -41,7 +42,7 @@ public class AnmeldenPanel extends JPanel{
 
 	
 	public interface AnmeldenListener {
-		public void angemeldeterUser(int a);
+		public void userEingeloggt(User a);
 		public void angemeldeterMitarbeiter();
 		public void regMenue();
 
@@ -116,9 +117,9 @@ public class AnmeldenPanel extends JPanel{
 	
 	private void setupEvents() {
 		loginButton.addActionListener(new loginListener());
-//		loginButton.addKeyListener(new loginListener());
+		loginButton.addKeyListener(new loginListener());
 //		searchTextField2.addKeyListener(new loginListener());
-//		regButton.addActionListener(new addRegListener());
+		regButton.addActionListener(new addRegListener());
 	}
 	
 	
@@ -135,7 +136,6 @@ public class AnmeldenPanel extends JPanel{
 					e.printStackTrace();
 				}
 			}
-			
 		}
 
 		@Override
@@ -147,6 +147,23 @@ public class AnmeldenPanel extends JPanel{
 		@Override
 		public void keyPressed(KeyEvent e) {
 			// TODO Auto-generated method stub
+			if (e.getKeyCode()==KeyEvent.VK_ENTER){
+				String username = searchTextField.getText();
+				String passwort= searchTextField2.getText();
+				try {
+					shop.userLogIn(username, passwort);
+					User a = shop.userLogIn(username, passwort);
+					if (a != null)  {
+						anmeldenListener.userEingeloggt(a);
+				} else {
+					anmeldenListener.userEingeloggt(a);
+				}
+					
+				} catch (Exception ex) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
+				}
+	        }
 			
 		}
 
@@ -156,6 +173,13 @@ public class AnmeldenPanel extends JPanel{
 			
 		}
 	
+	}
+	public class addRegListener implements ActionListener {
+		public void actionPerformed (ActionEvent ae) {
+			if (ae.getSource().equals(regButton)) {
+				anmeldenListener.regMenue();
+			}
+		}
 	}
 	
 	

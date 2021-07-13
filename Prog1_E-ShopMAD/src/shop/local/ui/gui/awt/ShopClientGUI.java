@@ -28,17 +28,20 @@ import shop.local.ui.gui.panels.ArtikelTablePanel;
 
 import shop.local.ui.gui.panels.MitarbeiterPanel;
 import shop.local.ui.gui.panels.RegisterPanel;
+import shop.local.ui.gui.panels.RegisterPanel.RegisterListener;
 import shop.local.ui.gui.panels.SearchPanel;
 import shop.local.ui.gui.panels.SearchPanel.SearchResultListener;
 import shop.local.ui.gui.panels.WarenkorbPanel;
+import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
 import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
 import shop.local.valueobjects.Artikel;
 import shop.local.valueobjects.Kunde;
 import shop.local.valueobjects.Mitarbeiter;
+import shop.local.valueobjects.User;
 import shop.local.domain.*;
 import shop.local.persistence.*;
 
-public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener{ 
+public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener, WarenkorbListener, RegisterListener{ 
 	
 	private static final long serialVersionUID = 1L;
 	private static Eshop shop;
@@ -77,7 +80,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				addWindowListener(new WindowCloser());
 				
 				
-				java.util.List<Artikel> artikel = shop.artikelListeGui(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
+				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
 				
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
 				scrollPane = new JScrollPane(artikelPanel);
@@ -93,6 +96,9 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				suchenPanel = new SearchPanel(shop, this); // Hier muss statt null eigentlich this stehen
 				this.add(suchenPanel, BorderLayout.NORTH);
 				
+				warenkorbPanel = new WarenkorbPanel(shop, this);
+				this.add(warenkorbPanel, BorderLayout.EAST);
+				warenkorbPanel.setVisible(true); // MÜSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
 				
 				setVisible(true);
 				setSize(640, 480);
@@ -140,15 +146,13 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		}
 	}
 	
-	public void run() {
-		
-	}
+	
 	public static void main(String[] args) throws IOException {
 		
 		ShopClientGUI gui;
 		try {
 			gui = new ShopClientGUI("SHOP");
-			gui.run();
+//			gui.run();
 		} catch (IOException e) {	
 			System.out.println(e.getMessage());
 		}
@@ -180,9 +184,16 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //	}
 
 	@Override
-	public void angemeldeterUser(int a) {
+	public void userEingeloggt(User a) {
 		// TODO Auto-generated method stub
-		
+		if (a == a) {
+			System.out.println(a);
+		warenkorbPanel.setVisible(true);
+	} else {
+		System.out.println(a);
+//		mitarbeiterPanel.setVisible(true);
+	}
+		anmeldenPanel.setVisible(false);
 	}
 
 	@Override
@@ -191,16 +202,34 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		
 	}
 
-	@Override
-	public void regMenue() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void onWarenkorbHinzufuegen(Vector<Artikel> warenkorbliste) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void regMenue() {
+		registerPanel = new RegisterPanel(shop, this);
+		this.add(registerPanel, BorderLayout.CENTER);
+		scrollPane.setVisible(false);
+		registerPanel.setVisible(true);
+		this.revalidate();
+	}
+	
+	public void regToTable() {
+		scrollPane = new JScrollPane(artikelPanel);
+		this.add(scrollPane, BorderLayout.CENTER);
+		registerPanel.setVisible(false);
+		scrollPane.setVisible(true);
+		this.revalidate();
 	}
 	
 	

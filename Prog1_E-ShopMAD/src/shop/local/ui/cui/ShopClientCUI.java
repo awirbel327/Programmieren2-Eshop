@@ -80,8 +80,8 @@ public class ShopClientCUI {
 		String bezeichnung;
 		String name;
 		String strasse;
-		int hausNr;
-		int plz;
+		String hausNr;
+		String plz;
 		String ort;
 		String username;
 		String passwort;
@@ -101,11 +101,11 @@ public class ShopClientCUI {
 			System.out.print("Str.:   > ");
 			strasse = liesEingabe();
 			System.out.print("Hausnummer :   > ");			
-			String hausNrString = liesEingabe();
-			hausNr = Integer.parseInt(hausNrString);
+//			String hausNrString = liesEingabe();
+			hausNr = liesEingabe();
 			System.out.print("Postleitzahl :   > ");			
-			String plzString = liesEingabe();
-			plz = Integer.parseInt(plzString);
+//			String plzString = liesEingabe();
+			plz = liesEingabe();
 			System.out.print("Ort :   > ");
 			ort = liesEingabe();
 			System.out.print("Username :   > ");
@@ -113,7 +113,7 @@ public class ShopClientCUI {
 			System.out.print("passwort :   > ");
 			passwort = liesEingabe();
 			//neuen Kunden erschaffen
-			Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	
+			Kunde einKunde = new Kunde (name, strasse, hausNr, plz, ort, username, passwort);	
 			try {
 				shop.kundenRegistrieren(einKunde);	
 				userEingeloggt = einKunde ;
@@ -124,6 +124,7 @@ public class ShopClientCUI {
 				System.out.println(e.getMessage());
 			}
 			break;
+			
 		
 		// Alle Artikel als Liste ausgeben (unsortiert)
 		case "a":
@@ -303,10 +304,18 @@ public class ShopClientCUI {
 			System.out.println(e.getMessage());
 		}
 		try {
-		shop.userLogIn(username, passwort);
-			System.out.println("Hallo "+ shop.getUserEingeloggt().getName() + "!! Schoen, dass du da bist!");
+		User user = shop.userLogIn(username, passwort);
+			System.out.println("Hallo "+ shop.getUserEingeloggt().getName() + "! \nSchoen, dass du da bist!");
+			userEingeloggt = user;
+			shop.userEingeloggt(user);
+//			if(userEingeloggt instanceof Kunde) {
+//				eingeloggterUserMenue() ;
+//			}else {
+//				gibMitarbeiterMenueAus();
+//			}
 //			userEingeloggt = user;
 //			shop.userEingeloggt(user);
+			
 		} catch (PasswortOderUsernameFalschException e) {
 			System.out.println(e.getMessage());
 		}

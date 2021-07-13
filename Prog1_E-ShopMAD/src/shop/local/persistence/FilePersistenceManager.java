@@ -55,10 +55,10 @@ public class FilePersistenceManager  implements PersistenceManager  {
 			return null;
 		}
 		String strasse = liesZeile();
-		String hausNrString = liesZeile();
-		int hausNr = Integer.parseInt(hausNrString);
-		String plzString = liesZeile();
-		int plz = Integer.parseInt(plzString);
+		
+		String hausNr = liesZeile();
+		
+		String plz = liesZeile();
 		String ort = liesZeile();
 		String kUsername = liesZeile();
 		String kPasswort = liesZeile();
@@ -71,8 +71,8 @@ public class FilePersistenceManager  implements PersistenceManager  {
 	public boolean speicherKundeDaten(Kunde kunde) throws IOException {
 		schreibeZeile(kunde.getName());
 		schreibeZeile(kunde.getStrasse());
-		schreibeZeile(Integer.toString(kunde.getHausNr()));
-		schreibeZeile(Integer.toString(kunde.getPlz()));
+		schreibeZeile(kunde.getHausNr());
+		schreibeZeile(kunde.getPlz());
 		schreibeZeile(kunde.getOrt());
 		schreibeZeile(kunde.getUsername());
 		schreibeZeile(kunde.getPasswort());

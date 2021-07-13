@@ -85,7 +85,7 @@ public class SearchPanel extends JPanel {
 			if (ae.getSource().equals(searchButton)) {
 				String bezeichnung = searchTextField.getText();
 				if (bezeichnung.isEmpty()) {
-					suchErgebnis = shop.artikelListeGui();
+					suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 				} else {
 					suchErgebnis = (Vector<Artikel>) shop.sucheNachBezeichnung(bezeichnung);
 
