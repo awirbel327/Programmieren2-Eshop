@@ -23,6 +23,7 @@ import shop.local.domain.*;
 //import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
 //import shop.local.ui.gui.panels.AnmeldenPanel.addRegListener;
 //import shop.local.ui.gui.panels.AnmeldenPanel.loginListener;
+import shop.local.domain.exceptions.PasswortOderUsernameFalschException;
 
 
 
@@ -125,11 +126,16 @@ public class AnmeldenPanel extends JPanel{
 		
 		public void actionPerformed (ActionEvent ae) {
 			if (ae.getSource().equals(loginButton)) {
-				String kundeUsernameLogin = searchTextField.getText();
-				String myPass= searchTextField2.getText();
-				kundeUsernameLogin += myPass;
-				
+				String username = searchTextField.getText();
+				String passwort= searchTextField2.getText();
+				try {
+					shop.userLogIn(username, passwort);
+				} catch (PasswortOderUsernameFalschException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			
 		}
 
 		@Override

@@ -92,16 +92,7 @@ public class ShopClientCUI {
 		switch(line) {
 		// Einloggen
 		case "0":
-			System.out.print("Als Kunde(k) oder als Mitarbeiter(m) anmelden :   > ");
-			auswahl = liesEingabe();
-			if(auswahl.equals("k")) {
-				kundenlogin();
-			}
-			else if(auswahl.equals("m")) {
-				mitarbeiterlogin();
-			} else {
-				System.out.println("Bitte w�hlen Sie (k) oder (m) aus.");
-			}
+				userlogin();
 			break;
 		// Regstrieren (Kunden)
 		case "1":	
@@ -296,7 +287,7 @@ public class ShopClientCUI {
 	}
 	
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Kunde einloggen will
-	private void kundenlogin() {
+	private void userlogin() {
 		String username = "";
 		String passwort ="";
 		System.out.print("Username eingeben :   > ");
@@ -312,10 +303,10 @@ public class ShopClientCUI {
 			System.out.println(e.getMessage());
 		}
 		try {
-			Kunde kunde = shop.kundenlogIn(username, passwort);
-			System.out.println("Hallo "+ kunde.getName()+ "!! Schoen, dass du da bist!");
-			userEingeloggt = kunde;
-			shop.userEingeloggt(kunde);
+		shop.userLogIn(username, passwort);
+			System.out.println("Hallo "+ shop.getUserEingeloggt().getName() + "!! Schoen, dass du da bist!");
+//			userEingeloggt = user;
+//			shop.userEingeloggt(user);
 		} catch (PasswortOderUsernameFalschException e) {
 			System.out.println(e.getMessage());
 		}
@@ -323,31 +314,31 @@ public class ShopClientCUI {
 	}
 
 	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
-	private void mitarbeiterlogin() {
-		String username = "";
-		String passwort ="";
-		System.out.print("Username eingeben :   > ");
-		try {
-			username = liesEingabe();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.print("Passwort eingeben :   > ");
-		try {
-			passwort = liesEingabe();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-		try {
-			Mitarbeiter mitarbeiter = shop.mitarbeiterlogIn(username, passwort);
-			System.out.println("erfolgreich eingeloggt als "+ mitarbeiter.getName()+ "!!");
-			userEingeloggt = mitarbeiter;
-			shop.userEingeloggt(mitarbeiter);	
-		} catch (PasswortOderUsernameFalschException e) {
-			System.out.println(e.getMessage());	
-		}
-	}
-	
+//	private void mitarbeiterlogin() {
+//		String username = "";
+//		String passwort ="";
+//		System.out.print("Username eingeben :   > ");
+//		try {
+//			username = liesEingabe();
+//		} catch (IOException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		System.out.print("Passwort eingeben :   > ");
+//		try {
+//			passwort = liesEingabe();
+//		} catch (IOException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		try {
+//			User user = shop.userLogIn(username, passwort);
+//			System.out.println("erfolgreich eingeloggt als "+ user.getName()+ "!!");
+//			userEingeloggt = user;
+//			shop.userEingeloggt(user);	
+//		} catch (PasswortOderUsernameFalschException e) {
+//			System.out.println(e.getMessage());	
+//		}
+//	}
+//	
 	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {

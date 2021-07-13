@@ -86,9 +86,14 @@ public class Eshop {
 	/* User-Methoden*/
 	
 	// Methodenaufrufe zum einloggen/registrieren und speichern aus der Userverwaltung
-	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
-		return meineNutzer.kundenlogIn(username, passwort);
+	public void userLogIn (String username, String passwort)throws PasswortOderUsernameFalschException{
+		this.userEingeloggt = meineNutzer.userLogin(username,passwort);
 	}
+	
+	
+//	public Kunde kundenlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
+//		return meineNutzer.kundenlogIn(username, passwort);
+//	}
 	
 	public Kunde kundenRegistrieren(Kunde einKunde) throws KundeExistiertBereitsException {
 		return meineNutzer.registrieren(einKunde);
@@ -103,9 +108,9 @@ public class Eshop {
 		return meineNutzer.mitRegistrierenMit(einMitarbeiter);
 	}
 	
-	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
-		return meineNutzer.mitarbeiterlogIn(username, passwort);
-	}
+//	public Mitarbeiter mitarbeiterlogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
+//		return meineNutzer.mitarbeiterlogIn(username, passwort);
+//	}
 
 	public void speicherMitarbeiter() throws IOException {
 		meineNutzer.speicherMitarbeiter();
@@ -157,6 +162,10 @@ public class Eshop {
 	
 	public void userEingeloggt(User userEingeloggt) {
 		this.userEingeloggt = userEingeloggt;
+	}
+	
+	public User getUserEingeloggt() {
+		return this.userEingeloggt;
 	}
 
 	public void speicherEreignis() throws IOException {

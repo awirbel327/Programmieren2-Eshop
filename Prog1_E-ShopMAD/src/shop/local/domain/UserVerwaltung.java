@@ -57,17 +57,18 @@ public class UserVerwaltung {
 	
 	//Methode zum Abgleichen der eingegeben Kundendaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Kunde wieder.
 	//Kern vom Kunde login 
-	public Kunde kundenlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
-		for (Kunde kunde:kundenListe) {	
-			if(username.equals(kunde.getUsername())) {
-				if(passwort.equals(kunde.getPasswort())) {
-					return kunde;
-				}
-			}
-		}
-		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
-	}
-	
+//	public Kunde kundenlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
+//		for (Kunde kunde:kundenListe) {	
+//			if(username.equals(kunde.getUsername())) {
+//				if(passwort.equals(kunde.getPasswort())) {
+//					return kunde;
+//				}
+//			}
+//		}
+//		
+//		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
+//	}
+//	
 	// Methode zum Abgleichen des neuen Kundenobjekts mit den bestehenden Kundendaten. Gibt, wenn es keine Dopplung gibt, den 
 	// neuen Kunden aus und f�gt ihn zur Liste der Kunden hinzu.
 	//Kunde registrieren
@@ -124,7 +125,18 @@ public class UserVerwaltung {
 	}
 	
 	// Methode zum Abgleichen der eingegeben Mitarbeiterdaten mit den Gespeicherten. Gibt bei Korrekter Eingabe Mitarbeiter wieder.
-	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
+//	public Mitarbeiter mitarbeiterlogIn (String username, String passwort) throws PasswortOderUsernameFalschException {
+//		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
+//			if(username.equals(mitarbeiter.getUsername())) {
+//				if(passwort.equals(mitarbeiter.getPasswort())) {
+//					return mitarbeiter;
+//				} 
+//			} 
+//		}
+//		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
+//	}
+	
+	public User userLogin(String username, String passwort) throws PasswortOderUsernameFalschException{
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
 			if(username.equals(mitarbeiter.getUsername())) {
 				if(passwort.equals(mitarbeiter.getPasswort())) {
@@ -132,8 +144,18 @@ public class UserVerwaltung {
 				} 
 			} 
 		}
+		for (Kunde kunde:kundenListe) {	
+			if(username.equals(kunde.getUsername())) {
+				if(passwort.equals(kunde.getPasswort())) {
+					return kunde;
+				}
+			}
+		}
+		
 		throw new PasswortOderUsernameFalschException("Passwort oder Username falsch, bitte versuchen Sie es erneut.");
+		
 	}
+	
 	
 	//Mitarbieter registrieren Mitarbeiter
 	public Mitarbeiter mitRegistrierenMit(Mitarbeiter einMitarbeiter) throws MitarbeiterExistiertBereitsException {
