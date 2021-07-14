@@ -47,7 +47,6 @@ import shop.local.persistence.*;
  * Klasse zur grafischen Darstellung der Benutzeroberfläche
  * Wird vom JFrame (von Java) abgeleitet und Implementiert Klassen zum verarbeiten der einzelnen Aktionen 
  * auf der Benutzeroberfläche
- * @author Dilara
  *
  */
 public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener, WarenkorbListener, RegisterListener, MitarbeiterListener{ 
@@ -92,7 +91,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				addWindowListener(new WindowCloser());
 				
 				
-				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
+				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht 
 				
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
 				

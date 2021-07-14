@@ -151,15 +151,15 @@ public class WarenkorbPanel  extends JPanel {
 		
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.leereWk(); 
-				
+				shop.leereWk();
+				warenkorbListener.onWarenkorbAnzeigen();
 			}
 		});		
 	}
 	
 	
 class addWarenkorbListener implements ActionListener {
-		
+		//Artikel hinzufuegen
 		public void actionPerformed (ActionEvent ae) {
 			if (ae.getSource().equals(artikelHinzufuegenButton)) {
 				String artNummerString = artikelNummerField.getText();

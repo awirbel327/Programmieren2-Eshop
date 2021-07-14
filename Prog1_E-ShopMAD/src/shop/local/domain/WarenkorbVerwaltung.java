@@ -148,8 +148,10 @@ public class WarenkorbVerwaltung {
 		return kundenRechnung;	
 	}		
 	
-	public void warenkorbLeeren() {
-		warenkorbVector.clear();
+	public void warenkorbLeeren(Kunde userEingeloggt) {
+		//warenkorbVector.clear();
+		Vector<Artikel> warenkorbFuellung = userEingeloggt.getWk().getListe();
+		warenkorbFuellung.clear();
 		wkGesamtpreis = 0;
 		System.out.println("\nIhr Warenkorb wurde erfolgreich geleert \n");
 	}

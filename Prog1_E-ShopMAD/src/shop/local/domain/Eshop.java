@@ -75,7 +75,7 @@ public class Eshop {
 		return meinWarenkorb.kaufeWarenkorb((Kunde)this.userEingeloggt, meineArtikel, meineEreignisse);
 	}
 	public void leereWk() {
-		meinWarenkorb.warenkorbLeeren();
+		meinWarenkorb.warenkorbLeeren((Kunde)this.userEingeloggt);
 		
 	}
 	public Vector<Artikel> warenkorbGUI() {
