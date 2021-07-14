@@ -152,6 +152,7 @@ public class WarenkorbPanel  extends JPanel {
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				shop.leereWk(); 
+				
 			}
 		});		
 	}
