@@ -183,12 +183,12 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	@Override
 	public void userEingeloggt(User a) {
 		// TODO Auto-generated method stub
-		if (a == a) {
+		if (a instanceof Kunde) {
 			System.out.println(a);
 		warenkorbPanel.setVisible(true);
-	} else {
+	} else if (a instanceof Mitarbeiter){
 		System.out.println(a);
-//		mitarbeiterPanel.setVisible(true);
+		//mitarbeiterPanel.setVisible(true);
 	}
 		anmeldenPanel.setVisible(false);
 	}

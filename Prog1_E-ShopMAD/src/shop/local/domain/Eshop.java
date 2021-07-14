@@ -57,30 +57,29 @@ public class Eshop {
 
 
 	/* Warenkorb-Methoden*/
-	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
+	public String wkBefuellen( int artNummer, int artAnzahl) throws LagerbestandsException, PackungsgroesseException {
 		
-		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
+		return meinWarenkorb.wkBefuellen((Kunde)this.userEingeloggt, artNummer, artAnzahl, meineArtikel);
 	}
 
 	
-	public String wkAusgeben(Kunde userEingeloggt) {
-		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
+	public String wkAusgeben() {
+		return meinWarenkorb.warenkorbAusgeben((Kunde)this.userEingeloggt);
 	}
 	
-	public void erhoeheEinkauf(Kunde userEingeloggt,int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
-		meinWarenkorb.erhoeheEinkauf(userEingeloggt, wkNummer, wkStueck, meineArtikel);
+	public void erhoeheEinkauf(int wkNummer,int wkStueck) throws PackungsgroesseException, LagerbestandsException {
+		meinWarenkorb.erhoeheEinkauf((Kunde)this.userEingeloggt, wkNummer, wkStueck, meineArtikel);
 	}
 	
-	public String kaufeWarenkorb(Kunde userEingeloggt) throws IOException {
-		return meinWarenkorb.kaufeWarenkorb(userEingeloggt, meineArtikel, meineEreignisse);
+	public String kaufeWarenkorb() throws IOException {
+		return meinWarenkorb.kaufeWarenkorb((Kunde)this.userEingeloggt, meineArtikel, meineEreignisse);
 	}
-	public void leereWk(Kunde userEingeloggt) {
+	public void leereWk() {
 		meinWarenkorb.warenkorbLeeren();
 		
 	}
-	public Vector<Artikel> warenkorbGUI(Kunde userEingeloggt) {
-		
-		return userEingeloggt.getWk().getWKGui();
+	public Vector<Artikel> warenkorbGUI() {
+		return ((Kunde)this.userEingeloggt).getWk().getWKGui();
 	}
 	/* User-Methoden*/
 	
@@ -91,7 +90,7 @@ public class Eshop {
 //	
 	public User userLogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		this.userEingeloggt = meineNutzer.userLogin(username, passwort);
-		return userEingeloggt;
+		return (Kunde)this.userEingeloggt;
 	}
 	
 	
@@ -126,7 +125,7 @@ public class Eshop {
 	//Methodenaufrufe Artikel Mitarbeiter
 	public void mitArtikelHinzu(Artikel einArtikel) throws ArtikelExistiertBereitsException, PackungsgroesseException {
 		meineArtikel.mitArtikelhinzufuegen(einArtikel);
-		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter)this.userEingeloggt).getMitarbeiterNr(), einArtikel.getBezeichnung(), einArtikel.getBestand(), "ArtikelHinzugefuegt");
 		meineEreignisse.addEreignis(ereignis);
 	}
 	
@@ -154,7 +153,7 @@ public class Eshop {
 
 	public void mitErhoehtArtikel(String artikelname, int erhohung) throws PackungsgroesseException {
 		meineArtikel.mitErhoehtArtikel(artikelname, erhohung);
-		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter) userEingeloggt).getMitarbeiterNr(), artikelname,erhohung, "Artikelbestand Erhoeht");
+		Ereignis ereignis = new Ereignis("Mitarbeiter", ((Mitarbeiter)this.userEingeloggt).getMitarbeiterNr(), artikelname,erhohung, "Artikelbestand Erhoeht");
 		meineEreignisse.addEreignis(ereignis);
 	}
 	
