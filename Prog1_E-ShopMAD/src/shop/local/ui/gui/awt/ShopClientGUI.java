@@ -113,7 +113,8 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				
 				warenkorbPanel = new WarenkorbPanel(shop, this);
 				this.add(warenkorbPanel, BorderLayout.EAST);
-				warenkorbPanel.setVisible(true); // MÃœSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
+				warenkorbPanel.setVisible(false); 
+				
 				
 				setVisible(true);
 				setSize(640, 480);
@@ -200,6 +201,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	@Override
 	//Prüft User Art und zeigt entsprechende Oberfläche an
 	public void userEingeloggt(User a) {
+		warenkorbPanel.setVisible(true);
 		// TODO Auto-generated method stub
 		if (a instanceof Kunde) {
 			System.out.println(a);
@@ -243,6 +245,14 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		scrollPane = new JScrollPane(artikelPanel);
 		this.add(scrollPane, BorderLayout.CENTER);
 		registerPanel.setVisible(false);
+		scrollPane.setVisible(true);
+		this.revalidate();
+	}
+	
+	public void wkToTable() {
+		scrollPane = new JScrollPane(artikelPanel);
+		this.add(scrollPane, BorderLayout.CENTER);
+		wkpanel.setVisible(false);
 		scrollPane.setVisible(true);
 		this.revalidate();
 	}

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import shop.local.domain.exceptions.*;
+import shop.local.ui.gui.panels.RegisterPanel.RegisterListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.addWarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.bezahlenListener;
@@ -47,12 +48,16 @@ public class WarenkorbPanel  extends JPanel {
 	private JTextField artikelAnzahlField;
 	private JCheckBox senkenCheckBox;
 	private User userEingeloggt;
+
+	private JButton artikelListeButton;
 	
 	public interface WarenkorbListener {
 		public void onWarenkorbHinzufuegen (Vector<Artikel> warenkorbliste);
 		public void onSearchResult (Vector<Artikel> showWarenkorb);
 		public void onWarenkorbAnzeigen ();
+		public void wkToTable();
 	}
+	
 	
 	public WarenkorbPanel(Eshop shop, WarenkorbListener warenkorbListener) {
 		this.shop = shop;
@@ -67,7 +72,7 @@ public class WarenkorbPanel  extends JPanel {
 	
 	
 	private void setupUI() {
-		int anzahlZeilen = 12;	
+		int anzahlZeilen = 13;	
 		this.setLayout(new GridLayout(anzahlZeilen, 1));
 
 		this.add(new JLabel());
@@ -104,10 +109,20 @@ public class WarenkorbPanel  extends JPanel {
 		
 		wkBezahlenButton = new JButton("Bezahlen");
 		this.add(wkBezahlenButton);
+		
+		artikelListeButton =  new JButton("Artikel anzeigen");
+		this.add(artikelListeButton);
 	}
 	
 	
 	private void setupEvents() {
+		//Zur Artikelliste zrk (gerade nur von wk)
+		artikelListeButton.addActionListener(new showWarenkorbListener() {
+			public void actionPerformed(ActionEvent e) {
+			warenkorbListener.wkToTable();
+			}
+		});
+		
 		artikelHinzufuegenButton.addActionListener(new addWarenkorbListener());
 		
 		//WK anzeigen

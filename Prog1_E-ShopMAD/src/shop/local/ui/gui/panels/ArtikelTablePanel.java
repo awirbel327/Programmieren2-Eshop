@@ -12,6 +12,8 @@ public class ArtikelTablePanel extends JTable{
 	
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	public ArtikelTablePanel(Vector<Artikel> artikel) {
 		super();
 		ArtikelTableModel tableModel = new ArtikelTableModel(artikel);

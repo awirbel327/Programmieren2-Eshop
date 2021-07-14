@@ -100,3 +100,16 @@ Datum: Wed Jul 14 17:44:58 CEST 2021
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 3.0
 
+
+Rechnung:
+Datum: Wed Jul 14 21:39:06 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Bernd, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 14 21:39:06 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ 
