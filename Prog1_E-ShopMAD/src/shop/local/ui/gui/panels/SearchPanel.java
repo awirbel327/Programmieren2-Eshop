@@ -75,13 +75,15 @@ public class SearchPanel extends JPanel {
 	
 	private void setupEvents() {
 		searchButton.addActionListener(new SuchListener());
+		
 	}
 	
 	class SuchListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			Vector<Artikel> suchErgebnis;
-			if (ae.getSource().equals(searchButton)) {
+			if(ae.getSource().equals(searchButton)) {
+				
 				String bezeichnung = searchTextField.getText();
 				if (bezeichnung.isEmpty()) {
 					suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();

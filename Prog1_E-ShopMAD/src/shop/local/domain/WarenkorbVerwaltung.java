@@ -14,9 +14,9 @@ import shop.local.valueobjects.Rechnung;
 
 
 /**
- * Klasse zur Verwaltung vom Warenkorb TO DO +Artikelbestand �ndern (Zugriff
- * auf Artikel) +Rechnung erstellen (Rechnungsobjekt) Ausgabe �ber CUI
- * +Artikel hinzuf�gen (Artikelobjekt erstellen) +Menge �ndern
+ * Klasse zur Verwaltung vom Warenkorb TO DO +Artikelbestand ï¿½ndern (Zugriff
+ * auf Artikel) +Rechnung erstellen (Rechnungsobjekt) Ausgabe ï¿½ber CUI
+ * +Artikel hinzufï¿½gen (Artikelobjekt erstellen) +Menge ï¿½ndern
  * 
  * @author maust
  * @version 1 Verwaltung des Warenkorbs
@@ -30,7 +30,7 @@ public class WarenkorbVerwaltung {
 		return warenkorbVector;
 	}
 
-	// Methode die pr�ft ob noch genug Artikel auf Lager sind
+	// Methode die prï¿½ft ob noch genug Artikel auf Lager sind
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws PackungsgroesseException, LagerbestandsException{
 		Artikel gefundenArt;
 		Vector<Artikel> artListe = meineArtikel.getArtikelliste();
@@ -65,14 +65,14 @@ public class WarenkorbVerwaltung {
 			//suche in der allgemeinen Artikelliste
 			Artikel ausArtliste = meineArtikel.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 			if ((ausArtliste.getBestand() - ausWkListe.getBestand()) >= plusBestand) {
-                if (plusBestand + ausWkListe.getBestand() <= 0) {
-                     warenkorbFuellung.removeElement(ausWkListe);
-                }
-                ausWkListe.setBestand(plusBestand + ausWkListe.getBestand());
-            }
-             else {
-                throw new LagerbestandsException(ausArtliste);
-            }
+				if (plusBestand + ausWkListe.getBestand() <= 0) {
+					 warenkorbFuellung.removeElement(ausWkListe);
+				}
+				ausWkListe.setBestand(plusBestand + ausWkListe.getBestand());
+			}
+			 else {
+				throw new LagerbestandsException(ausArtliste);
+			}
 	}
 	
 		
@@ -84,7 +84,6 @@ public class WarenkorbVerwaltung {
 				erhoeheEinkauf(userEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);
 
 			} else {
-				//Wahrscheinlich Unnoetig
 				if (gefundenArt instanceof Massengutartikel) {
 					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
 				} else {
@@ -95,7 +94,7 @@ public class WarenkorbVerwaltung {
 			}
 		}
 
-	// Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt 
+	// Methode zum PrÃ¼fen ob ein Artikel bereits im Warenkorb liegt 
 	public boolean wkBestandspruefung(Artikel artikel, Kunde userEingeloggt) {
 		for (int i = 0; userEingeloggt.getWk().getListe().size() > i; i++) {
 			if (userEingeloggt.getWk().getListe().elementAt(i).getBezeichnung().equals(artikel.getBezeichnung())) {
@@ -115,7 +114,7 @@ public class WarenkorbVerwaltung {
 			for (int i = 0; warenkorbVector.size() > i; i++) {
 				Artikel artikel = warenkorbVector.elementAt(i);			
 				inhalt += "Artikelnummer: " + artikel.getNummer() + "\nArtikelbezeichnung: " + artikel.getBezeichnung() 
-				+ "\nPreis pro Stueck: " + artikel.getPreis() + " € "+"\nAnzahl: " + artikel.getBestand() 
+				+ "\nPreis pro Stueck: " + artikel.getPreis() + " â‚¬ "+"\nAnzahl: " + artikel.getBestand() 
 				+ "\nArtikel Preis gesamt:  " + artikel.getArtikelpreisBerechnen()+ " Euro "+ "\n\n" ;
 			}
 		}
@@ -131,7 +130,7 @@ public class WarenkorbVerwaltung {
 		wkGesamtpreis = preis;
 	}
 	
-	//Erzeugt Rechnung, leert WK und gibt Best�tigung an Kunden aus
+	//Erzeugt Rechnung, leert WK und gibt Bestï¿½tigung an Kunden aus
 	public String kaufeWarenkorb(Kunde userEingeloggt, ArtikelVerwaltung meineArtikel, EreignisVerwaltung meineEreignisse) throws IOException{
 		Vector<Artikel> warenkorb = userEingeloggt.getWk().getListe();
 		Vector<Ereignis>eri = meineArtikel.kaufen(warenkorb, userEingeloggt);
@@ -149,8 +148,10 @@ public class WarenkorbVerwaltung {
 		return kundenRechnung;	
 	}		
 	
-	public void warenkorbLeeren() {
-		warenkorbVector.clear();
+	public void warenkorbLeeren(Kunde userEingeloggt) {
+		//warenkorbVector.clear();
+		Vector<Artikel> warenkorbFuellung = userEingeloggt.getWk().getListe();
+		warenkorbFuellung.clear();
 		wkGesamtpreis = 0;
 		System.out.println("\nIhr Warenkorb wurde erfolgreich geleert \n");
 	}
