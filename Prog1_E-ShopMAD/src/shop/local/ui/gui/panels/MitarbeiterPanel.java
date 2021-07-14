@@ -27,7 +27,7 @@ import shop.local.valueobjects.Ereignis;
 public class MitarbeiterPanel extends JPanel {
 
 	/**
-	 * 
+	 * TEST
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -136,6 +136,7 @@ public class MitarbeiterPanel extends JPanel {
 	
 		
 	}
+	
 	
 	
 	private void setupEvents() {
