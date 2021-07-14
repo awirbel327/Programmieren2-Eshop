@@ -116,40 +116,42 @@ public class AnmeldenPanel extends JPanel{
 	
 	class loginListener implements ActionListener, KeyListener{
 		
+		//Button 
 		public void actionPerformed (ActionEvent ae) {
 			if (ae.getSource().equals(loginButton)) {
 				String username = searchTextField.getText();
 				String passwort= searchTextField2.getText();
 				try {
 					shop.userLogIn(username, passwort);
-				} catch (PasswortOderUsernameFalschException e) {
+					User a = shop.userLogIn(username, passwort);
+						anmeldenListener.userEingeloggt(a);
+					
+				} catch (Exception ex) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				}
-				System.out.println();
-			}
-		}
+	        }
+				}
+				//System.out.println();
+	
 
+		//eig weg ?
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 		}
 
+		// Wenn man enter drückt bei LoginButton
 		@Override
 		public void keyPressed(KeyEvent e) {
 			// TODO Auto-generated method stub
-			if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			if (e.getKeyCode()==KeyEvent.VK_ENTER){		//quelle = Enter 
 				String username = searchTextField.getText();
 				String passwort= searchTextField2.getText();
 				try {
 					shop.userLogIn(username, passwort);
 					User a = shop.userLogIn(username, passwort);
-					if (a != null)  {
-						anmeldenListener.userEingeloggt(a);
-				} else {
-					anmeldenListener.userEingeloggt(a);
-				}
-					
+						anmeldenListener.userEingeloggt(a);					
 				} catch (Exception ex) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);

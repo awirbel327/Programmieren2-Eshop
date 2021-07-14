@@ -32,3 +32,54 @@ Datum: Wed Jul 07 12:06:21 CEST 2021
  Preis pro Artikel: 1.0 Euro
  Artikel gesamtpreis: 3.0
 
+
+Rechnung:
+Datum: Wed Jul 14 17:36:42 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Bernd, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 14 17:36:42 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 1
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 1.0
+
+
+Rechnung:
+Datum: Wed Jul 14 17:37:40 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Bernd, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 14 17:37:40 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 1
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 1.0
+
+
+Rechnung:
+Datum: Wed Jul 14 17:42:24 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Bernd, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 14 17:42:24 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 1
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 1.0
+

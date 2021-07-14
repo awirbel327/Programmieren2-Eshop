@@ -20,6 +20,7 @@ import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.addWarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.bezahlenListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.showWarenkorbListener;
+import shop.local.ui.gui.swing.models.ArtikelTableModel;
 import shop.local.domain.Eshop;
 
 import shop.local.valueobjects.Artikel;
@@ -34,7 +35,7 @@ public class WarenkorbPanel  extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Eshop shop = null;
-	private WarenkorbListener listener = null;
+	private WarenkorbListener warenkorbListener = null;
 	
 	private JButton wkAnzeigenButton;
 	private JButton artikelHinzufuegenButton;
@@ -50,11 +51,12 @@ public class WarenkorbPanel  extends JPanel {
 	public interface WarenkorbListener {
 		public void onWarenkorbHinzufuegen (Vector<Artikel> warenkorbliste);
 		public void onSearchResult (Vector<Artikel> showWarenkorb);
+		public void onWarenkorbAnzeigen ();
 	}
 	
-	public WarenkorbPanel(Eshop shop, WarenkorbListener listener) {
+	public WarenkorbPanel(Eshop shop, WarenkorbListener warenkorbListener) {
 		this.shop = shop;
-		this.listener = listener;
+		this.warenkorbListener = warenkorbListener;
 		JEditorPane editorPane = new JEditorPane();
 
 		
@@ -62,11 +64,11 @@ public class WarenkorbPanel  extends JPanel {
 		
 		setupEvents();
 	}
+	
+	
 	private void setupUI() {
 		int anzahlZeilen = 12;	
 		this.setLayout(new GridLayout(anzahlZeilen, 1));
-
-		
 
 		this.add(new JLabel());
 		artikelNummerField = new JTextField();
@@ -77,8 +79,6 @@ public class WarenkorbPanel  extends JPanel {
 		this.add(artikelAnzahlField);
 		artikelHinzufuegenButton = new JButton("Zum Warenkorb hinzu");
 		this.add(artikelHinzufuegenButton);
-
-
 
 		bestandsaenderungNummerField = new JTextField();
 		bestandsaenderungNummerField.setToolTipText("Artikelnummer eingeben");
@@ -93,7 +93,6 @@ public class WarenkorbPanel  extends JPanel {
 		wkBearbeitenButton = new JButton("Warenkorb bearbeiten");
 		this.add(wkBearbeitenButton);
 		
-
 		this.add(new JLabel());
 		
 		wkAnzeigenButton = new JButton("Warenkorb");
@@ -105,21 +104,30 @@ public class WarenkorbPanel  extends JPanel {
 		
 		wkBezahlenButton = new JButton("Bezahlen");
 		this.add(wkBezahlenButton);
-
-		
 	}
+	
+	
 	private void setupEvents() {
 		artikelHinzufuegenButton.addActionListener(new addWarenkorbListener());
-		wkAnzeigenButton.addActionListener(new showWarenkorbListener());
-	
-		wkBezahlenButton.addActionListener(new bezahlenListener());
 		
+		//WK anzeigen
+		wkAnzeigenButton.addActionListener(new showWarenkorbListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			warenkorbListener.onWarenkorbAnzeigen();
+			}
+		});
+	
+		//Listener ganz unten
+		wkBezahlenButton.addActionListener(new bezahlenListener() {});
+		
+		//Bestand senken oder erhoehen
 		wkBearbeitenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (senkenCheckBox.isSelected()) {
 					try {
 						//HIER MUSS SENKE EINKAUF
-						shop.erhoeheEinkauf((Kunde) userEingeloggt, Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
+						shop.erhoeheEinkauf( Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
 					}  catch (NumberFormatException e2) {
 						JOptionPane.showMessageDialog(null, "Eingabe muss eine Nummer sein", "Fehler", JOptionPane.WARNING_MESSAGE);
 					} catch (LagerbestandsException |PackungsgroesseException e1) {
@@ -128,7 +136,7 @@ public class WarenkorbPanel  extends JPanel {
 					}
 				} else {
 					try {
-						shop.erhoeheEinkauf((Kunde) userEingeloggt,Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
+						shop.erhoeheEinkauf(Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
 					} catch (LagerbestandsException | PackungsgroesseException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
@@ -137,19 +145,18 @@ public class WarenkorbPanel  extends JPanel {
 					} catch (NullPointerException e3) {
 						JOptionPane.showMessageDialog(null, "Artikel befindet sich nicht in Ihrem Warenkorb", "Fehler", JOptionPane.WARNING_MESSAGE);
 					}
-					
 				}
 			}
 		});
 		
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.leereWk(null); //Hier müsste statt null kunde oder usereingeloggt stehen
+				shop.leereWk(); 
 			}
-		});
-
-		
+		});		
 	}
+	
+	
 class addWarenkorbListener implements ActionListener {
 		
 		public void actionPerformed (ActionEvent ae) {
@@ -166,14 +173,12 @@ class addWarenkorbListener implements ActionListener {
 				}
 				
 				try {
-					shop.wkBefuellen((Kunde) userEingeloggt, artNummer, artAnzahl);
+					shop.wkBefuellen( artNummer, artAnzahl);
 				} catch (LagerbestandsException | PackungsgroesseException ex) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				}
-				
 			}
-
 		}
 	}
 	
@@ -182,8 +187,8 @@ class addWarenkorbListener implements ActionListener {
 		public void actionPerformed (ActionEvent ae) {
 			Vector<Artikel> warenkorbAnzeige;
 			if (ae.getSource().equals(wkAnzeigenButton)) {
-				warenkorbAnzeige = shop.warenkorbGUI((Kunde) userEingeloggt);
-				listener.onSearchResult(warenkorbAnzeige);
+				warenkorbAnzeige = shop.warenkorbGUI();
+				warenkorbListener.onSearchResult(warenkorbAnzeige);
 			}
 		}
 	}
@@ -197,7 +202,7 @@ class addWarenkorbListener implements ActionListener {
 	        rechnungFrame.setSize(640, 480);
 	        rechnungFrame.add(rechnungLabel);
 	        try {
-				String gekaufteArtikel = shop.kaufeWarenkorb((Kunde)userEingeloggt);
+				String gekaufteArtikel = shop.kaufeWarenkorb();
 				System.out.println(gekaufteArtikel);
 				rechnungLabel.setText("<html>" + gekaufteArtikel + "</html>");
 			} catch (IOException e) {
@@ -206,6 +211,5 @@ class addWarenkorbListener implements ActionListener {
 			}
 	        rechnungFrame.setVisible(true);
 		}
-		
 	}
 }

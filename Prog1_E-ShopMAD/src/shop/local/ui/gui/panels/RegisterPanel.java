@@ -115,6 +115,7 @@ public class RegisterPanel extends JPanel {
 		}
 		
 		
+		//Kunde wird registriert und gespeichert
 		class AbschickenListener implements ActionListener {		
 		@Override
 		public void actionPerformed(ActionEvent ae) {
@@ -122,7 +123,6 @@ public class RegisterPanel extends JPanel {
 				String name = nachnameTextField.getText();
 				String strasse = strasseTextField.getText();
 				String hausNr = hausnummerTextField.getText();
-//				hausNr = Integer.parseInt(hausnrString);
 				String plz = postleitzahlTextField.getText();
 				String ort = ortTextField.getText();
 				String username = usernameTextField.getText();
