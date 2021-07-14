@@ -43,6 +43,13 @@ import shop.local.valueobjects.User;
 import shop.local.domain.*;
 import shop.local.persistence.*;
 
+/**
+ * Klasse zur grafischen Darstellung der Benutzeroberfläche
+ * Wird vom JFrame (von Java) abgeleitet und Implementiert Klassen zum verarbeiten der einzelnen Aktionen 
+ * auf der Benutzeroberfläche
+ * @author Dilara
+ *
+ */
 public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener, WarenkorbListener, RegisterListener, MitarbeiterListener{ 
 	
 	private static final long serialVersionUID = 1L;
@@ -61,12 +68,16 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //	private HistoriePanel historiePanel;
 	private JScrollPane historieScrollPane;
 	
+	// Konstruktor erzeugt den E-Shop, über den alle Methoden abgewickelt werden
 	public ShopClientGUI(String datei) throws IOException {
 //		super(titel);
 		shop = new Eshop(datei);
 		initialize();
 	}
 	
+	/**
+	 * Methode, die das Gerüst des GUIs aufbaut und die einzelnen Panels erzeugt und positioniert
+	 */
 	public void initialize() {
 		List<Artikel>liste;
 		
@@ -84,12 +95,14 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht (laut Khai)
 				
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
+				
 				scrollPane = new JScrollPane(artikelPanel);
 				this.add(scrollPane, BorderLayout.CENTER);
 				scrollPane.setVisible(true);
 				
 				mitarbeiterPanel = new MitarbeiterPanel( shop, this);
 				this.add(mitarbeiterPanel, BorderLayout.SOUTH);
+				//Wird erst sichtbar, wenn als MB eingeloggt!
 				mitarbeiterPanel.setVisible(false);
 				
 				System.out.print(shop);
@@ -107,7 +120,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				setSize(640, 480);
 	}
 	
-	
+	//Baut verschachteltes Menue auf
 	private void setupMenu() {
 		JMenuBar mBar = new JMenuBar();
 
@@ -117,6 +130,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		this.setJMenuBar(mBar);
 	}
 	
+	//Erzeugt die Menuepunkte und legt Veränderungen der Oberfläche bei Auswahl fest
 	class FileMenu extends JMenu implements ActionListener {
 		
 		public FileMenu() {
@@ -134,6 +148,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 			String command = ae.getActionCommand();
 			System.out.println(command);
 			
+			//Nach Abmelden ist Anmelden wieder möglich
 			if (command.equals("Abmelden")) {
 //				ShopClientGUI.this.setVisible(false);
 //				warenkorbPanel.setVisible(false);
@@ -184,6 +199,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //	}
 
 	@Override
+	//Prüft User Art und zeigt entsprechende Oberfläche an
 	public void userEingeloggt(User a) {
 		// TODO Auto-generated method stub
 		if (a instanceof Kunde) {
@@ -214,6 +230,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		// TODO Auto-generated method stub
 	}
 	
+	// Methode ersetzt bei Auswahl die dafault Oberfläche (scrollPanel) durch die Oberfläche zum Registrieren
 	public void regMenue() {
 		registerPanel = new RegisterPanel(shop, this);
 		this.add(registerPanel, BorderLayout.CENTER);
@@ -222,6 +239,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		this.revalidate();
 	}
 	
+	// Methode zeigt bei Auswahl def ScrollPanel an/ ersetzt Oberfläche für Registrierung
 	public void regToTable() {
 		scrollPane = new JScrollPane(artikelPanel);
 		this.add(scrollPane, BorderLayout.CENTER);
@@ -231,6 +249,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	}
 
 	@Override
+	//Zeigt Oberfläche für WK an
 	public void onWarenkorbAnzeigen() {
 		Vector<Artikel> artikel = shop.warenkorbGUI();
 		wkpanel = new ArtikelTablePanel(artikel);
