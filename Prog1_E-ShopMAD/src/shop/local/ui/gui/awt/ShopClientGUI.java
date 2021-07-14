@@ -101,7 +101,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				
 				warenkorbPanel = new WarenkorbPanel(shop, this);
 				this.add(warenkorbPanel, BorderLayout.EAST);
-				warenkorbPanel.setVisible(true); // MÜSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
+				warenkorbPanel.setVisible(false); // MÜSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
 				
 				setVisible(true);
 				setSize(640, 480);

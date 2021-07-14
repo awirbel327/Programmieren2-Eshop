@@ -65,11 +65,14 @@ public class WarenkorbVerwaltung {
 			//suche in der allgemeinen Artikelliste
 			Artikel ausArtliste = meineArtikel.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 			if ((ausArtliste.getBestand() - ausWkListe.getBestand()) >= plusBestand) {
-				ausWkListe.setBestand(plusBestand + ausWkListe.getBestand()); 
-			}
-			 else {
-				throw new LagerbestandsException(ausArtliste);
-			}
+                if (plusBestand + ausWkListe.getBestand() <= 0) {
+                     warenkorbFuellung.removeElement(ausWkListe);
+                }
+                ausWkListe.setBestand(plusBestand + ausWkListe.getBestand());
+            }
+             else {
+                throw new LagerbestandsException(ausArtliste);
+            }
 	}
 	
 		

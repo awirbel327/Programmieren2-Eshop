@@ -126,8 +126,7 @@ public class WarenkorbPanel  extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (senkenCheckBox.isSelected()) {
 					try {
-						//HIER MUSS SENKE EINKAUF
-						shop.erhoeheEinkauf( Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
+						shop.erhoeheEinkauf( Integer.parseInt(bestandsaenderungNummerField.getText()), -Integer.parseInt(bestandsaenderungField.getText()));
 					}  catch (NumberFormatException e2) {
 						JOptionPane.showMessageDialog(null, "Eingabe muss eine Nummer sein", "Fehler", JOptionPane.WARNING_MESSAGE);
 					} catch (LagerbestandsException |PackungsgroesseException e1) {

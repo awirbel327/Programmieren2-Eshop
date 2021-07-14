@@ -1,11 +1,11 @@
 Bananen
 1
-43
+35
 1.0
 Einzelgut
 Aepfel
 2
-43
+42
 1.0
 Einzelgut
 Thermomix
