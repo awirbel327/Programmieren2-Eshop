@@ -34,20 +34,23 @@ import shop.local.ui.gui.panels.SearchPanel.SearchResultListener;
 import shop.local.ui.gui.panels.WarenkorbPanel;
 import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
 import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
+import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
 import shop.local.valueobjects.Artikel;
+import shop.local.valueobjects.Ereignis;
 import shop.local.valueobjects.Kunde;
 import shop.local.valueobjects.Mitarbeiter;
 import shop.local.valueobjects.User;
 import shop.local.domain.*;
 import shop.local.persistence.*;
 
-public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener, WarenkorbListener, RegisterListener{ 
+public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchResultListener, WarenkorbListener, RegisterListener, MitarbeiterListener{ 
 	
 	private static final long serialVersionUID = 1L;
 	private static Eshop shop;
 	private static UserVerwaltung userverwaltung;
 	private static String datei;
 	
+	private ArtikelTablePanel wkpanel;
 	private ArtikelTablePanel artikelPanel;
 	private SearchPanel suchenPanel;
 	private AnmeldenPanel anmeldenPanel;
@@ -71,8 +74,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		
 		// Fensterlayout
 
-
-		
 				setLayout(new BorderLayout());
 				
 				setTitle("Eshop");
@@ -87,7 +88,9 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				this.add(scrollPane, BorderLayout.CENTER);
 				scrollPane.setVisible(true);
 				
-
+				mitarbeiterPanel = new MitarbeiterPanel( shop, this);
+				this.add(mitarbeiterPanel, BorderLayout.SOUTH);
+				mitarbeiterPanel.setVisible(false);
 				
 				System.out.print(shop);
 				anmeldenPanel = new AnmeldenPanel(shop, this); // hier müsste eigentlich nur (shop,this); stehen
@@ -188,16 +191,18 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		warenkorbPanel.setVisible(true);
 	} else if (a instanceof Mitarbeiter){
 		System.out.println(a);
-		//mitarbeiterPanel.setVisible(true);
+		mitarbeiterPanel.setVisible(true);
 	}
 		anmeldenPanel.setVisible(false);
+		this.revalidate();
 	}
 
 	@Override
 	public void angemeldeterMitarbeiter() {
 		// TODO Auto-generated method stub
 	}
-
+	
+	
 
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {
@@ -223,5 +228,29 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		registerPanel.setVisible(false);
 		scrollPane.setVisible(true);
 		this.revalidate();
+	}
+
+	@Override
+	public void onWarenkorbAnzeigen() {
+		Vector<Artikel> artikel = shop.warenkorbGUI();
+		wkpanel = new ArtikelTablePanel(artikel);
+		JScrollPane scrollPanewk = new JScrollPane(wkpanel);
+		this.add(scrollPanewk, BorderLayout.CENTER);
+		wkpanel.setVisible(true);
+		scrollPane.setVisible(false);	//Artikelliste auslenden
+		scrollPanewk.setVisible(true);
+		this.revalidate();
+	}
+
+	@Override
+	public void fromTableToHistory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void searchHistorie(Vector<Ereignis> suchergebnis) {
+		// TODO Auto-generated method stub
+		
 	}
 }

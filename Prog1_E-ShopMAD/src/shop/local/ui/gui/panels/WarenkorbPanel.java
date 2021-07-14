@@ -20,6 +20,7 @@ import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.addWarenkorbListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.bezahlenListener;
 import shop.local.ui.gui.panels.WarenkorbPanel.showWarenkorbListener;
+import shop.local.ui.gui.swing.models.ArtikelTableModel;
 import shop.local.domain.Eshop;
 
 import shop.local.valueobjects.Artikel;
@@ -34,7 +35,7 @@ public class WarenkorbPanel  extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Eshop shop = null;
-	private WarenkorbListener listener = null;
+	private WarenkorbListener warenkorbListener = null;
 	
 	private JButton wkAnzeigenButton;
 	private JButton artikelHinzufuegenButton;
@@ -50,11 +51,12 @@ public class WarenkorbPanel  extends JPanel {
 	public interface WarenkorbListener {
 		public void onWarenkorbHinzufuegen (Vector<Artikel> warenkorbliste);
 		public void onSearchResult (Vector<Artikel> showWarenkorb);
+		public void onWarenkorbAnzeigen ();
 	}
 	
-	public WarenkorbPanel(Eshop shop, WarenkorbListener listener) {
+	public WarenkorbPanel(Eshop shop, WarenkorbListener warenkorbListener) {
 		this.shop = shop;
-		this.listener = listener;
+		this.warenkorbListener = warenkorbListener;
 		JEditorPane editorPane = new JEditorPane();
 
 		
@@ -107,21 +109,19 @@ public class WarenkorbPanel  extends JPanel {
 	
 	private void setupEvents() {
 		artikelHinzufuegenButton.addActionListener(new addWarenkorbListener());
-		wkAnzeigenButton.addActionListener(new showWarenkorbListener());
-	
-		//ANNA ERSTMAL PRÜFEN OB ÜBERHAUPT RICHTIG ODER WAS VERGESSEN
-		wkBezahlenButton.addActionListener(new bezahlenListener() {
+		
+		//WK anzeigen
+		wkAnzeigenButton.addActionListener(new showWarenkorbListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					shop.kaufeWarenkorb();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				shop.leereWk();
+				
+			warenkorbListener.onWarenkorbAnzeigen();
 			}
 		});
+	
+		//Listener ganz unten
+		wkBezahlenButton.addActionListener(new bezahlenListener() {});
 		
+		//Bestand senken oder erhoehen
 		wkBearbeitenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (senkenCheckBox.isSelected()) {
@@ -188,7 +188,7 @@ class addWarenkorbListener implements ActionListener {
 			Vector<Artikel> warenkorbAnzeige;
 			if (ae.getSource().equals(wkAnzeigenButton)) {
 				warenkorbAnzeige = shop.warenkorbGUI();
-				listener.onSearchResult(warenkorbAnzeige);
+				warenkorbListener.onSearchResult(warenkorbAnzeige);
 			}
 		}
 	}

@@ -90,7 +90,7 @@ public class Eshop {
 //	
 	public User userLogIn(String username, String passwort) throws PasswortOderUsernameFalschException {
 		this.userEingeloggt = meineNutzer.userLogin(username, passwort);
-		return (Kunde)this.userEingeloggt;
+		return this.userEingeloggt;
 	}
 	
 	
