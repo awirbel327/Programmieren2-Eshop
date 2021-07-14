@@ -62,7 +62,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //		super(titel);
 		shop = new Eshop(datei);
 		initialize();
-		
 	}
 	
 	public void initialize() {
@@ -102,7 +101,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				
 				setVisible(true);
 				setSize(640, 480);
-	
 	}
 	
 	
@@ -113,7 +111,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		mBar.add(fileMenu);
 	
 		this.setJMenuBar(mBar);
-		
 	}
 	
 	class FileMenu extends JMenu implements ActionListener {
@@ -174,7 +171,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //				}
 //			}
 //		});
-		
 	}
 	
 //	public void run() {
@@ -199,21 +195,17 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	@Override
 	public void angemeldeterMitarbeiter() {
 		// TODO Auto-generated method stub
-		
 	}
 
-	
 
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onWarenkorbHinzufuegen(Vector<Artikel> warenkorbliste) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public void regMenue() {
@@ -231,6 +223,4 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		scrollPane.setVisible(true);
 		this.revalidate();
 	}
-	
-	
 }

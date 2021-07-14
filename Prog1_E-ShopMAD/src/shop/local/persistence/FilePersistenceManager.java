@@ -109,7 +109,6 @@ public class FilePersistenceManager  implements PersistenceManager  {
 		}
 	
 	
-	
 	public Mitarbeiter ladeMitarbeiter() throws IOException {
 		String name = liesZeile();
 		if (name == null) {

@@ -48,18 +48,12 @@ public class Eshop {
 		
 		meineEreignisse = new EreignisVerwaltung();
 		meineEreignisse.liesDaten("SHOP_Ereignisse");
+		
 	}
 	
-	
-
-
-
 	public Eshop() {
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 
 	/* Warenkorb-Methoden*/
@@ -153,10 +147,6 @@ public class Eshop {
 		return meineArtikel.getArtikelBestand();
 	}
 	
-	
-
-	
-	
 	public List<Artikel> sucheNachBezeichnung(String bezeichnung) {
 		return meineArtikel.sucheArtikel(bezeichnung); 
 	}
@@ -177,6 +167,5 @@ public class Eshop {
 
 	public void speicherEreignis() throws IOException {
 		meineEreignisse.speicherEreignis();
-		
 	}
 }

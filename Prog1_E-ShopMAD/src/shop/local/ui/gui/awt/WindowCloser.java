@@ -16,6 +16,5 @@ public class WindowCloser extends WindowAdapter {
 			window.dispose();
 			System.exit(0);
 		}
-		
 	}
 }

@@ -42,8 +42,7 @@ public class UserVerwaltung {
 			}
 		} while (einKunde != null);
 		pm.close();
-	}
-	
+	}	
 	
 	// Methode um einen Kunden zur Kundenliste hinzuzuf�gen. Fehler wenn Kunde bereits in der Liste ist.
 	// F�r Registrieren
@@ -51,7 +50,6 @@ public class UserVerwaltung {
 		if (kundenListe.contains(einKunde)) {
 			throw new KundeExistiertBereitsException(einKunde, " - in 'kundeEinfuegen()'");
 		}
-
 		kundenListe.add(einKunde);
 	}
 	

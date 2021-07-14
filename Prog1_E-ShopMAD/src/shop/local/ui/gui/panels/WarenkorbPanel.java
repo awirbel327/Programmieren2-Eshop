@@ -205,12 +205,6 @@ class addWarenkorbListener implements ActionListener {
 				JOptionPane.showMessageDialog(null, e.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 			}
 	        rechnungFrame.setVisible(true);
-
-	        
-	        
-
-	        
-			
 		}
 		
 	}

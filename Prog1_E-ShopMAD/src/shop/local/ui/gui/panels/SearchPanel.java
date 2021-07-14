@@ -57,7 +57,7 @@ public class SearchPanel extends JPanel {
 		this.add(searchLabel);
 		
 		searchTextField = new JTextField();
-		searchTextField.setToolTipText("Suchbegriff eingeben.");
+		searchTextField.setToolTipText("Suchbegriff eingeben:");
 		c.gridx = 1;	// Spalte 1
 		c.weightx = 0.6;	// 60% der gesamten Breite
 		gridBagLayout.setConstraints(searchTextField, c);
@@ -70,7 +70,7 @@ public class SearchPanel extends JPanel {
 		this.add(searchButton);
 		
 		// Rahmen definieren
-		setBorder(BorderFactory.createTitledBorder("Hier können sie nach Artikeln suchen!"));
+		setBorder(BorderFactory.createTitledBorder("Hier koennen Sie nach Artikeln suchen!"));
 	}
 	
 	private void setupEvents() {
@@ -78,7 +78,6 @@ public class SearchPanel extends JPanel {
 	}
 	
 	class SuchListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			Vector<Artikel> suchErgebnis;
@@ -88,15 +87,10 @@ public class SearchPanel extends JPanel {
 					suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 				} else {
 					suchErgebnis = (Vector<Artikel>) shop.sucheNachBezeichnung(bezeichnung);
-
 				}
 				searchListener.onSearchResult(suchErgebnis);	
 						
 				}
-
-				
-				
 			}
 		}
-	
 }

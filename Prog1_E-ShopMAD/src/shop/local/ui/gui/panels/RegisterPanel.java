@@ -27,14 +27,12 @@ public class RegisterPanel extends JPanel {
 			
 		}
 		
-
 		
 		private RegisterListener registerListener = null;
 		private Eshop shop = null;
 		
 		private JLabel nameLabel;
 		private JTextField nachnameTextField;
-		
 		
 		private JLabel strasseLabel;
 		private JTextField strasseTextField;
@@ -64,11 +62,7 @@ public class RegisterPanel extends JPanel {
 			
 			setupUi();
 			setupEvents();
-			
 		}
-		
-
-		
 		
 		private void setupUi(){
 			int anzahlZeilen = 16;
@@ -114,21 +108,14 @@ public class RegisterPanel extends JPanel {
 				
 				registrierenButton = new JButton("Registrieren");
 				this.add(registrierenButton);
-			
-			
 		}
 		
 		private void setupEvents() {
 			registrierenButton.addActionListener(new AbschickenListener());
-			
 		}
 		
 		
-		class AbschickenListener implements ActionListener {
-			
-		
-
-		
+		class AbschickenListener implements ActionListener {		
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if (ae.getSource().equals(registrierenButton)) {
@@ -147,12 +134,8 @@ public class RegisterPanel extends JPanel {
 				} catch ( KundeExistiertBereitsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					
 				}
-		}
-		
-		}
-
-		
-		}
+			}
+		}		
+	}
 }

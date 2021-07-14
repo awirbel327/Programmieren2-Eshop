@@ -1,6 +1,4 @@
 package shop.local.ui.gui.panels;
-
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -27,7 +25,6 @@ import shop.local.domain.exceptions.PasswortOderUsernameFalschException;
 import shop.local.valueobjects.User;
 
 
-
 public class AnmeldenPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -45,7 +42,6 @@ public class AnmeldenPanel extends JPanel{
 		public void userEingeloggt(User a);
 		public void angemeldeterMitarbeiter();
 		public void regMenue();
-
 	}
 	
 	
@@ -53,11 +49,8 @@ public class AnmeldenPanel extends JPanel{
 		this.shop = shop;
 		anmeldenListener = listener;
 		setupUI();
-		
 		setupEvents();
 	}
-	
-	
 	
 	
 	private void setupUI() {
@@ -103,7 +96,6 @@ public class AnmeldenPanel extends JPanel{
 		gridBagLayout.setConstraints(loginButton, c);
 		this.add(loginButton);
 
-
 		regButton = new JButton("Registrieren");
 		c.gridx = 5;
 		c.weightx = 0.2;
@@ -111,7 +103,6 @@ public class AnmeldenPanel extends JPanel{
 		this.add(regButton);
 
 		setBorder(BorderFactory.createTitledBorder("Hier können Sie sich anmelden!"));
-
 	}
 	
 	
@@ -141,7 +132,6 @@ public class AnmeldenPanel extends JPanel{
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
@@ -164,16 +154,14 @@ public class AnmeldenPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				}
 	        }
-			
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
-	
 	}
+	
 	public class addRegListener implements ActionListener {
 		public void actionPerformed (ActionEvent ae) {
 			if (ae.getSource().equals(regButton)) {
@@ -181,6 +169,4 @@ public class AnmeldenPanel extends JPanel{
 			}
 		}
 	}
-	
-	
-	}
+}
