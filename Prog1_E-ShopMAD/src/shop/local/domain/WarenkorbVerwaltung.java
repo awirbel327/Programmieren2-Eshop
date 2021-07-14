@@ -65,7 +65,10 @@ public class WarenkorbVerwaltung {
 			//suche in der allgemeinen Artikelliste
 			Artikel ausArtliste = meineArtikel.sucheArtikelinListe(meineArtikel.getArtikelliste(), artNummer);
 			if ((ausArtliste.getBestand() - ausWkListe.getBestand()) >= plusBestand) {
-				ausWkListe.setBestand(plusBestand + ausWkListe.getBestand()); 
+				if (plusBestand + ausWkListe.getBestand() <= 0) {
+					 warenkorbFuellung.removeElement(ausWkListe);
+				}
+				ausWkListe.setBestand(plusBestand + ausWkListe.getBestand());
 			}
 			 else {
 				throw new LagerbestandsException(ausArtliste);
@@ -81,7 +84,6 @@ public class WarenkorbVerwaltung {
 				erhoeheEinkauf(userEingeloggt, gefundenArt.getNummer(), anzahl, meineArtikel);
 
 			} else {
-				//Wahrscheinlich Unnoetig
 				if (gefundenArt instanceof Massengutartikel) {
 					gesuchterArt = new Massengutartikel(gefundenArt.getBezeichnung(), anzahl, gefundenArt.getPreis(),((Massengutartikel)gefundenArt).getPackungsgroesse());	
 				} else {
