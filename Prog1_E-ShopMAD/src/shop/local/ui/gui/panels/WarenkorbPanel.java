@@ -140,7 +140,7 @@ public class WarenkorbPanel  extends JPanel {
 		
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.leereWk(null); //Hier müsste statt null kunde oder usereingeloggt stehen
+				shop.leereWk((Kunde)userEingeloggt); //Hier müsste statt null kunde oder usereingeloggt stehen
 			}
 		});		
 	}
@@ -200,6 +200,5 @@ class addWarenkorbListener implements ActionListener {
 			}
 	        rechnungFrame.setVisible(true);
 		}
-		
 	}
 }
