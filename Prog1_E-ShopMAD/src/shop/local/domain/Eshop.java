@@ -61,6 +61,7 @@ public class Eshop {
 		
 		return meinWarenkorb.wkBefuellen(userEingeloggt, artNummer, artAnzahl, meineArtikel);
 	}
+
 	
 	public String wkAusgeben(Kunde userEingeloggt) {
 		return meinWarenkorb.warenkorbAusgeben(userEingeloggt);
@@ -119,7 +120,7 @@ public class Eshop {
 		meineNutzer.speicherMitarbeiter();
 	}
 	
-	
+
 	/* Artikel-Methoden*/
 	
 	//Methodenaufrufe Artikel Mitarbeiter

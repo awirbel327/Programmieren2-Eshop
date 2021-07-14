@@ -72,6 +72,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		// Fensterlayout
 
 
+		
 				setLayout(new BorderLayout());
 				
 				setTitle("Eshop");

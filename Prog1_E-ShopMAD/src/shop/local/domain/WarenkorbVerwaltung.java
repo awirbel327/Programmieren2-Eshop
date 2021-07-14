@@ -56,9 +56,10 @@ public class WarenkorbVerwaltung {
 		return bestaetigung;
 	}
 	
+	
 	// Methode zum Erhoehen der Anzahl des Artikels im WK
-		public void erhoeheEinkauf(Kunde kundEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException { 
-			Vector<Artikel> warenkorbFuellung = kundEingeloggt.getWk().getListe();
+		public void erhoeheEinkauf(Kunde userEingeloggt, int artNummer, int plusBestand, ArtikelVerwaltung meineArtikel) throws LagerbestandsException { 
+			Vector<Artikel> warenkorbFuellung = userEingeloggt.getWk().getListe();
 			//suchen im Warenkorb des Kunden
 			Artikel ausWkListe = meineArtikel.sucheArtikelinListe(warenkorbFuellung, artNummer);
 			//suche in der allgemeinen Artikelliste
@@ -92,15 +93,16 @@ public class WarenkorbVerwaltung {
 		}
 
 	// Methode zum Prüfen ob ein Artikel bereits im Warenkorb liegt 
-	public boolean wkBestandspruefung(Artikel artikel, Kunde kundEingeloggt) {
-		for (int i = 0; kundEingeloggt.getWk().getListe().size() > i; i++) {
-			if (kundEingeloggt.getWk().getListe().elementAt(i).getBezeichnung().equals(artikel.getBezeichnung())) {
+	public boolean wkBestandspruefung(Artikel artikel, Kunde userEingeloggt) {
+		for (int i = 0; userEingeloggt.getWk().getListe().size() > i; i++) {
+			if (userEingeloggt.getWk().getListe().elementAt(i).getBezeichnung().equals(artikel.getBezeichnung())) {
 				return true;
 			}
 		}
 		return false;
 	}
 
+	
 	public String warenkorbAusgeben(Kunde userEingeloggt) {
 		String inhalt = "Ihr Warenkorb ist leer";
 		warenkorbVector = userEingeloggt.getWk().getListe();

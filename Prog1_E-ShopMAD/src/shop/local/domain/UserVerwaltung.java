@@ -140,8 +140,8 @@ public class UserVerwaltung {
 			if(username.equals(kunde.getUsername()) && passwort.equals(kunde.getPasswort())) {
 //				if(passwort.equals(kunde.getPasswort())) {
 					return kunde;
+		
 				}
-				
 		}
 		for (Mitarbeiter mitarbeiter:mitarbeiterListe) {	
 			if(username.equals(mitarbeiter.getUsername()) && passwort.equals(mitarbeiter.getPasswort())) {
