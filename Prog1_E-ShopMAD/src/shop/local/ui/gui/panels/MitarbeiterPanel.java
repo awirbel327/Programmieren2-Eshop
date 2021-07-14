@@ -20,7 +20,6 @@ import shop.local.ui.gui.panels.MitarbeiterPanel.AtikelAendernListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.addArtikelErstellenListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.checkBoXListener;
-import shop.local.ui.gui.panels.MitarbeiterPanel.showHistorieListener;
 import shop.local.valueobjects.Artikel;
 import shop.local.valueobjects.Ereignis;
 
@@ -64,7 +63,8 @@ public class MitarbeiterPanel extends JPanel {
 
 	private JButton showHistorieButton;
 	private Artikel einArtikel;
-
+	private ArtikelTablePanel artikelPanel;
+	
 	public MitarbeiterPanel(Eshop shop, MitarbeiterListener listener) {
 		this.shop = shop;
 		this.listener = listener;
@@ -119,31 +119,24 @@ public class MitarbeiterPanel extends JPanel {
 		platzhalter2 = new JLabel();
 		this.add(platzhalter2);
 
-		historieArtikelNummerField = new JTextField();
-		this.add(historieArtikelNummerField);
-		historieArtikelNummerField.setToolTipText("Artikelname");
-
-		historieTageField = new JTextField();
-		this.add(historieTageField);
-		historieTageField.setToolTipText("Tage");
-
-		showHistorieButton = new JButton("Historie anzeigen");
-		this.add(showHistorieButton);
+		
 
 	}
 
 	private void setupEvents() {
 		artikelErstellenButton.addActionListener(new addArtikelErstellenListener());
 		artikelAendernButton.addActionListener(new AtikelAendernListener());
-		showHistorieButton.addActionListener(new showHistorieListener());
 		massengutCheckBox.addActionListener(new checkBoXListener());
 	}
 
 	class addArtikelErstellenListener implements ActionListener {
 
+		private Vector<Artikel> artikelListe;
+
 		public void actionPerformed(ActionEvent ae) {
 
 			Vector<Artikel> suchErgebnis;
+//			Vector<Artikel> artikelListe;
 			String artNameString = artikelNameField.getText();
 
 			String artPreisStringToParse = artikelPreisField.getText();
@@ -163,7 +156,19 @@ public class MitarbeiterPanel extends JPanel {
 					shop.mitArtikelHinzu(einArtikel);
 					suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 					listener.onSearchResult(suchErgebnis);
-
+					try {
+						shop.speicherArtikel();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						shop.speicherEreignis();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					artikelPanel.updateArtikelList(artikelListe);
 				} catch (ArtikelExistiertBereitsException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				} catch (PackungsgroesseException e) {
@@ -180,9 +185,8 @@ public class MitarbeiterPanel extends JPanel {
 			}
 		}
 	}
-
 	class AtikelAendernListener implements ActionListener {
-
+		private Vector<Artikel> artikelListe;
 		public void actionPerformed(ActionEvent ae) {
 			Vector<Artikel> suchErgebnis;
 
@@ -193,6 +197,18 @@ public class MitarbeiterPanel extends JPanel {
 
 			try {
 				shop.mitErhoehtArtikel(artikelname, erhohung);
+				try {
+					shop.speicherArtikel();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					shop.speicherEreignis();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (PackungsgroesseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -200,6 +216,7 @@ public class MitarbeiterPanel extends JPanel {
 			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 			listener.onSearchResult(suchErgebnis);
 		}
+		
 	}
 
 	class checkBoXListener implements ActionListener {
@@ -218,29 +235,5 @@ public class MitarbeiterPanel extends JPanel {
 		}
 	}
 
-	class showHistorieListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent ae) {
-			Vector<Ereignis> suchErgebnis;
-			if (ae.getSource().equals(showHistorieButton)) {
-				String suchbegriff = historieArtikelNummerField.getText();
-				String tage = historieTageField.getText();
-				int tageInt = 0;
-				if (suchbegriff.isEmpty()) {
-					listener.fromTableToHistory();
-				} else {
-					try {
-						tageInt = Integer.parseInt(tage);
-					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Keine gueltige Eingabe", "Fehler",
-								JOptionPane.WARNING_MESSAGE);
-					}
-
-//						suchErgebnis = shop.ereignisSuchen(suchbegriff, tageInt);
-//						suchErgebnis = shop.aufstockenEreignisse(suchbegriff, tageInt);
-//						listener.searchHistorie(suchErgebnis);
-				}
-			}
-		}
-	}
+	
 }

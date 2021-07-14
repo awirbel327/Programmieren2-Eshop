@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,13 +13,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
@@ -33,6 +39,7 @@ import shop.local.ui.gui.panels.SearchPanel;
 import shop.local.ui.gui.panels.SearchPanel.SearchResultListener;
 import shop.local.ui.gui.panels.WarenkorbPanel;
 import shop.local.ui.gui.panels.WarenkorbPanel.WarenkorbListener;
+import shop.local.ui.gui.swing.models.ArtikelTableModel;
 import shop.local.ui.gui.panels.AnmeldenPanel.AnmeldenListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
 import shop.local.valueobjects.Artikel;
@@ -66,7 +73,11 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	private JScrollPane scrollPane;
 //	private HistoriePanel historiePanel;
 	private JScrollPane historieScrollPane;
-	
+	   private JButton suchButton;
+	   private JTextField suchTextfeld;
+	   private JTable ArtikelTabelle;
+	   
+	   
 	// Konstruktor erzeugt den E-Shop, über den alle Methoden abgewickelt werden
 	public ShopClientGUI(String datei) throws IOException {
 //		super(titel);
@@ -93,16 +104,15 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				
 				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht 
 				
+				// --------SUCHERN
+				 
+			    // -----------SUCHEN OBEN
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
 				
 				scrollPane = new JScrollPane(artikelPanel);
 				this.add(scrollPane, BorderLayout.CENTER);
 				scrollPane.setVisible(true);
 				
-				mitarbeiterPanel = new MitarbeiterPanel( shop, this);
-				this.add(mitarbeiterPanel, BorderLayout.SOUTH);
-				//Wird erst sichtbar, wenn als MB eingeloggt!
-				mitarbeiterPanel.setVisible(false);
 				
 				System.out.print(shop);
 				anmeldenPanel = new AnmeldenPanel(shop, this); // hier mÃ¼sste eigentlich nur (shop,this); stehen
@@ -115,6 +125,10 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				this.add(warenkorbPanel, BorderLayout.EAST);
 				warenkorbPanel.setVisible(false); // MÃœSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
 				
+				mitarbeiterPanel = new MitarbeiterPanel( shop, this);
+				this.add(mitarbeiterPanel, BorderLayout.WEST);
+				//Wird erst sichtbar, wenn als MB eingeloggt!
+				mitarbeiterPanel.setVisible(false);
 				
 				setVisible(true);
 				setSize(640, 480);
@@ -172,6 +186,29 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		} catch (IOException e) {	
 			System.out.println(e.getMessage());
 		}
+		
+	}
+		class SuchActionListener implements ActionListener {
+
+	        public void actionPerformed(ActionEvent e) {
+	            String suchbegriff = suchTextfeld.getText();
+	            java.util.List<Artikel> suchErgebnis;
+	            if (suchbegriff.isEmpty()) {
+	                suchErgebnis = shop.gibAlleArtikel();
+	            } else {
+	                suchErgebnis = shop.sucheNachBezeichnung(suchbegriff);
+	            }
+//	            sortiereBuecherListe(suchErgebnis);
+	            aktualisiereArtikelAnzeige(suchErgebnis);
+	        }
+	        
+	    }
+		
+		private void aktualisiereArtikelAnzeige(java.util.List<Artikel> artikel) {
+	       
+	        ArtikelTableModel tableModel = (ArtikelTableModel) ArtikelTabelle.getModel();
+	        tableModel.setArtikel((Vector<Artikel>) artikel);
+	    }
 	
 //		ShopClientGUI gui;
 //		try {
@@ -190,7 +227,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 //				}
 //			}
 //		});
-	}
+	
 	
 //	public void run() {
 //		String input = ""; 
@@ -206,9 +243,15 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		if (a instanceof Kunde) {
 			System.out.println(a);
 		warenkorbPanel.setVisible(true);
+	
 	} else if (a instanceof Mitarbeiter){
 		System.out.println(a);
+		
+		warenkorbPanel.setVisible(false);
+//		scrollPane.setVisible(false);
 		mitarbeiterPanel.setVisible(true);
+		
+		
 	}
 		anmeldenPanel.setVisible(false);
 		this.revalidate();
@@ -224,6 +267,8 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {
 		// TODO Auto-generated method stub
+		System.out.println(artikelListe);
+		artikelPanel.updateArtikelList(artikelListe);
 	}
 
 	@Override

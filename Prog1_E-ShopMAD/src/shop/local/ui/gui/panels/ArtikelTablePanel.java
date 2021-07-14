@@ -19,14 +19,14 @@ public class ArtikelTablePanel extends JTable{
 		ArtikelTableModel tableModel = new ArtikelTableModel(artikel);
 		super.setAutoCreateRowSorter(true);
 		setModel(tableModel);
-//		updateArtikelList(artikel);	
+		updateArtikelList(artikel);	
 	}
 	
 //	
-//	public void updateArtikelList(Vector<Artikel> artikel) {
-//		Collections.sort(artikel, (b1, b2) -> b1.getNummer() - b2.getNummer());	
-//		ArtikelTableModel tableModel = (ArtikelTableModel) getModel();
-//		tableModel.setArtikel(artikel);
-//	}
+	public void updateArtikelList(Vector<Artikel> artikel) {
+		Collections.sort(artikel, (b1, b2) -> b1.getNummer() - b2.getNummer());	
+		ArtikelTableModel tableModel = (ArtikelTableModel) getModel();
+		tableModel.setArtikel(artikel);
+	}
 	
 }
