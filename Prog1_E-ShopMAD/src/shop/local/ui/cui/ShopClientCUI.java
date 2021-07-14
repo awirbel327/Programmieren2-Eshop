@@ -157,7 +157,7 @@ public class ShopClientCUI {
 			
 		// Warenkorb anzeigen 
 		case "d":
-			System.out.println(""+shop.wkAusgeben((Kunde)userEingeloggt));
+			System.out.println(""+shop.wkAusgeben());
 			break;
 			
 		// Warenkorb bearbeiten
@@ -183,7 +183,7 @@ public class ShopClientCUI {
 				System.out.println("bitte waehlen Sie (5) oder (6) aus.");
 			}
 			try {
-				shop.erhoeheEinkauf((Kunde)userEingeloggt,wkNummer,wkStueck);
+				shop.erhoeheEinkauf(wkNummer,wkStueck);
 				System.out.println("Die Artikelanzahl wurde erfolgreich angepasst.");
 			} catch (PackungsgroesseException e) {
 				System.out.println(e.getMessage());
@@ -196,10 +196,10 @@ public class ShopClientCUI {
 			
 			//Warenkorb kaufen
 			case "f":
-			System.out.println(shop.kaufeWarenkorb((Kunde)userEingeloggt));
+			System.out.println(shop.kaufeWarenkorb());
 			break;
 			case "g":
-				shop.leereWk((Kunde)userEingeloggt);
+				shop.leereWk();
 				break;
 		
 		//Mitarbeiter registrieren
@@ -379,7 +379,7 @@ public class ShopClientCUI {
 			menueWk(br);
 		}
 		try {
-			System.out.println(shop.wkBefuellen((Kunde)userEingeloggt,artNummer, artAnzahl));
+			System.out.println(shop.wkBefuellen(artNummer, artAnzahl));
 		} catch (LagerbestandsException e1) {
 			System.out.println(e1.getMessage());
 		} catch (PackungsgroesseException e2) {

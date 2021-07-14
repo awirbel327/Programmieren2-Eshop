@@ -113,12 +113,12 @@ public class WarenkorbPanel  extends JPanel {
 		wkBezahlenButton.addActionListener(new bezahlenListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					shop.kaufeWarenkorb((Kunde)userEingeloggt);
+					shop.kaufeWarenkorb();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				shop.leereWk((Kunde)userEingeloggt);
+				shop.leereWk();
 			}
 		});
 		
@@ -127,7 +127,7 @@ public class WarenkorbPanel  extends JPanel {
 				if (senkenCheckBox.isSelected()) {
 					try {
 						//HIER MUSS SENKE EINKAUF
-						shop.erhoeheEinkauf((Kunde) userEingeloggt, Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
+						shop.erhoeheEinkauf( Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
 					}  catch (NumberFormatException e2) {
 						JOptionPane.showMessageDialog(null, "Eingabe muss eine Nummer sein", "Fehler", JOptionPane.WARNING_MESSAGE);
 					} catch (LagerbestandsException |PackungsgroesseException e1) {
@@ -136,7 +136,7 @@ public class WarenkorbPanel  extends JPanel {
 					}
 				} else {
 					try {
-						shop.erhoeheEinkauf((Kunde) userEingeloggt,Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
+						shop.erhoeheEinkauf(Integer.parseInt(bestandsaenderungNummerField.getText()), Integer.parseInt(bestandsaenderungField.getText()));
 					} catch (LagerbestandsException | PackungsgroesseException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
@@ -148,10 +148,10 @@ public class WarenkorbPanel  extends JPanel {
 				}
 			}
 		});
-		//ANNA RICHTIG WEGEN USER ?
+		
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shop.leereWk((Kunde)userEingeloggt); //Hier müsste statt null kunde oder usereingeloggt stehen
+				shop.leereWk(); 
 			}
 		});		
 	}
@@ -173,7 +173,7 @@ class addWarenkorbListener implements ActionListener {
 				}
 				
 				try {
-					shop.wkBefuellen((Kunde) userEingeloggt, artNummer, artAnzahl);
+					shop.wkBefuellen( artNummer, artAnzahl);
 				} catch (LagerbestandsException | PackungsgroesseException ex) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
@@ -187,7 +187,7 @@ class addWarenkorbListener implements ActionListener {
 		public void actionPerformed (ActionEvent ae) {
 			Vector<Artikel> warenkorbAnzeige;
 			if (ae.getSource().equals(wkAnzeigenButton)) {
-				warenkorbAnzeige = shop.warenkorbGUI((Kunde) userEingeloggt);
+				warenkorbAnzeige = shop.warenkorbGUI();
 				listener.onSearchResult(warenkorbAnzeige);
 			}
 		}
@@ -202,7 +202,7 @@ class addWarenkorbListener implements ActionListener {
 	        rechnungFrame.setSize(640, 480);
 	        rechnungFrame.add(rechnungLabel);
 	        try {
-				String gekaufteArtikel = shop.kaufeWarenkorb((Kunde)userEingeloggt);
+				String gekaufteArtikel = shop.kaufeWarenkorb();
 				System.out.println(gekaufteArtikel);
 				rechnungLabel.setText("<html>" + gekaufteArtikel + "</html>");
 			} catch (IOException e) {
