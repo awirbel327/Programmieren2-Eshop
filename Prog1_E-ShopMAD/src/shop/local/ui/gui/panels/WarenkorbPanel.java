@@ -109,7 +109,18 @@ public class WarenkorbPanel  extends JPanel {
 		artikelHinzufuegenButton.addActionListener(new addWarenkorbListener());
 		wkAnzeigenButton.addActionListener(new showWarenkorbListener());
 	
-		wkBezahlenButton.addActionListener(new bezahlenListener());
+		//ANNA ERSTMAL PR‹FEN OB ‹BERHAUPT RICHTIG ODER WAS VERGESSEN
+		wkBezahlenButton.addActionListener(new bezahlenListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					shop.kaufeWarenkorb((Kunde)userEingeloggt);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				shop.leereWk((Kunde)userEingeloggt);
+			}
+		});
 		
 		wkBearbeitenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,7 +148,7 @@ public class WarenkorbPanel  extends JPanel {
 				}
 			}
 		});
-		
+		//ANNA RICHTIG WEGEN USER ?
 		wkLoeschenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				shop.leereWk((Kunde)userEingeloggt); //Hier m√ºsste statt null kunde oder usereingeloggt stehen
