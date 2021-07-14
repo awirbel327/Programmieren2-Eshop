@@ -130,6 +130,12 @@ public class RegisterPanel extends JPanel {
 				Kunde einKunde = new Kunde(name, strasse, hausNr, plz, ort, username, passwort );	
 				try {
 					shop.kundenRegistrieren(einKunde);
+					try {
+						shop.speicherKunden();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					registerListener.regToTable();
 				} catch ( KundeExistiertBereitsException e) {
 					// TODO Auto-generated catch block
