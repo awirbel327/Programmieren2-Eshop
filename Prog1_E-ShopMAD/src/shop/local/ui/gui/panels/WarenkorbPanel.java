@@ -62,11 +62,11 @@ public class WarenkorbPanel  extends JPanel {
 		
 		setupEvents();
 	}
+	
+	
 	private void setupUI() {
 		int anzahlZeilen = 12;	
 		this.setLayout(new GridLayout(anzahlZeilen, 1));
-
-		
 
 		this.add(new JLabel());
 		artikelNummerField = new JTextField();
@@ -77,8 +77,6 @@ public class WarenkorbPanel  extends JPanel {
 		this.add(artikelAnzahlField);
 		artikelHinzufuegenButton = new JButton("Zum Warenkorb hinzu");
 		this.add(artikelHinzufuegenButton);
-
-
 
 		bestandsaenderungNummerField = new JTextField();
 		bestandsaenderungNummerField.setToolTipText("Artikelnummer eingeben");
@@ -93,7 +91,6 @@ public class WarenkorbPanel  extends JPanel {
 		wkBearbeitenButton = new JButton("Warenkorb bearbeiten");
 		this.add(wkBearbeitenButton);
 		
-
 		this.add(new JLabel());
 		
 		wkAnzeigenButton = new JButton("Warenkorb");
@@ -105,9 +102,9 @@ public class WarenkorbPanel  extends JPanel {
 		
 		wkBezahlenButton = new JButton("Bezahlen");
 		this.add(wkBezahlenButton);
-
-		
 	}
+	
+	
 	private void setupEvents() {
 		artikelHinzufuegenButton.addActionListener(new addWarenkorbListener());
 		wkAnzeigenButton.addActionListener(new showWarenkorbListener());
@@ -137,7 +134,6 @@ public class WarenkorbPanel  extends JPanel {
 					} catch (NullPointerException e3) {
 						JOptionPane.showMessageDialog(null, "Artikel befindet sich nicht in Ihrem Warenkorb", "Fehler", JOptionPane.WARNING_MESSAGE);
 					}
-					
 				}
 			}
 		});
@@ -146,10 +142,10 @@ public class WarenkorbPanel  extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				shop.leereWk(null); //Hier müsste statt null kunde oder usereingeloggt stehen
 			}
-		});
-
-		
+		});		
 	}
+	
+	
 class addWarenkorbListener implements ActionListener {
 		
 		public void actionPerformed (ActionEvent ae) {
@@ -171,9 +167,7 @@ class addWarenkorbListener implements ActionListener {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				}
-				
 			}
-
 		}
 	}
 	
