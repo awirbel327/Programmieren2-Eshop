@@ -102,7 +102,7 @@ public class AnmeldenPanel extends JPanel{
 		gridBagLayout.setConstraints(regButton, c);
 		this.add(regButton);
 
-		setBorder(BorderFactory.createTitledBorder("Hier können Sie sich anmelden!"));
+		setBorder(BorderFactory.createTitledBorder("Hier koennen Sie sich anmelden!"));
 	}
 	
 	
