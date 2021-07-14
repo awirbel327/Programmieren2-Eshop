@@ -113,3 +113,19 @@ Datum: Wed Jul 14 21:39:06 CEST 2021
  HIER IST IHRE RECHNUNG:
  
  
+Rechnung:
+Datum: Wed Jul 14 23:41:05 CEST 2021
+
+ ZAHLUNGSINFORMATION 
+ 
+ Guten Tag Dilara Kanmaz, 
+ 
+ Vielen Dank für die Bestellung vom: Wed Jul 14 23:41:05 CEST 2021 in unserem MAD-SHOP! 
+ 
+ HIER IST IHRE RECHNUNG: 
+ 
+ Artikelname: Bananen
+ Artikelanzahl: 1
+ Preis pro Artikel: 1.0 Euro
+ Artikel gesamtpreis: 1.0
+
