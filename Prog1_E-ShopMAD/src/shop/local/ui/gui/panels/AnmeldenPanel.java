@@ -134,8 +134,6 @@ public class AnmeldenPanel extends JPanel{
 				}
 				//System.out.println();
 	
-		
-		
 
 		//eig weg ?
 		@Override
@@ -153,12 +151,7 @@ public class AnmeldenPanel extends JPanel{
 				try {
 					shop.userLogIn(username, passwort);
 					User a = shop.userLogIn(username, passwort);
-					if (a != null)  {
-						anmeldenListener.userEingeloggt(a);
-				} else {
-					anmeldenListener.userEingeloggt(a);
-				}
-					
+						anmeldenListener.userEingeloggt(a);					
 				} catch (Exception ex) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);

@@ -48,6 +48,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	private static UserVerwaltung userverwaltung;
 	private static String datei;
 	
+	private ArtikelTablePanel wkpanel;
 	private ArtikelTablePanel artikelPanel;
 	private SearchPanel suchenPanel;
 	private AnmeldenPanel anmeldenPanel;
@@ -71,8 +72,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		
 		// Fensterlayout
 
-
-		
 				setLayout(new BorderLayout());
 				
 				setTitle("Eshop");
@@ -87,7 +86,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				this.add(scrollPane, BorderLayout.CENTER);
 				scrollPane.setVisible(true);
 				
-
+				
 				
 				System.out.print(shop);
 				anmeldenPanel = new AnmeldenPanel(shop, this); // hier müsste eigentlich nur (shop,this); stehen
@@ -197,7 +196,8 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	public void angemeldeterMitarbeiter() {
 		// TODO Auto-generated method stub
 	}
-
+	
+	
 
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {
@@ -222,6 +222,18 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 		this.add(scrollPane, BorderLayout.CENTER);
 		registerPanel.setVisible(false);
 		scrollPane.setVisible(true);
+		this.revalidate();
+	}
+
+	@Override
+	public void onWarenkorbAnzeigen() {
+		Vector<Artikel> artikel = shop.warenkorbGUI();
+		wkpanel = new ArtikelTablePanel(artikel);
+		JScrollPane scrollPanewk = new JScrollPane(wkpanel);
+		this.add(scrollPanewk, BorderLayout.CENTER);
+		wkpanel.setVisible(true);
+		scrollPane.setVisible(false);	//Artikelliste auslenden
+		scrollPanewk.setVisible(true);
 		this.revalidate();
 	}
 }

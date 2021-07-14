@@ -23,6 +23,8 @@ public class Warenkorb {
 		warenkorbVector.clear();
 //		wkGesamtpreis = 0;
 	}
+	
+	//eig raus ?
 	public Vector<Artikel> getWKGui(){
 		return warenkorbVector;
 	}
