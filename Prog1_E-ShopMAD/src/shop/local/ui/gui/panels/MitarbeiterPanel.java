@@ -185,14 +185,17 @@ public class MitarbeiterPanel extends JPanel {
 			int artStueckzahlString = Integer.parseInt(artStueckzahlStringToParse);
 
 			einArtikel = new Artikel(artNameString, artStueckzahlString, artPreisString);
-			String paketGroesseToParse = massengutPaketField.getText();
-			int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
+			
+//			String paketGroesseToParse = massengutPaketField.getText();
+//			int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
 
 			if (ae.getSource().equals(artikelErstellenButton) && !massengutCheckBox.isSelected()) {
 
 					try {
-						shop.mitErhoehtArtikel(paketGroesseToParse, paketGroesseInt);;
-					} catch (PackungsgroesseException e) {
+						shop.mitArtikelHinzu(einArtikel);
+//						String st = "Artikel wurde erfolgreich hinzugefügt";
+//						JOptionPane.showMessageDialog(null, st);
+					} catch (PackungsgroesseException | ArtikelExistiertBereitsException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -213,15 +216,41 @@ public class MitarbeiterPanel extends JPanel {
 							e.printStackTrace();
 						}
 					
-					artikelPanel.updateArtikelList(artikelListe);
+//					artikelPanel.updateArtikelList(artikelListe);
 			
-			} else {
-//				String paketGroesseToParse = massengutPaketField.getText();
-//				int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
-//					shop.erstelleMassenartikel(artStueckzahlString, artNameString, artPreisString, paketGroesseInt);
-//					suchErgebnis = shop.artikelListeGui();
-//					listener.onSearchResult(suchErgebnis);
+			} else if (ae.getSource().equals(artikelErstellenButton) && massengutCheckBox.isSelected()){
+			
+
+				String packungsgroesseString = massengutPaketField.getText();
+				int packungsgroesse = Integer.parseInt(packungsgroesseString);
+				einArtikel = new Massengutartikel(artNameString, artStueckzahlString, artPreisString, packungsgroesse);
+				
+				try {
+					shop.mitArtikelHinzu(einArtikel);
+//					String st = "Artikel wurde erfolgreich hinzugefügt";
+//					JOptionPane.showMessageDialog(null, st);
+				} catch (PackungsgroesseException | ArtikelExistiertBereitsException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
+				listener.onSearchResult(suchErgebnis);
+				
+					try {
+						shop.speicherArtikel();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+					try {
+						shop.speicherEreignis();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					
 			}
+		}
 		}
 	}
 	
@@ -253,8 +282,8 @@ public class MitarbeiterPanel extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
-			listener.onSearchResult(suchErgebnis);
+//			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
+//			listener.onSearchResult(suchErgebnis);
 		}
 	}
 

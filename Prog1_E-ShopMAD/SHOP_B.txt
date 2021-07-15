@@ -60,3 +60,19 @@ Kaffee
 100
 1.0
 Einzelgut
+Tee
+13
+100
+1.0
+Einzelgut
+Chai Latte
+14
+100
+2.0
+Einzelgut
+Bier
+15
+100
+2.5
+Massengut
+4
