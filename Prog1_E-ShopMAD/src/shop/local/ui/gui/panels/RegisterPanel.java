@@ -27,7 +27,6 @@ public class RegisterPanel extends JPanel {
 			
 		}
 		
-		
 		private RegisterListener registerListener = null;
 		private Eshop shop = null;
 		
@@ -113,7 +112,6 @@ public class RegisterPanel extends JPanel {
 		private void setupEvents() {
 			registrierenButton.addActionListener(new AbschickenListener());
 		}
-		
 		
 		//Kunde wird registriert und gespeichert
 		class AbschickenListener implements ActionListener {		

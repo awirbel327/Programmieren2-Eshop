@@ -8,7 +8,6 @@ public class Warenkorb {
 	public Warenkorb () {
 		 this.warenkorbVector = new Vector<Artikel>();
 	}
-	
 	public Vector <Artikel> getListe() {
 		return warenkorbVector;
 	}
@@ -18,12 +17,10 @@ public class Warenkorb {
 			warenkorbVector.add(artikel);
 		}
 	}
-
 	public void warenkorbLeeren() {
 		warenkorbVector.clear();
 //		wkGesamtpreis = 0;
 	}
-	
 	//eig raus ?
 	public Vector<Artikel> getWKGui(){
 		return warenkorbVector;

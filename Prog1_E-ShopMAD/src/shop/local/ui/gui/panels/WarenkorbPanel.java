@@ -57,16 +57,12 @@ public class WarenkorbPanel  extends JPanel {
 		public void onWarenkorbAnzeigen ();
 		public void wkToTable();
 	}
-	
-	
+
 	public WarenkorbPanel(Eshop shop, WarenkorbListener warenkorbListener) {
 		this.shop = shop;
 		this.warenkorbListener = warenkorbListener;
-		JEditorPane editorPane = new JEditorPane();
-
-		
+		JEditorPane editorPane = new JEditorPane();		
 		setupUI();
-		
 		setupEvents();
 	}
 	
@@ -160,6 +156,8 @@ public class WarenkorbPanel  extends JPanel {
 						JOptionPane.showMessageDialog(null, "Artikel befindet sich nicht in Ihrem Warenkorb", "Fehler", JOptionPane.WARNING_MESSAGE);
 					}
 				}
+				String st = "Warenkorb wurde erfolgreich bearbeitet";
+				JOptionPane.showMessageDialog(null, st);
 			}
 		});
 		
@@ -167,12 +165,13 @@ public class WarenkorbPanel  extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				shop.leereWk();
 				warenkorbListener.onWarenkorbAnzeigen();
+				String st = "Warenkorb wurde erfolgreich geleert";
+				JOptionPane.showMessageDialog(null, st);
 			}
 		});		
 	}
 	
-	
-class addWarenkorbListener implements ActionListener {
+	class addWarenkorbListener implements ActionListener {
 		//Artikel hinzufuegen
 		public void actionPerformed (ActionEvent ae) {
 			if (ae.getSource().equals(artikelHinzufuegenButton)) {
@@ -194,6 +193,8 @@ class addWarenkorbListener implements ActionListener {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
 				}
 			}
+			String st = "Artikel wurde erfolgreich zum Warenkorb hinzugefügt";
+			JOptionPane.showMessageDialog(null, st);
 		}
 	}
 	
@@ -207,7 +208,7 @@ class addWarenkorbListener implements ActionListener {
 			}
 		}
 	}
-	
+
 	class bezahlenListener implements ActionListener {
 
 		@Override

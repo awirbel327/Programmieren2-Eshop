@@ -77,7 +77,5 @@ public class Kunde extends User {
 	public Warenkorb getWk() {
 		return warenkorb;
 	}
-	
-	
 
 }

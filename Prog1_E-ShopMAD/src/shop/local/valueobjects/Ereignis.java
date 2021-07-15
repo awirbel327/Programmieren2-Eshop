@@ -33,7 +33,6 @@ public class Ereignis {
 	}
 	
 	//getter
-	
 	public String getKUserId() {
 		return kUserId;
 	}

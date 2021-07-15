@@ -29,7 +29,6 @@ public class WarenkorbVerwaltung {
 	public Vector<Artikel> getListe() {
 		return warenkorbVector;
 	}
-
 	// Methode die prï¿½ft ob noch genug Artikel auf Lager sind
 	public String wkBefuellen(Kunde userEingeloggt, int artNummer, int artAnzahl, ArtikelVerwaltung meineArtikel) throws PackungsgroesseException, LagerbestandsException{
 		Artikel gefundenArt;
@@ -75,8 +74,6 @@ public class WarenkorbVerwaltung {
 			}
 	}
 	
-		
-
 	// Methode die prueft ob der Artikel schon WK liegt & Falls nicht einen neuen Artikel erstellt.
 		public void hinzufuegenOderErhoehen(Kunde userEingeloggt, Artikel gefundenArt, int anzahl, ArtikelVerwaltung meineArtikel) throws LagerbestandsException {
 

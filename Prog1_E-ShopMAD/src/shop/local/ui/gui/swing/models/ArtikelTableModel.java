@@ -29,19 +29,14 @@ public class ArtikelTableModel extends AbstractTableModel  {
     public int getRowCount() {
         return artikel.size();
     }
-
-
     @Override
     public int getColumnCount() {
         return spaltenNamen.length;
     }
-
     @Override
     public String getColumnName(int col) {
         return spaltenNamen[col];
     }
-    
-    
     @Override
 	public Class<?> getColumnClass(int col) {
 		if (artikel.isEmpty()) {
@@ -49,8 +44,6 @@ public class ArtikelTableModel extends AbstractTableModel  {
 		}
 		return getValueAt(0, col).getClass();
 	}
-    
-    
  @Override
     public Object getValueAt(int row, int col) {
         Artikel gewaehlteArtikel = artikel.get(row);

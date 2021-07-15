@@ -307,46 +307,12 @@ public class ShopClientCUI {
 			System.out.println("Hallo "+ shop.getUserEingeloggt().getName() + "! \nSchoen, dass du da bist!");
 			userEingeloggt = user;
 			shop.userEingeloggt(user);
-//			if(userEingeloggt instanceof Kunde) {
-//				eingeloggterUserMenue() ;
-//			}else {
-//				gibMitarbeiterMenueAus();
-//			}
-//			userEingeloggt = user;
-//			shop.userEingeloggt(user);
-			
 		} catch (PasswortOderUsernameFalschException e) {
 			System.out.println(e.getMessage());
 		}
 		
 	}
 
-	// Methode zum einlesen der Anmeldedaten wenn sich ein Mitarbeiter einloggen will
-//	private void mitarbeiterlogin() {
-//		String username = "";
-//		String passwort ="";
-//		System.out.print("Username eingeben :   > ");
-//		try {
-//			username = liesEingabe();
-//		} catch (IOException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		System.out.print("Passwort eingeben :   > ");
-//		try {
-//			passwort = liesEingabe();
-//		} catch (IOException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		try {
-//			User user = shop.userLogIn(username, passwort);
-//			System.out.println("erfolgreich eingeloggt als "+ user.getName()+ "!!");
-//			userEingeloggt = user;
-//			shop.userEingeloggt(user);	
-//		} catch (PasswortOderUsernameFalschException e) {
-//			System.out.println(e.getMessage());	
-//		}
-//	}
-//	
 	// Methode um alle Artikel aus der Artikelliste auf der Konsole auszugeben
 	private void gibArtikellisteAus(List<Artikel> liste) {
 		if (liste.isEmpty()) {
@@ -358,7 +324,6 @@ public class ShopClientCUI {
 			}
 		}
 	}
-	
 	// Methode um den Warenkorb zu befüllen. Kunde kann Artikelnummer und Anzahl eingeben.
 	public void menueWk(BufferedReader br) throws IOException {
 		System.out.println("Geben Sie die Artikelnummer ein: \n");
@@ -385,14 +350,6 @@ public class ShopClientCUI {
 			System.out.println(e2.getMessage());
 		}
 	}
-	
-	/**
-	 * Methode zur AusfÃ¼hrung der Hauptschleife:
-	 * - MenÃ¼ ausgeben
-	 * - Eingabe des Benutzers einlesen
-	 * - Eingabe verarbeiten und Ergebnis ausgeben
-	 * (EVA-Prinzip: Eingabe-Verarbeitung-Ausgabe)
-	 */
 	
 	public void run() {
 		String input = ""; // Variable fÃ¼r Eingaben von der Konsole

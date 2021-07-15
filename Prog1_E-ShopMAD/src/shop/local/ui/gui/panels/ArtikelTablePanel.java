@@ -22,7 +22,6 @@ public class ArtikelTablePanel extends JTable{
 		updateArtikelList(artikel);	
 	}
 	
-//	
 	public void updateArtikelList(Vector<Artikel> artikel) {
 		Collections.sort(artikel, (b1, b2) -> b1.getNummer() - b2.getNummer());	
 		ArtikelTableModel tableModel = (ArtikelTableModel) getModel();

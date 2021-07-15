@@ -44,15 +44,12 @@ public class AnmeldenPanel extends JPanel{
 		public void regMenue();
 	}
 	
-	
 	public AnmeldenPanel(Eshop shop, AnmeldenListener listener) {
 		this.shop = shop;
 		anmeldenListener = listener;
 		setupUI();
 		setupEvents();
 	}
-	
-	
 	private void setupUI() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
@@ -104,16 +101,11 @@ public class AnmeldenPanel extends JPanel{
 
 		setBorder(BorderFactory.createTitledBorder("Hier koennen Sie sich anmelden!"));
 	}
-	
-	
 	private void setupEvents() {
 		loginButton.addActionListener(new loginListener());
 		loginButton.addKeyListener(new loginListener());
-//		searchTextField2.addKeyListener(new loginListener());
 		regButton.addActionListener(new addRegListener());
 	}
-	
-	
 	class loginListener implements ActionListener, KeyListener{
 		
 		//Button 
@@ -132,16 +124,11 @@ public class AnmeldenPanel extends JPanel{
 				}
 	        }
 				}
-				//System.out.println();
-	
-
-		//eig weg ?
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 		}
 
-		// Wenn man enter drückt bei LoginButton
 		@Override
 		public void keyPressed(KeyEvent e) {
 			// TODO Auto-generated method stub

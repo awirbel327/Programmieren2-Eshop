@@ -73,9 +73,9 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	private JScrollPane scrollPane;
 //	private HistoriePanel historiePanel;
 	private JScrollPane historieScrollPane;
-	   private JButton suchButton;
-	   private JTextField suchTextfeld;
-	   private JTable ArtikelTabelle;
+	private JButton suchButton;
+	private JTextField suchTextfeld;
+	private JTable ArtikelTabelle;
 	   
 	   
 	// Konstruktor erzeugt den E-Shop, über den alle Methoden abgewickelt werden
@@ -102,11 +102,7 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				addWindowListener(new WindowCloser());
 				
 				
-				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); // Irgendwie findet er die liste nicht. Oder er findet allgemein die Eshop klasse nicht 
-				
-				// --------SUCHERN
-				 
-			    // -----------SUCHEN OBEN
+				java.util.List<Artikel> artikel = shop.gibAlleArtikel(); 
 				artikelPanel = new ArtikelTablePanel((Vector<Artikel>) artikel);
 				
 				scrollPane = new JScrollPane(artikelPanel);
@@ -115,15 +111,15 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 				
 				
 				System.out.print(shop);
-				anmeldenPanel = new AnmeldenPanel(shop, this); // hier mÃ¼sste eigentlich nur (shop,this); stehen
+				anmeldenPanel = new AnmeldenPanel(shop, this); 
 				this.add(anmeldenPanel, BorderLayout.SOUTH);
 				
-				suchenPanel = new SearchPanel(shop, this); // Hier muss statt null eigentlich this stehen
+				suchenPanel = new SearchPanel(shop, this); 
 				this.add(suchenPanel, BorderLayout.NORTH);
 				
 				warenkorbPanel = new WarenkorbPanel(shop, this);
 				this.add(warenkorbPanel, BorderLayout.EAST);
-				warenkorbPanel.setVisible(false); // MÃœSSTE EIGENTLICH ERST FALSE UND NACH DEM ANMELDEN AUF TRUE GESETZT WERDEN
+				warenkorbPanel.setVisible(false); 
 				
 				mitarbeiterPanel = new MitarbeiterPanel( shop, this);
 				this.add(mitarbeiterPanel, BorderLayout.WEST);
@@ -164,9 +160,8 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 			
 			//Nach Abmelden ist Anmelden wieder möglich
 			if (command.equals("Abmelden")) {
-//				ShopClientGUI.this.setVisible(false);
-//				warenkorbPanel.setVisible(false);
-//				mitarbeiterPanel.setVisible(false);
+				warenkorbPanel.setVisible(false);
+				mitarbeiterPanel.setVisible(false);
 				anmeldenPanel.setVisible(true);
 			}
 			
@@ -198,7 +193,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	            } else {
 	                suchErgebnis = shop.sucheNachBezeichnung(suchbegriff);
 	            }
-//	            sortiereBuecherListe(suchErgebnis);
 	            aktualisiereArtikelAnzeige(suchErgebnis);
 	        }
 	        
@@ -210,30 +204,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	        tableModel.setArtikel((Vector<Artikel>) artikel);
 	    }
 	
-//		ShopClientGUI gui;
-//		try {
-//			gui = new ShopClientGUI("SHOP");
-//			
-//		} catch (IOException e) {	
-//			System.out.println(e.getMessage());
-//		}
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ShopClientGUI shopClientGui = new ShopClientGUI(datei);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-	
-	
-//	public void run() {
-//		String input = ""; 
-//		ShopClientGUI shopClientGui = new ShopClientGUI("Eshop");
-//		
-//	}
 
 	@Override
 	//Prüft User Art und zeigt entsprechende Oberfläche an
@@ -261,8 +231,6 @@ public class ShopClientGUI extends JFrame implements AnmeldenListener, SearchRes
 	public void angemeldeterMitarbeiter() {
 		// TODO Auto-generated method stub
 	}
-	
-	
 
 	@Override
 	public void onSearchResult(Vector<Artikel> artikelListe) {

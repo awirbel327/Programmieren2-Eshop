@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.AbstractButton;
@@ -77,7 +78,6 @@ public class MitarbeiterPanel extends JPanel {
 		setupEvents();
 
 	}
-
 	private void setupUI() {
 		int anzahlZeilen = 15;
 		this.setLayout(new GridLayout(anzahlZeilen, 1));
@@ -175,7 +175,7 @@ public class MitarbeiterPanel extends JPanel {
 		public void actionPerformed(ActionEvent ae) {
 
 			Vector<Artikel> suchErgebnis;
-//			Vector<Artikel> artikelListe;
+
 			String artNameString = artikelNameField.getText();
 
 			String artPreisStringToParse = artikelPreisField.getText();
@@ -186,15 +186,12 @@ public class MitarbeiterPanel extends JPanel {
 
 			einArtikel = new Artikel(artNameString, artStueckzahlString, artPreisString);
 			
-//			String paketGroesseToParse = massengutPaketField.getText();
-//			int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
 
 			if (ae.getSource().equals(artikelErstellenButton) && !massengutCheckBox.isSelected()) {
 
 					try {
 						shop.mitArtikelHinzu(einArtikel);
-//						String st = "Artikel wurde erfolgreich hinzugefügt";
-//						JOptionPane.showMessageDialog(null, st);
+
 					} catch (PackungsgroesseException | ArtikelExistiertBereitsException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -215,8 +212,9 @@ public class MitarbeiterPanel extends JPanel {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					
-//					artikelPanel.updateArtikelList(artikelListe);
+						String st = "Artikel wurde erfolgreich hinzugefügt";
+						JOptionPane.showMessageDialog(null, st);
+
 			
 			} else if (ae.getSource().equals(artikelErstellenButton) && massengutCheckBox.isSelected()){
 			
@@ -227,8 +225,7 @@ public class MitarbeiterPanel extends JPanel {
 				
 				try {
 					shop.mitArtikelHinzu(einArtikel);
-//					String st = "Artikel wurde erfolgreich hinzugefügt";
-//					JOptionPane.showMessageDialog(null, st);
+				
 				} catch (PackungsgroesseException | ArtikelExistiertBereitsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -250,22 +247,36 @@ public class MitarbeiterPanel extends JPanel {
 						e.printStackTrace();
 					
 			}
+					String st = "Artikel wurde erfolgreich hinzugefügt";
+					JOptionPane.showMessageDialog(null, st);
+
+							}
 		}
-		}
+		
+		
 	}
-	
 	class ArtikelAendernListener implements ActionListener {
 		private Vector<Artikel> artikelListe;
 		public void actionPerformed(ActionEvent ae) {
 			Vector<Artikel> suchErgebnis;
 
 			String artikelname = artikelAendernField.getText();
-
+			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
+			
 			String artBestandStringToParse = artikelBestandField.getText();
 			int erhohung = Integer.parseInt(artBestandStringToParse);
-
-			try {
-				shop.mitErhoehtArtikel(artikelname, erhohung);
+			
+			
+			if(gefundeneArtikel.size() > 1 ) {
+				String st = "Fehler: mehr als ein Artikel mit dieser Bezeichnung in Liste!";
+				JOptionPane.showMessageDialog(null, st);
+			}else {
+				try {
+					shop.mitErhoehtArtikel(artikelname, erhohung);
+				} catch (PackungsgroesseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				try {
 					shop.speicherArtikel();
 				} catch (IOException e) {
@@ -278,13 +289,12 @@ public class MitarbeiterPanel extends JPanel {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} catch (PackungsgroesseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-//			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
-//			listener.onSearchResult(suchErgebnis);
+
+			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
+			listener.onSearchResult(suchErgebnis);
 		}
+		
 	}
 
 	class checkBoXListener implements ActionListener {
