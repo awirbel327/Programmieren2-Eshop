@@ -14,20 +14,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import shop.local.domain.*;
-import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
-import shop.local.domain.exceptions.PackungsgroesseException;
-import shop.local.ui.gui.panels.MitarbeiterPanel.ArtikelAendernListener;
-import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
-import shop.local.ui.gui.panels.MitarbeiterPanel.addArtikelErstellenListener;
-import shop.local.ui.gui.panels.MitarbeiterPanel.checkBoXListener;
-import shop.local.valueobjects.Artikel;
-import shop.local.valueobjects.Ereignis;
+import shop.local.domain.exceptions.*;
+
+import shop.local.ui.gui.panels.MitarbeiterPanel.*;
+//import shop.local.ui.gui.panels.MitarbeiterPanel.ArtikelAendernListener;
+//import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
+//import shop.local.ui.gui.panels.MitarbeiterPanel.addArtikelErstellenListener;
+//import shop.local.ui.gui.panels.MitarbeiterPanel.checkBoXListener;
+import shop.local.valueobjects.*;
+
 
 public class MitarbeiterPanel extends JPanel {
 
-	/**
-	 * TEST
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public interface MitarbeiterListener {
@@ -43,12 +41,17 @@ public class MitarbeiterPanel extends JPanel {
 	private Eshop shop = null;
 	private MitarbeiterListener listener = null;
 
+	private JTextField mitarbeiternameField;
+	private JTextField usernameField;
+	private JTextField passwortField;
+	
 	private JTextField artikelNameField;
 	private JTextField artikelPreisField;
 	private JTextField artikelAnzahlField;
 	private JCheckBox massengutCheckBox;
 	private JTextField massengutPaketField;
 	private JButton artikelErstellenButton;
+	private JButton mitarbeiterHinzuButton;
 
 	private JLabel platzhalter;
 
@@ -76,9 +79,9 @@ public class MitarbeiterPanel extends JPanel {
 	}
 
 	private void setupUI() {
-		int anzahlZeilen = 14;
+		int anzahlZeilen = 15;
 		this.setLayout(new GridLayout(anzahlZeilen, 1));
-
+		
 		artikelNameField = new JTextField();
 		artikelNameField.setToolTipText("Artikelname");
 		this.add(artikelNameField);
@@ -118,17 +121,52 @@ public class MitarbeiterPanel extends JPanel {
 
 		platzhalter2 = new JLabel();
 		this.add(platzhalter2);
-
 		
-
+		mitarbeiternameField = new JTextField();
+		this.add(mitarbeiternameField);
+		mitarbeiternameField.setToolTipText("Mitarbeitername");
+		
+		usernameField = new JTextField();
+		this.add(usernameField);
+		usernameField.setToolTipText("Username");
+		
+		passwortField = new JTextField();
+		this.add(passwortField);
+		passwortField.setToolTipText("Passwort");
+		
+		mitarbeiterHinzuButton = new JButton("Mitarbeiter Hinzufuegen");
+		this.add(mitarbeiterHinzuButton);
 	}
 
 	private void setupEvents() {
 		artikelErstellenButton.addActionListener(new addArtikelErstellenListener());
 		artikelAendernButton.addActionListener(new ArtikelAendernListener());
 		massengutCheckBox.addActionListener(new checkBoXListener());
+		mitarbeiterHinzuButton.addActionListener(new mitHinzufuegenListener());
 	}
 
+	class mitHinzufuegenListener implements ActionListener{
+		public void actionPerformed(ActionEvent ae) {
+			String name = mitarbeiternameField.getText();
+			String username = usernameField.getText();
+			String passwort = passwortField.getText();
+			
+			Mitarbeiter einMitarbeiter = new Mitarbeiter(name,username, passwort );	//neuen Mitarbeiter erschaffen
+			try {
+				shop.mitarbeiterRegistrieren(einMitarbeiter);
+				System.out.println(name + " wurde erfolgreich registriert!");
+				try {
+					shop.speicherMitarbeiter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (MitarbeiterExistiertBereitsException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
 	class addArtikelErstellenListener implements ActionListener {
 
 		private Vector<Artikel> artikelListe;
