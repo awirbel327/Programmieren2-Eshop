@@ -263,7 +263,6 @@ public class ShopClientCUI {
 		case "l":
 			System.out.print("Artikelbezeichnung :   >");
 			String artikelname = liesEingabe();
-			//Wieso Liste?
 			List<Artikel> gefundeneArtikel = shop.sucheNachBezeichnung(artikelname);
 			if(gefundeneArtikel.size() > 1 ) {
 				System.out.println("Fehler: mehr als ein Artikel mit dieser Bezeichnung in Liste!");

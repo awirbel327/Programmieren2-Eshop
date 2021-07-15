@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import shop.local.domain.*;
 import shop.local.domain.exceptions.ArtikelExistiertBereitsException;
 import shop.local.domain.exceptions.PackungsgroesseException;
-import shop.local.ui.gui.panels.MitarbeiterPanel.AtikelAendernListener;
+import shop.local.ui.gui.panels.MitarbeiterPanel.ArtikelAendernListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.MitarbeiterListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.addArtikelErstellenListener;
 import shop.local.ui.gui.panels.MitarbeiterPanel.checkBoXListener;
@@ -125,7 +125,7 @@ public class MitarbeiterPanel extends JPanel {
 
 	private void setupEvents() {
 		artikelErstellenButton.addActionListener(new addArtikelErstellenListener());
-		artikelAendernButton.addActionListener(new AtikelAendernListener());
+		artikelAendernButton.addActionListener(new ArtikelAendernListener());
 		massengutCheckBox.addActionListener(new checkBoXListener());
 	}
 
@@ -146,46 +146,47 @@ public class MitarbeiterPanel extends JPanel {
 			int artStueckzahlString = Integer.parseInt(artStueckzahlStringToParse);
 
 			einArtikel = new Artikel(artNameString, artStueckzahlString, artPreisString);
-//			String paketGroesseToParse = massengutPaketField.getText();
-//			int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
+			String paketGroesseToParse = massengutPaketField.getText();
+			int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
 
 			if (ae.getSource().equals(artikelErstellenButton) && !massengutCheckBox.isSelected()) {
 
-				try {
-
-					shop.mitArtikelHinzu(einArtikel);
+					try {
+						shop.mitErhoehtArtikel(paketGroesseToParse, paketGroesseInt);;
+					} catch (PackungsgroesseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 					listener.onSearchResult(suchErgebnis);
-					try {
-						shop.speicherArtikel();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					try {
-						shop.speicherEreignis();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
+						try {
+							shop.speicherArtikel();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+						try {
+							shop.speicherEreignis();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
 					artikelPanel.updateArtikelList(artikelListe);
-				} catch (ArtikelExistiertBereitsException e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage(), "Fehler", JOptionPane.WARNING_MESSAGE);
-				} catch (PackungsgroesseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+			
 			} else {
-				String paketGroesseToParse = massengutPaketField.getText();
-				int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
+//				String paketGroesseToParse = massengutPaketField.getText();
+//				int paketGroesseInt = Integer.parseInt(paketGroesseToParse);
 //					shop.erstelleMassenartikel(artStueckzahlString, artNameString, artPreisString, paketGroesseInt);
 //					suchErgebnis = shop.artikelListeGui();
 //					listener.onSearchResult(suchErgebnis);
 			}
 		}
 	}
-	class AtikelAendernListener implements ActionListener {
+	
+	class ArtikelAendernListener implements ActionListener {
 		private Vector<Artikel> artikelListe;
 		public void actionPerformed(ActionEvent ae) {
 			Vector<Artikel> suchErgebnis;
@@ -216,7 +217,6 @@ public class MitarbeiterPanel extends JPanel {
 			suchErgebnis = (Vector<Artikel>) shop.gibAlleArtikel();
 			listener.onSearchResult(suchErgebnis);
 		}
-		
 	}
 
 	class checkBoXListener implements ActionListener {
@@ -233,7 +233,5 @@ public class MitarbeiterPanel extends JPanel {
 				massengutPaketField.setVisible(false);
 			}
 		}
-	}
-
-	
+	}	
 }
