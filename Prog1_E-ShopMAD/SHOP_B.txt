@@ -1,6 +1,6 @@
 Bananen
 1
-52
+55
 1.0
 Einzelgut
 Aepfel
@@ -35,7 +35,7 @@ Zitronen
 0.2
 Massengut
 5
-vergoldeter Plueschhund
+Plueschhund
 8
 7
 950.0
@@ -76,3 +76,9 @@ Bier
 2.5
 Massengut
 4
+Test
+16
+100
+1.5
+Massengut
+20
