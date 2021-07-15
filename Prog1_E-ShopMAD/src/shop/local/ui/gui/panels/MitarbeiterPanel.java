@@ -154,7 +154,8 @@ public class MitarbeiterPanel extends JPanel {
 			Mitarbeiter einMitarbeiter = new Mitarbeiter(name,username, passwort );	//neuen Mitarbeiter erschaffen
 			try {
 				shop.mitarbeiterRegistrieren(einMitarbeiter);
-				System.out.println(name + " wurde erfolgreich registriert!");
+				String st = "Wurde erfolgreich registriert";
+				JOptionPane.showMessageDialog(null, st);
 				try {
 					shop.speicherMitarbeiter();
 				} catch (IOException e) {
